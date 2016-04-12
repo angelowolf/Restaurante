@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/> 
+    <!--MENSAJES DE CONVERSION DE DATOS PRIMITIVOS-->
+    <constant name="struts.custom.i18n.resources" value="struts-mensajes" />
+    <!--quitar action de url-->
+    <constant name="struts.action.extension" value="," />
+    <constant name="struts.action.excludePattern" value="/js/.*,/css/.*,/imagenes/.*" />
+    <constant name="struts.ui.theme" value="simple" /> 
+        
+    <include file="Struts2/XML/struts-cliente.xml"></include>
+</struts>
