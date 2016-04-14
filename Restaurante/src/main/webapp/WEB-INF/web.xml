@@ -9,6 +9,14 @@
         <location>/WEB-INF/404.jsp</location>
     </error-page>
     <!--FIN ERROR 404-->
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>FiltroHibernate.NewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -17,6 +25,24 @@
     <welcome-file-list>
         <welcome-file>/WEB-INF/index.jsp</welcome-file>
     </welcome-file-list>
+    <!--Le asigna a todas las paginas HTML UTF-8. Para las tildes. Solucina error de struts al mandar por request acentos.-->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+    <!--FIN UTF-8-->
+    <!--Filtro de hibernate.-->
+    <filter>
+        <filter-name>HibernateFilter</filter-name>
+        <filter-class>FiltroHibernate.HibernateSessionRequestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HibernateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--FIN FILTRO HIBERNATE-->
     <!--Filtro de Struts2-->
     <filter>
         <filter-name>struts2</filter-name>
@@ -31,4 +57,13 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!--FIN FILTRO SRUTS2-->
+    <!--Definicion del framework Tiles-->
+    <!--    <listener>
+        <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>      
+    </listener>    
+    <context-param>
+        <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+        <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>-->
+    <!--FIN TILES-->
 </web-app>
