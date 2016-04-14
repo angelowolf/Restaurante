@@ -8,6 +8,7 @@ package accion;
 import clase.Cliente;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -15,10 +16,18 @@ import com.opensymphony.xwork2.ModelDriven;
  */
 public class ClienteAction extends ActionSupport implements ModelDriven<Cliente> {
 
+    private static final Logger log = Logger.getLogger(ClienteAction.class);
+
     private Cliente cliente = new Cliente();
 
     public void validateDame() {
-        System.out.println("validacion de dame...");
+//        try {
+//            throw new Exception("NOSE Q MIERDA PASO BOLUDO");
+//        } catch (Exception e) {
+//        log.error("Error al validar.", e);
+//        }
+
+        log.info("HOLA DESDE VALIDAR :D");
     }
 
     public String dame() {
