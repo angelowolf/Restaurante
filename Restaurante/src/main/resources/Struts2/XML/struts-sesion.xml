@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: ang_2 -->
+ 
+<struts>
+    <package name="sesion" extends="default" namespace="/">       
+        <action name="login" method="login" class="Acciones.UsuarioAction">
+            <result name="success" type="tiles">/home.tiles</result>
+            <result name="input">/WEB-INF/login.jsp</result>
+        </action>
+        <action name="logout" method="logout" class="Acciones.UsuarioAction">
+            <result name="success">/WEB-INF/login.jsp</result>
+        </action>
+    </package>
+</struts>

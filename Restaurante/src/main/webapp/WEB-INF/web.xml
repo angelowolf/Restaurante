@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <welcome-file-list>
-        <welcome-file>/WEB-INF/index.html</welcome-file>
-    </welcome-file-list>
     <!--Pagina que redirigira al producir un error 404, o una accion no encontrada (URL que no exista)-->
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/404.jsp</location>
     </error-page>
-    <!--FIN ERROR 404-->
-    <servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>FiltroHibernate.NewServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NewServlet</servlet-name>
-        <url-pattern>/NewServlet</url-pattern>
-    </servlet-mapping>
+    <!--FIN ERROR 404-->  
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/login.jsp</welcome-file>
     </welcome-file-list>
     <!--Le asigna a todas las paginas HTML UTF-8. Para las tildes. Solucina error de struts al mandar por request acentos.-->
     <jsp-config>
@@ -58,12 +47,12 @@
     </filter-mapping>
     <!--FIN FILTRO SRUTS2-->
     <!--Definicion del framework Tiles-->
-    <!--    <listener>
+    <listener>
         <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>      
     </listener>    
     <context-param>
         <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
         <param-value>/WEB-INF/tiles.xml</param-value>
-    </context-param>-->
+    </context-param>
     <!--FIN TILES-->
 </web-app>

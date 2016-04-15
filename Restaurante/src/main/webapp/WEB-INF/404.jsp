@@ -32,7 +32,7 @@
     <body>
         <div class="horizontal padre">
             <div class="vertical">
-                <img src="imagenes/404.png"/>
+                <img src="/../imagenes/404.png"/>
             </div>
         </div>
     </body>

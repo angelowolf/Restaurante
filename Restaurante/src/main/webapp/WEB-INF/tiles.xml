@@ -4,143 +4,58 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
     <!--MASTER PAGE EJEMPLO-->   
-    <definition name="rootlayout" template="/WEB-INF/root/rootlayout.jsp">
+    <definition name="masterpage" template="/WEB-INF/masterpage.jsp">
         <put-attribute name="title" value="Administración" />
         <put-attribute name="body" value="" /> 
-        <put-attribute name="modal-delete" value="/WEB-INF/root/modal-delete.jsp" />
         <put-list-attribute name="stylesheet" >
             <add-attribute value="/../bower_components/bootstrap/dist/css/bootstrap.css" />
             <add-attribute value="/../css/bootstrap-multiselect.min.css" />
-            <add-attribute value="/../bower_components/metisMenu/dist/metisMenu.min.css" />
+            <add-attribute value="/../css/metisMenu.min.css" />
             <add-attribute value="/../css/sb-admin-2.css" />
-            <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />
-            <add-attribute value="/../css/root.css" />
+            <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />            
         </put-list-attribute>
         <put-list-attribute name="javascript" >
-            <add-attribute value="/../bower_components/jquery/dist/jquery.min.js" />
+            <add-attribute value="/../js/jquery.min.js" />
             <add-attribute value="/../js/bootstrap-multiselect.js" />
             <add-attribute value="/../js/bootstrap.min.js" />
-            <add-attribute value="/../bower_components/metisMenu/dist/metisMenu.min.js" />
+            <add-attribute value="/../js/metisMenu.min.js" />
             <add-attribute value="/../js/sb-admin-2.js" />
         </put-list-attribute>
     </definition>
     <!--FIN MASTER PAGE-->
-    <!--MASTER PAGE ADMIN-->
-    <definition name="adminlayout" template="/WEB-INF/admin/adminlayout.jsp">
-        <put-attribute name="title" value="Administración" />
-        <put-attribute name="body" value="" /> 
-        <put-list-attribute name="stylesheet" >
-            <add-attribute value="/../css/bootstrap.css" />
-            <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />
-            <add-attribute value="/../css/vendor/animate.css" />
-            <add-attribute value="/../css/admin.css" />
-        </put-list-attribute>
-        <put-list-attribute name="javascript" >
-            <add-attribute value="/../bower_components/jquery/dist/jquery.min.js" />
-            <add-attribute value="/../js/bootstrap.min.js" />
-            <add-attribute value="/../js/vendor/bootstrap-notify.min.js" />
-            <add-attribute value="/../js/admin/admin.js" />
-        </put-list-attribute>
-    </definition>
-    <!--FIN MASTER PAGE ADMIN-->
-    <!--INDEX ADMIN-->
-    <definition name="/admin/index.tiles" extends="adminlayout">
+    <!--INICIO-->
+    <definition name="/home.tiles" extends="masterpage">
         <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/admin/index.jsp" />
+        <put-attribute name="body" value="/WEB-INF/home.jsp" />
     </definition>
-    <!--HABITACIONES-->
-    <definition name="/admin/habitacion/habitaciones.tiles" extends="adminlayout">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/admin/habitacion/habitaciones.jsp" />
+    <!--SALA-->
+    <definition name="/sala/altamodificacion.tiles" extends="masterpage">
+        <put-attribute name="title" value="Formulario Sala" />
+        <put-attribute name="body" value="/WEB-INF/sala/altamodificacion.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/admin/habitacion/mishabitaciones.js" />
-        </put-list-attribute>
-    </definition>  
-    <!--TARIFA-->
-    <definition name="/admin/tarifa/tarifa.tiles" extends="adminlayout">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/admin/tarifa/tarifa.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/admin/tarifa/tarifa.js" />
-        </put-list-attribute>
-    </definition>  
-    <!--TEMPORADA-->
-    <definition name="/admin/temporada/temporada.tiles" extends="adminlayout">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/admin/temporada/temporada.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/admin/temporada/temporada.js" />
-        </put-list-attribute>
-    </definition>  
-    
-    
-    
-    <!--INDEX ROOT-->
-    <definition name="/root/index.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Home" />
-        <put-attribute name="body" value="/WEB-INF/root/index.jsp" />
-    </definition>
-    <!--TIPO PAGO-->
-    <definition name="/root/tipopago/altamodificacion.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Formulario Tipo Pago" />
-        <put-attribute name="body" value="/WEB-INF/root/tipopago/altamodificacion.jsp" />
-    </definition>
-    <definition name="/root/tipopago/todos.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Tipo Pagos" />
-        <put-attribute name="body" value="/WEB-INF/root/tipopago/todos.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root.js" />
-        </put-list-attribute>
-    </definition>   
-    <!--TIPO DOCUMENTO-->
-    <definition name="/root/tipodocumento/altamodificacion.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Formulario Tipo Documento" />
-        <put-attribute name="body" value="/WEB-INF/root/tipodocumento/altamodificacion.jsp" />
-    </definition>
-    <definition name="/root/tipodocumento/todos.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Tipo Documentos" />
-        <put-attribute name="body" value="/WEB-INF/root/tipodocumento/todos.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root.js" />
+            <!--<add-attribute value="/../js/sala.js" />-->
         </put-list-attribute>
     </definition>
-    <!--SEXO-->
-    <definition name="/root/sexo/altamodificacion.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Formulario Sexo" />
-        <put-attribute name="body" value="/WEB-INF/root/sexo/altamodificacion.jsp" />
-    </definition>
-    <definition name="/root/sexo/todos.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Sexos" />
-        <put-attribute name="body" value="/WEB-INF/root/sexo/todos.jsp" />
+    <definition name="/sala/todos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Salas" />
+        <put-attribute name="body" value="/WEB-INF/sala/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root.js" />
+            <!--<add-attribute value="/../js/root.js" />-->
         </put-list-attribute>
     </definition>
-    <!--MODULO-->
-    <definition name="/root/modulo/altamodificacion.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Formulario Modulo" />
-        <put-attribute name="body" value="/WEB-INF/root/modulo/altamodificacion.jsp" />
-    </definition>
-    <definition name="/root/modulo/todos.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Modulos" />
-        <put-attribute name="body" value="/WEB-INF/root/modulo/todos.jsp" />
+    <!--USUARIO-->
+    <definition name="/usuario/altamodificacion.tiles" extends="masterpage">
+        <put-attribute name="title" value="Formulario Usuario" />
+        <put-attribute name="body" value="/WEB-INF/usuario/altamodificacion.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root.js" />
+            <!--<add-attribute value="/../js/sala.js" />-->
         </put-list-attribute>
     </definition>
-    <!--PLAN-->
-    <definition name="/root/plan/altamodificacion.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Formulario Plan" />
-        <put-attribute name="body" value="/WEB-INF/root/plan/altamodificacion.jsp" />
+    <definition name="/usuario/todos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Usuarios" />
+        <put-attribute name="body" value="/WEB-INF/usuario/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root/plan.js" />
-        </put-list-attribute>
-    </definition>
-    <definition name="/root/plan/todos.tiles" extends="rootlayout">
-        <put-attribute name="title" value="Planes" />
-        <put-attribute name="body" value="/WEB-INF/root/plan/todos.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/root.js" />
+            <!--<add-attribute value="/../js/root.js" />-->
         </put-list-attribute>
     </definition>
 </tiles-definitions>
