@@ -1,1 +1,28 @@
-FORUMULARIO USUARIO
+<%@taglib uri="/struts-tags" prefix="s"%>
+<form class="well" id="formulario">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <div class="form-group">
+        <label for="apellido">Appelido</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
+    </div>
+    <div class="form-group">
+        <label for="rol">Rol</label>
+        <select class="form-control" id="rol" name="rol">
+            <option>Mozo</option>
+            <option>Administrador</option>
+            <option>BARRA</option>            
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="nick">Nick</label>
+        <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+    </div>
+    <div class="form-group">
+        <label for="clave">Clave</label>
+        <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
+    </div>
+    <button type="submit" id="registrar" class="btn btn-default">Registrar</button>
+</form>           

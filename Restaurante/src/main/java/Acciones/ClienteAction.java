@@ -5,7 +5,7 @@
  */
 package Acciones;
 
-import clase.Cliente;
+import Modelo.Cliente;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.log4j.Logger;
@@ -16,21 +16,17 @@ import org.apache.log4j.Logger;
  */
 public class ClienteAction extends ActionSupport implements ModelDriven<Cliente> {
 
-    private static final Logger log = Logger.getLogger(ClienteAction.class);
+    private static final Logger LOG = Logger.getLogger(ClienteAction.class);
 
     private Cliente cliente = new Cliente();
+    private int codigo = 400;
 
-    public void validateDame() {
-//        try {
-//            throw new Exception("NOSE Q MIERDA PASO BOLUDO");
-//        } catch (Exception e) {
-//        log.error("Error al validar.", e);
-//        }
-
-        log.info("HOLA DESDE VALIDAR :D");
+    public int getCodigo() {
+        return codigo;
     }
 
     public String dame() {
+        addActionMessage("hi");
         return SUCCESS;
     }
 
@@ -47,4 +43,13 @@ public class ClienteAction extends ActionSupport implements ModelDriven<Cliente>
         return cliente;
     }
 
+    public void validateDame() {
+        if (!cliente.getNombre().equals("angelo")) {
+            addFieldError("nombre", "nombre no valido");
+        }
+    }
+
+    public String registrar() {
+        return SUCCESS;
+    }
 }

@@ -59,38 +59,10 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-transgender fa-fw"></i> Sexo<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-bank fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="<s:url action="listar" namespace="/root/sexo"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                                    <li><a href="<s:url action="nuevo" namespace="/root/sexo"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-                                </ul>                              
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-cube fa-fw"></i> Modulo<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="<s:url action="listar" namespace="/root/modulo"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                                    <li><a href="<s:url action="nuevo" namespace="/root/modulo"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-                                </ul>        
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-cubes fa-fw"></i> Plan<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="<s:url action="listar" namespace="/root/plan"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                                    <li><a href="<s:url action="nuevo" namespace="/root/plan"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-                                </ul>        
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-credit-card fa-fw"></i> Tipo Documento<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="<s:url action="listar" namespace="/root/tipodocumento"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                                    <li><a href="<s:url action="nuevo" namespace="/root/tipodocumento"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-                                </ul>                              
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bank fa-fw"></i> Tipo Pago<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="<s:url action="listar" namespace="/root/tipopago"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                                    <li><a href="<s:url action="nuevo" namespace="/root/tipopago"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
+                                    <li><a href="<s:url action="listar" namespace="/usuario"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
+                                    <li><a href="<s:url action="nuevo" namespace="/usuario"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
                                 </ul>                              
                             </li>
                         </ul>
@@ -105,11 +77,6 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="text-center">
-                                <s:actionerror theme="bootstrap"/>
-                                <s:actionmessage theme="bootstrap"/>
-                                <s:fielderror theme="bootstrap"/>
-                            </div>
                             <tiles:insertAttribute name="body" />
                         </div>
                         <!-- /.col-lg-12 -->

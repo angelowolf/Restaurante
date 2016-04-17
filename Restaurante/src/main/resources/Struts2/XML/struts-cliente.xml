@@ -4,10 +4,11 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="cliente" extends="struts-default" namespace="/cliente">
-        <action name="dame" method="dame" class="accion.ClienteAction">
-            <result name="success">/WEB-INF/Cliente.jsp</result>
-            <result name="input">/WEB-INF/index.jsp</result>
-        </action>              
+    <package name="cliente" extends="json" namespace="/cliente">
+        <action name="registrar" method="registrar" class="Acciones.ClienteAction"/>
+        
+        <action name="dame" method="dame" class="Acciones.ClienteAction"/>
+        
+       
     </package>
 </struts>

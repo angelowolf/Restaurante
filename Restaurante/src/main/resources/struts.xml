@@ -4,6 +4,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <constant name="struts.ui.theme" value="simple" />
     <constant name="struts.devMode" value="true"/> 
     <!--MENSAJES DE CONVERSION DE DATOS PRIMITIVOS-->
     <constant name="struts.custom.i18n.resources" value="struts-mensajes" />
@@ -12,11 +13,32 @@
     <constant name="struts.action.excludePattern" value="/js/.*,/css/.*,/imagenes/.*" />
     <constant name="struts.ui.theme" value="simple" /> 
         
+    <include file="Struts2/XML/struts-modal.xml"></include>
     <include file="Struts2/XML/struts-cliente.xml"></include>
+    <include file="Struts2/XML/struts-usuario.xml"></include>
     <include file="Struts2/XML/struts-sesion.xml"></include>
     <package name="default" extends="struts-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
+    </package>
+    <package name="json" extends="json-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+        <global-results>
+            <result name="success" type="json">
+                <param name="root">action</param>  
+                <param name="ignoreHierarchy">false</param> 
+                <!--con las 2 lineas anteriores decimos que agregue absolutamente todo al json..  que incluya los elementos de
+                las clase que hereda(con el ignoreHiererchy-->
+                <param name="includeProperties">actionMessages.*,model.*,codigo</param>
+            </result>
+            <result name="input" type="json">
+                <param name="root">action</param>  
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*,codigo</param>
+            </result>
+        </global-results>
     </package>
 </struts>
