@@ -10,7 +10,8 @@
     </div>
     <div class="form-group">
         <label for="rol">Rol</label>
-        <select class="form-control" id="rol" name="rol">
+        <select class="form-control" id="rol" name="rol" >
+            <option value="" selected disabled>Seleccione</option>
             <option>Mozo</option>
             <option>Administrador</option>
             <option>BARRA</option>            
@@ -23,6 +24,10 @@
     <div class="form-group">
         <label for="clave">Clave</label>
         <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
+    </div>
+    <div class="form-group">
+        <label for="clave">Repita la clave</label>
+        <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
     </div>
     <button type="submit" id="registrar" class="btn btn-default">Registrar</button>
 </form>           

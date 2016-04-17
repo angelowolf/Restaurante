@@ -56,10 +56,10 @@ var erroresM = (function () {
         $.notifyClose();
     };
 
-    modulo.mostrarAlertError = function (actionErrors, tipo) {
-        for (var input in actionErrors) {
+    modulo.mostrarAlertError = function (mensaje, tipo) {
+        for (var input in mensaje) {
             $.notify({
-                message: actionErrors[input]
+                message: mensaje[input]
             }, {
                 animate: {
                     enter: 'animated fadeInDown',

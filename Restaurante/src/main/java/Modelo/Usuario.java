@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Soporte.Encriptar;
+
 /**
  *
  * @author ang_2
@@ -12,7 +14,7 @@ package Modelo;
 public class Usuario {
 
     private int id;
-    private String nombre, apellido, nick, clave;
+    private String nombre, apellido, nick, clave, clave2, claveOriginal;
     private Rol rol;
 
     public Usuario() {
@@ -33,6 +35,14 @@ public class Usuario {
         this.nick = nick;
         this.clave = clave;
         this.rol = rol;
+    }
+
+    public String getClaveOriginal() {
+        return claveOriginal;
+    }
+
+    public void setClaveOriginal(String claveOriginal) {
+        this.claveOriginal = claveOriginal;
     }
 
     public int getId() {
@@ -83,13 +93,27 @@ public class Usuario {
         this.rol = rol;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", rol=" + rol + '}';
+    public String getClave2() {
+        return clave2;
     }
 
+    public void setClave2(String clave2) {
+        this.clave2 = clave2;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", rol=" + rol + '}';
+    }
+
+    /**
+     * Verifica que las contraseñas sean identicas.
+     *
+     * @param password
+     * @return True si lo son.
+     */
     public boolean iniciarSesion(String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.clave.equals(Encriptar.encriptaEnMD5(password));
     }
 
 }

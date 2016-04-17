@@ -95,6 +95,7 @@ public class Mensaje {
     public static final String INGRESEFECHA = "Ingrese la fecha en la que ocurrió el evento.";
     public static final String FORMATOCPACIDADNOCORRECTO = "El formato de la capacidad ingresada no es correcta.";
     public static final String INGRESEPRECIOALGUNACAPACIDAD = "Ingrese algun precio.";
+    public static final String SELECCIONEROL = "Seleccione un Rol.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

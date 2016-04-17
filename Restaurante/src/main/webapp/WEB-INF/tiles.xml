@@ -9,19 +9,19 @@
         <put-attribute name="body" value="" /> 
         <put-list-attribute name="stylesheet" >
             <add-attribute value="/../bower_components/bootstrap/dist/css/bootstrap.css" />
-            <add-attribute value="/../css/bootstrap-multiselect.min.css" />
-            <add-attribute value="/../css/metisMenu.min.css" />
-            <add-attribute value="/../css/sb-admin-2.css" />
+            <add-attribute value="/../css/vendor/bootstrap-multiselect.min.css" />
+            <add-attribute value="/../css/vendor/metisMenu.min.css" />
+            <add-attribute value="/../css/vendor/sb-admin-2.css" />
             <add-attribute value="/../css/admin.css" />
             <add-attribute value="/../css/vendor/animate.css" />
             <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />            
         </put-list-attribute>
         <put-list-attribute name="javascript" >
-            <add-attribute value="/../js/jquery.min.js" />
-            <add-attribute value="/../js/bootstrap-multiselect.js" />
-            <add-attribute value="/../js/bootstrap.min.js" />
-            <add-attribute value="/../js/metisMenu.min.js" />
-            <add-attribute value="/../js/sb-admin-2.js" />
+            <add-attribute value="/../js/vendor/jquery.min.js" />
+            <add-attribute value="/../js/vendor/bootstrap-multiselect.js" />
+            <add-attribute value="/../js/vendor/bootstrap.min.js" />
+            <add-attribute value="/../js/vendor/metisMenu.min.js" />
+            <add-attribute value="/../js/vendor/sb-admin-2.js" />
             <add-attribute value="/../js/admin.js" />
             <add-attribute value="/../js/vendor/bootstrap-notify.min.js" />
         </put-list-attribute>
@@ -60,6 +60,13 @@
         <put-attribute name="body" value="/WEB-INF/usuario/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/usuario/usuario.js" />
+        </put-list-attribute>
+    </definition>
+    <definition name="/usuario/misdatos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Usuarios" />
+        <put-attribute name="body" value="/WEB-INF/usuario/misdatos.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/usuario/misdatos.js" />
         </put-list-attribute>
     </definition>
 </tiles-definitions>

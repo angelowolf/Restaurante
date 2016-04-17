@@ -29,7 +29,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Gestión</a>
+                    <a class="navbar-brand" href="#">Restaurante Ruhaj</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -40,10 +40,10 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-user">
+                        <ul class="dropdown-menu">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
                             </li>
-                            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
+                            <li><a href="<s:url action="misdatos" namespace="/usuario"/>"><i class="fa fa-gear fa-fw"></i> Configuración</a>
                             </li>
                             <li class="divider"></li>
                             <li><a href="<s:url action="logout" namespace="/"/>"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
@@ -59,7 +59,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-bank fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="<s:url action="listar" namespace="/usuario"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
                                     <li><a href="<s:url action="nuevo" namespace="/usuario"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>

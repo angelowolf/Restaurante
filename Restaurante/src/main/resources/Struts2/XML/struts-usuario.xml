@@ -15,6 +15,9 @@
         <action name="nuevo" method="nuevo" class="Acciones.UsuarioAction">
             <result name="success" type="tiles">/usuario/altamodificacion.tiles</result>
         </action>
-
+        <action name="misdatos" method="misdatos" class="Acciones.UsuarioAction">
+            <result name="success" type="tiles">/usuario/misdatos.tiles</result>
+        </action>
+        <action name="modificarmisdatos" method="modificarmisdatos" class="Acciones.UsuarioAction"/>
     </package>
 </struts>

@@ -11,15 +11,15 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <!--Configuracion correspondiente al pool. DEBE ACTIVARSE SOLO EN PRODUCCION SINO EN DESARROLLO AL COMPILAR MUCHAS VECES SE SATURAN LAS CONEXIONES DE LA BD-->
-        <!--    <property name="hibernate.c3p0.min_size">10</property>
+        <!--Configuracion correspondiente al pool.-->
+        <property name="hibernate.c3p0.min_size">10</property>
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.acquire_increment">1</property>
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         <property name="hibernate.c3p0.max_statements">50</property>
         <property name="hibernate.c3p0.timeout">1800</property>
-        <property name="hibernate.c3p0.validate">true</property>-->
-        <!--<property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>-->
+        <property name="hibernate.c3p0.validate">true</property>
+        <property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
         <!--FIN POOL-->
         <!--INICIO MAPEO BD-->
         <mapping package="Persistencia.MapeoHibernate.Usuario.hbm.xml" resource="Persistencia/MapeoHibernate/Usuario.hbm.xml"/>

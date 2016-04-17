@@ -10,7 +10,7 @@ import Persistencia.ORM.DAOInterface.IUsuario;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 /**
@@ -19,7 +19,7 @@ import org.hibernate.Session;
  */
 public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario {
 
-    private static final Logger LOG = Logger.getLogger("UsuarioDAO");
+    private static final Logger LOG = Logger.getLogger(UsuarioDAO.class);
 
     @Override
     public Usuario buscarNick(String nick) {
@@ -29,7 +29,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
             String sql = "from Usuario where nick = :nick";
             objetos = session.createQuery(sql).setParameter("nick", nick).list();
         } catch (RuntimeException e) {
-            LOG.log(java.util.logging.Level.SEVERE, "Error al obtener usuario.", e);
+            LOG.error("Error al buscar usuario", e);
         }
         if (!objetos.isEmpty()) {
             return objetos.get(0);
@@ -46,7 +46,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
             String sql = "from Usuario";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
-            LOG.log(java.util.logging.Level.SEVERE, "Error al obtener usuario.", e);
+            LOG.error("Error al buscar los usuarios.", e);
         }
         return objetos;
     }

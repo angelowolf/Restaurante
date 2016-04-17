@@ -370,7 +370,7 @@
             <!--<p class=error>Error, wrong username or password used. Please, try again.-->
             <s:form action="login" theme="simple" namespace="/" >
                 <div class="mat-in">
-                    <input type="text" name="email" value="admin" required />
+                    <input type="text" name="nick" value="admin" required />
                     <span class="bar"></span>
                     <label>Email</label>
                 </div>

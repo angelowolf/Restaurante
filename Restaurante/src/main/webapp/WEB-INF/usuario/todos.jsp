@@ -16,8 +16,8 @@
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
-                    <button id="modaleditar" class="btn btn-sm btn-danger eliminar-temporada"><i class="fa fa-edit"></i></button>
-                    <button id="modaleliminar" class="btn btn-sm btn-danger eliminar-temporada"><i class="fa fa-close"></i></button>
+                    <button id="modaleditar" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                    <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
                 </div>
             </display:column>
         </display:table>

@@ -9,6 +9,7 @@ import Modelo.Rol;
 import Modelo.Usuario;
 import Persistencia.ORM.DAOImplementacion.UsuarioDAO;
 import Persistencia.ORM.DAOInterface.IUsuario;
+import java.util.List;
 
 /**
  *
@@ -31,6 +32,14 @@ public interface IControladorUsuario {
     public int guardar(String nombre, String apellido, String clave, String nick, Rol rol);
 
     /**
+     * Guarda un nuevo usuario en la BD.
+     *
+     * @param usuario
+     * @return id.
+     */
+    public int guardar(Usuario usuario);
+
+    /**
      * Actualiza los datos del usuario. Encripta la clave en MD5. Actualiza el
      * tipo de usuario.
      *
@@ -42,6 +51,14 @@ public interface IControladorUsuario {
      * @param rol
      */
     public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Rol rol);
+
+    /**
+     * Actualiza los datos del usuario. Encripta la clave en MD5. Actualiza el
+     * tipo de usuario.
+     *
+     * @param usuario
+     */
+    public void actualizar(Usuario usuario);
 
     /**
      * Elimina un usuario.
@@ -74,6 +91,14 @@ public interface IControladorUsuario {
     public Usuario getUsuario(String nick);
 
     /**
+     * Devuelve un usuario.
+     *
+     * @param id
+     * @return Usuario.
+     */
+    public Usuario getUsuario(int id);
+
+    /**
      * Verifica si los datos ingresados pertenecen a un usuario registrado. Si
      * el usuario es NULL, se devolvera false. Si el usuario existe, pero la
      * contraseña no coincide devolvera false.
@@ -84,4 +109,20 @@ public interface IControladorUsuario {
      */
     public boolean iniciarSesion(Usuario u, String password);
 
+    /**
+     * Todos los usuarios registrados.
+     *
+     * @return List
+     */
+    public List<Usuario> getTodos();
+
+    /**
+     * Verifica si el nombre de usuario se encuentra disponible. Si el nick
+     * pertenece al mismo usuario,(es el dueño del nick) devolvera true, si se
+     * encuentra disponible devolvera true, si esta usado devolvera falso.
+     *
+     * @param u
+     * @return Leer arriba.
+     */
+    public boolean nickDisponible(Usuario u);
 }

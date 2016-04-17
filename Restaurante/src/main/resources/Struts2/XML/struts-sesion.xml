@@ -12,6 +12,6 @@
         </action>
         <action name="logout" method="logout" class="Acciones.UsuarioAction">
             <result name="success">/WEB-INF/login.jsp</result>
-        </action>
+        </action>       
     </package>
 </struts>

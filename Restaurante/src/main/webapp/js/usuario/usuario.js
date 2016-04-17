@@ -12,7 +12,6 @@
                     window.location.replace('/usuario/listar');
                 } else {
                     erroresM.mostrarErrores('#formulario', response);
-                    console.log('error');
                 }
             }
         });
@@ -90,7 +89,6 @@
                     window.location.replace('/usuario/listar');
                 } else {
                     erroresM.mostrarErrores('#form-editar', response);
-                    console.log('error');
                 }
             }
         });
