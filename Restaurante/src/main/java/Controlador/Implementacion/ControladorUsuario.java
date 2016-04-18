@@ -5,6 +5,8 @@ import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -13,8 +15,9 @@ import org.apache.log4j.Logger;
  * @created 28-ene-2016 08:44:23 p.m.
  */
 public class ControladorUsuario implements IControladorUsuario {
+
     private static final Logger LOG = Logger.getLogger(ControladorUsuario.class);
-    
+
     @Override
     public void eliminar(Usuario u) {
         USUARIODAO.eliminar(u);
@@ -38,6 +41,7 @@ public class ControladorUsuario implements IControladorUsuario {
         return USUARIODAO.buscarNick(nick);
 
     }
+
     @Override
     public Usuario getUsuario(int id) {
         return USUARIODAO.buscar(id);
@@ -63,12 +67,12 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Rol rol) {
         Usuario u = USUARIODAO.buscar(idUsuario);
-        if (!u.getClave().equals(clave)) {
+        if (StringUtils.isNotBlank(clave)) {
             u.setClave(Encriptar.encriptaEnMD5(clave));
         }
         u.setNick(nick);
-        u.setNombre(nombre);
-        u.setApellido(apellido);
+        u.setNombre(WordUtils.capitalize(nombre));
+        u.setApellido(WordUtils.capitalize(apellido));
         u.setRol(rol);
         USUARIODAO.actualizar(u);
     }
@@ -76,14 +80,14 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void actualizar(Usuario usuario) {
         Usuario u = USUARIODAO.buscar(usuario.getId());
-        if (!u.getClave().equals(usuario.getClave())) {
+        if (StringUtils.isNotBlank(usuario.getClave())) {
             u.setClave(Encriptar.encriptaEnMD5(usuario.getClave()));
         }
         u.setNick(usuario.getNick());
         u.setNombre(usuario.getNombre());
         u.setApellido(usuario.getApellido());
         u.setRol(usuario.getRol());
-        
+
         LOG.info(usuario.toString());
         LOG.info(u.toString());
         USUARIODAO.actualizar(u);

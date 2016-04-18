@@ -8,6 +8,7 @@ package Acciones;
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
 import Modelo.Usuario;
+import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         usuarioSesion = (Usuario) sesion.get("usuario");
     }
 
-    private void validar() {
+    public void validateRegistrar() {
         if (StringUtils.isBlank(usuario.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
         }
@@ -48,6 +49,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else if (!controladorUsuario.nickDisponible(usuario)) {
             addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
         }
+
         if (StringUtils.isBlank(usuario.getClave())) {
             addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
         }
@@ -64,10 +66,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         }
     }
 
-    public void validateRegistrar() {
-        validar();
-    }
-
     public String registrar() {
         controladorUsuario.guardar(usuario);
         sesion.put("mensaje", Soporte.Mensaje.getAgregado(Mensaje.USUARIO));
@@ -75,7 +73,35 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateModificar() {
-        validar();
+        if (StringUtils.isBlank(usuario.getNombre())) {
+            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+        }
+        if (StringUtils.isBlank(usuario.getApellido())) {
+            addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
+        }
+        if (usuario.getRol() == null) {
+            addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
+        }
+        if (StringUtils.isBlank(usuario.getNick())) {
+            addFieldError("nick", Soporte.Mensaje.INGRESENICK);
+        } else if (!controladorUsuario.nickDisponible(usuario)) {
+            addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
+        }
+        
+        if (StringUtils.isBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
+            addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
+        }
+        if (StringUtils.isBlank(usuario.getClave2()) && StringUtils.isNotBlank(usuario.getClave())) {
+            addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
+        }
+        if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
+            if (!usuario.getClave().equals(usuario.getClave2())) {
+                addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+            }
+        }
+        if (hasFieldErrors()) {
+            codigo = 400;
+        }
     }
 
     public String modificar() {
@@ -89,7 +115,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String eliminar() {
-        controladorUsuario.eliminar(usuarioSesion);
+        controladorUsuario.eliminar(usuario);
         sesion.put("mensaje", Soporte.Mensaje.getEliminado(Mensaje.USUARIO));
         return SUCCESS;
     }
@@ -145,15 +171,14 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         }
         if (StringUtils.isBlank(usuario.getClaveOriginal())) {
             addFieldError("claveOriginal", Soporte.Mensaje.INGRESECLAVEACTUAL);
-        }else{
-            if(!usuario.getClaveOriginal().equals(usuarioSesion.getClave())){
-                addFieldError("claveOriginal", Soporte.Mensaje.CLAVEINGRESADAMAL);
-            }
+        } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(usuarioSesion.getClave())) {
+            addFieldError("claveOriginal", Soporte.Mensaje.CLAVEINGRESADAMAL);
+            usuario.setClaveOriginal("");
         }
         if (hasFieldErrors()) {
             codigo = 400;
         }
-        
+
     }
 
     public String modificarmisdatos() {
@@ -161,7 +186,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
             usuario.setClave(usuario.getClaveOriginal());
         }
         controladorUsuario.actualizar(usuario);
-        sesion.put("usuario", usuario);
+        sesion.put("usuario", controladorUsuario.getUsuario(usuario.getId()));
         addActionMessage(Soporte.Mensaje.getModificado(Soporte.Mensaje.USUARIO));
         return SUCCESS;
     }
@@ -179,6 +204,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String logout() {
+        sesion.put("usuario", null);
         return SUCCESS;
     }
 

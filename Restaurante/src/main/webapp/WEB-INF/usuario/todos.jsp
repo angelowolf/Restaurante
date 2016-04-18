@@ -16,7 +16,7 @@
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
-                    <button id="modaleditar" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                    <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
                     <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
                 </div>
             </display:column>
@@ -39,7 +39,7 @@
             <div class="modal-body">
                 <div class="row">
                     <form id="form-editar" class="well">
-                        <input type="hidden"id="id">
+                        <input type="hidden" id="id" name="id">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
@@ -48,21 +48,25 @@
                             <label for="apellido">Appelido</label>
                             <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
                         </div>
-                        <!--    <div class="form-group">
-                                <label for="rol">Rol</label>
-                                <select class="form-control" id="rol" name="rol">
-                                    <option>Mozo</option>
-                                    <option>Administrador</option>
-                                    <option>Barra</option>            
-                                </select>
-                            </div>-->
+                        <div class="form-group">
+                            <label for="rol">Rol</label>
+                            <select class="form-control" id="rol" name="rol">
+                                <option>Mozo</option>
+                                <option>Administrador</option>
+                                <option>Barra</option>            
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="nick">Nick</label>
                             <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
                         </div>
                         <div class="form-group">
                             <label for="clave">Clave</label>
-                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
+                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave" data-toggle="tooltip" data-placement="left" title="Si deja en blanco no cambiará la clave">
+                        </div>
+                        <div class="form-group">
+                            <label for="clave">Repita la clave</label>
+                            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
                         </div>
                     </form>
                 </div>

@@ -52,14 +52,14 @@
         <put-attribute name="title" value="Formulario Usuario" />
         <put-attribute name="body" value="/WEB-INF/usuario/altamodificacion.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/usuario/usuario.js" />
+            <add-attribute value="/../js/usuario/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/usuario/todos.tiles" extends="masterpage">
         <put-attribute name="title" value="Usuarios" />
         <put-attribute name="body" value="/WEB-INF/usuario/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
-            <add-attribute value="/../js/usuario/usuario.js" />
+            <add-attribute value="/../js/usuario/todos.js" />
         </put-list-attribute>
     </definition>
     <definition name="/usuario/misdatos.tiles" extends="masterpage">

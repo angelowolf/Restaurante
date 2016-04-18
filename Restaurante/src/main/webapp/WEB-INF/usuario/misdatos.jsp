@@ -1,4 +1,5 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
+<h2 class="page-header">Mis Datos</h2>
 <form class="well" id="formulario">
     <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
     <div class="form-group">
@@ -29,5 +30,5 @@
         <label for="claveOriginal">Clave anterior</label>
         <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Clave anterior">
     </div>
-    <button type="submit" id="guardar" class="btn btn-success">Guardar</button>
+    <button type="submit" id="guardar" class="btn btn-success pull-right">Guardar</button>
 </form>           

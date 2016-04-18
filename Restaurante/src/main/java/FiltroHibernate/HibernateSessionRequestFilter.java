@@ -2,14 +2,20 @@ package FiltroHibernate;
 
 import Persistencia.ORM.Util.HibernateUtil;
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.StaleObjectStateException;
+import org.hibernate.internal.SessionFactoryImpl;
+import org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider;
+import org.hibernate.service.jdbc.connections.spi.ConnectionProvider;
 
 /**
  * @author Angelo
@@ -18,10 +24,7 @@ import org.hibernate.StaleObjectStateException;
  */
 public class HibernateSessionRequestFilter implements Filter {
 
-    /**
-     * private static Log log =
-     * LogFactory.getLog(HibernateSessionRequestFilter.class);
-     */
+    private static final Logger LOG = Logger.getLogger(HibernateSessionRequestFilter.class);
     private SessionFactory sf;
 
     /**
@@ -35,35 +38,34 @@ public class HibernateSessionRequestFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         try {
-//            log.debug("Starting a database transaction");
+            LOG.debug("Starting a database transaction");
 
             sf.getCurrentSession().beginTransaction();
             // Call the next filter (continue request processing)  
             chain.doFilter(request, response);
 
             // Commit and cleanup  
-//            log.debug("Committing the database transaction");
+            LOG.debug("Committing the database transaction");
             sf.getCurrentSession().getTransaction().commit();
         } catch (StaleObjectStateException staleEx) {
-//            log.error("This interceptor does not implement optimistic concurrency control!");
-//            log.error("Your application will not work until you add compensation actions!");
-            // Rollback, close everything, possibly compensate for any permanent changes  
-            // during the conversation, and finally restart business conversation. Maybe  
-            // give the user of the application a chance to merge some of his work with  
-            // fresh data... what you do here depends on your applications design.  
+            LOG.error("This interceptor does not implement optimistic concurrency control!");
+            LOG.error("Your application will not work until you add compensation actions!");
+//             Rollback, close everything, possibly compensate for any permanent changes  
+//             during the conversation, and finally restart business conversation. Maybe  
+//             give the user of the application a chance to merge some of his work with  
+//             fresh data... what you do here depends on your applications design.  
             throw staleEx;
         } catch (Throwable ex) {
             // Rollback only  
             ex.printStackTrace();
             try {
                 if (sf.getCurrentSession().getTransaction().isActive()) {
-//                    log.debug("Trying to rollback database transaction after exception");
+                    LOG.info("Trying to rollback database transaction after exception");
                     sf.getCurrentSession().getTransaction().rollback();
                 }
             } catch (Throwable rbEx) {
-//                log.error("Could not rollback transaction after exception!", rbEx);
+                LOG.error("Could not rollback transaction after exception!", rbEx);
             }
-
             // Let others handle it... maybe another interceptor for exceptions?  
             throw new ServletException(ex);
         }
@@ -74,12 +76,34 @@ public class HibernateSessionRequestFilter implements Filter {
      * @param filterConfig
      * @exception ServletException
      */
-    public void init(FilterConfig filterConfig)
-            throws ServletException {
-        sf = HibernateUtil.getSESSIONFACTORY();
+    public void init(FilterConfig filterConfig) {
+        try {
+            LOG.info("Seesion Factory iniciada");
+            sf = HibernateUtil.getSESSIONFACTORY();
+        } catch (Exception e) {
+            LOG.error("Error al iniciarlizar el filtro", e);
+        }
     }
 
     public void destroy() {
+        LOG.info("Cerrando Session Factory");
+        closeSessionFactory(sf);
+        try {
+            java.sql.Driver mySqlDriver = DriverManager.getDriver("jdbc:mysql://localhost:3306/");
+            DriverManager.deregisterDriver(mySqlDriver);
+        } catch (SQLException ex) {
+            LOG.error("Could not deregister driver:".concat(ex.getMessage()));
+        }
+    }
 
+    private void closeSessionFactory(SessionFactory factory) {
+        if (factory instanceof SessionFactoryImpl) {
+            SessionFactoryImpl sf = (SessionFactoryImpl) factory;
+            ConnectionProvider conn = sf.getConnectionProvider();
+            if (conn instanceof C3P0ConnectionProvider) {
+                ((C3P0ConnectionProvider) conn).close();
+            }
+        }
+        factory.close();
     }
 }//end HibernateSessionRequestFilter

@@ -1,4 +1,6 @@
 (function ($) {
+    $('[data-toggle="tooltip"]').tooltip();
+
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
         var data = $('#formulario').serialize();
@@ -50,6 +52,7 @@
         $modal.find('#model').val('usuario');
         $modal.modal('show');
     });
+
     $('body').on('click', '#modaleditar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -57,7 +60,6 @@
         var id = $contenedor.find('#id').val();
         var $modal = $('#modal-editar');
         $modal.find('#id').val(id);
-
         $.ajax({
             url: '/usuario/editar',
             type: 'POST',
@@ -65,9 +67,11 @@
             data: {id: id},
             success: function (response) {
                 if (response.codigo === 200) {
+                    $modal.find('#id').val(response.model.id);
                     $modal.find('#nombre').val(response.model.nombre);
                     $modal.find('#apellido').val(response.model.apellido);
                     $modal.find('#nick').val(response.model.nick);
+                    $modal.find('#rol').val(response.model.rol);
                 } else {
                     erroresM.mostrarAlertError(response.actionErrors, 'danger');
                 }

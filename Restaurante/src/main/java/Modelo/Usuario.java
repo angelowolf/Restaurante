@@ -6,6 +6,7 @@
 package Modelo;
 
 import Soporte.Encriptar;
+import org.apache.commons.lang.WordUtils;
 
 /**
  *
@@ -30,8 +31,8 @@ public class Usuario {
     }
 
     public Usuario(String nombre, String apellido, String nick, String clave, Rol rol) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombre = WordUtils.capitalize(nombre);
+        this.apellido = WordUtils.capitalize(apellido);
         this.nick = nick;
         this.clave = clave;
         this.rol = rol;

@@ -1,5 +1,6 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<form class="well" id="formulario">
+<h2 class="page-header">Nuevo Usuario</h2>
+<form class="well col-md-6 col-md-offset-3" id="formulario">
     <div class="form-group">
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
@@ -29,5 +30,5 @@
         <label for="clave">Repita la clave</label>
         <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
     </div>
-    <button type="submit" id="registrar" class="btn btn-default">Registrar</button>
+    <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
 </form>           
