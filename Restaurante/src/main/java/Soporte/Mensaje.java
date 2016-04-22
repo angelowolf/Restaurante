@@ -42,6 +42,11 @@ public class Mensaje {
     public static final String DETALLEMANTENIMIENTO = "Detalla Mantenimiento";
     public static final String BLOQUEO = "Bloqueo";
     //************************************************************************//
+    public static final String TIPOSUCCESS = "success";
+    public static final String TIPOINFO = "info";
+    public static final String TIPOWARNING = "warning";
+    public static final String TIPODANGER = "danger";        
+    //************************************************************************//
     //Mensajes de validacion//
     public static final String PAGO = "Pago";
     public static final String INGRESENOMBRE = "Ingrese un nombre.";

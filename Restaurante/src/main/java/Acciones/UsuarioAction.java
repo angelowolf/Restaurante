@@ -120,9 +120,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         return SUCCESS;
     }
 
-    public String listar() {
-        addActionMessage((String) sesion.get("mensaje"));
-        sesion.put("mensaje", null);
+    public String listar() {       
         lista = controladorUsuario.getTodos();
         return SUCCESS;
     }

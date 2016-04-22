@@ -3,7 +3,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <div class="form-group">   
-    <div style="display:none;" id="mensaje"><s:actionmessage/></div>
+    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
+        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
+    </s:action>
     <h2 class="page-header">Usuarios</h2>
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">

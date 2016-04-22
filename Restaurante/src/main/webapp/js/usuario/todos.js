@@ -18,10 +18,6 @@
             }
         });
     });
-    if ($('#mensaje span').text() !== '') {
-        erroresM.mostrarAlert($('#mensaje span').text(), 'info');
-    }
-    ;
     $('body').on('click', '#eliminar', function (e) {
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');

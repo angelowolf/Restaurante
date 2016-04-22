@@ -15,7 +15,7 @@
             <option value="" selected disabled>Seleccione</option>
             <option>Mozo</option>
             <option>Administrador</option>
-            <option>BARRA</option>            
+            <option>Barra</option>            
         </select>
     </div>
     <div class="form-group">

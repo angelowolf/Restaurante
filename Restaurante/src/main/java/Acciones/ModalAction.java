@@ -5,7 +5,9 @@
  */
 package Acciones;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Map;
 
 /**
  *
@@ -13,10 +15,25 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class ModalAction extends ActionSupport {
 
-    private String titulo, mensaje, modelo;
+    protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
+    private String titulo, mensaje, modelo, tipo;
 
     public String eliminar() {
         return SUCCESS;
+    }
+
+    public String alerta() {
+        mensaje = (String) sesion.get("mensaje");
+        sesion.put("mensaje", null);
+        return SUCCESS;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getTitulo() {

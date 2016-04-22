@@ -9,6 +9,9 @@
          <action name="modaleliminar" method="eliminar" class="Acciones.ModalAction">
             <result name="success">/WEB-INF/modal/eliminar.jsp</result>
         </action>
+         <action name="mensajeAlerta" method="alerta" class="Acciones.ModalAction">
+            <result name="success">/WEB-INF/modal/alerta.jsp</result>
+        </action>
         <!--FIN ACCIONES-->       
     </package>
 </struts>
