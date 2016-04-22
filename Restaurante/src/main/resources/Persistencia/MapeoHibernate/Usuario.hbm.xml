@@ -10,6 +10,7 @@
         <property name="apellido" type="string" />
         <property name="nick" type="string" />
         <property name="clave" type="string" />        
+        <property name="activo" />        
         <property name="rol">
             <type name="org.hibernate.type.EnumType">
                 <param name="type">12</param>

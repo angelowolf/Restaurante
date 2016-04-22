@@ -1,3 +1,3 @@
-insert into usuario(nombre,apellido,nick,clave,rol) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3','Administrador');
-insert into usuario(nombre,apellido,nick,clave,rol) values('Mozero','De La Olla','mozo','126f8d4532191178216b1be0d199af87','Mozo');
-insert into usuario(nombre,apellido,nick,clave,rol) values('Barrero','De La Barra','barra','97c1fad8d8d23747d6184693dffab860','Barra');
+insert into usuario(nombre,apellido,nick,clave,activo,rol) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',1,'Administrador');
+insert into usuario(nombre,apellido,nick,clave,activo,rol) values('Mozero','De La Olla','mozo','126f8d4532191178216b1be0d199af87',1,'Mozo');
+insert into usuario(nombre,apellido,nick,clave,activo,rol) values('Barrero','De La Barra','barra','97c1fad8d8d23747d6184693dffab860',1,'Barra');

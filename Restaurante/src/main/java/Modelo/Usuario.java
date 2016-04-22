@@ -17,6 +17,7 @@ public class Usuario {
     private int id;
     private String nombre, apellido, nick, clave, clave2, claveOriginal;
     private Rol rol;
+    private boolean activo = true;
 
     public Usuario() {
     }
@@ -36,6 +37,14 @@ public class Usuario {
         this.nick = nick;
         this.clave = clave;
         this.rol = rol;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public String getClaveOriginal() {
@@ -108,13 +117,13 @@ public class Usuario {
     }
 
     /**
-     * Verifica que las contraseñas sean identicas.
+     * Verifica que las contraseñas sean identicas y que el usuario este activo.
      *
      * @param password
      * @return True si lo son.
      */
     public boolean iniciarSesion(String password) {
-        return this.clave.equals(Encriptar.encriptaEnMD5(password));
+        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && this.isActivo();
     }
 
 }

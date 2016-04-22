@@ -19,15 +19,19 @@ public class ControladorUsuario implements IControladorUsuario {
     private static final Logger LOG = Logger.getLogger(ControladorUsuario.class);
 
     @Override
-    public void eliminar(Usuario u) {
-        USUARIODAO.eliminar(u);
+    public void eliminar(Usuario us) {
+        Usuario u = USUARIODAO.buscar(us.getId());
+        u.setActivo(false);
+        u.setNick(null);
+        USUARIODAO.actualizar(u);
     }
 
     @Override
     public void eliminar(int idUsuario) {
-        Usuario u = new Usuario();
-        u.setId(idUsuario);
-        USUARIODAO.eliminar(u);
+        Usuario u = USUARIODAO.buscar(idUsuario);
+        u.setActivo(false);
+        u.setNick(null);
+        USUARIODAO.actualizar(u);
     }
 
     @Override
