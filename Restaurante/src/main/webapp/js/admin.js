@@ -1,11 +1,3 @@
-(function ($) {
-    $('.modal.fade').on('hidden.bs.modal', function (e) {
-        var $form = $(this).find('form');
-        if($form.length > 0) $form[0].reset();
-    })
-})(jQuery);
-
-
 var erroresM = (function () {
     var modulo = this;
 
@@ -76,7 +68,7 @@ var erroresM = (function () {
                 type: tipo
             });
         }
-    }
+    };
     
     modulo.mostrarAlert = function (mensaje, tipo) {
         $.notify({
@@ -96,7 +88,7 @@ var erroresM = (function () {
             },
             type: tipo
         });
-    }
+    };
 
     return modulo;
 })();

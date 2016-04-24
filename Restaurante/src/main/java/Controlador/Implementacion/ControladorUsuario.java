@@ -75,8 +75,8 @@ public class ControladorUsuario implements IControladorUsuario {
             u.setClave(Encriptar.encriptaEnMD5(clave));
         }
         u.setNick(nick);
-        u.setNombre(WordUtils.capitalize(nombre));
-        u.setApellido(WordUtils.capitalize(apellido));
+        u.setNombre(nombre);
+        u.setApellido(apellido);
         u.setRol(rol);
         USUARIODAO.actualizar(u);
     }
@@ -91,7 +91,6 @@ public class ControladorUsuario implements IControladorUsuario {
         u.setNombre(usuario.getNombre());
         u.setApellido(usuario.getApellido());
         u.setRol(usuario.getRol());
-
         LOG.info(usuario.toString());
         LOG.info(u.toString());
         USUARIODAO.actualizar(u);

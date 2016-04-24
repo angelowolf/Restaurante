@@ -68,7 +68,7 @@ public class Usuario {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = WordUtils.capitalize(nombre);
     }
 
     public String getApellido() {
@@ -76,7 +76,7 @@ public class Usuario {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = WordUtils.capitalize(apellido);
     }
 
     public String getNick() {
