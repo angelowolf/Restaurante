@@ -10,6 +10,7 @@ import Modelo.Usuario;
 import Persistencia.ORM.DAOImplementacion.UsuarioDAO;
 import Persistencia.ORM.DAOInterface.IUsuario;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -29,7 +30,7 @@ public interface IControladorUsuario {
      * @param rol
      * @return id.
      */
-    public int guardar(String nombre, String apellido, String clave, String nick, Rol rol);
+    public int guardar(String nombre, String apellido, String clave, String nick, Set<Rol> rol);
 
     /**
      * Guarda un nuevo usuario en la BD.
@@ -50,7 +51,7 @@ public interface IControladorUsuario {
      * @param nick
      * @param rol
      */
-    public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Rol rol);
+    public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Set<Rol> rol);
 
     /**
      * Actualiza los datos del usuario. Encripta la clave en MD5. Actualiza el

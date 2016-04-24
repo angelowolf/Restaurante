@@ -2,6 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 13-sep-2013 15:59:20 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping package="Modelo">   
+    <typedef name="rolTipo" class="org.hibernate.type.EnumType">
+        <param name="enumClass">Modelo.Rol</param>
+        <param name="type">12</param>
+    </typedef>
     <class name="Usuario" table="usuario">
         <id column="id" name="id">
             <generator class="native"/>
@@ -11,11 +15,9 @@
         <property name="nick" type="string" />
         <property name="clave" type="string" />        
         <property name="activo" />        
-        <property name="rol">
-            <type name="org.hibernate.type.EnumType">
-                <param name="type">12</param>
-                <param name="enumClass">Modelo.Rol</param>
-            </type>
-        </property>        
-    </class>
+        <set name="roles" table="rol_usuario">
+            <key column="id"/>
+            <element column="roles" type="rolTipo"/>
+        </set>
+    </class>    
 </hibernate-mapping>

@@ -5,8 +5,8 @@ import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import java.util.List;
+import java.util.Set;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -57,7 +57,7 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     @Override
-    public int guardar(String nombre, String apellido, String clave, String nick, Rol rol) {
+    public int guardar(String nombre, String apellido, String clave, String nick, Set<Rol> rol) {
         Usuario u = new Usuario(nombre, apellido, nick, Encriptar.encriptaEnMD5(clave), rol);
         return USUARIODAO.guardar(u);
     }
@@ -69,7 +69,7 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     @Override
-    public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Rol rol) {
+    public void actualizar(int idUsuario, String nombre, String apellido, String clave, String nick, Set<Rol> rol) {
         Usuario u = USUARIODAO.buscar(idUsuario);
         if (StringUtils.isNotBlank(clave)) {
             u.setClave(Encriptar.encriptaEnMD5(clave));
@@ -77,7 +77,7 @@ public class ControladorUsuario implements IControladorUsuario {
         u.setNick(nick);
         u.setNombre(nombre);
         u.setApellido(apellido);
-        u.setRol(rol);
+        u.setRoles(rol);
         USUARIODAO.actualizar(u);
     }
 
@@ -90,7 +90,7 @@ public class ControladorUsuario implements IControladorUsuario {
         u.setNick(usuario.getNick());
         u.setNombre(usuario.getNombre());
         u.setApellido(usuario.getApellido());
-        u.setRol(usuario.getRol());
+        u.setRoles(usuario.getRoles());
         LOG.info(usuario.toString());
         LOG.info(u.toString());
         USUARIODAO.actualizar(u);

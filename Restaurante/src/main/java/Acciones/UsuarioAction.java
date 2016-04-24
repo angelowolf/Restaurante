@@ -7,12 +7,16 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
+import Modelo.Rol;
 import Modelo.Usuario;
+import Persistencia.ORM.DAOImplementacion.UsuarioDAO;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -41,7 +45,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         if (StringUtils.isBlank(usuario.getApellido())) {
             addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
         }
-        if (usuario.getRol() == null) {
+        if (usuario.getRoles() == null) {
             addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
@@ -79,7 +83,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         if (StringUtils.isBlank(usuario.getApellido())) {
             addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
         }
-        if (usuario.getRol() == null) {
+        if (usuario.getRoles() == null) {
             addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
@@ -87,7 +91,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else if (!controladorUsuario.nickDisponible(usuario)) {
             addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
         }
-        
+
         if (StringUtils.isBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
             addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
         }
@@ -120,8 +124,11 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         return SUCCESS;
     }
 
-    public String listar() {       
+    public String listar() {
         lista = controladorUsuario.getTodos();
+        for (Usuario usuario1 : lista) {
+            LOGGER.info(usuario1.toString());
+        }
         return SUCCESS;
     }
 
@@ -135,7 +142,8 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String misdatos() {
-        usuario = usuarioSesion;
+        usuario = controladorUsuario.getUsuario(usuarioSesion.getId());
+        usuario.toString();
         return SUCCESS;
     }
 
@@ -146,7 +154,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         if (StringUtils.isBlank(usuario.getApellido())) {
             addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
         }
-        if (usuario.getRol() == null) {
+        if (usuario.getRoles() == null) {
             addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
@@ -190,6 +198,12 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateLogin() {
+        Set rol = new HashSet();
+        rol.add(Rol.Administrador);
+        rol.add(Rol.Mozo);
+        Usuario u = new Usuario("angelo", "wolf", "nick", "clave", rol);
+        UsuarioDAO d = new UsuarioDAO();
+        d.guardar(u);
         if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             addActionError(Soporte.Mensaje.ERRORVALIDAR);
             codigo = 400;

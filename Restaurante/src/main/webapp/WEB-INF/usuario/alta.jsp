@@ -9,15 +9,7 @@
         <label for="apellido">Appelido</label>
         <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
     </div>
-    <div class="form-group">
-        <label for="rol">Rol</label>
-        <select class="form-control" id="rol" name="rol" >
-            <option value="" selected disabled>Seleccione</option>
-            <option>Mozo</option>
-            <option>Administrador</option>
-            <option>Barra</option>            
-        </select>
-    </div>
+    <s:include value="/WEB-INF/rol/roles.jsp"/>
     <div class="form-group">
         <label for="nick">Nick</label>
         <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">

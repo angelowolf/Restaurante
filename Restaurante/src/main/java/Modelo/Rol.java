@@ -11,4 +11,18 @@ package Modelo;
  */
 public enum Rol {
     Mozo, Barra, Administrador;
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case Mozo:
+                return "Mozo";
+            case Barra:
+                return "Barra";
+            case Administrador:
+                return "Administrador";
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }

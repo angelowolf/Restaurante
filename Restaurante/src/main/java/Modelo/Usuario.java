@@ -6,6 +6,7 @@
 package Modelo;
 
 import Soporte.Encriptar;
+import java.util.Set;
 import org.apache.commons.lang.WordUtils;
 
 /**
@@ -16,27 +17,27 @@ public class Usuario {
 
     private int id;
     private String nombre, apellido, nick, clave, clave2, claveOriginal;
-    private Rol rol;
+    private Set<Rol> roles;
     private boolean activo = true;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String apellido, String nick, String clave, Rol rol) {
+    public Usuario(int id, String nombre, String apellido, String nick, String clave, Set<Rol> rol) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.nick = nick;
         this.clave = clave;
-        this.rol = rol;
+        this.roles = rol;
     }
 
-    public Usuario(String nombre, String apellido, String nick, String clave, Rol rol) {
+    public Usuario(String nombre, String apellido, String nick, String clave, Set<Rol> rol) {
         this.nombre = WordUtils.capitalize(nombre);
         this.apellido = WordUtils.capitalize(apellido);
         this.nick = nick;
         this.clave = clave;
-        this.rol = rol;
+        this.roles = rol;
     }
 
     public boolean isActivo() {
@@ -95,12 +96,12 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Set<Rol> getRoles() {
+        return roles;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
     }
 
     public String getClave2() {
@@ -113,7 +114,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", rol=" + rol + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", rol=" + roles + ", activo=" + activo + '}';
     }
 
     /**

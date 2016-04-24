@@ -14,7 +14,7 @@
             <display:column sortable="true" property="nombre" title="Nombre"/>
             <display:column sortable="true" property="apellido" title="Apellido"/>
             <display:column sortable="true" property="nick" title="Nick"/>
-            <display:column sortable="true" property="rol" title="Rol"/>            
+            <display:column sortable="true" property="roles" title="Rol"/>            
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>

@@ -39,6 +39,9 @@
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#apellido').val(response.model.apellido);
                 $modal.find('#nick').val(response.model.nick);
+                for (var rol in response.model.roles) {
+                    $modal.find('#rol' + response.model.roles[rol]).prop('checked', true);
+                }
                 $modal.find('#rol').val(response.model.rol);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');

@@ -12,7 +12,9 @@
     </div>
     <div class="form-group">
         <label for="rol">Rol</label>
-        <input type="text" class="form-control" id="rol" name="rol" placeholder="Rol" readonly="true" value="<s:property value="usuario.rol"/>">        
+        <s:iterator value="usuario.roles" var="cadaRol">
+        <input type="text" class="form-control" id="rol" name="rol" placeholder="Rol" readonly="true" value="<s:property value="cadaRol"/>">                    
+        </s:iterator>
     </div>
     <div class="form-group">
         <label for="nick">Nick</label>
