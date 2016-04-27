@@ -6,7 +6,7 @@
         <param name="enumClass">Modelo.Rol</param>
         <param name="type">12</param>
     </typedef>
-    <class name="Usuario" table="usuario">
+    <class name="Usuario" table="Usuario">
         <id column="id" name="id">
             <generator class="native"/>
         </id>

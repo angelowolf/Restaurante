@@ -198,12 +198,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateLogin() {
-        Set rol = new HashSet();
-        rol.add(Rol.Administrador);
-        rol.add(Rol.Mozo);
-        Usuario u = new Usuario("angelo", "wolf", "nick", "clave", rol);
-        UsuarioDAO d = new UsuarioDAO();
-        d.guardar(u);
         if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             addActionError(Soporte.Mensaje.ERRORVALIDAR);
             codigo = 400;

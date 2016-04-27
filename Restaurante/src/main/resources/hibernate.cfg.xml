@@ -22,5 +22,7 @@
         <property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
         <!--FIN POOL-->
         <mapping resource="Persistencia/MapeoHibernate/Usuario.hbm.xml"/>
+        <mapping resource="Persistencia/MapeoHibernate/EstadoPedido.hbm.xml"/>
+        <mapping resource="Persistencia/MapeoHibernate/Pedido.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
