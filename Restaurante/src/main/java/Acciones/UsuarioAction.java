@@ -7,16 +7,12 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
-import Modelo.Rol;
 import Modelo.Usuario;
-import Persistencia.ORM.DAOImplementacion.UsuarioDAO;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -91,7 +87,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else if (!controladorUsuario.nickDisponible(usuario)) {
             addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
         }
-
         if (StringUtils.isBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
             addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
         }

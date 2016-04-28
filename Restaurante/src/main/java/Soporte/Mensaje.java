@@ -41,11 +41,12 @@ public class Mensaje {
     public static final String TARIFA = "Tarifa";
     public static final String DETALLEMANTENIMIENTO = "Detalla Mantenimiento";
     public static final String BLOQUEO = "Bloqueo";
+    public static final String INSUMO = "Insumo";    
     //************************************************************************//
     public static final String TIPOSUCCESS = "success";
     public static final String TIPOINFO = "info";
     public static final String TIPOWARNING = "warning";
-    public static final String TIPODANGER = "danger";        
+    public static final String TIPODANGER = "danger";
     //************************************************************************//
     //Mensajes de validacion//
     public static final String PAGO = "Pago";
@@ -101,6 +102,12 @@ public class Mensaje {
     public static final String FORMATOCPACIDADNOCORRECTO = "El formato de la capacidad ingresada no es correcta.";
     public static final String INGRESEPRECIOALGUNACAPACIDAD = "Ingrese algun precio.";
     public static final String SELECCIONEROL = "Seleccione un Rol.";
+    public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
+    public static final String INGRESEPRECIO = "Ingrese un precio.";
+    public static final String INGRESELACANTIDADACTUAL = "Ingrese la cantidad actual";
+    public static final String  FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
+    public static final String  INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
+    
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

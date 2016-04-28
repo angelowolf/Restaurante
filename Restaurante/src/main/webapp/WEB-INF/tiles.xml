@@ -69,4 +69,19 @@
             <add-attribute value="/../js/usuario/misdatos.js" />
         </put-list-attribute>
     </definition>
+    <!--INSUMOS-->
+    <definition name="/insumo/alta.tiles" extends="masterpage">
+        <put-attribute name="title" value="Formulario Insumo" />
+        <put-attribute name="body" value="/WEB-INF/insumo/alta.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/insumo/alta.js" />
+        </put-list-attribute>
+    </definition>
+    <definition name="/insumo/todos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Insumos" />
+        <put-attribute name="body" value="/WEB-INF/insumo/todos.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/insumo/todos.js" />
+        </put-list-attribute>
+    </definition>
 </tiles-definitions>

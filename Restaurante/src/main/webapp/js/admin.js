@@ -12,6 +12,13 @@ var erroresM = (function () {
         INFO: 'info'
     };
 
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    function escapeSelector(s) {
+        return s.replace(/(:|\.|\[|\])/g, "\\$1");
+    }
+
     modulo.getConfig = defaultConfig;
 
     modulo.setConfig = function (config) {
@@ -22,7 +29,7 @@ var erroresM = (function () {
         if (!nolimpiar) {
             modulo.limpiarErrores(formId);
         }
-        
+
         if (data.actionErrors) {
             modulo.mostrarAlertError(data.actionErrors, alert.DANGER);
         }
@@ -30,7 +37,7 @@ var erroresM = (function () {
             var errores = data.fieldErrors;
             for (var input in errores) {
                 var error = errores[input];
-                $(formId + ' [name=' + input + ']').after('<p class="error">' + error + '</p>').parents('.form-group').addClass('has-error');
+                $(formId + ' [name=' + escapeSelector(input) + ']').after('<p class="error">' + error + '</p>').parents('.form-group').addClass('has-error');
             }
         }
         if (data.actionMessages) {
@@ -69,7 +76,7 @@ var erroresM = (function () {
             });
         }
     };
-    
+
     modulo.mostrarAlert = function (mensaje, tipo) {
         $.notify({
             message: mensaje
