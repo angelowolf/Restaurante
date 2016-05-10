@@ -12,11 +12,11 @@
             <display:setProperty name="basic.msg.empty_list" >Aún no hay insumos registrados. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/insumo'/>">aquí</a>.</display:setProperty>
             <display:column property="id" title="Número Insumo"/>
             <display:column sortable="true" property="nombre" title="Nombre"/>
-            <display:column sortable="true" property="precioUnidad" title="Precio por Unidad" format="{0,number,.00} $" />
+            <display:column sortable="true" property="precioUnidad" title="Precio" format="{0,number,.00} $" />
             <display:column sortable="true" property="unidadMedida" title="Unidad de Medida"/>
             <display:column sortable="true" property="fechaAlta" title="Fecha de creación" decorator="Decorator.DateDecorator"/>
-            <display:column sortable="true" property="stock.cantidadActual" title="Cantidad Actual"/>            
             <display:column sortable="true" property="stock.cantidadMinima" title="Cantidad Mínima"/>            
+            <display:column sortable="true" property="stock.cantidadActual" title="Cantidad Actual"/>            
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>

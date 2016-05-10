@@ -9,6 +9,7 @@ import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
 import Modelo.Stock;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 
 /**
@@ -17,9 +18,11 @@ import org.joda.time.LocalDate;
  */
 public class ControladorInsumo implements IControladorInsumo {
 
+    private static final Logger LOGGER = Logger.getLogger(ControladorInsumo.class);
+
     @Override
     public int guardar(Insumo insumo) {
-        STOCKDAO.guardar(insumo.getStock());
+        CS.guardar(insumo.getStock());
         insumo.setFechaAlta(new LocalDate());
         return INSUMODAO.guardar(insumo);
     }
@@ -37,11 +40,19 @@ public class ControladorInsumo implements IControladorInsumo {
     @Override
     public void actualizar(Insumo insumo) {
         Insumo insumoEnBd = INSUMODAO.buscar(insumo.getId());
-        Stock stock = STOCKDAO.buscar(insumoEnBd.getStock().getId());
+        Stock stock = CS.getStock(insumoEnBd.getStock().getId());
         stock.setCantidadMinima(insumo.getStock().getCantidadMinima());
         insumoEnBd.actualizar(insumo);
-        STOCKDAO.actualizar(stock);
+        CS.actualizar(stock);
         INSUMODAO.actualizar(insumoEnBd);
+    }
+
+    @Override
+    public void eliminar(Insumo insumo) {
+        LOGGER.info("eliminando objeto: " + insumo.toString());
+        Insumo insumoEnBD = this.getInsumo(insumo.getId());
+        CS.eliminar(insumoEnBD.getStock());
+        INSUMODAO.eliminar(insumo);
     }
 
 }

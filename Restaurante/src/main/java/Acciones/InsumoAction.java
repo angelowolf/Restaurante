@@ -99,6 +99,8 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     }
 
     public String eliminar() {
+        LOGGER.info("Por eliminar objeto recibido: " + insumo.toString());
+        controladorInsumo.eliminar(insumo);
         sesion.put("mensaje", Soporte.Mensaje.getEliminado(Mensaje.INSUMO));
         return SUCCESS;
     }

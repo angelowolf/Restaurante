@@ -5,11 +5,10 @@
  */
 package Controlador.Interface;
 
+import Controlador.Implementacion.ControladorStock;
 import Modelo.Insumo;
 import Persistencia.ORM.DAOImplementacion.InsumoDAO;
-import Persistencia.ORM.DAOImplementacion.StockDAO;
 import Persistencia.ORM.DAOInterface.IInsumo;
-import Persistencia.ORM.DAOInterface.IStock;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
 public interface IControladorInsumo {
 
     final IInsumo INSUMODAO = new InsumoDAO();
-    final IStock STOCKDAO = new StockDAO();
+    final IControladorStock CS = new ControladorStock();
 
     public int guardar(Insumo insumo);
 
@@ -28,4 +27,6 @@ public interface IControladorInsumo {
     public Insumo getInsumo(int id);
 
     public void actualizar(Insumo insumo);
+
+    public void eliminar(Insumo insumo);
 }

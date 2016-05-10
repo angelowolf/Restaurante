@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
-    private static final Logger LOGGER = Logger.getLogger(ClienteAction.class);
+    private static final Logger LOGGER = Logger.getLogger(UsuarioAction.class);
     private Usuario usuario;
     private List<Usuario> lista;
     private final IControladorUsuario controladorUsuario;
