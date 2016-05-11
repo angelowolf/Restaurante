@@ -1,4 +1,18 @@
 (function ($) {
+    $('body').on('click', '#recuperar', function (e) {
+        e.preventDefault();
+        var $boton = $(this);
+        var $contenedor = $boton.parents('#botones');
+        var id = $contenedor.find('#id').val();
+          $.post('/usuario/recuperar', {id: id}, function (response) {
+            if (response.codigo === 200) {
+                window.location.replace('/usuario/listar');
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+            }
+        });
+    });
+    
     $('body').on('click', '#modaleliminar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -36,7 +50,7 @@
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#apellido').val(response.model.apellido);
-                $modal.find('#nick').val(response.model.nick);
+                $modal.find('#documento').val(response.model.documento);
                 for (var rol in response.model.roles) {
                     $modal.find('#rol' + response.model.roles[rol]).prop('checked', true);
                 }

@@ -20,10 +20,14 @@ import org.joda.time.format.DateTimeFormatter;
 public class DateDecorator implements DisplaytagColumnDecorator {
 
     @Override
-    public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {        
-        DateTimeFormatter salida = DateTimeFormat.forPattern("dd/MM/yyyy");
-        LocalDate fecha = (LocalDate) columnValue;
-        return salida.print(fecha);
+    public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {
+        if (columnValue != null) {
+            DateTimeFormatter salida = DateTimeFormat.forPattern("dd/MM/yyyy");
+            LocalDate fecha = (LocalDate) columnValue;
+            return salida.print(fecha);
+        } else {
+            return "-";
+        }
     }
 
 }

@@ -30,4 +30,6 @@ public interface IUsuario extends IGenericDAO<Usuario, Integer> {
      */
     public List<Usuario> listar();
 
+    public Usuario buscarDocumento(long documento);
+
 }

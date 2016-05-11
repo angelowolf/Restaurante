@@ -126,4 +126,10 @@ public interface IControladorUsuario {
      * @return Leer arriba.
      */
     public boolean nickDisponible(Usuario u);
+
+    public boolean documentoDisponible(Usuario usuario);
+
+    public void recuperar(Usuario usuario);
+
+    public void actualizarMisDatos(Usuario usuario, boolean cambiaClave);
 }

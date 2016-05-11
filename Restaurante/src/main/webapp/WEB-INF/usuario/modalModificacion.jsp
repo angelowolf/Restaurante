@@ -18,19 +18,11 @@
                             <label for="apellido">Appelido</label>
                             <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
                         </div>
-                        <s:include value="/WEB-INF/rol/roles.jsp"/>
                         <div class="form-group">
-                            <label for="nick">Nick</label>
-                            <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+                            <label for="documento">Documento</label>
+                            <input type="number" class="form-control" id="documento" name="documento" placeholder="documento">
                         </div>
-                        <div class="form-group">
-                            <label for="clave">Clave</label>
-                            <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave" data-toggle="tooltip" data-placement="left" title="Si deja en blanco no cambiará la clave">
-                        </div>
-                        <div class="form-group">
-                            <label for="clave">Repita la clave</label>
-                            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
-                        </div>
+                        <s:include value="/WEB-INF/rol/roles.jsp"/>                        
                     </form>
                 </div>
             </div>

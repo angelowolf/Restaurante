@@ -11,10 +11,16 @@
             <generator class="native"/>
         </id>
         <property name="nombre" type="string" />
+        <property name="telefono" type="string" />
+        <property name="direccion" type="string" />
         <property name="apellido" type="string" />
         <property name="nick" type="string" />
         <property name="clave" type="string" />        
         <property name="activo" />        
+        <property name="documento" />        
+        <property name="fechaAlta" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
+        <property name="fechaBaja" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
+        <property name="fechaNacimiento" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <set name="roles" table="rol_usuario">
             <key column="id"/>
             <element column="roles" type="rolTipo"/>

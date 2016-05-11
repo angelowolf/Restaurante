@@ -13,13 +13,17 @@
             <display:column property="id" title="Número Usuario"/>
             <display:column sortable="true" property="nombre" title="Nombre"/>
             <display:column sortable="true" property="apellido" title="Apellido"/>
-            <display:column sortable="true" property="nick" title="Nick"/>
+            <display:column sortable="true" property="documento" title="Documento"/>
+            <display:column sortable="true" property="fechaAlta" title="Fecha de creación" decorator="Decorator.DateDecorator"/>
+            <display:column sortable="true" property="fechaBaja" title="Fecha de baja" decorator="Decorator.DateDecorator"/>
+            <display:column sortable="true" property="activo" title="Activo" decorator="Decorator.ActivoDecorator"/>
             <display:column sortable="true" property="roles" title="Rol"/>            
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
                     <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
+                    <button id="recuperar" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i></button>
                 </div>
             </display:column>
         </display:table>

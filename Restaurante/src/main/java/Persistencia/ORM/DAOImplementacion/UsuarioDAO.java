@@ -43,12 +43,28 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
         Session session = getHibernateTemplate();
         List<Usuario> objetos = new ArrayList<>();
         try {
-            String sql = "from Usuario where activo = 1";
+            String sql = "from Usuario";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los usuarios.", e);
         }
         return objetos;
     }
+
+    @Override
+    public Usuario buscarDocumento(long documento) {
+       Session session = getHibernateTemplate();
+        List<Usuario> objetos = new ArrayList<>();
+        try {
+            String sql = "from Usuario where documento = :documento";
+            objetos = session.createQuery(sql).setParameter("documento", documento).list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar usuario", e);
+        }
+        if (!objetos.isEmpty()) {
+            return objetos.get(0);
+        } else {
+            return null;
+        } }
     
 }

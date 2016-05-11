@@ -41,7 +41,7 @@ public class Mensaje {
     public static final String TARIFA = "Tarifa";
     public static final String DETALLEMANTENIMIENTO = "Detalla Mantenimiento";
     public static final String BLOQUEO = "Bloqueo";
-    public static final String INSUMO = "Insumo";    
+    public static final String INSUMO = "Insumo";
     //************************************************************************//
     public static final String TIPOSUCCESS = "success";
     public static final String TIPOINFO = "info";
@@ -105,9 +105,10 @@ public class Mensaje {
     public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
     public static final String INGRESEPRECIO = "Ingrese un precio.";
     public static final String INGRESELACANTIDADACTUAL = "Ingrese la cantidad actual";
-    public static final String  FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
-    public static final String  INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
-    
+    public static final String FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
+    public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
+    public static String DOCUMENTONODISPONIBLE = "El documento ingresdo ya esta en uso.";
+    public static Object USUARIORECUPERADO = "Usuario recuperado.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

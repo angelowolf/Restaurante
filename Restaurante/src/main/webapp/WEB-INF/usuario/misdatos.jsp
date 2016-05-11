@@ -4,17 +4,27 @@
     <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
     <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="<s:property value="usuario.nombre"/>">
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" readonly="true" value="<s:property value="usuario.nombre"/>">
     </div>
     <div class="form-group">
         <label for="apellido">Appelido</label>
-        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" value="<s:property value="usuario.apellido"/>">
+        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" readonly="true" value="<s:property value="usuario.apellido"/>">
+    </div>   
+    <div class="form-group">
+        <label for="documento">Documento</label>
+        <input type="number" class="form-control" id="documento" name="documento" readonly="true" placeholder="documento" value="<s:property value="usuario.documento"/>">
     </div>
     <div class="form-group">
-        <label for="rol">Rol</label>
-        <s:iterator value="usuario.roles" var="cadaRol">
-        <input type="text" class="form-control" id="rol" name="rol" placeholder="Rol" readonly="true" value="<s:property value="cadaRol"/>">                    
-        </s:iterator>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="<s:property value="usuario.telefono"/>">
+    </div>
+    <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" value="<s:property value="usuario.direccion"/>">
+    </div>
+    <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" value="<s:property value="usuario.fechaNacimiento"/>">
     </div>
     <div class="form-group">
         <label for="nick">Nick</label>

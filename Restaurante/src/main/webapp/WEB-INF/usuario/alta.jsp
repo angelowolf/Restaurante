@@ -6,21 +6,29 @@
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
     </div>
     <div class="form-group">
-        <label for="apellido">Appelido</label>
+        <label for="apellido">Apellido</label>
         <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
+    </div>
+    <div class="form-group">
+        <label for="documento">Documento</label>
+        <input type="number" class="form-control" id="documento" name="documento" placeholder="documento">
+    </div>
+    <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
+    </div>
+    <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
+    </div>
+    <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento">
     </div>
     <s:include value="/WEB-INF/rol/roles.jsp"/>
     <div class="form-group">
         <label for="nick">Nick</label>
         <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
-    </div>
-    <div class="form-group">
-        <label for="clave">Clave</label>
-        <input type="password" class="form-control" id="clave" name="clave" placeholder="Clave">
-    </div>
-    <div class="form-group">
-        <label for="clave">Repita la clave</label>
-        <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
-    </div>
+    </div>   
     <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
 </form>           

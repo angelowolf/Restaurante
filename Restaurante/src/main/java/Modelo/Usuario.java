@@ -8,6 +8,7 @@ package Modelo;
 import Soporte.Encriptar;
 import java.util.Set;
 import org.apache.commons.lang.WordUtils;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -16,7 +17,9 @@ import org.apache.commons.lang.WordUtils;
 public class Usuario {
 
     private int id;
-    private String nombre, apellido, nick, clave, clave2, claveOriginal;
+    private String nombre, apellido, nick, clave, clave2, claveOriginal, telefono, direccion;
+    private long documento;
+    private LocalDate fechaAlta, fechaBaja, fechaNacimiento;
     private Set<Rol> roles;
     private boolean activo = true;
 
@@ -38,6 +41,54 @@ public class Usuario {
         this.nick = nick;
         this.clave = clave;
         this.roles = rol;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public long getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(long documento) {
+        this.documento = documento;
+    }
+
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+    public LocalDate getFechaBaja() {
+        return fechaBaja;
+    }
+
+    public void setFechaBaja(LocalDate fechaBaja) {
+        this.fechaBaja = fechaBaja;
     }
 
     public boolean isActivo() {

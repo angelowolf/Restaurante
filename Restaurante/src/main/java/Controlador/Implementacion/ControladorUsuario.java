@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 
 /**
  * @author Angelo
@@ -21,8 +22,9 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void eliminar(Usuario us) {
         Usuario u = USUARIODAO.buscar(us.getId());
+        LocalDate hoy = LocalDate.now();
+        u.setFechaBaja(hoy);
         u.setActivo(false);
-        u.setNick(null);
         USUARIODAO.actualizar(u);
     }
 
@@ -30,7 +32,8 @@ public class ControladorUsuario implements IControladorUsuario {
     public void eliminar(int idUsuario) {
         Usuario u = USUARIODAO.buscar(idUsuario);
         u.setActivo(false);
-        u.setNick(null);
+        LocalDate hoy = LocalDate.now();
+        u.setFechaBaja(hoy);
         USUARIODAO.actualizar(u);
     }
 
@@ -64,7 +67,9 @@ public class ControladorUsuario implements IControladorUsuario {
 
     @Override
     public int guardar(Usuario usuario) {
-        usuario.setClave(Encriptar.encriptaEnMD5(usuario.getClave()));
+        LocalDate hoy = LocalDate.now();
+        usuario.setFechaAlta(hoy);
+        usuario.setClave(Encriptar.encriptaEnMD5(usuario.getNick()));
         return USUARIODAO.guardar(usuario);
     }
 
@@ -84,15 +89,23 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void actualizar(Usuario usuario) {
         Usuario u = USUARIODAO.buscar(usuario.getId());
-        if (StringUtils.isNotBlank(usuario.getClave())) {
-            u.setClave(Encriptar.encriptaEnMD5(usuario.getClave()));
-        }
-        u.setNick(usuario.getNick());
         u.setNombre(usuario.getNombre());
         u.setApellido(usuario.getApellido());
         u.setRoles(usuario.getRoles());
-        LOG.info(usuario.toString());
-        LOG.info(u.toString());
+        u.setDocumento(usuario.getDocumento());
+        USUARIODAO.actualizar(u);
+    }
+
+    @Override
+    public void actualizarMisDatos(Usuario usuario, boolean cambiaClave) {
+        Usuario u = USUARIODAO.buscar(usuario.getId());
+        if (cambiaClave) {
+            u.setClave(Encriptar.encriptaEnMD5(usuario.getClave()));
+        }
+        u.setFechaNacimiento(usuario.getFechaNacimiento());
+        u.setTelefono(usuario.getTelefono());
+        u.setDireccion(usuario.getDireccion());
+        u.setNick(usuario.getNick());
         USUARIODAO.actualizar(u);
     }
 
@@ -110,4 +123,22 @@ public class ControladorUsuario implements IControladorUsuario {
         return u.getId() == usuario.getId();
     }
 
+    @Override
+    public boolean documentoDisponible(Usuario u) {
+        Usuario usuario = USUARIODAO.buscarDocumento(u.getDocumento());
+        if (usuario == null) {
+            return true;
+        }
+        return u.getId() == usuario.getId();
+    }
+
+    @Override
+    public void recuperar(Usuario usuario) {
+        Usuario u = USUARIODAO.buscar(usuario.getId());
+        u.setActivo(true);
+        u.setFechaBaja(null);
+        USUARIODAO.actualizar(u);
+    }
+
 }//end ControladorUsuario
+
