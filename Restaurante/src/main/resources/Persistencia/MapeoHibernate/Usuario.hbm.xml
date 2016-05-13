@@ -18,6 +18,8 @@
         <property name="clave" type="string" />        
         <property name="activo" />        
         <property name="documento" />        
+        <property name="respuestaSecreta" />        
+        <property name="preguntaSecreta" />        
         <property name="fechaAlta" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <property name="fechaBaja" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <property name="fechaNacimiento" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    

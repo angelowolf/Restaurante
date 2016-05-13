@@ -23,7 +23,9 @@
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
                     <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
-                    <button id="recuperar" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i></button>
+                        <s:if test="%{!#attr.row.activo}">
+                        <button id="recuperar" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i></button>
+                        </s:if>
                 </div>
             </display:column>
         </display:table>

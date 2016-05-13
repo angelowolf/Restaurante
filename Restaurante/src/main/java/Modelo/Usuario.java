@@ -22,6 +22,7 @@ public class Usuario {
     private LocalDate fechaAlta, fechaBaja, fechaNacimiento;
     private Set<Rol> roles;
     private boolean activo = true;
+    private String preguntaSecreta, respuestaSecreta;
 
     public Usuario() {
     }
@@ -49,6 +50,22 @@ public class Usuario {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getPreguntaSecreta() {
+        return preguntaSecreta;
+    }
+
+    public void setPreguntaSecreta(String preguntaSecreta) {
+        this.preguntaSecreta = preguntaSecreta;
+    }
+
+    public String getRespuestaSecreta() {
+        return respuestaSecreta;
+    }
+
+    public void setRespuestaSecreta(String respuestaSecreta) {
+        this.respuestaSecreta = respuestaSecreta;
     }
 
     public String getTelefono() {

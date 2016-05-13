@@ -173,8 +173,13 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String login() {
-        sesion.put("usuario", controladorUsuario.getUsuario(usuario.getNick()));
-        return SUCCESS;
+        Usuario u = controladorUsuario.getUsuario(usuario.getNick());
+        sesion.put("usuario", u);
+        if (StringUtils.isBlank(u.getPreguntaSecreta())) {
+            return "PRIMERAVEZ";
+        } else {
+            return SUCCESS;
+        }
     }
 
     public String logout() {

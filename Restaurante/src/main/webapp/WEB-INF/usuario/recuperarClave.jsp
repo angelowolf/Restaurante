@@ -1,11 +1,10 @@
 <%-- 
-    Document   : Cliente
-    Created on : 07/04/2016, 21:52:38
+    Document   : recuperarClave
+    Created on : 11/05/2016, 14:39:52
     Author     : ang_2
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,8 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:property value="cliente.nombre"/>
-        <s:property value="cliente.apellido"/>
-        <s:property value="cliente.id"/>
+        <h1>Hello World!</h1>
     </body>
 </html>
