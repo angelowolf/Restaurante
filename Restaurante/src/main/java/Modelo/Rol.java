@@ -10,17 +10,23 @@ package Modelo;
  * @author ang_2
  */
 public enum Rol {
-    Mozo, Barra, Administrador;
+    Usuario, Mozo,Cocina,Caja,Mesa,Stock;
 
     @Override
     public String toString() {
         switch (this) {
+            case Usuario:
+                return "Usuario";
             case Mozo:
                 return "Mozo";
-            case Barra:
-                return "Barra";
-            case Administrador:
-                return "Administrador";
+            case Cocina:
+                return "Cocina";
+            case Caja:
+                return "Caja";
+            case Mesa:
+                return "Mesa";
+            case Stock:
+                return "Stock";
             default:
                 throw new IllegalArgumentException();
         }

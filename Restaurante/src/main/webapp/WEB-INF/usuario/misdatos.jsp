@@ -7,7 +7,7 @@
         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" readonly="true" value="<s:property value="usuario.nombre"/>">
     </div>
     <div class="form-group">
-        <label for="apellido">Appelido</label>
+        <label for="apellido">Apellido</label>
         <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" readonly="true" value="<s:property value="usuario.apellido"/>">
     </div>   
     <div class="form-group">

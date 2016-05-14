@@ -182,9 +182,10 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", rol=" + roles + ", activo=" + activo + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", telefono=" + telefono + ", direccion=" + direccion + ", documento=" + documento + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaNacimiento=" + fechaNacimiento + ", roles=" + roles + ", activo=" + activo + ", preguntaSecreta=" + preguntaSecreta + ", respuestaSecreta=" + respuestaSecreta + '}';
     }
 
+  
     /**
      * Verifica que las contraseñas sean identicas y que el usuario este activo.
      *
@@ -195,4 +196,57 @@ public class Usuario {
         return this.clave.equals(Encriptar.encriptaEnMD5(password)) && this.isActivo();
     }
 
+    public boolean esResponsableUsuario() {
+        for (Rol role : roles) {
+            if (role == Rol.Usuario) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean esResponsableStock() {
+        for (Rol role : roles) {
+            if (role == Rol.Stock) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean esResponsableCocina() {
+        for (Rol role : roles) {
+            if (role == Rol.Cocina) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean esResponsableCaja() {
+        for (Rol role : roles) {
+            if (role == Rol.Caja) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean esResponsableMesa() {
+        for (Rol role : roles) {
+            if (role == Rol.Mesa) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean esMozo() {
+        for (Rol role : roles) {
+            if (role == Rol.Mozo) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

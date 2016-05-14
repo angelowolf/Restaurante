@@ -17,7 +17,7 @@
             <display:column sortable="true" property="fechaAlta" title="Fecha de creación" decorator="Decorator.DateDecorator"/>
             <display:column sortable="true" property="fechaBaja" title="Fecha de baja" decorator="Decorator.DateDecorator"/>
             <display:column sortable="true" property="activo" title="Activo" decorator="Decorator.ActivoDecorator"/>
-            <display:column sortable="true" property="roles" title="Rol"/>            
+            <display:column sortable="true" property="roles" title="Rol" decorator="Decorator.RolDecorator"/>            
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>

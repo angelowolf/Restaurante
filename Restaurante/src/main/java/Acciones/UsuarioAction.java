@@ -7,12 +7,15 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
+import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -31,7 +34,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         lista = new ArrayList<>();
         usuario = new Usuario();
         controladorUsuario = new ControladorUsuario();
-        usuarioSesion = (Usuario) sesion.get("usuario");
     }
 
     public void validateRegistrar() {
@@ -118,8 +120,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String misdatos() {
-        usuario = controladorUsuario.getUsuario(usuarioSesion.getId());
-        usuario.toString();
+        usuario = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
         return SUCCESS;
     }
 
@@ -142,16 +143,16 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
                 }
             }
         }
+        Usuario original = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
         if (StringUtils.isBlank(usuario.getClaveOriginal())) {
             addFieldError("claveOriginal", Soporte.Mensaje.INGRESECLAVEACTUAL);
-        } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(usuarioSesion.getClave())) {
+        } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(original.getClave())) {
             addFieldError("claveOriginal", Soporte.Mensaje.CLAVEINGRESADAMAL);
             usuario.setClaveOriginal("");
         }
         if (hasFieldErrors()) {
             codigo = 400;
         }
-
     }
 
     public String modificarmisdatos() {
@@ -174,16 +175,49 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public String login() {
         Usuario u = controladorUsuario.getUsuario(usuario.getNick());
-        sesion.put("usuario", u);
+        sesion.put("idUsuario", u.getId());
+        sesion.put("rolUsuario", u.esResponsableUsuario());
+        sesion.put("rolMozo", u.esMozo());
+        sesion.put("rolCocina", u.esResponsableCocina());
+        sesion.put("rolStock", u.esResponsableStock());
+        sesion.put("rolCaja", u.esResponsableCaja());
+        sesion.put("rolMesa", u.esResponsableMesa());
         if (StringUtils.isBlank(u.getPreguntaSecreta())) {
-            return "PRIMERAVEZ";
+            return "primeravez";
         } else {
             return SUCCESS;
         }
     }
 
     public String logout() {
-        sesion.put("usuario", null);
+        sesion.put("idUsuario", null);
+        sesion.put("rolUsuario", null);
+        sesion.put("rolMozo", null);
+        sesion.put("rolCocina", null);
+        sesion.put("rolStock", null);
+        sesion.put("rolMesa", null);
+        sesion.put("rolCaja", null);
+        return SUCCESS;
+    }
+
+    public String home() {
+        return SUCCESS;
+    }
+
+    public void validatePrimerLogin() {
+        if (StringUtils.isBlank(usuario.getPreguntaSecreta())) {
+            addFieldError("preguntaSecreta", Soporte.Mensaje.SELECCIONEPREGUNTA);
+        }
+        if (StringUtils.isBlank(usuario.getRespuestaSecreta())) {
+            addFieldError("respuestaSecreta", Soporte.Mensaje.INGRESERESPUESTA);
+        }
+        if (hasFieldErrors()) {
+            codigo = 400;
+        }
+    }
+
+    public String primerLogin() {
+        controladorUsuario.actualizar((int) sesion.get("idUsuario"), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
         return SUCCESS;
     }
 

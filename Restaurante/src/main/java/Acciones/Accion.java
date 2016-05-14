@@ -18,7 +18,6 @@ public abstract class Accion extends ActionSupport {
 
     protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
     protected int codigo = 200;
-    protected Usuario usuarioSesion;
 
     public abstract int getCodigo();
 

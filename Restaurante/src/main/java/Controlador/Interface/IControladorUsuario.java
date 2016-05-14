@@ -132,4 +132,7 @@ public interface IControladorUsuario {
     public void recuperar(Usuario usuario);
 
     public void actualizarMisDatos(Usuario usuario, boolean cambiaClave);
+
+    public void actualizar(int id, String preguntaSecreta, String respuestaSecreta);
+
 }

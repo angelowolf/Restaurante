@@ -20,5 +20,6 @@
             <result name="success" type="tiles">/usuario/misdatos.tiles</result>
         </action>
         <action name="modificarmisdatos" method="modificarmisdatos" class="Acciones.UsuarioAction"/>
+        <action name="primerLogin" method="primerLogin" class="Acciones.UsuarioAction"/>        
     </package>
 </struts>

@@ -110,6 +110,14 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     @Override
+    public void actualizar(int id, String preguntaSecreta, String respuestaSecreta) {
+        Usuario u = USUARIODAO.buscar(id);
+        u.setPreguntaSecreta(preguntaSecreta);
+        u.setRespuestaSecreta(respuestaSecreta);
+        USUARIODAO.actualizar(u);
+    }
+
+    @Override
     public List<Usuario> getTodos() {
         return USUARIODAO.listar();
     }

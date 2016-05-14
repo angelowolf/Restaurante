@@ -1,12 +1,11 @@
 <div class="form-group">
     <label for="preguntaSecreta">Preguntas Secretas</label>
     <div class="form-group">
-        <select name="preguntaSecreta">
-            <option value="pregunta uno"> Pregunta uno</option>
-            <option value="pregunta dos"> Pregunta dos</option>
-            <option value="pregunta tres"> Pregunta tres</option>
-            <option value="pregunta cuatro"> Pregunta cuatro</option>
-            <option value="pregunta cinco"> Pregunta cinco</option>
+        <select name="preguntaSecreta" class="form-control" id="preguntaSecreta">
+            <option value="" selected disabled>Seleccione</option>
+            <option value="¿Cuál era la profesión de tu abuelo?"> ¿Cuál era la profesión de tu abuelo?</option>
+            <option value="¿Cuál era el nombre de tu primer mascota?"> ¿Cuál era el nombre de tu primer mascota?</option>
+            <option value="¿Cuál era la marca de tu primer auto?"> ¿Cuál era la marca de tu primer auto?</option>
         </select>
     </div>
 </div>

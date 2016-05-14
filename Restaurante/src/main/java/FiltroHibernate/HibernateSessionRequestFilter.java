@@ -33,6 +33,7 @@ public class HibernateSessionRequestFilter implements Filter {
      * @param response
      * @param chain
      * @exception IOException,ServletException
+     * @throws javax.servlet.ServletException
      */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

@@ -108,7 +108,10 @@ public class Mensaje {
     public static final String FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
     public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
     public static String DOCUMENTONODISPONIBLE = "El documento ingresdo ya esta en uso.";
-    public static Object USUARIORECUPERADO = "Usuario recuperado.";
+    public static String USUARIORECUPERADO = "Usuario recuperado.";
+    public static String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
+    public static String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
+    
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
