@@ -21,5 +21,10 @@
         </action>
         <action name="modificarmisdatos" method="modificarmisdatos" class="Acciones.UsuarioAction"/>
         <action name="primerLogin" method="primerLogin" class="Acciones.UsuarioAction"/>        
+        <action name="obtenerPregunta" method="obtenerPregunta" class="Acciones.UsuarioAction">
+            <result name="success">/WEB-INF/usuario/recuperarClave.jsp</result>
+            <result name="input">/WEB-INF/usuario/recuperar.jsp</result>
+        </action>
+        <action name="recuperarClave" method="recuperarClave" class="Acciones.UsuarioAction"/>
     </package>
 </struts>

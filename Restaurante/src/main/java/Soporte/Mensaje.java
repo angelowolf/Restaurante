@@ -111,7 +111,8 @@ public class Mensaje {
     public static String USUARIORECUPERADO = "Usuario recuperado.";
     public static String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
     public static String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
-    
+    public static String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
+    public static String NICKINCORRECTO = "El nick ingresado no se encuentra en el sistema.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

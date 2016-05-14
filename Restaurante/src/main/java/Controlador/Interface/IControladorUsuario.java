@@ -135,4 +135,6 @@ public interface IControladorUsuario {
 
     public void actualizar(int id, String preguntaSecreta, String respuestaSecreta);
 
+    public void actualizarClave(int id, String clave);
+
 }

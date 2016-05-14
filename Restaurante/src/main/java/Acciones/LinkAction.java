@@ -5,19 +5,16 @@
  */
 package Acciones;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
 
 /**
  *
  * @author ang_2
  */
-public abstract class Accion extends ActionSupport {
+public class LinkAction extends ActionSupport {
 
-    protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
-    protected int codigo = 200;
-
-    public abstract int getCodigo();
-
+    @Override
+    public String execute() {
+        return SUCCESS;
+    }
 }

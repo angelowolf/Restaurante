@@ -22,6 +22,18 @@
                             <label for="documento">Documento</label>
                             <input type="number" class="form-control" id="documento" name="documento" placeholder="documento">
                         </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" class="form-control" readonly="true" id="telefono" name="telefono" placeholder="Teléfono" value="<s:property value="usuario.telefono"/>">
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" readonly="true" name="direccion" placeholder="Dirección" value="<s:property value="usuario.direccion"/>">
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                            <input type="text" class="form-control" id="fechaNacimiento" readonly="true" name="fechaNacimiento" placeholder="Fecha de Nacimiento" value="<s:property value="usuario.fechaNacimiento"/>">
+                        </div>
                         <s:include value="/WEB-INF/rol/roles.jsp"/>                        
                     </form>
                 </div>

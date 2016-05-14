@@ -17,5 +17,8 @@
         <action name="home" method="home" class="Acciones.UsuarioAction">
             <result name="success" type="tiles">/home.tiles</result>
         </action>    
+        <action name="recuperar" method="execute" class="Acciones.LinkAction">
+            <result name="success">/WEB-INF/usuario/recuperar.jsp</result>
+        </action>    
     </package>
 </struts>

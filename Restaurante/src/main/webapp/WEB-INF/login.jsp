@@ -13,7 +13,19 @@
 
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <style>
+
+
             @import url(https://fonts.googleapis.com/css?family=Slabo+27px&subset=latin,latin-ext);
+
+            .olvideClave{
+                color: #BBBDBF;
+                font-size: 12px;
+                text-decoration: none;
+                display: table;
+                margin: 0 auto;
+                top: 11px;
+                position: relative;
+            }
 
             html, body {
                 background-image: -webkit-radial-gradient(closest-corner, rgba(16, 47, 70, 0) 60%, rgba(16, 47, 70, 0.26)), -webkit-linear-gradient(108deg, #26d0ce, #1a2980 90%);
@@ -380,6 +392,7 @@
                     <label>Contraseña</label>
                 </div>
                 <input type="submit" value="Iniciar Sesión">
+                <a href="<s:url action="recuperar" namespace="/"/>" class="olvideClave">¿Olvidaste la contraseña?</a>
             </s:form>
         </div>
 

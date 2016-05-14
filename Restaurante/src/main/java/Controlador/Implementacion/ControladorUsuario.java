@@ -148,5 +148,12 @@ public class ControladorUsuario implements IControladorUsuario {
         USUARIODAO.actualizar(u);
     }
 
+    @Override
+    public void actualizarClave(int id, String clave) {
+        Usuario u = USUARIODAO.buscar(id);
+        u.setClave(Encriptar.encriptaEnMD5(clave));
+        USUARIODAO.actualizar(u);
+    }
+
 }//end ControladorUsuario
 

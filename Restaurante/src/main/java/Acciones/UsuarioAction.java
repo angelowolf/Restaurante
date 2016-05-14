@@ -7,15 +7,12 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
-import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -218,6 +215,45 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public String primerLogin() {
         controladorUsuario.actualizar((int) sesion.get("idUsuario"), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
+        return SUCCESS;
+    }
+
+    public void validateRecuperarClave() {
+        if (StringUtils.isBlank(usuario.getClave())) {
+            addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
+        }
+        if (StringUtils.isBlank(usuario.getClave2())) {
+            addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
+        }
+        if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
+            if (!usuario.getClave().equals(usuario.getClave2())) {
+                addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+            }
+        }
+        Usuario temp = controladorUsuario.getUsuario(usuario.getId());
+        if (temp.getRespuestaSecreta() != null && !temp.getRespuestaSecreta().equals(usuario.getRespuestaSecreta())) {
+            addFieldError("respuestaSecreta", Soporte.Mensaje.RESPUESTANOVALIDA);
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        }
+    }
+
+    public String recuperarClave() {
+        controladorUsuario.actualizarClave(usuario.getId(), usuario.getClave());
+        return SUCCESS;
+    }
+
+    public void validateObtenerPregunta() {
+        if (controladorUsuario.getUsuario(usuario.getNick()) == null) {
+            String mensaje = Soporte.Mensaje.NICKINCORRECTO;
+            addFieldError("nick", mensaje);
+            sesion.put("mensaje", mensaje);
+        }
+    }
+
+    public String obtenerPregunta() {
+        usuario = controladorUsuario.getUsuario(usuario.getNick());
         return SUCCESS;
     }
 

@@ -51,6 +51,9 @@
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#apellido').val(response.model.apellido);
                 $modal.find('#documento').val(response.model.documento);
+                $modal.find('#telefono').val(response.model.telefono);
+                $modal.find('#direccion').val(response.model.direccion);
+                $modal.find('#fechaNacimiento').val(response.model.fechaNacimiento);
                 for (var rol in response.model.roles) {
                     $modal.find('#rol' + response.model.roles[rol]).prop('checked', true);
                 }
