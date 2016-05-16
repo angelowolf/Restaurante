@@ -107,12 +107,13 @@ public class Mensaje {
     public static final String INGRESELACANTIDADACTUAL = "Ingrese la cantidad actual";
     public static final String FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
     public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
-    public static String DOCUMENTONODISPONIBLE = "El documento ingresdo ya esta en uso.";
-    public static String USUARIORECUPERADO = "Usuario recuperado.";
-    public static String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
-    public static String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
-    public static String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
-    public static String NICKINCORRECTO = "El nick ingresado no se encuentra en el sistema.";
+    public static final String DOCUMENTONODISPONIBLE = "El documento ingresdo ya esta en uso.";
+    public static final String USUARIORECUPERADO = "Usuario recuperado.";
+    public static final String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
+    public static final String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
+    public static final String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
+    public static final String NICKINCORRECTO = "El nick ingresado no se encuentra en el sistema.";
+    public static final String INGRESEDOCUMENTO = "Ingrese un número de documento.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

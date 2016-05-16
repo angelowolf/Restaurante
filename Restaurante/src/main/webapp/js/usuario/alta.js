@@ -10,4 +10,10 @@
             }
         });
     });
+    $('#nombre').blur(function () {
+        $('#nick').val($('#nombre').val() + $('#apellido').val());
+    });
+    $('#apellido').blur(function () {
+        $('#nick').val($('#nombre').val() + $('#apellido').val());
+    });
 })(jQuery);

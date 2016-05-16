@@ -11,4 +11,5 @@
             }
         });
     });
+    $('#preguntaSecreta').val($('#preguntaSecretaOriginal').val());
 })(jQuery);

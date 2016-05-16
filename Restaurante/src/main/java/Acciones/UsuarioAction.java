@@ -48,6 +48,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else if (!controladorUsuario.nickDisponible(usuario)) {
             addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
         }
+        if (usuario.getDocumento() == 0) {
+            addFieldError("documento", Soporte.Mensaje.INGRESEDOCUMENTO);
+        }
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
@@ -73,6 +76,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         }
         if (usuario.getRoles() == null) {
             addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
+        }
+        if (usuario.getDocumento() == 0) {
+            addFieldError("documento", Soporte.Mensaje.INGRESEDOCUMENTO);
         }
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
@@ -146,6 +152,12 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(original.getClave())) {
             addFieldError("claveOriginal", Soporte.Mensaje.CLAVEINGRESADAMAL);
             usuario.setClaveOriginal("");
+        }
+        if (StringUtils.isBlank(usuario.getRespuestaSecreta())) {
+            addFieldError("respuestaSecreta", Soporte.Mensaje.INGRESERESPUESTA);
+        }
+        if (StringUtils.isBlank(usuario.getPreguntaSecreta())) {
+            addFieldError("preguntaSecreta", Soporte.Mensaje.SELECCIONEPREGUNTA);
         }
         if (hasFieldErrors()) {
             codigo = 400;

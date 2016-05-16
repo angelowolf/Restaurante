@@ -16,7 +16,6 @@
         <property name="apellido" type="string" />
         <property name="nick" type="string" />
         <property name="clave" type="string" />        
-        <property name="activo" />        
         <property name="documento" />        
         <property name="respuestaSecreta" />        
         <property name="preguntaSecreta" />        

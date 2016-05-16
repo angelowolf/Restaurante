@@ -24,14 +24,12 @@ public class ControladorUsuario implements IControladorUsuario {
         Usuario u = USUARIODAO.buscar(us.getId());
         LocalDate hoy = LocalDate.now();
         u.setFechaBaja(hoy);
-        u.setActivo(false);
         USUARIODAO.actualizar(u);
     }
 
     @Override
     public void eliminar(int idUsuario) {
         Usuario u = USUARIODAO.buscar(idUsuario);
-        u.setActivo(false);
         LocalDate hoy = LocalDate.now();
         u.setFechaBaja(hoy);
         USUARIODAO.actualizar(u);
@@ -93,6 +91,10 @@ public class ControladorUsuario implements IControladorUsuario {
         u.setApellido(usuario.getApellido());
         u.setRoles(usuario.getRoles());
         u.setDocumento(usuario.getDocumento());
+        u.setFechaNacimiento(usuario.getFechaNacimiento());
+        u.setNick(usuario.getNick());
+        u.setTelefono(usuario.getTelefono());
+        u.setDireccion(usuario.getDireccion());
         USUARIODAO.actualizar(u);
     }
 
@@ -143,7 +145,6 @@ public class ControladorUsuario implements IControladorUsuario {
     @Override
     public void recuperar(Usuario usuario) {
         Usuario u = USUARIODAO.buscar(usuario.getId());
-        u.setActivo(true);
         u.setFechaBaja(null);
         USUARIODAO.actualizar(u);
     }

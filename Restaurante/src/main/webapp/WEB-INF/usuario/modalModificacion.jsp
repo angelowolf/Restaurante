@@ -24,17 +24,25 @@
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
-                            <input type="tel" class="form-control" readonly="true" id="telefono" name="telefono" placeholder="Teléfono" value="<s:property value="usuario.telefono"/>">
+                            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
                         </div>
                         <div class="form-group">
                             <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" readonly="true" name="direccion" placeholder="Dirección" value="<s:property value="usuario.direccion"/>">
+                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
                         </div>
                         <div class="form-group">
                             <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                            <input type="text" class="form-control" id="fechaNacimiento" readonly="true" name="fechaNacimiento" placeholder="Fecha de Nacimiento" value="<s:property value="usuario.fechaNacimiento"/>">
+                            <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento">
                         </div>
                         <s:include value="/WEB-INF/rol/roles.jsp"/>                        
+                        <div class="form-group">
+                            <label for="fechaAlta">Fecha Alta</label>
+                            <input type="text" class="form-control" id="fechaAlta" name="fechaAlta" placeholder="Fecha Alta">
+                        </div>
+                        <div class="form-group">
+                            <label for="nick">Nick</label>
+                            <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+                        </div>   
                     </form>
                 </div>
             </div>

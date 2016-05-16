@@ -21,7 +21,6 @@ public class Usuario {
     private long documento;
     private LocalDate fechaAlta, fechaBaja, fechaNacimiento;
     private Set<Rol> roles;
-    private boolean activo = true;
     private String preguntaSecreta, respuestaSecreta;
 
     public Usuario() {
@@ -108,14 +107,6 @@ public class Usuario {
         this.fechaBaja = fechaBaja;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
     public String getClaveOriginal() {
         return claveOriginal;
     }
@@ -182,10 +173,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", telefono=" + telefono + ", direccion=" + direccion + ", documento=" + documento + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaNacimiento=" + fechaNacimiento + ", roles=" + roles + ", activo=" + activo + ", preguntaSecreta=" + preguntaSecreta + ", respuestaSecreta=" + respuestaSecreta + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", telefono=" + telefono + ", direccion=" + direccion + ", documento=" + documento + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaNacimiento=" + fechaNacimiento + ", roles=" + roles + ", preguntaSecreta=" + preguntaSecreta + ", respuestaSecreta=" + respuestaSecreta + '}';
     }
 
-  
     /**
      * Verifica que las contraseñas sean identicas y que el usuario este activo.
      *
@@ -193,7 +183,7 @@ public class Usuario {
      * @return True si lo son.
      */
     public boolean iniciarSesion(String password) {
-        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && this.isActivo();
+        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && fechaBaja != null;
     }
 
     public boolean esResponsableUsuario() {

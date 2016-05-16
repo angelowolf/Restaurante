@@ -4,7 +4,7 @@
         var $boton = $(this);
         var $contenedor = $boton.parents('#botones');
         var id = $contenedor.find('#id').val();
-          $.post('/usuario/recuperar', {id: id}, function (response) {
+        $.post('/usuario/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/usuario/listar');
             } else {
@@ -12,7 +12,7 @@
             }
         });
     });
-    
+
     $('body').on('click', '#modaleliminar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -53,7 +53,9 @@
                 $modal.find('#documento').val(response.model.documento);
                 $modal.find('#telefono').val(response.model.telefono);
                 $modal.find('#direccion').val(response.model.direccion);
-                $modal.find('#fechaNacimiento').val(response.model.fechaNacimiento);
+                $modal.find('#fechaNacimiento').val(convertirFechaDeJODAAString(response.model.fechaNacimiento));
+                $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
+                $modal.find('#nick').val(response.model.nick);
                 for (var rol in response.model.roles) {
                     $modal.find('#rol' + response.model.roles[rol]).prop('checked', true);
                 }
