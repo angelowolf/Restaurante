@@ -18,6 +18,7 @@
     <include file="Struts2/XML/struts-usuario.xml"></include>
     <include file="Struts2/XML/struts-sesion.xml"></include>
     <include file="Struts2/XML/struts-pedido.xml"></include>
+    <include file="Struts2/XML/struts-categoriaInsumo.xml"></include>
     <include file="Struts2/XML/struts-insumo.xml"></include>
     
     <package name="default" extends="struts-default">

@@ -176,7 +176,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateLogin() {
-        if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
+        if (controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             addActionError(Soporte.Mensaje.ERRORVALIDAR);
             codigo = 400;
         }
@@ -245,6 +245,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         Usuario temp = controladorUsuario.getUsuario(usuario.getId());
         if (temp.getRespuestaSecreta() != null && !temp.getRespuestaSecreta().equals(usuario.getRespuestaSecreta())) {
             addFieldError("respuestaSecreta", Soporte.Mensaje.RESPUESTANOVALIDA);
+        }
+        if (temp.getRespuestaSecreta() == null) {
+            addFieldError("respuestaSecreta", "Usted aun no respondio la pregunta secreta.");
         }
         if (hasErrors()) {
             codigo = 400;

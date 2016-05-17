@@ -24,6 +24,7 @@
         <mapping resource="Persistencia/MapeoHibernate/Usuario.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/EstadoPedido.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/Pedido.hbm.xml"/>
+        <mapping resource="Persistencia/MapeoHibernate/CategoriaInsumo.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/Insumo.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/Stock.hbm.xml"/>
     </session-factory>

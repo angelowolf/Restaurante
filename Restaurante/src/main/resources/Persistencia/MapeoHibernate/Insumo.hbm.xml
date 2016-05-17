@@ -16,5 +16,6 @@
         </property>
         <property name="fechaAlta" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <many-to-one name="stock" column="id_stock"/>
+        <many-to-one name="categoriaInsumo" column="id_categoria"/>
     </class>    
 </hibernate-mapping>

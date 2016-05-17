@@ -19,6 +19,7 @@ public class Insumo {
     private float precioUnidad;
     private UnidadMedida unidadMedida;
     private Stock stock;
+    private CategoriaInsumo categoriaInsumo;
     private LocalDate fechaAlta;
 
     public int getId() {
@@ -69,9 +70,17 @@ public class Insumo {
         this.fechaAlta = fechaAlta;
     }
 
+    public CategoriaInsumo getCategoriaInsumo() {
+        return categoriaInsumo;
+    }
+
+    public void setCategoriaInsumo(CategoriaInsumo categoriaInsumo) {
+        this.categoriaInsumo = categoriaInsumo;
+    }
+
     @Override
     public String toString() {
-        return "Insumo{" + "id=" + id + ", nombre=" + nombre + ", precioUnidad=" + precioUnidad + ", unidadMedida=" + unidadMedida + ", stock=" + stock + ", fechaAlta=" + fechaAlta + '}';
+        return "Insumo{" + "id=" + id + ", nombre=" + nombre + ", precioUnidad=" + precioUnidad + ", unidadMedida=" + unidadMedida + ", stock=" + stock + ", categoriaInsumo=" + categoriaInsumo + ", fechaAlta=" + fechaAlta + '}';
     }
 
     public void actualizar(Insumo insumo) {
