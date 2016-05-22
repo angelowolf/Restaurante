@@ -4,6 +4,12 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <tiles:importAttribute name="stylesheet" />
 <tiles:importAttribute name="javascript" />
+<%
+    HttpSession sesion = request.getSession();
+    if (null == sesion.getAttribute("idUsuario")) {
+        response.sendRedirect("/logear");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>

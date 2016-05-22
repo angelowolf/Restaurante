@@ -3,7 +3,6 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <!-- Author: ang_2 -->
- 
 <struts>
     <package name="sesion" extends="default" namespace="/">       
         <action name="login" method="login" class="Acciones.UsuarioAction">
@@ -19,6 +18,9 @@
         </action>    
         <action name="recuperar" method="execute" class="Acciones.LinkAction">
             <result name="success">/WEB-INF/usuario/recuperar.jsp</result>
+        </action>    
+        <action name="logear" class="Acciones.LinkAction">
+            <result name="success">/WEB-INF/login.jsp</result>
         </action>    
     </package>
 </struts>
