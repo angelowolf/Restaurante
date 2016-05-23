@@ -2,7 +2,7 @@
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
         var data = $('#formulario').serialize();
-        $.post('/insumo/registrar', data, function (response) {
+        $.post('/insumo/categoria/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumo/categoria/listar');
             } else {

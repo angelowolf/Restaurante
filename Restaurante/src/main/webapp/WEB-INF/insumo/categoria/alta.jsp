@@ -1,5 +1,5 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<h2 class="page-header">Nuevo Insumo</h2>
+<h2 class="page-header">Nueva Categoria Insumo</h2>
 <form class="well col-md-6 col-md-offset-3" id="formulario">
     <div class="form-group">
         <label for="nombre">Nombre</label>
