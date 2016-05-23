@@ -53,7 +53,9 @@
                 $modal.find('#documento').val(response.model.documento);
                 $modal.find('#telefono').val(response.model.telefono);
                 $modal.find('#direccion').val(response.model.direccion);
-                $modal.find('#fechaNacimiento').val(convertirFechaDeJODAAString(response.model.fechaNacimiento));
+                if (response.model.fechaNacimiento != null) {
+                    $modal.find('#fechaNacimiento').val(convertirFechaDeJODAAString(response.model.fechaNacimiento));
+                }
                 $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
                 $modal.find('#nick').val(response.model.nick);
                 for (var rol in response.model.roles) {

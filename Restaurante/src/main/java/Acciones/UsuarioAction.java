@@ -11,6 +11,7 @@ import Modelo.Usuario;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -276,6 +277,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         return lista;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public Usuario getUsuario() {
         return usuario;
     }

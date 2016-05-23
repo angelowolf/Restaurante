@@ -6,6 +6,7 @@
 package Modelo;
 
 import Soporte.Encriptar;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.Set;
 import org.apache.commons.lang.WordUtils;
 import org.joda.time.LocalDate;
@@ -63,6 +64,7 @@ public class Usuario {
         return respuestaSecreta;
     }
 
+    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácter es de 50", fieldName = "respuestaSecreta")
     public void setRespuestaSecreta(String respuestaSecreta) {
         this.respuestaSecreta = respuestaSecreta;
     }
@@ -71,6 +73,7 @@ public class Usuario {
         return telefono;
     }
 
+    @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "telefono")
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
@@ -79,6 +82,7 @@ public class Usuario {
         return direccion;
     }
 
+    @StringLengthFieldValidator(maxLength = "255", message = "La cantidad máxima de carácter es de 255", fieldName = "direccion")
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -127,6 +131,7 @@ public class Usuario {
         return nombre;
     }
 
+    @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácteres es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
         this.nombre = WordUtils.capitalize(nombre);
     }
@@ -135,6 +140,7 @@ public class Usuario {
         return apellido;
     }
 
+    @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácteres es de 100", fieldName = "apellido")
     public void setApellido(String apellido) {
         this.apellido = WordUtils.capitalize(apellido);
     }
@@ -143,6 +149,7 @@ public class Usuario {
         return nick;
     }
 
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "nick")
     public void setNick(String nick) {
         this.nick = nick;
     }
@@ -151,6 +158,7 @@ public class Usuario {
         return clave;
     }
 
+    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave")
     public void setClave(String clave) {
         this.clave = clave;
     }

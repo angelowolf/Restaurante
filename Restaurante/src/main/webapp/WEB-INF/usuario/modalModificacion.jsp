@@ -40,8 +40,8 @@
                             <input type="text" class="form-control" id="fechaAlta" name="fechaAlta" placeholder="Fecha Alta">
                         </div>
                         <div class="form-group">
-                            <label for="nick">Nick</label>
-                            <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+                            <label for="nick">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario">
                         </div>   
                     </form>
                 </div>

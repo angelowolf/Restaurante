@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="rol" name="rol">Rol</label>
+    <label for="rol" name="rol">Roles</label>
     <div class="form-group">
         <div class="checkbox">
             <label><input type="checkbox" name="roles" id="rolUsuario" value="<%out.println(Modelo.Rol.Usuario);%>">Responsable de Usuario</label>
