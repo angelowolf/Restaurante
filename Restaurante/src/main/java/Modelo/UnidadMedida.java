@@ -10,5 +10,5 @@ package Modelo;
  * @author ang_2
  */
 public enum UnidadMedida {
-    Kilogramos, Gramos, Litros, Unidad, Taza, Botella, Cucharada, Litro
+    Kilogramos, Litros, Unidad
 }

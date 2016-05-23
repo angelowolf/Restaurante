@@ -5,12 +5,17 @@
  */
 package Acciones;
 
+import Controlador.Implementacion.ControladorCategoriaInsumo;
 import Controlador.Implementacion.ControladorInsumo;
+import Controlador.Interface.IControladorCategoriaInsumo;
 import Controlador.Interface.IControladorInsumo;
+import Modelo.CategoriaInsumo;
 import Modelo.Insumo;
+import Modelo.UnidadMedida;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -26,8 +31,12 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     private Insumo insumo;
     private final IControladorInsumo controladorInsumo;
     private List<Insumo> lista;
+    private List<CategoriaInsumo> categorias;
+    private List<UnidadMedida> unidades;
 
     public InsumoAction() {
+        unidades = new ArrayList<>();
+        categorias = new ArrayList<>();
         lista = new ArrayList<>();
         insumo = new Insumo();
         controladorInsumo = new ControladorInsumo();
@@ -67,6 +76,9 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     }
 
     public void validateRegistrar() {
+        if (insumo.getCategoriaInsumo().getId() == -1) {
+            addFieldError("categoriaInsumo.id", Soporte.Mensaje.SELECCIONECATEGORIAINSUMO);
+        }
         if (StringUtils.isBlank(insumo.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
         }
@@ -99,27 +111,38 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     }
 
     public String eliminar() {
-        LOGGER.info("Por eliminar objeto recibido: " + insumo.toString());
         controladorInsumo.eliminar(insumo);
         sesion.put("mensaje", Soporte.Mensaje.getEliminado(Mensaje.INSUMO));
         return SUCCESS;
     }
 
+    public String recuperar() {
+        controladorInsumo.recuperar(insumo);
+        sesion.put("mensaje", Soporte.Mensaje.ISUMORECUPERADO);
+        return SUCCESS;
+    }
+
     public String listar() {
+        unidades = Arrays.asList(UnidadMedida.values());
+        IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
+        categorias = controladorCategoriaInsumo.getTodos();
         lista = controladorInsumo.getTodos();
         return SUCCESS;
     }
 
     public String nuevo() {
+        unidades = Arrays.asList(UnidadMedida.values());
+        IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
+        categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
+    }
+
+    public List<CategoriaInsumo> getCategorias() {
+        return categorias;
     }
 
     public List<Insumo> getLista() {
         return lista;
-    }
-
-    public void setLista(List<Insumo> lista) {
-        this.lista = lista;
     }
 
     public Insumo getInsumo() {
@@ -128,6 +151,10 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
 
     public void setInsumo(Insumo insumo) {
         this.insumo = insumo;
+    }
+
+    public List<UnidadMedida> getUnidades() {
+        return unidades;
     }
 
     @Override

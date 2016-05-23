@@ -16,4 +16,8 @@
     $('#apellido').blur(function () {
         $('#nick').val($('#nombre').val() + $('#apellido').val());
     });
+    $('body').on('click', '#cancelar', function (e) {
+        e.preventDefault();
+        window.location.replace('/usuario/listar');
+    });
 })(jQuery);

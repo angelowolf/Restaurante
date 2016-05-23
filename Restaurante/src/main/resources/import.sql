@@ -18,7 +18,7 @@ insert into stock(cantidadActual,cantidadMinima) values(30,15);
 insert into insumo(nombre,precioUnidad,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola',15,'Unidad','2016-01-1',3,1);
 
 
-insert into usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿Cuál era la marca de tu primer auto?','fiat');
+insert into usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿cual era la marca de tu primer auto?','fiat');
 insert into rol_usuario(id,roles) values(1,'Usuario');
 insert into rol_usuario(id,roles) values(1,'Mozo');
 insert into rol_usuario(id,roles) values(1,'Cocina');

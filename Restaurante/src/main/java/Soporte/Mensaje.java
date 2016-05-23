@@ -115,6 +115,8 @@ public class Mensaje {
     public static final String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
     public static final String NICKINCORRECTO = "El nick ingresado no se encuentra en el sistema.";
     public static final String INGRESEDOCUMENTO = "Ingrese un número de documento.";
+    public static final String ISUMORECUPERADO = "Insumo recuperado.";
+    public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

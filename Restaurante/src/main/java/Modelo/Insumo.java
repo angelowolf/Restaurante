@@ -20,7 +20,15 @@ public class Insumo {
     private UnidadMedida unidadMedida;
     private Stock stock;
     private CategoriaInsumo categoriaInsumo;
-    private LocalDate fechaAlta;
+    private LocalDate fechaAlta, fechaBaja;
+
+    public LocalDate getFechaBaja() {
+        return fechaBaja;
+    }
+
+    public void setFechaBaja(LocalDate fechaBaja) {
+        this.fechaBaja = fechaBaja;
+    }
 
     public int getId() {
         return id;
@@ -87,6 +95,7 @@ public class Insumo {
         this.nombre = insumo.getNombre();
         this.precioUnidad = insumo.getPrecioUnidad();
         this.unidadMedida = insumo.getUnidadMedida();
+        this.categoriaInsumo = insumo.getCategoriaInsumo();
     }
 
 }

@@ -30,5 +30,8 @@
         <label for="nick">Nick</label>
         <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
     </div>   
-    <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
+    <div id="botones" class="pull-right">
+        <button type="submit" id="cancelar" class="btn btn-danger">Cancelar</button>
+        <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+    </div>
 </form>           

@@ -29,4 +29,6 @@ public interface IControladorInsumo {
     public void actualizar(Insumo insumo);
 
     public void eliminar(Insumo insumo);
+
+    public void recuperar(Insumo insumo);
 }

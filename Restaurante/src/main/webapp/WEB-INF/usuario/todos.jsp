@@ -10,22 +10,23 @@
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
             <display:setProperty name="basic.msg.empty_list" >Aún no hay usuarios registrados. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/usuario'/>">aquí</a>.</display:setProperty>
-            <%--<display:column property="id" title="Número Usuario"/>--%>
             <display:column sortable="true" property="nombre" title="Nombre"/>
             <display:column sortable="true" property="apellido" title="Apellido"/>
             <display:column sortable="true" property="nick" title="Nombre de Usuario"/>
-            <display:column sortable="true" property="telefono" title="Teléfono"/>
-            <display:column sortable="true" property="roles" title="Roles" decorator="Decorator.RolDecorator"/>            
-            <display:column sortable="true" property="fechaAlta" title="Fecha de creación" decorator="Decorator.DateDecorator"/>
-            <display:column sortable="true" property="fechaBaja" title="Fecha de baja" decorator="Decorator.DateDecorator"/>
+            <display:column sortable="true" property="telefono" title="Teléfono de Contacto"/>
+            <display:column sortable="true" property="roles" title="Roles Asignados" decorator="Decorator.RolDecorator"/>            
+            <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator"/>
+            <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator"/>
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
-                    <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
-                        <s:if test="(#attr.row.fechaBaja != null)">
-                        <button id="recuperar" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i></button>
+                        <s:if test="(#attr.row.fechaBaja == null)">
+                        <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>
+                        <s:else>
+                        <button id="recuperar" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i></button>
+                        </s:else>
                 </div>
             </display:column>
         </display:table>

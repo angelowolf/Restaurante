@@ -10,4 +10,8 @@
             }
         });
     });
+    $('body').on('click', '#cancelar', function (e) {
+        e.preventDefault();
+        window.location.replace('/insumo/listar');
+    });
 })(jQuery);

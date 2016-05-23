@@ -49,10 +49,16 @@ public class ControladorInsumo implements IControladorInsumo {
 
     @Override
     public void eliminar(Insumo insumo) {
-        LOGGER.info("eliminando objeto: " + insumo.toString());
         Insumo insumoEnBD = this.getInsumo(insumo.getId());
-        CS.eliminar(insumoEnBD.getStock());
-        INSUMODAO.eliminar(insumo);
+        LocalDate hoy = LocalDate.now();
+        insumoEnBD.setFechaBaja(hoy);
+        INSUMODAO.actualizar(insumoEnBD);
     }
 
+    @Override
+    public void recuperar(Insumo insumo) {
+        Insumo insumoEnBD = this.getInsumo(insumo.getId());
+        insumoEnBD.setFechaBaja(null);
+        INSUMODAO.actualizar(insumoEnBD);
+    }
 }

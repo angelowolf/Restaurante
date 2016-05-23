@@ -1,4 +1,18 @@
 (function ($) {
+    $('body').on('click', '#recuperar', function (e) {
+        e.preventDefault();
+        var $boton = $(this);
+        var $contenedor = $boton.parents('#botones');
+        var id = $contenedor.find('#id').val();
+        $.post('/insumo/recuperar', {id: id}, function (response) {
+            if (response.codigo === 200) {
+                window.location.replace('/insumo/listar');
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+            }
+        });
+    });
+
     $('body').on('click', '#modaleliminar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -37,6 +51,7 @@
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#precioUnidad').val(response.model.precioUnidad);
                 $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
+                $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');

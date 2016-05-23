@@ -9,6 +9,7 @@
         <action name="postModificar" method="postModificar" class="Acciones.InsumoAction"/>
         <action name="registrar" method="registrar" class="Acciones.InsumoAction"/>
         <action name="eliminar" method="eliminar" class="Acciones.InsumoAction"/>
+        <action name="recuperar" method="recuperar" class="Acciones.InsumoAction"/>
         <action name="listar" method="listar" class="Acciones.InsumoAction">
             <result name="success" type="tiles">/insumo/todos.tiles</result>
         </action>

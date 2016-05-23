@@ -10,8 +10,8 @@
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
             <display:setProperty name="basic.msg.empty_list" >Aún no hay Categorias registradas. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/insumo/categoria'/>">aquí</a>.</display:setProperty>
-            <display:column property="id" title="Número de Categoría"/>
             <display:column sortable="true" property="nombre" title="Nombre"/>
+            <display:column property="descripcion" title="Descripción" decorator="Decorator.DescripcionDecorator"/>
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
