@@ -8,5 +8,11 @@
         </id>
         <property name="cantidadMinima" />
         <property name="cantidadActual"/>
+        <set name="detalleStocks" table="detalles_stock">
+            <key>
+                <column name="id_stock" not-null="true"/>
+            </key>
+            <one-to-many class="Modelo.DetalleStock"/>
+        </set>
     </class>    
 </hibernate-mapping>

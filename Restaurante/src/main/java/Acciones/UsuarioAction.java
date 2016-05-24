@@ -171,8 +171,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
-        sesion.put("usuario", controladorUsuario.getUsuario(usuario.getId()));
-        addActionMessage(Soporte.Mensaje.getModificado(Soporte.Mensaje.USUARIO));
+        sesion.put("mensaje", Soporte.Mensaje.getModificado(Soporte.Mensaje.USUARIO));
         return SUCCESS;
     }
 

@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.Set;
+
 /**
  *
  * @author ang_2
@@ -13,6 +15,7 @@ public class Stock {
 
     private int id;
     private int cantidadActual, cantidadMinima;
+    private Set<DetalleStock> detalleStocks;
 
     public int getId() {
         return id;
@@ -20,6 +23,14 @@ public class Stock {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Set<DetalleStock> getDetalleStocks() {
+        return detalleStocks;
+    }
+
+    public void setDetalleStocks(Set<DetalleStock> detalleStocks) {
+        this.detalleStocks = detalleStocks;
     }
 
     public int getCantidadActual() {

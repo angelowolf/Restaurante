@@ -5,7 +5,7 @@
         $.post('/usuario/modificarmisdatos', data, function (response) {
             erroresM.limpiarErrores('#formulario');
             if (response.codigo === 200) {
-                erroresM.mostrarAlertError(response.actionMessages, 'success');
+                window.location.replace('/usuario/misdatos');
             } else {
                 erroresM.mostrarErrores('#formulario', response);
             }

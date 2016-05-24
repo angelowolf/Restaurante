@@ -77,22 +77,24 @@
                                     <ul class="nav nav-second-level">
                                         <li><a href="<s:url action="listar" namespace="/insumo"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
                                         <li><a href="<s:url action="nuevo" namespace="/insumo"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-
                                         <li>
-
                                             <a href="#"><i class="fa fa-cogs fa-fw"></i> Categorías<span class="fa arrow"></span></a>
                                             <ul class="nav nav-third-level">
                                                 <li><a href="<s:url action="listar" namespace="/insumo/categoria"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
                                                 <li><a href="<s:url action="nuevo" namespace="/insumo/categoria"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
                                             </ul>  
-
-
                                         </li>
-
-                                    </ul>            
-
-
+                                    </ul>    
                                 </li>
+                                <li>
+                                    <a href="<s:url action="getAjusteStock" namespace="/stock"/>"><i class="fa fa-wrench fa-fw"></i> Ajuste de Stock</a>
+                                </li>
+                                <li>
+                                    <a href="<s:url action="getListaCompra" namespace="/stock"/>"><i class="fa fa-cart-arrow-down fa-fw"></i> Generar Lista de Compra</a>
+                                </li>
+                                <li>
+                                    <a href="<s:url action="getCargarCompra" namespace="/stock"/>"><i class="fa fa-edit fa-fw"></i> Cargar Compras</a>
+                                </li>                                
                             </s:if>
                             <s:if test="#session.rolCocina">
                             </s:if>
