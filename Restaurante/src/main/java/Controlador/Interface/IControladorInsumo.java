@@ -31,4 +31,6 @@ public interface IControladorInsumo {
     public void eliminar(Insumo insumo);
 
     public void recuperar(Insumo insumo);
+
+    public List<Insumo> getTodosStockMinimo();
 }

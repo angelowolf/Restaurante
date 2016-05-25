@@ -61,4 +61,9 @@ public class ControladorInsumo implements IControladorInsumo {
         insumoEnBD.setFechaBaja(null);
         INSUMODAO.actualizar(insumoEnBD);
     }
+
+    @Override
+    public List<Insumo> getTodosStockMinimo() {
+        return INSUMODAO.getTodosStockMinimo();
+    }
 }

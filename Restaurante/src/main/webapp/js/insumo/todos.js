@@ -50,7 +50,7 @@
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#precioUnidad').val(response.model.precioUnidad);
-                $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
+                $modal.find('#unidadMedida'+response.model.unidadMedida).prop('checked', true);
                 $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
             } else {

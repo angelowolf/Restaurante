@@ -17,8 +17,6 @@ import org.hibernate.Session;
  *
  * @author ang_2
  */
-
-
 public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
 
     private static final Logger LOG = Logger.getLogger(InsumoDAO.class);
@@ -30,6 +28,19 @@ public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
         try {
             String sql = "from Insumo";
             objetos = session.createQuery(sql).list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar los insumos.", e);
+        }
+        return objetos;
+    }
+
+    @Override
+    public List<Insumo> getTodosStockMinimo() {
+        Session session = getHibernateTemplate();
+        List<Insumo> objetos = new ArrayList<>();
+        try {
+            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima";
+            objetos = session.createSQLQuery(sql).addEntity(Insumo.class).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
         }

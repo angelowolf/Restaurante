@@ -17,4 +17,6 @@ public interface IInsumo extends IGenericDAO<Insumo, Integer> {
 
     public List<Insumo> getTodos();
 
+    public List<Insumo> getTodosStockMinimo();
+
 }

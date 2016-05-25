@@ -1,5 +1,4 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <div class="form-group">   
@@ -13,7 +12,7 @@
             <display:column sortable="true" property="nombre" title="Nombre"/>            
             <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria"/>            
             <display:column sortable="true" property="unidadMedida" title="Unidad de Medida"/>
-            <display:column sortable="true" property="precioUnidad" title="Precio por Unidad" format="{0,number,.00} $" />
+            <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" />
             <display:column sortable="true" property="stock.cantidadActual" title="Cantidad Actual"/>            
             <display:column sortable="true" property="stock.cantidadMinima" title="Cantidad Mínima"/>            
             <display:column sortable="true" property="fechaAlta" title="Fecha de alta" decorator="Decorator.DateDecorator"/>
