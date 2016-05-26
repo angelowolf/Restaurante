@@ -9,6 +9,8 @@ import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
 import Modelo.Stock;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 
@@ -65,5 +67,16 @@ public class ControladorInsumo implements IControladorInsumo {
     @Override
     public List<Insumo> getTodosStockMinimo() {
         return INSUMODAO.getTodosStockMinimo();
+    }
+
+    @Override
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
+        if (StringUtils.isBlank(nombreInsumo) || nombreInsumo.equals("undefined")) {
+            LOGGER.info("2");
+            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, null, ids);
+        } else {
+            LOGGER.info("4");
+            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, WordUtils.capitalize(nombreInsumo), ids);
+        }
     }
 }

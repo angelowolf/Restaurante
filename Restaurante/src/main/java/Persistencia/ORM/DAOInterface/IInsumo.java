@@ -19,4 +19,6 @@ public interface IInsumo extends IGenericDAO<Insumo, Integer> {
 
     public List<Insumo> getTodosStockMinimo();
 
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
+
 }

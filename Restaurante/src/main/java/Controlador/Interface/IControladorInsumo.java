@@ -33,4 +33,6 @@ public interface IControladorInsumo {
     public void recuperar(Insumo insumo);
 
     public List<Insumo> getTodosStockMinimo();
+
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
 }
