@@ -24,12 +24,7 @@
             <ul>
                 <s:iterator value="usuario.roles" var="rol">
                     <li>
-                        <s:if test="%{#rol.toString() == 'Mozo'}">
-                            <s:property value="rol"/>                
-                        </s:if>
-                        <s:else>
-                            Responsable de <s:property value="rol"/>
-                        </s:else>
+                        <s:property value="%{#rol.getNombre()}"/>
                     </li>
                 </s:iterator>
             </ul>

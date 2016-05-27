@@ -12,6 +12,25 @@ package Modelo;
 public enum Rol {
     Usuario, Mozo,Cocina,Caja,Mesa,Stock;
 
+    public String getNombre() {
+        switch (this) {
+            case Usuario:
+                return "Responsable de Usuarios";
+            case Mozo:
+                return "Mozo";
+            case Cocina:
+                return "Responsable de Cocina";
+            case Caja:
+                return "Responsable de Caja";
+            case Mesa:
+                return "Responsable de Mesa";
+            case Stock:
+                return "Responsable de Stock";
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+    
     @Override
     public String toString() {
         switch (this) {
