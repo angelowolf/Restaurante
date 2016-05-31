@@ -5,12 +5,16 @@
  */
 package Persistencia.ORM.DAOImplementacion;
 
+import Modelo.Rol;
 import Modelo.Usuario;
 import Persistencia.ORM.DAOInterface.IUsuario;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.log4j.Logger;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 /**
@@ -52,8 +56,56 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
     }
 
     @Override
+    public List<Usuario> buscar(String nombre, String apellido, List<Rol> roles) {
+        Session session = getHibernateTemplate();
+        List<Usuario> objetos = new ArrayList<>();
+        boolean f1 = false;
+        boolean f2 = false;
+        boolean f3 = false;
+        try {
+            StringBuilder sb = new StringBuilder("select * from usuario usuario inner join rol_usuario rol on usuario.id = rol.id  where usuario.id is not null");
+            if (nombre != null) {
+                sb.append(" and usuario.nombre like :nombre");
+                f1 = true;
+            }
+            if (apellido != null) {
+                sb.append(" and usuario.apellido like :apellido");
+                f2 = true;
+            }
+            if (roles != null && !roles.isEmpty()) {
+                sb.append(" and rol.roles in (:roles)");
+                f3 = true;
+            }
+            sb.append(" group by usuario.id");
+            if (f3) {
+                sb.append(" HAVING COUNT(DISTINCT rol.roles) = ");
+                sb.append(roles.size());
+            }
+            SQLQuery sqlQ = session.createSQLQuery(sb.toString());
+            if (f1) {
+                sqlQ.setParameter("nombre", nombre + "%");
+            }
+            if (f2) {
+                sqlQ.setParameter("apellido", apellido + "%");
+            }
+            if (f3) {
+                String[] ls = new String[roles.size()];
+                for (int i = 0; i < roles.size(); i++) {
+                    Rol get = roles.get(i);
+                    ls[i] = get.toString();
+                }
+                sqlQ.setParameterList("roles", ls);
+            }
+            objetos = sqlQ.addEntity(Usuario.class).list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar los usuarios.", e);
+        }
+        return objetos;
+    }
+
+    @Override
     public Usuario buscarDocumento(long documento) {
-       Session session = getHibernateTemplate();
+        Session session = getHibernateTemplate();
         List<Usuario> objetos = new ArrayList<>();
         try {
             String sql = "from Usuario where documento = :documento";
@@ -65,6 +117,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
             return objetos.get(0);
         } else {
             return null;
-        } }
-    
+        }
+    }
+
 }

@@ -115,6 +115,7 @@ public class Usuario {
         return claveOriginal;
     }
 
+    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "claveOriginal")
     public void setClaveOriginal(String claveOriginal) {
         this.claveOriginal = claveOriginal;
     }
@@ -171,6 +172,7 @@ public class Usuario {
         this.roles = roles;
     }
 
+    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave2")
     public String getClave2() {
         return clave2;
     }
@@ -246,5 +248,9 @@ public class Usuario {
             }
         }
         return false;
+    }
+
+    public void blanquear() {
+        this.clave = Encriptar.encriptaEnMD5(this.nombre + this.apellido);
     }
 }

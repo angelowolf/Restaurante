@@ -7,6 +7,31 @@
         <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
     </s:action>
     <h2 class="page-header">Usuarios</h2>
+    <div class="panel panel-default">        
+        <div class="panel-body">        
+            <s:form class="form-inline" action="buscar" namespace="/usuario">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Apellido</label>
+                    <s:textfield type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Nombre"/>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Roles</label>
+                    <select id="rolesSeleccionados" name="rolesSeleccionados" multiple="multiple">    
+                        <s:iterator var="cadaRol" value="rolesTodos">
+                            <option <s:if test="%{#cadaRol in rolesSeleccionados}"> selected</s:if> value="<s:property value="%{#cadaRol}"/>">
+                                <s:property value="%{#cadaRol}" /> 
+                            </option>
+                        </s:iterator>                     
+                    </select>                    
+                </div>
+                <button type="submit" class="btn btn-info">Buscar</button>
+            </s:form>
+        </div>
+    </div>
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
             <display:setProperty name="basic.msg.empty_list" >Aún no hay usuarios registrados. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/usuario'/>">aquí</a>.</display:setProperty>
@@ -20,7 +45,9 @@
             <display:column title="Funciones">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
-                    <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                    <button id="modalver" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></button>
+                    <button id="modaleditar" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                    <button id="blanquear" class="btn btn-sm btn-default"><i class="fa fa-key"></i></button>
                         <s:if test="(#attr.row.fechaBaja == null)">
                         <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>
@@ -38,3 +65,4 @@
     <s:param name="modelo">usuario</s:param>
 </s:action>
 <s:include value="/WEB-INF/usuario/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/usuario/modalVer.jsp"/>

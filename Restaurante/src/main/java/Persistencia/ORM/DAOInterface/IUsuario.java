@@ -5,6 +5,7 @@
  */
 package Persistencia.ORM.DAOInterface;
 
+import Modelo.Rol;
 import Modelo.Usuario;
 import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
@@ -29,6 +30,8 @@ public interface IUsuario extends IGenericDAO<Usuario, Integer> {
      * @return List
      */
     public List<Usuario> listar();
+
+    public List<Usuario> buscar(String nombre, String apellido, List<Rol> roles);
 
     public Usuario buscarDocumento(long documento);
 

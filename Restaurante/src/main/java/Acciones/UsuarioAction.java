@@ -7,12 +7,14 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
+import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -27,11 +29,28 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     private Usuario usuario;
     private List<Usuario> lista;
     private final IControladorUsuario controladorUsuario;
+//filtro
+    private List<Rol> rolesSeleccionados;
+    private final List<Rol> rolesTodos;
+    private String nombreFiltro, apellidoFiltro;
 
     public UsuarioAction() {
         lista = new ArrayList<>();
+        rolesTodos = Arrays.asList(Rol.values());
+        rolesSeleccionados = new ArrayList<>();
         usuario = new Usuario();
         controladorUsuario = new ControladorUsuario();
+    }
+
+    public String blanquear() {
+        controladorUsuario.blanquear(usuario);
+        sesion.put("mensaje", Soporte.Mensaje.CLAVERESETEADA);
+        return SUCCESS;
+    }
+
+    public String buscar() {
+        lista = controladorUsuario.buscar(nombreFiltro, apellidoFiltro, rolesSeleccionados);
+        return SUCCESS;
     }
 
     public void validateRegistrar() {
@@ -291,6 +310,34 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public List<Rol> getRolesSeleccionados() {
+        return rolesSeleccionados;
+    }
+
+    public void setRolesSeleccionados(List<Rol> rolesSeleccionados) {
+        this.rolesSeleccionados = rolesSeleccionados;
+    }
+
+    public List<Rol> getRolesTodos() {
+        return rolesTodos;
+    }
+
+    public String getNombreFiltro() {
+        return nombreFiltro;
+    }
+
+    public void setNombreFiltro(String nombreFiltro) {
+        this.nombreFiltro = nombreFiltro;
+    }
+
+    public String getApellidoFiltro() {
+        return apellidoFiltro;
+    }
+
+    public void setApellidoFiltro(String apellidoFiltro) {
+        this.apellidoFiltro = apellidoFiltro;
     }
 
     @Override

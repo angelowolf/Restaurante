@@ -117,6 +117,7 @@ public class Mensaje {
     public static final String INGRESEDOCUMENTO = "Ingrese un número de documento.";
     public static final String ISUMORECUPERADO = "Insumo recuperado.";
     public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
+    public static final String CLAVERESETEADA = " La clave del usuario ha sido reseteada.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

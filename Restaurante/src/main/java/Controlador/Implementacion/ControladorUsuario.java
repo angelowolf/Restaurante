@@ -125,6 +125,17 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     @Override
+    public List<Usuario> buscar(String nombre, String apellido, List<Rol> roles) {
+        if (StringUtils.isBlank(nombre)) {
+            nombre = null;
+        }
+        if (StringUtils.isBlank(apellido)) {
+            apellido = null;
+        }
+        return USUARIODAO.buscar(nombre, apellido, roles);
+    }
+
+    @Override
     public boolean nickDisponible(Usuario u) {
         Usuario usuario = USUARIODAO.buscarNick(u.getNick());
         if (usuario == null) {
@@ -154,6 +165,13 @@ public class ControladorUsuario implements IControladorUsuario {
         Usuario u = USUARIODAO.buscar(id);
         u.setClave(Encriptar.encriptaEnMD5(clave));
         USUARIODAO.actualizar(u);
+    }
+
+    @Override
+    public void blanquear(Usuario usuario) {
+        usuario = this.getUsuario(usuario.getId());
+        usuario.blanquear();
+        USUARIODAO.actualizar(usuario);
     }
 
 }//end ControladorUsuario

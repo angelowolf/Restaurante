@@ -117,6 +117,8 @@ public interface IControladorUsuario {
      */
     public List<Usuario> getTodos();
 
+    public List<Usuario> buscar(String nombre, String apellido, List<Rol> roles);
+
     /**
      * Verifica si el nombre de usuario se encuentra disponible. Si el nick
      * pertenece al mismo usuario,(es el dueño del nick) devolvera true, si se
@@ -136,5 +138,7 @@ public interface IControladorUsuario {
     public void actualizar(int id, String preguntaSecreta, String respuestaSecreta);
 
     public void actualizarClave(int id, String clave);
+
+    public void blanquear(Usuario usuario);
 
 }

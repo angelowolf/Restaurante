@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <label for="rol" name="rol">Roles</label>
-            <ul>
+            <ul id="roles-ver">
                 <s:iterator value="usuario.roles" var="rol">
                     <li>
                         <s:property value="%{#rol.getNombre()}"/>
@@ -42,6 +42,14 @@
             <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" value="<s:property value="usuario.fechaNacimiento"/>">
         </div>
         <div class="form-group">
+            <label for="fechaAlta">Fecha de Alta</label>
+            <input type="text" class="form-control" id="fechaAlta" name="fechaAlta" placeholder="Fecha de Alta" readonly="true"  value="<s:property value="usuario.fechaAlta"/>">
+        </div>
+        <div class="form-group">
+            <label for="fechaBaja">Fecha de Baja</label>
+            <input type="text" class="form-control" id="fechaBaja" name="fechaBaja" placeholder="Usuario Activo" readonly="true"  value="<s:property value="usuario.fechaBaja"/>">
+        </div>
+        <div class="form-group">
             <label for="nick">Nick</label>
             <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick" value="<s:property value="usuario.nick"/>">
         </div>
@@ -53,15 +61,15 @@
         </div>    
         <div class="form-group">
             <label for="clave">Nueva clave</label>
-            <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva clave" AUTOCOMPLETE="off">>
+            <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva clave" AUTOCOMPLETE="off">
         </div>
         <div class="form-group">
             <label for="clave2">Repita la clave</label>
-            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave" AUTOCOMPLETE="off">>
+            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave" AUTOCOMPLETE="off">
         </div>
         <div class="form-group">
             <label for="claveOriginal">Clave anterior</label>
-            <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Clave anterior" AUTOCOMPLETE="off">>
+            <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Clave anterior" AUTOCOMPLETE="off">
         </div>
         <button type="submit" id="guardar" class="btn btn-success pull-right">Guardar</button>
     </form>       
