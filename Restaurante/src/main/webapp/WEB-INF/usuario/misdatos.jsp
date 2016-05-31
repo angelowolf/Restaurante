@@ -5,7 +5,7 @@
         <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
     </s:action>
     <h2 class="page-header">Mis Datos</h2>
-    <form class="well" id="formulario">
+    <form class="well" id="formulario" method="post">
         <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
         <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -53,15 +53,15 @@
         </div>    
         <div class="form-group">
             <label for="clave">Nueva clave</label>
-            <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva clave">
+            <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva clave" AUTOCOMPLETE="off">>
         </div>
         <div class="form-group">
             <label for="clave2">Repita la clave</label>
-            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave">
+            <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repita la clave" AUTOCOMPLETE="off">>
         </div>
         <div class="form-group">
             <label for="claveOriginal">Clave anterior</label>
-            <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Clave anterior">
+            <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Clave anterior" AUTOCOMPLETE="off">>
         </div>
         <button type="submit" id="guardar" class="btn btn-success pull-right">Guardar</button>
     </form>       

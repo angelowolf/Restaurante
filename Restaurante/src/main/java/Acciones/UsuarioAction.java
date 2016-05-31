@@ -176,7 +176,15 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateLogin() {
-        if (controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
+        if (StringUtils.isBlank(usuario.getNick())) {
+            addActionError(Soporte.Mensaje.INGRESENICK);
+        }
+        if (StringUtils.isBlank(usuario.getClave())) {
+            addActionError(Soporte.Mensaje.INGRESECLAVE);
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        } else if (controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             addActionError(Soporte.Mensaje.ERRORVALIDAR);
             codigo = 400;
         }
