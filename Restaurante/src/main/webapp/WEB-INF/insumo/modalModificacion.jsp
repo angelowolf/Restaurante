@@ -1,5 +1,5 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<div class="modal fade" id="modal-ver" tabindex="-1" role="dialog" aria-labelledby="Editar" aria-hidden="true">
+<div class="modal fade" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="Editar" aria-hidden="true">
     <div class="modal-dialog modal-dialog-center">
         <div class="modal-content">
             <div class="modal-header">

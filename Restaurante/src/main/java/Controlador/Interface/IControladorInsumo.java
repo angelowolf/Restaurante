@@ -35,4 +35,6 @@ public interface IControladorInsumo {
     public List<Insumo> getTodosStockMinimo();
 
     public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
+
+    public List<Insumo> buscar(String nombreFiltro, int categoriaInsumoFiltro);
 }

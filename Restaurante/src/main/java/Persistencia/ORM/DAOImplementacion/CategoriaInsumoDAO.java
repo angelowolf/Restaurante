@@ -11,7 +11,9 @@ import Persistencia.ORM.DAOInterface.ICategoriaInsumo;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -60,6 +62,23 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
             objetos = session.createSQLQuery(sql).addEntity(CategoriaInsumo.class).setParameter("id", categoriaInsumo.getId()).list();
         } catch (RuntimeException e) {
             LOG.error("Error al verificar si esta en uso la categoria", e);
+        }
+        return objetos;
+    }
+
+    @Override
+    public List<CategoriaInsumo> buscarFiltro(String nombreFiltro) {
+        Session session = getHibernateTemplate();
+        List<CategoriaInsumo> objetos = new ArrayList<>();
+        try {
+            Criteria criterio = session.createCriteria(CategoriaInsumo.class);
+            criterio.add(Restrictions.neOrIsNotNull("id", null));
+            if (nombreFiltro != null) {
+                criterio.add(Restrictions.like("nombre", nombreFiltro + "%"));
+            }
+            objetos = criterio.list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar las categorias insumo.", e);
         }
         return objetos;
     }

@@ -6,7 +6,8 @@
         var id = $contenedor.find('#id').val();
         $.post('/insumo/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/insumo/listar');
+                var data = $('formulario-buscar').serialize();
+                window.location.replace('/insumo/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
@@ -31,11 +32,44 @@
         $.post('/insumo/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
-                window.location.replace('/insumo/listar');
+                var data = $('formulario-buscar').serialize();
+                window.location.replace('/insumo/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
         });
+    });
+
+    $('body').on('click', '#modalver', function (e) {
+        e.preventDefault();
+        var $boton = $(this);
+        var $contenedor = $boton.parents('#botones');
+        var id = $contenedor.find('#id').val();
+        var $modal = $('#modal-ver');
+        $modal.find('#id').val(id);
+        $.post('/insumo/getModificar', {id: id}, function (response) {
+            if (response.codigo === 200) {
+                $modal.find('#id').val(response.model.id);
+                $modal.find('#nombre').val(response.model.nombre);
+                $modal.find('#precioUnidad').val(response.model.precioUnidad);
+                $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
+                $modal.find('#cantidadActual').val(response.model.stock.cantidadActual);
+                if (response.model.fechaAlta !== null) {
+                    $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
+                }
+                if (response.model.fechaBaja !== null) {
+                    $modal.find('#fechaBaja').val(convertirFechaDeJODAAString(response.model.fechaBaja));
+                }
+                $modal.find('#unidadMedida').val(response.model.unidadMedida);
+                $modal.find('#categoria').val(response.model.categoriaInsumo.nombre);
+                $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
+                $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+            }
+        });
+        erroresM.limpiarErrores('#form-editar');
+        $modal.modal('show');
     });
 
     $('body').on('click', '#modaleditar', function (e) {
@@ -50,7 +84,7 @@
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#precioUnidad').val(response.model.precioUnidad);
-                $modal.find('#unidadMedida'+response.model.unidadMedida).prop('checked', true);
+                $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
                 $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
             } else {
@@ -60,12 +94,14 @@
         erroresM.limpiarErrores('#form-editar');
         $modal.modal('show');
     });
+
     $('body').on('click', '#editar', function (e) {
         e.preventDefault();
         var data = $('#form-editar').serialize();
         $.post('/insumo/postModificar', data, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/insumo/listar');
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/insumo/listar?' + data);
             } else {
                 erroresM.mostrarErrores('#form-editar', response);
             }

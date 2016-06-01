@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -74,4 +73,5 @@ public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
         return objetos;
     }
 
+   
 }

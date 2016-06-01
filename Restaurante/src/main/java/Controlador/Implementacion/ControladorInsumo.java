@@ -79,4 +79,12 @@ public class ControladorInsumo implements IControladorInsumo {
             return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, WordUtils.capitalize(nombreInsumo), ids);
         }
     }
+
+    @Override
+    public List<Insumo> buscar(String nombreFiltro, int categoriaInsumoFiltro) {
+        if (StringUtils.isBlank(nombreFiltro)) {
+            nombreFiltro = null;
+        }
+        return INSUMODAO.getTodosByCategoriaByNombreSinEstos(categoriaInsumoFiltro, nombreFiltro, null);
+    }
 }

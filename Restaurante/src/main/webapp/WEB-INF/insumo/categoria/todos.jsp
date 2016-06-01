@@ -7,16 +7,28 @@
         <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
     </s:action>
     <h2 class="page-header">Categoria Insumo</h2>
+    <div class="panel panel-default">        
+        <div class="panel-body">        
+            <s:form class="form-inline" action="listar" namespace="/insumo/categoria" id="formulario-buscar">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>
+                </div>
+                <button type="submit" class="btn btn-info">Buscar</button>
+            </s:form>
+        </div>
+    </div>
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
             <display:setProperty name="basic.msg.empty_list" >Aún no hay Categorias registradas. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/insumo/categoria'/>">aquí</a>.</display:setProperty>
-            <display:column sortable="true" property="nombre" title="Nombre"/>
-            <display:column property="descripcion" title="Descripción" decorator="Decorator.DescripcionDecorator"/>
-            <display:column title="Funciones">
+            <display:column sortable="true" property="nombre" title="Nombre" class="col-md-4 text-center-all" headerClass="text-center-all"/>
+            <display:column property="descripcion" title="Descripción" decorator="Decorator.DescripcionDecorator" class="col-md-4 text-center-all" headerClass="text-center-all"/>
+            <display:column title="Funciones" class="col-md-4 text-center-all" headerClass="text-center-all">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
-                    <button id="modaleditar" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
-                    <button id="modaleliminar" class="btn btn-sm btn-danger"><i class="fa fa-close"></i></button>
+                    <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
+                    <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                    <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>
                 </div>
             </display:column>
         </display:table>
@@ -28,3 +40,4 @@
     <s:param name="modelo">categoria</s:param>
 </s:action>
 <s:include value="/WEB-INF/insumo/categoria/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>

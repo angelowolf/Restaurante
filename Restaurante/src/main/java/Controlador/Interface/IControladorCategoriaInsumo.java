@@ -31,4 +31,6 @@ public interface IControladorCategoriaInsumo {
     public boolean nombreDisponible(CategoriaInsumo categoria);
     
     public boolean enUso(CategoriaInsumo categoriaInsumo);
+
+    public List<CategoriaInsumo> buscar(String nombreFiltro);
 }

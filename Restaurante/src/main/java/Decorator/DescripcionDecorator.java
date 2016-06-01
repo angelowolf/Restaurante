@@ -6,6 +6,7 @@
 package Decorator;
 
 import javax.servlet.jsp.PageContext;
+import org.apache.commons.lang.StringUtils;
 import org.displaytag.decorator.DisplaytagColumnDecorator;
 import org.displaytag.exception.DecoratorException;
 import org.displaytag.properties.MediaTypeEnum;
@@ -18,7 +19,7 @@ public class DescripcionDecorator implements DisplaytagColumnDecorator {
 
     @Override
     public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {
-        if (columnValue != null) {
+        if (columnValue != null && StringUtils.isNotBlank((String) columnValue)) {
             String descripcion = (String) columnValue;
             StringBuilder sb = new StringBuilder();
             sb.append(descripcion.substring(0, Math.min(20, descripcion.length()))).append("...");

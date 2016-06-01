@@ -8,6 +8,7 @@ package Controlador.Implementacion;
 import Controlador.Interface.IControladorCategoriaInsumo;
 import Modelo.CategoriaInsumo;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -58,6 +59,14 @@ public class ControladorCategoriaInsumo implements IControladorCategoriaInsumo {
     @Override
     public boolean enUso(CategoriaInsumo categoriaInsumo) {
         return !CATEGORIAINSUMODAO.categoriaInsumosEnUso(categoriaInsumo).isEmpty();
+    }
+
+    @Override
+    public List<CategoriaInsumo> buscar(String nombreFiltro) {
+        if(StringUtils.isBlank(nombreFiltro)){
+            nombreFiltro = null;
+        }
+        return CATEGORIAINSUMODAO.buscarFiltro(nombreFiltro);
     }
 
 }

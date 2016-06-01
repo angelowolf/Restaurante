@@ -48,11 +48,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         return SUCCESS;
     }
 
-    public String buscar() {
-        lista = controladorUsuario.buscar(nombreFiltro, apellidoFiltro, rolesSeleccionados);
-        return SUCCESS;
-    }
-
     public void validateRegistrar() {
         if (StringUtils.isBlank(usuario.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
@@ -129,7 +124,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String listar() {
-        lista = controladorUsuario.getTodos();
+        lista = controladorUsuario.buscar(nombreFiltro, apellidoFiltro, rolesSeleccionados);
         return SUCCESS;
     }
 

@@ -31,12 +31,15 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     private Insumo insumo;
     private final IControladorInsumo controladorInsumo;
     private List<Insumo> lista;
-    private List<CategoriaInsumo> categorias;
-    private List<UnidadMedida> unidades;
+    private final List<CategoriaInsumo> categorias;
+    private final List<UnidadMedida> unidades;
+    private int categoriaInsumoFiltro;
+    private String nombreFiltro;
 
     public InsumoAction() {
-        unidades = new ArrayList<>();
-        categorias = new ArrayList<>();
+        unidades = Arrays.asList(UnidadMedida.values());
+        IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
+        categorias = controladorCategoriaInsumo.getTodos();
         lista = new ArrayList<>();
         insumo = new Insumo();
         controladorInsumo = new ControladorInsumo();
@@ -123,17 +126,11 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     }
 
     public String listar() {
-        unidades = Arrays.asList(UnidadMedida.values());
-        IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
-        categorias = controladorCategoriaInsumo.getTodos();
-        lista = controladorInsumo.getTodos();
+        lista = controladorInsumo.buscar(nombreFiltro, categoriaInsumoFiltro);
         return SUCCESS;
     }
 
     public String nuevo() {
-        unidades = Arrays.asList(UnidadMedida.values());
-        IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
-        categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
     }
 
@@ -155,6 +152,22 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
 
     public List<UnidadMedida> getUnidades() {
         return unidades;
+    }
+
+    public int getCategoriaInsumoFiltro() {
+        return categoriaInsumoFiltro;
+    }
+
+    public void setCategoriaInsumoFiltro(int categoriaInsumoFiltro) {
+        this.categoriaInsumoFiltro = categoriaInsumoFiltro;
+    }
+
+    public String getNombreFiltro() {
+        return nombreFiltro;
+    }
+
+    public void setNombreFiltro(String nombreFiltro) {
+        this.nombreFiltro = nombreFiltro;
     }
 
     @Override

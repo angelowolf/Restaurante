@@ -16,7 +16,7 @@
         $.post('/usuario/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
-                window.location.replace('/usuario/buscar?' + data);
+                window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
@@ -31,7 +31,7 @@
         $.post('/usuario/blanquear', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
-                window.location.replace('/usuario/buscar?' + data);
+                window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
@@ -57,7 +57,7 @@
             if (response.codigo === 200) {
                 $dialog.modal('hide');
                 var data = $('#formulario-buscar').serialize();
-                window.location.replace('/usuario/buscar?' + data);
+                window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
@@ -139,7 +139,7 @@
         $.post('/usuario/modificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
-                window.location.replace('/usuario/buscar?' + data);
+                window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarErrores('#form-editar', response);
             }

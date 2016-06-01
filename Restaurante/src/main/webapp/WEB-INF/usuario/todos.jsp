@@ -9,7 +9,7 @@
     <h2 class="page-header">Usuarios</h2>
     <div class="panel panel-default">        
         <div class="panel-body">        
-            <s:form class="form-inline" action="buscar" namespace="/usuario" id="formulario-buscar">
+            <s:form class="form-inline" action="listar" namespace="/usuario" id="formulario-buscar">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>
@@ -43,7 +43,7 @@
             <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator"  class="col-md-1 text-center-all" headerClass="text-center-all"/>
             <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator"  class="col-md-1 text-center-all" headerClass="text-center-all"/>
             <display:column title="Funciones" class="col-md-2 text-center-all" headerClass="text-center-all">
-                <div id="botones" class="">
+                <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
                     <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
