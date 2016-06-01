@@ -15,13 +15,14 @@
         var id = $contenedor.find('#id').val();
         $.post('/usuario/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/usuario/listar');
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/usuario/buscar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
         });
     });
-    
+
     $('body').on('click', '#blanquear', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -29,13 +30,14 @@
         var id = $contenedor.find('#id').val();
         $.post('/usuario/blanquear', {id: id}, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/usuario/listar');
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/usuario/buscar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
         });
     });
-    
+
     $('body').on('click', '#modaleliminar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -54,13 +56,14 @@
         $.post('/usuario/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
-                window.location.replace('/usuario/listar');
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/usuario/buscar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
             }
         });
     });
-   
+
     $('body').on('click', '#modalver', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -135,7 +138,8 @@
         var data = $('#form-editar').serialize();
         $.post('/usuario/modificar', data, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/usuario/listar');
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/usuario/buscar?' + data);
             } else {
                 erroresM.mostrarErrores('#form-editar', response);
             }
