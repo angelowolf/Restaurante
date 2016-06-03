@@ -5,8 +5,11 @@
  */
 package Controlador.Implementacion;
 
+import Controlador.Interface.IControladorInsumoBruto;
 import Controlador.Interface.IControladorStock;
+import Modelo.InsumoBruto;
 import Modelo.Stock;
+import java.util.List;
 
 /**
  *
@@ -32,6 +35,18 @@ public class ControladorStock implements IControladorStock {
     @Override
     public void guardar(Stock stock) {
         STOCKDAO.guardar(stock);
+    }
+
+    @Override
+    public void registrarCompraInsumoBruto(List<Integer> ids, List<Integer> cantidad, List<Float> precio) {
+        IControladorInsumoBruto controladorInsumoBruto = new ControladorInsumoBruto();
+        for (int i = 0; i < ids.size(); i++) {
+            InsumoBruto insumo = controladorInsumoBruto.getInsumo(ids.get(i));
+            insumo.registrarReposicion(cantidad.get(i));
+            insumo.setPrecioUnidad(precio.get(i));
+            controladorInsumoBruto.actualizar(insumo);
+        }
+
     }
 
 }

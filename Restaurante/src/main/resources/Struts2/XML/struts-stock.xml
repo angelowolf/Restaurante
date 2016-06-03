@@ -11,6 +11,7 @@
         <action name="getCargarCompra" method="getCargarCompra" class="Acciones.StockAction">
             <result name="success" type="tiles">/stock/cargaCompra.tiles</result>
         </action>   
+        <action name="postCargarCompra" method="postCargarCompra" class="Acciones.StockAction"/>
         <action name="getAjusteStock" method="getAjusteStock" class="Acciones.StockAction">
             <result name="success" type="tiles">/stock/ajusteStock.tiles</result>
         </action>         

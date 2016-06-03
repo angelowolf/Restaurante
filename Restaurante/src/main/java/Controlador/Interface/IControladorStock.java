@@ -8,6 +8,7 @@ package Controlador.Interface;
 import Modelo.Stock;
 import Persistencia.ORM.DAOImplementacion.StockDAO;
 import Persistencia.ORM.DAOInterface.IStock;
+import java.util.List;
 
 /**
  *
@@ -23,4 +24,6 @@ public interface IControladorStock {
     public Stock getStock(int id);
 
     public void guardar(Stock stock);
+
+    public void registrarCompraInsumoBruto(List<Integer> ids, List<Integer> cantidad, List<Float> precio);
 }

@@ -60,9 +60,13 @@ var erroresM = (function () {
     };
 
     modulo.mostrarAlertError = function (mensaje, tipo) {
-        for (var input in mensaje) {
+        for (var i = 0; i < mensaje.length; i++) {
+            console.log(mensaje[i]);
+            //console.log('input ' + index);
+            //console.log('mensaje '+mensaje);
+            //console.log('mensaje2 '+ mensaje[index]);
             $.notify({
-                message: mensaje[input]
+                message: mensaje[i]
             }, {
                 animate: {
                     enter: 'animated fadeInDown',

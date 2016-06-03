@@ -11,7 +11,6 @@ import Controlador.Implementacion.ControladorStock;
 import Controlador.Interface.IControladorCategoriaInsumo;
 import Controlador.Interface.IControladorStock;
 import Modelo.CategoriaInsumo;
-import Modelo.Insumo;
 import java.util.ArrayList;
 import java.util.List;
 import Controlador.Interface.IControladorInsumoBruto;
@@ -28,7 +27,7 @@ public class StockAction extends Accion {
     private final IControladorStock controladorStock;
     private final IControladorInsumoBruto controladorInsumo;
     private final IControladorCategoriaInsumo controladorCategoriaInsumo;
-    
+
     private List<Integer> ids;
     private List<Integer> cantidad;
     private List<Float> precio;
@@ -47,15 +46,49 @@ public class StockAction extends Accion {
         return SUCCESS;
     }
 
-    public String postBuscarInsumo(){
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria,nombreInsumo,ids);
+    public String postBuscarInsumo() {
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids);
         return SUCCESS;
     }
-    
+
     public String getCargarCompra() {
         lista = controladorInsumo.getTodosStockMinimo();
         categorias = controladorCategoriaInsumo.getTodos();
-        System.out.println(lista);
+        return SUCCESS;
+    }
+
+    public void validatePostCargarCompra() {
+        if (ids == null || ids.isEmpty()) {
+            addActionError(Soporte.Mensaje.SELECCIONEINSUMO);
+        } else {
+            if (cantidad == null || cantidad.isEmpty()) {
+                addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+            } else {
+                for (Integer integer : cantidad) {
+                    if (integer == null) {
+                        addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+                        break;
+                    }
+                }
+            }
+            if (precio == null || precio.isEmpty()) {
+                addActionError(Soporte.Mensaje.INGRESEPRECIO);
+            } else {
+                for (Float float1 : precio) {
+                    if (float1 == null) {
+                        addActionError(Soporte.Mensaje.INGRESEPRECIO);
+                        break;
+                    }
+                }
+            }
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        }
+    }
+
+    public String postCargarCompra() {
+        controladorStock.registrarCompraInsumoBruto(ids, cantidad, precio);
         return SUCCESS;
     }
 

@@ -37,7 +37,7 @@ var ids = [];
         $(this).parents('tr').fadeOut('normal', function () {
             var tr = $(this).detach();
             var td = tr.find('td:last').detach();
-            tr.append('<td><input name="cantidad" type="text"/></td><td><input name="precio" type="text"/></td>');
+            tr.append('<td><input name="cantidad" type="number" class="form-control"/></td><td><input name="precio" type="number" class="form-control"/></td>');
             tr.append(td);
             $('#row2 tbody').append(tr);
             tr.fadeIn();
@@ -54,11 +54,22 @@ var ids = [];
     });
 
 
-    $('body').on('click', '#regisrar', function (e) {
+    $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
         var data = getIdsFormatoPOST();
+        if(data.length !== 0){
+            data += '&';
+        }
         data += $('#formulario-compra').serialize();
-        console.log(data);
+        $.post('/stock/postCargarCompra', data, function (response) {
+            if (response.codigo === 200) {
+                window.location.replace('/stock/getCargarCompra');
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+            }
+        });
+        //console.log('request: '+data);
+console.log('aca termina');
     });
 
 })(jQuery);

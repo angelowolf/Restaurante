@@ -8,10 +8,8 @@
         </id>
         <property name="cantidadMinima" />
         <property name="cantidadActual"/>
-        <set name="detalleStocks" table="detalles_stock">
-            <key>
-                <column name="id_stock" not-null="true"/>
-            </key>
+        <set name="detalleStocks" table="detalles_stock"  cascade="save-update">
+            <key column="id"/>
             <one-to-many class="Modelo.DetalleStock"/>
         </set>
     </class>    

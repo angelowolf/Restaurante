@@ -118,6 +118,8 @@ public class Mensaje {
     public static final String ISUMORECUPERADO = "Insumo recuperado.";
     public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
     public static final String CLAVERESETEADA = " La clave del usuario ha sido reseteada.";
+    public static final String SELECCIONEINSUMO = "Seleecione algun insumo.";
+    public static final String INGRESECANTIDADCOMPRADA = "Ingrese la cantidad comprada.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
