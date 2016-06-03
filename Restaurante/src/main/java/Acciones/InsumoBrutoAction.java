@@ -6,11 +6,11 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorCategoriaInsumo;
-import Controlador.Implementacion.ControladorInsumo;
+import Controlador.Implementacion.ControladorInsumoBruto;
 import Controlador.Interface.IControladorCategoriaInsumo;
-import Controlador.Interface.IControladorInsumo;
 import Modelo.CategoriaInsumo;
 import Modelo.Insumo;
+import Modelo.InsumoBruto;
 import Modelo.UnidadMedida;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,30 +19,31 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import Controlador.Interface.IControladorInsumoBruto;
 
 /**
  *
  * @author ang_2
  */
-public class InsumoAction extends Accion implements ModelDriven<Insumo> {
+public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
-    private static final Logger LOGGER = Logger.getLogger(InsumoAction.class);
+    private static final Logger LOGGER = Logger.getLogger(InsumoBrutoAction.class);
 
-    private Insumo insumo;
-    private final IControladorInsumo controladorInsumo;
-    private List<Insumo> lista;
+    private InsumoBruto insumo;
+    private final IControladorInsumoBruto controladorInsumo;
+    private List<InsumoBruto> lista;
     private final List<CategoriaInsumo> categorias;
     private final List<UnidadMedida> unidades;
     private int categoriaInsumoFiltro;
     private String nombreFiltro;
 
-    public InsumoAction() {
+    public InsumoBrutoAction() {
         unidades = Arrays.asList(UnidadMedida.values());
         IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
         categorias = controladorCategoriaInsumo.getTodos();
         lista = new ArrayList<>();
-        insumo = new Insumo();
-        controladorInsumo = new ControladorInsumo();
+        insumo = new InsumoBruto();
+        controladorInsumo = new ControladorInsumoBruto();
     }
 
     public String getModificar() {
@@ -138,15 +139,15 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
         return categorias;
     }
 
-    public List<Insumo> getLista() {
+    public List<InsumoBruto> getLista() {
         return lista;
     }
 
-    public Insumo getInsumo() {
+    public InsumoBruto getInsumo() {
         return insumo;
     }
 
-    public void setInsumo(Insumo insumo) {
+    public void setInsumo(InsumoBruto insumo) {
         this.insumo = insumo;
     }
 

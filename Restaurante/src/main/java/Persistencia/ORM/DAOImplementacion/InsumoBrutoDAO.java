@@ -7,26 +7,27 @@ package Persistencia.ORM.DAOImplementacion;
 
 import java.util.List;
 import Modelo.Insumo;
-import Persistencia.ORM.DAOInterface.IInsumo;
+import Modelo.InsumoBruto;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import Persistencia.ORM.DAOInterface.IInsumoBruto;
 
 /**
  *
  * @author ang_2
  */
-public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
+public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements IInsumoBruto {
 
-    private static final Logger LOG = Logger.getLogger(InsumoDAO.class);
+    private static final Logger LOG = Logger.getLogger(InsumoBrutoDAO.class);
 
     @Override
-    public List<Insumo> getTodos() {
+    public List<InsumoBruto> getTodos() {
         Session session = getHibernateTemplate();
-        List<Insumo> objetos = new ArrayList<>();
+        List<InsumoBruto> objetos = new ArrayList<>();
         try {
             String sql = "from Insumo";
             objetos = session.createQuery(sql).list();
@@ -37,9 +38,9 @@ public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
     }
 
     @Override
-    public List<Insumo> getTodosStockMinimo() {
+    public List<InsumoBruto> getTodosStockMinimo() {
         Session session = getHibernateTemplate();
-        List<Insumo> objetos = new ArrayList<>();
+        List<InsumoBruto> objetos = new ArrayList<>();
         try {
             String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima";
             objetos = session.createSQLQuery(sql).addEntity(Insumo.class).list();
@@ -50,22 +51,22 @@ public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
     }
 
     @Override
-    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
         Session session = getHibernateTemplate();
-        List<Insumo> objetos = new ArrayList<>();
+        List<InsumoBruto> objetos = new ArrayList<>();
         try {
             Criteria criterio = session.createCriteria(Insumo.class);
             criterio.add(Restrictions.neOrIsNotNull("id", null));
-            
-            if(nombreInsumo != null){
+
+            if (nombreInsumo != null) {
                 criterio.add(Restrictions.like("nombre", nombreInsumo + "%"));
             }
-            if(idCategoria > 0){
+            if (idCategoria > 0) {
                 criterio.add(Restrictions.eq("categoriaInsumo.id", idCategoria));
             }
-           if(ids != null){
-               criterio.add(Restrictions.not(Restrictions.in("id", ids)));
-           }           
+            if (ids != null) {
+                criterio.add(Restrictions.not(Restrictions.in("id", ids)));
+            }
             objetos = criterio.list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
@@ -73,5 +74,4 @@ public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
         return objetos;
     }
 
-   
 }

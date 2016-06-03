@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.Set;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -54,4 +55,39 @@ public class Stock {
         return "Stock{" + "id=" + id + ", cantidadActual=" + cantidadActual + ", cantidadMinima=" + cantidadMinima + '}';
     }
 
+    /**
+     * registra un descuento al stock del insumo y genera un detalle en el
+     * historial.
+     *
+     * @param cantidadARestar cantidad positiva.
+     */
+    public void regitrarDescuento(int cantidadARestar) {
+        DetalleStock venta = new DetalleStock(Math.negateExact(cantidadARestar), LocalDate.now(), TipoMovimiento.Venta);
+        this.detalleStocks.add(venta);
+        this.cantidadActual -= cantidadARestar;
+    }
+
+    /**
+     * registra una reposicion al stock del insumo y genera un detalle en el
+     * historial.
+     *
+     * @param cantidadASumar cantidad positiva.
+     */
+    public void registrarReposicion(int cantidadASumar) {
+        DetalleStock aSumar = new DetalleStock(cantidadASumar, LocalDate.now(), TipoMovimiento.Reposicion);
+        this.detalleStocks.add(aSumar);
+        this.cantidadActual += cantidadASumar;
+    }
+
+    /**
+     * registra un ajuste al stock del insumo y genera un detalle en el
+     * historial.
+     *
+     * @param cantidadAjuste positivo o negativo segun sea el ajuste.
+     */
+    public void registrarAjusteStock(int cantidadAjuste) {
+        DetalleStock ajuste = new DetalleStock(cantidadAjuste, LocalDate.now(), TipoMovimiento.Ajuste);
+        this.detalleStocks.add(ajuste);
+        this.cantidadActual += cantidadAjuste;
+    }
 }

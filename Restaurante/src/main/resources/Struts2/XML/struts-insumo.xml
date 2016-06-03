@@ -5,15 +5,15 @@
 
 <struts>
     <package name="insumo" extends="json" namespace="/insumo">
-        <action name="getModificar" method="getModificar" class="Acciones.InsumoAction"/>
-        <action name="postModificar" method="postModificar" class="Acciones.InsumoAction"/>
-        <action name="registrar" method="registrar" class="Acciones.InsumoAction"/>
-        <action name="eliminar" method="eliminar" class="Acciones.InsumoAction"/>
-        <action name="recuperar" method="recuperar" class="Acciones.InsumoAction"/>
-        <action name="listar" method="listar" class="Acciones.InsumoAction">
+        <action name="getModificar" method="getModificar" class="Acciones.InsumoBrutoAction"/>
+        <action name="postModificar" method="postModificar" class="Acciones.InsumoBrutoAction"/>
+        <action name="registrar" method="registrar" class="Acciones.InsumoBrutoAction"/>
+        <action name="eliminar" method="eliminar" class="Acciones.InsumoBrutoAction"/>
+        <action name="recuperar" method="recuperar" class="Acciones.InsumoBrutoAction"/>
+        <action name="listar" method="listar" class="Acciones.InsumoBrutoAction">
             <result name="success" type="tiles">/insumo/todos.tiles</result>
         </action>
-        <action name="nuevo" method="nuevo" class="Acciones.InsumoAction">
+        <action name="nuevo" method="nuevo" class="Acciones.InsumoBrutoAction">
             <result name="success" type="tiles">/insumo/alta.tiles</result>
         </action>      
     </package>

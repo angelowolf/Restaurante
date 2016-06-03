@@ -5,7 +5,7 @@
  */
 package Persistencia.ORM.DAOInterface;
 
-import Modelo.Insumo;
+import Modelo.InsumoBruto;
 import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
 
@@ -13,12 +13,12 @@ import java.util.List;
  *
  * @author ang_2
  */
-public interface IInsumo extends IGenericDAO<Insumo, Integer> {
+public interface IInsumoBruto extends IGenericDAO<InsumoBruto, Integer> {
 
-    public List<Insumo> getTodos();
+    public List<InsumoBruto> getTodos();
 
-    public List<Insumo> getTodosStockMinimo();
+    public List<InsumoBruto> getTodosStockMinimo();
 
-    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
 
 }

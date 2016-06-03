@@ -51,4 +51,9 @@ public class CategoriaInsumo {
         return "CategoriaInsumo{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
     }
 
+    public void actualizar(CategoriaInsumo categoriaInsumo) {
+        this.nombre = categoriaInsumo.getNombre();
+        this.descripcion = categoriaInsumo.getDescripcion();
+    }
+
 }

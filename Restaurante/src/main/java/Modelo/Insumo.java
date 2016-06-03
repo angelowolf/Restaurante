@@ -12,15 +12,26 @@ import org.joda.time.LocalDate;
  *
  * @author ang_2
  */
-public class Insumo {
+public abstract class Insumo {
 
-    private int id;
-    private String nombre;
-    private float precioUnidad;
-    private UnidadMedida unidadMedida;
-    private Stock stock;
-    private CategoriaInsumo categoriaInsumo;
-    private LocalDate fechaAlta, fechaBaja;
+    protected int id;
+    protected CategoriaInsumo categoriaInsumo;
+    protected LocalDate fechaAlta, fechaBaja;
+    protected String nombre;
+    protected Stock stock;
+    protected UnidadMedida unidadMedida;
+
+    public Insumo() {
+    }
+
+    public Insumo(CategoriaInsumo categoriaInsumo, LocalDate fechaAlta, LocalDate fechaBaja, String nombre, Stock stock, UnidadMedida unidadMedida) {
+        this.categoriaInsumo = categoriaInsumo;
+        this.fechaAlta = fechaAlta;
+        this.fechaBaja = fechaBaja;
+        this.nombre = nombre;
+        this.stock = stock;
+        this.unidadMedida = unidadMedida;
+    }
 
     public LocalDate getFechaBaja() {
         return fechaBaja;
@@ -44,14 +55,6 @@ public class Insumo {
 
     public void setNombre(String nombre) {
         this.nombre = WordUtils.capitalize(nombre);
-    }
-
-    public float getPrecioUnidad() {
-        return precioUnidad;
-    }
-
-    public void setPrecioUnidad(float precioUnidad) {
-        this.precioUnidad = precioUnidad;
     }
 
     public UnidadMedida getUnidadMedida() {
@@ -86,16 +89,25 @@ public class Insumo {
         this.categoriaInsumo = categoriaInsumo;
     }
 
-    @Override
-    public String toString() {
-        return "Insumo{" + "id=" + id + ", nombre=" + nombre + ", precioUnidad=" + precioUnidad + ", unidadMedida=" + unidadMedida + ", stock=" + stock + ", categoriaInsumo=" + categoriaInsumo + ", fechaAlta=" + fechaAlta + '}';
+    public abstract void actualizar(Insumo insumo);
+
+    public void darDeBaja() {
+        fechaBaja = LocalDate.now();
     }
 
-    public void actualizar(Insumo insumo) {
-        this.nombre = insumo.getNombre();
-        this.precioUnidad = insumo.getPrecioUnidad();
-        this.unidadMedida = insumo.getUnidadMedida();
-        this.categoriaInsumo = insumo.getCategoriaInsumo();
+    public void recuperar() {
+        fechaBaja = null;
     }
 
+    public void regitrarDescuentoPorVenta(int cantidadARestar) {
+        this.stock.regitrarDescuento(cantidadARestar);
+    }
+
+    public void registrarReposicion(int cantidadASumar) {
+        this.stock.registrarReposicion(cantidadASumar);
+    }
+
+    public void registrarAjusteStock(int cantidadAjuste) {
+        this.stock.registrarAjusteStock(cantidadAjuste);
+    }
 }

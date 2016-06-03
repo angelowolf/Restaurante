@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password"/>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <!--Configuracion correspondiente al pool.-->
@@ -28,5 +28,6 @@
         <mapping resource="Persistencia/MapeoHibernate/Insumo.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/Stock.hbm.xml"/>
         <mapping resource="Persistencia/MapeoHibernate/DetalleStock.hbm.xml"/>
+        <mapping resource="Persistencia/MapeoHibernate/DetalleInsumoElaborado.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

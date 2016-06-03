@@ -36,10 +36,9 @@ public class ControladorCategoriaInsumo implements IControladorCategoriaInsumo {
 
     @Override
     public void actualizar(CategoriaInsumo categoriaInsumo) {
-        CategoriaInsumo ci = this.getCategoria(categoriaInsumo.getId());
-        ci.setDescripcion(categoriaInsumo.getDescripcion());
-        ci.setNombre(categoriaInsumo.getNombre());
-        CATEGORIAINSUMODAO.actualizar(ci);
+        CategoriaInsumo categoriaEnBD = this.getCategoria(categoriaInsumo.getId());
+        categoriaEnBD.actualizar(categoriaInsumo);
+        CATEGORIAINSUMODAO.actualizar(categoriaEnBD);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class ControladorCategoriaInsumo implements IControladorCategoriaInsumo {
 
     @Override
     public List<CategoriaInsumo> buscar(String nombreFiltro) {
-        if(StringUtils.isBlank(nombreFiltro)){
+        if (StringUtils.isBlank(nombreFiltro)) {
             nombreFiltro = null;
         }
         return CATEGORIAINSUMODAO.buscarFiltro(nombreFiltro);

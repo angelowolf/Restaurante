@@ -10,5 +10,5 @@ package Modelo;
  * @author ang_2
  */
 public enum TipoMovimiento {
-    
+    Venta, Reposicion, Ajuste
 }

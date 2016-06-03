@@ -5,72 +5,68 @@
  */
 package Controlador.Implementacion;
 
-import Controlador.Interface.IControladorInsumo;
-import Modelo.Insumo;
 import Modelo.Stock;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
+import Controlador.Interface.IControladorInsumoBruto;
+import Modelo.InsumoBruto;
 
 /**
  *
  * @author ang_2
  */
-public class ControladorInsumo implements IControladorInsumo {
+public class ControladorInsumoBruto implements IControladorInsumoBruto {
 
-    private static final Logger LOGGER = Logger.getLogger(ControladorInsumo.class);
+    private static final Logger LOGGER = Logger.getLogger(ControladorInsumoBruto.class);
 
     @Override
-    public int guardar(Insumo insumo) {
+    public int guardar(InsumoBruto insumo) {
         CS.guardar(insumo.getStock());
         insumo.setFechaAlta(new LocalDate());
         return INSUMODAO.guardar(insumo);
     }
 
     @Override
-    public List<Insumo> getTodos() {
+    public List<InsumoBruto> getTodos() {
         return INSUMODAO.getTodos();
     }
 
     @Override
-    public Insumo getInsumo(int id) {
+    public InsumoBruto getInsumo(int id) {
         return INSUMODAO.buscar(id);
     }
 
     @Override
-    public void actualizar(Insumo insumo) {
-        Insumo insumoEnBd = INSUMODAO.buscar(insumo.getId());
-        Stock stock = CS.getStock(insumoEnBd.getStock().getId());
-        stock.setCantidadMinima(insumo.getStock().getCantidadMinima());
+    public void actualizar(InsumoBruto insumo) {
+        InsumoBruto insumoEnBd = this.getInsumo(insumo.getId());
         insumoEnBd.actualizar(insumo);
-        CS.actualizar(stock);
         INSUMODAO.actualizar(insumoEnBd);
     }
 
     @Override
-    public void eliminar(Insumo insumo) {
-        Insumo insumoEnBD = this.getInsumo(insumo.getId());
-        LocalDate hoy = LocalDate.now();
-        insumoEnBD.setFechaBaja(hoy);
+    public void eliminar(InsumoBruto insumo) {
+        InsumoBruto insumoEnBD = this.getInsumo(insumo.getId());
+        insumoEnBD.darDeBaja();
         INSUMODAO.actualizar(insumoEnBD);
     }
 
     @Override
-    public void recuperar(Insumo insumo) {
-        Insumo insumoEnBD = this.getInsumo(insumo.getId());
-        insumoEnBD.setFechaBaja(null);
+    public void recuperar(InsumoBruto insumo) {
+        InsumoBruto insumoEnBD = this.getInsumo(insumo.getId());
+        insumoEnBD.recuperar();
         INSUMODAO.actualizar(insumoEnBD);
     }
 
     @Override
-    public List<Insumo> getTodosStockMinimo() {
+    public List<InsumoBruto> getTodosStockMinimo() {
         return INSUMODAO.getTodosStockMinimo();
     }
 
     @Override
-    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
         if (StringUtils.isBlank(nombreInsumo) || nombreInsumo.equals("undefined")) {
             LOGGER.info("2");
             return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, null, ids);
@@ -81,7 +77,7 @@ public class ControladorInsumo implements IControladorInsumo {
     }
 
     @Override
-    public List<Insumo> buscar(String nombreFiltro, int categoriaInsumoFiltro) {
+    public List<InsumoBruto> buscar(String nombreFiltro, int categoriaInsumoFiltro) {
         if (StringUtils.isBlank(nombreFiltro)) {
             nombreFiltro = null;
         }

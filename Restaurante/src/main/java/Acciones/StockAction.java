@@ -6,15 +6,16 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorCategoriaInsumo;
-import Controlador.Implementacion.ControladorInsumo;
+import Controlador.Implementacion.ControladorInsumoBruto;
 import Controlador.Implementacion.ControladorStock;
 import Controlador.Interface.IControladorCategoriaInsumo;
-import Controlador.Interface.IControladorInsumo;
 import Controlador.Interface.IControladorStock;
 import Modelo.CategoriaInsumo;
 import Modelo.Insumo;
 import java.util.ArrayList;
 import java.util.List;
+import Controlador.Interface.IControladorInsumoBruto;
+import Modelo.InsumoBruto;
 
 /**
  *
@@ -22,10 +23,10 @@ import java.util.List;
  */
 public class StockAction extends Accion {
 
-    private List<Insumo> lista;
+    private List<InsumoBruto> lista;
     private List<CategoriaInsumo> categorias;
     private final IControladorStock controladorStock;
-    private final IControladorInsumo controladorInsumo;
+    private final IControladorInsumoBruto controladorInsumo;
     private final IControladorCategoriaInsumo controladorCategoriaInsumo;
     
     private List<Integer> ids;
@@ -36,7 +37,7 @@ public class StockAction extends Accion {
 
     public StockAction() {
         controladorCategoriaInsumo = new ControladorCategoriaInsumo();
-        controladorInsumo = new ControladorInsumo();
+        controladorInsumo = new ControladorInsumoBruto();
         controladorStock = new ControladorStock();
         lista = new ArrayList<>();
         categorias = new ArrayList<>();
@@ -67,7 +68,7 @@ public class StockAction extends Accion {
         return codigo;
     }
 
-    public List<Insumo> getLista() {
+    public List<InsumoBruto> getLista() {
         return lista;
     }
 

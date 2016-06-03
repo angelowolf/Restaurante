@@ -11,11 +11,16 @@ INSERT INTO CategoriaInsumo(nombre) VALUES ('Verduleria');
 
 
 insert into stock(cantidadActual,cantidadMinima) values(10,50);
-insert into insumo(nombre,precioUnidad,unidadMedida,fechaAlta,id_stock,id_categoria) values('Tomate',38,'Kilogramos','2016-01-1',1,3);
+insert into insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Tomate','Kilogramos','2016-01-1',1,3);
+insert into insumoBruto(id,precioUnidad) values(1,38);
+
 insert into stock(cantidadActual,cantidadMinima) values(2,10);
-insert into insumo(nombre,precioUnidad,unidadMedida,fechaAlta,id_stock,id_categoria) values('Papa',5,'Kilogramos','2016-01-1',2,3);
+insert into insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Papa','Kilogramos','2016-01-1',2,3);
+insert into insumoBruto(id,precioUnidad) values(2,5);
+
 insert into stock(cantidadActual,cantidadMinima) values(30,150);
-insert into insumo(nombre,precioUnidad,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola',15,'Unidad','2016-01-1',3,1);
+insert into insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola','Unidad','2016-01-1',3,1);
+insert into insumoBruto(id,precioUnidad) values(3,15);
 
 
 insert into usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿cual era la marca de tu primer auto?','fiat');
