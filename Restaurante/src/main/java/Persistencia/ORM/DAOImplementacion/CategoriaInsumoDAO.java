@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -28,7 +29,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         Session session = getHibernateTemplate();
         List<CategoriaInsumo> objetos = new ArrayList<>();
         try {
-            String sql = "from CategoriaInsumo";
+            String sql = "from CategoriaInsumo order by nombre";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar las categorias.", e);
@@ -76,6 +77,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
             if (nombreFiltro != null) {
                 criterio.add(Restrictions.like("nombre", nombreFiltro + "%"));
             }
+            criterio.addOrder(Order.asc("nombre"));
             objetos = criterio.list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar las categorias insumo.", e);

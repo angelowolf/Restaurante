@@ -47,7 +47,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
         Session session = getHibernateTemplate();
         List<Usuario> objetos = new ArrayList<>();
         try {
-            String sql = "from Usuario";
+            String sql = "from Usuario order by nombre";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los usuarios.", e);
@@ -81,6 +81,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
                 sb.append(" HAVING COUNT(DISTINCT rol.roles) = ");
                 sb.append(roles.size());
             }
+            sb.append(" order by nombre");
             SQLQuery sqlQ = session.createSQLQuery(sb.toString());
             if (f1) {
                 sqlQ.setParameter("nombre", nombre + "%");

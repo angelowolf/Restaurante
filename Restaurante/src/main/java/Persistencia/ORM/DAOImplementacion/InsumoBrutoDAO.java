@@ -15,6 +15,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import Persistencia.ORM.DAOInterface.IInsumoBruto;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -29,7 +30,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
         Session session = getHibernateTemplate();
         List<InsumoBruto> objetos = new ArrayList<>();
         try {
-            String sql = "from Insumo";
+            String sql = "from Insumo order by nombre";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
@@ -42,7 +43,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
         Session session = getHibernateTemplate();
         List<InsumoBruto> objetos = new ArrayList<>();
         try {
-            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumobruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima";
+            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumobruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
             objetos = session.createSQLQuery(sql).addEntity(InsumoBruto.class).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
@@ -67,6 +68,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
             if (ids != null) {
                 criterio.add(Restrictions.not(Restrictions.in("id", ids)));
             }
+            criterio.addOrder(Order.asc("nombre"));
             objetos = criterio.list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
