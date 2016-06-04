@@ -37,7 +37,7 @@ var ids = [];
         $(this).parents('tr').fadeOut('normal', function () {
             var tr = $(this).detach();
             var td = tr.find('td:last').detach();
-            tr.append('<td><input name="cantidad" type="number" class="form-control"/></td><td><input name="precio" type="number" class="form-control"/></td>');
+            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td>');
             tr.append(td);
             $('#row2 tbody').append(tr);
             tr.fadeIn();
@@ -57,7 +57,7 @@ var ids = [];
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
         var data = getIdsFormatoPOST();
-        if(data.length !== 0){
+        if (data.length !== 0) {
             data += '&';
         }
         data += $('#formulario-compra').serialize();
@@ -69,7 +69,7 @@ var ids = [];
             }
         });
         //console.log('request: '+data);
-console.log('aca termina');
+        console.log('aca termina');
     });
 
 })(jQuery);

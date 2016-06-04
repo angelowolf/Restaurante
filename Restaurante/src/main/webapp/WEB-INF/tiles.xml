@@ -14,6 +14,9 @@
             <add-attribute value="/../css/vendor/sb-admin-2.css" />
             <add-attribute value="/../css/admin.css" />
             <add-attribute value="/../css/vendor/animate.css" />
+            <add-attribute value="/../css/vendor/jquery-ui.css" />
+            <add-attribute value="/../css/vendor/jquery-ui.structure.min.css" />
+            <add-attribute value="/../css/vendor/jquery-ui.theme.min.css" />
             <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />            
         </put-list-attribute>
         <put-list-attribute name="javascript" >
@@ -22,6 +25,7 @@
             <add-attribute value="/../js/vendor/bootstrap.min.js" />
             <add-attribute value="/../js/vendor/metisMenu.min.js" />
             <add-attribute value="/../js/vendor/sb-admin-2.js" />
+            <add-attribute value="/../js/vendor/jquery-ui.min.js" />
             <add-attribute value="/../js/admin.js" />
             <add-attribute value="/../js/vendor/bootstrap-notify.min.js" />
         </put-list-attribute>

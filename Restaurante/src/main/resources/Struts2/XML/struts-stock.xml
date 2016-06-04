@@ -18,5 +18,10 @@
         <action name="postBuscarInsumo" method="postBuscarInsumo" class="Acciones.StockAction">
             <result name="success">/WEB-INF/stock/tablaInsumo.jsp</result>
         </action>         
+        <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.StockAction">
+            <result type="json" >
+                <param name="root">listaAC</param>
+            </result>            
+        </action>         
     </package>
 </struts>

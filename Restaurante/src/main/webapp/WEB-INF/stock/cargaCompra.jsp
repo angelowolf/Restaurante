@@ -15,12 +15,12 @@
     </div>        
     <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row">
         <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron insumos por debajo del stock mínimo.</p></display:setProperty>
-        <display:column property="nombre" title="Nombre"/>            
-        <display:column property="categoriaInsumo.nombre" title="Categoria"/>            
-        <display:column property="unidadMedida" title="Unidad de Medida"/>
-        <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" />
-        <display:column property="stock.cantidadActual" title="Cantidad Actual"/>            
-        <display:column property="stock.cantidadMinima" title="Cantidad Mínima"/>            
+        <display:column property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
+        <display:column property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="text-center-all"/>            
+        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>
+        <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all" headerClass="text-center-all"/>
+        <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all" headerClass="text-center-all"/>            
+        <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>            
         <display:column title="Agregar">
             <input type="checkbox" id="<s:property value="%{#attr.row.id}"/>" /> Agregar
         </display:column>
@@ -35,15 +35,15 @@
         <table class="table table-striped table-bordered" id="row2">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Unidad de Medida</th>
-                    <th>Precio por Unidad</th>
-                    <th>Cantidad Actual</th>
-                    <th>Cantidad Mínima</th>
-                    <th>Cantidad Comprada</th>
-                    <th>Precio Compra</th>
-                    <th>Agregar</th>
+                    <th class="text-center-all">Nombre</th>
+                    <th class="text-center-all">Categoria</th>
+                    <th class="text-center-all">Unidad de Medida</th>
+                    <th class="text-center-all">Precio por Unidad</th>
+                    <th class="text-center-all">Cantidad Actual</th>
+                    <th class="text-center-all">Cantidad Mínima</th>
+                    <th class="text-center-all">Cantidad Comprada</th>
+                    <th class="text-center-all">Precio Compra</th>
+                    <th class="text-center-all">Agregar</th>
                 </tr>
             </thead>
             <tbody></tbody>
