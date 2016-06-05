@@ -7,8 +7,11 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
+import Modelo.Insumo;
 import Modelo.Rol;
 import Modelo.Usuario;
+import Persistencia.ORM.DAOImplementacion.InsumoDAO;
+import Persistencia.ORM.DAOInterface.IInsumo;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;

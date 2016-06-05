@@ -16,5 +16,15 @@
         <action name="nuevo" method="nuevo" class="Acciones.InsumoBrutoAction">
             <result name="success" type="tiles">/insumo/alta.tiles</result>
         </action>      
+        
+        <!--RUTAS DE EVENTOS DINAMICOS....-->
+        <action name="postBuscarInsumoBruto" method="postBuscarInsumo" class="Acciones.InsumoBrutoAction">
+            <result name="success">/WEB-INF/insumo/tablaInsumo.jsp</result>
+        </action>         
+        <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.InsumoBrutoAction">
+            <result type="json" >
+                <param name="root">listaAC</param>
+            </result>            
+        </action>         
     </package>
 </struts>

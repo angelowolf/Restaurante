@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import Controlador.Interface.IControladorInsumoBruto;
 import Modelo.InsumoBruto;
-import Soporte.AutoComplete;
 
 /**
  *
@@ -32,10 +31,6 @@ public class StockAction extends Accion {
     private List<Integer> ids;
     private List<Integer> cantidad;
     private List<Float> precio;
-    private String nombreInsumo;
-    private int idCategoria;
-    private List<AutoComplete> listaAC;
-    private String term;
 
     public StockAction() {
         controladorCategoriaInsumo = new ControladorCategoriaInsumo();
@@ -48,20 +43,6 @@ public class StockAction extends Accion {
     public String getListaCompra() {
         lista = controladorInsumo.getTodosStockMinimo();
         categorias = controladorCategoriaInsumo.getTodos();
-        return SUCCESS;
-    }
-
-    public String postBuscarInsumo() {
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids);
-        return SUCCESS;
-    }
-
-    public String postBuscarInsumoAutoComplete() {
-        listaAC = new ArrayList<>();
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, term, null);
-        for (InsumoBruto insumoBruto : lista) {
-            listaAC.add(AutoComplete.generarAC(insumoBruto));
-        }
         return SUCCESS;
     }
 
@@ -106,6 +87,29 @@ public class StockAction extends Accion {
         return SUCCESS;
     }
 
+    public void validatePostAjusteStock() {
+        if (ids == null || ids.isEmpty()) {
+            addActionError(Soporte.Mensaje.SELECCIONEINSUMO);
+        } else if (cantidad == null || cantidad.isEmpty()) {
+            addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+        } else {
+            for (Integer integer : cantidad) {
+                if (integer == null) {
+                    addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+                    break;
+                }
+            }
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        }
+    }
+
+    public String postAjusteStock() {
+        controladorStock.regstrarAjuste(ids, cantidad);
+        return SUCCESS;
+    }
+
     public String getAjusteStock() {
         return SUCCESS;
     }
@@ -133,22 +137,6 @@ public class StockAction extends Accion {
 
     public void setPrecio(List<Float> precio) {
         this.precio = precio;
-    }
-
-    public void setNombreInsumo(String nombreInsumo) {
-        this.nombreInsumo = nombreInsumo;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    public void setTerm(String term) {
-        this.term = term;
-    }
-
-    public List<AutoComplete> getListaAC() {
-        return listaAC;
     }
 
 }

@@ -8,6 +8,7 @@ package Persistencia.ORM.DAOImplementacion;
 import java.util.List;
 import Modelo.Insumo;
 import Modelo.InsumoBruto;
+import Persistencia.ORM.DAOInterface.IInsumo;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
@@ -21,14 +22,14 @@ import org.hibernate.criterion.Order;
  *
  * @author ang_2
  */
-public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements IInsumoBruto {
+public class InsumoDAO extends GenericDAO<Insumo, Integer> implements IInsumo {
 
-    private static final Logger LOG = Logger.getLogger(InsumoBrutoDAO.class);
+    private static final Logger LOG = Logger.getLogger(InsumoDAO.class);
 
     @Override
-    public List<InsumoBruto> getTodos() {
+    public List<Insumo> getTodos() {
         Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
+        List<Insumo> objetos = new ArrayList<>();
         try {
             String sql = "from Insumo order by nombre";
             objetos = session.createQuery(sql).list();
@@ -37,43 +38,4 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
         }
         return objetos;
     }
-
-    @Override
-    public List<InsumoBruto> getTodosStockMinimo() {
-        Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
-        try {
-            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumobruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
-            objetos = session.createSQLQuery(sql).addEntity(InsumoBruto.class).list();
-        } catch (RuntimeException e) {
-            LOG.error("Error al buscar los insumos.", e);
-        }
-        return objetos;
-    }
-
-    @Override
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
-        Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
-        try {
-            Criteria criterio = session.createCriteria(InsumoBruto.class);
-            criterio.add(Restrictions.neOrIsNotNull("id", null));
-
-            if (nombreInsumo != null) {
-                criterio.add(Restrictions.like("nombre", nombreInsumo + "%"));
-            }
-            if (idCategoria > 0) {
-                criterio.add(Restrictions.eq("categoriaInsumo.id", idCategoria));
-            }
-            if (ids != null) {
-                criterio.add(Restrictions.not(Restrictions.in("id", ids)));
-            }
-            criterio.addOrder(Order.asc("nombre"));
-            objetos = criterio.list();
-        } catch (RuntimeException e) {
-            LOG.error("Error al buscar los insumos.", e);
-        }
-        return objetos;
-    }
-
 }

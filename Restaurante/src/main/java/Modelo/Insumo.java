@@ -89,7 +89,12 @@ public abstract class Insumo {
         this.categoriaInsumo = categoriaInsumo;
     }
 
-    public abstract void actualizar(Insumo insumo);
+    public void actualizar(Insumo insumo) {
+        this.nombre = insumo.getNombre();
+        this.unidadMedida = insumo.getUnidadMedida();
+        this.categoriaInsumo = insumo.getCategoriaInsumo();
+        this.stock.setCantidadMinima(insumo.getStock().getCantidadMinima());
+    }
 
     public void darDeBaja() {
         fechaBaja = LocalDate.now();
@@ -110,4 +115,10 @@ public abstract class Insumo {
     public void registrarAjusteStock(int cantidadAjuste) {
         this.stock.registrarAjusteStock(cantidadAjuste);
     }
+
+    @Override
+    public String toString() {
+        return "Insumo{" + "id=" + id + ", categoriaInsumo=" + categoriaInsumo + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", nombre=" + nombre + ", stock=" + stock + ", unidadMedida=" + unidadMedida + '}';
+    }
+
 }

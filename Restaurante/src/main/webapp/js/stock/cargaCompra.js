@@ -10,7 +10,7 @@ var ids = [];
         data += 'idCategoria=' + $(this).find('option:selected').val();
         data += '&nombreInsumo=' + $('#nombre').val();
         console.log(data);
-        $.post('/stock/postBuscarInsumo', data, function (response) {
+        $.post('/insumo/postBuscarInsumoBruto', data, function (response) {
             $('#row').fadeOut().remove();
             $('#notificacion').remove();
             $('#contenedor').append(response);
@@ -25,7 +25,7 @@ var ids = [];
         data += 'nombreInsumo=' + $(this).val();
         data += '&idCategoria=' + $('#categoria').find('option:selected').val();
         console.log(data);
-        $.post('/stock/postBuscarInsumo', data, function (response) {
+        $.post('/insumo/postBuscarInsumoBruto', data, function (response) {
             $('#row').fadeOut().remove();
             $('#notificacion').remove();
             $('#contenedor').append(response);

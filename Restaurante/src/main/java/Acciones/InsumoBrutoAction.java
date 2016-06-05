@@ -20,6 +20,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import Controlador.Interface.IControladorInsumoBruto;
+import Soporte.AutoComplete;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
  *
@@ -37,13 +39,33 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
     private int categoriaInsumoFiltro;
     private String nombreFiltro;
 
+    private List<AutoComplete> listaAC;
+    private int idCategoria;
+    private String nombreInsumo, term;
+    private List<Integer> ids;
+
     public InsumoBrutoAction() {
         unidades = Arrays.asList(UnidadMedida.values());
         IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
         categorias = controladorCategoriaInsumo.getTodos();
         lista = new ArrayList<>();
+        ids = new ArrayList<>();
         insumo = new InsumoBruto();
         controladorInsumo = new ControladorInsumoBruto();
+    }
+
+    public String postBuscarInsumo() {
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids);
+        return SUCCESS;
+    }
+
+    public String postBuscarInsumoAutoComplete() {
+        listaAC = new ArrayList<>();
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, term, null);
+        for (InsumoBruto insumoBruto : lista) {
+            listaAC.add(AutoComplete.generarAC(insumoBruto));
+        }
+        return SUCCESS;
     }
 
     public String getModificar() {
@@ -179,6 +201,26 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
     @Override
     public Insumo getModel() {
         return insumo;
+    }
+
+    public void setNombreInsumo(String nombreInsumo) {
+        this.nombreInsumo = nombreInsumo;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public List<AutoComplete> getListaAC() {
+        return listaAC;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
     }
 
 }

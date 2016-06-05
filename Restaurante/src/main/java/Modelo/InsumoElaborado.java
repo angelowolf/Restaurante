@@ -36,14 +36,16 @@ public class InsumoElaborado extends Insumo {
     public void actualizar(Insumo insumo) {
         if (insumo instanceof InsumoElaborado) {
             InsumoElaborado insumo2 = (InsumoElaborado) insumo;
-            this.nombre = insumo2.getNombre();
-            this.unidadMedida = insumo2.getUnidadMedida();
-            this.categoriaInsumo = insumo2.getCategoriaInsumo();
-            this.stock.setCantidadMinima(insumo2.getStock().getCantidadMinima());
             this.detalleInsumoElaborados = insumo2.getDetalleInsumoElaborados();
+            super.actualizar(insumo);
         } else {
             throw new ClassCastException("Error al castear un objeto a insumoelaborado");
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + "detalleInsumoElaborados=" + detalleInsumoElaborados;
     }
 
 }

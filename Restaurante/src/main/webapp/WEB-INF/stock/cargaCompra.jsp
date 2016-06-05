@@ -5,7 +5,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="categoria">Categoria</label>
-                <s:select headerKey="-1" headerValue="Seleccione una categoria" list="categorias" id="categoria" name="categoria" listKey="id" listValue="nombre" cssClass="form-control"/>
+                <s:select headerKey="-1" headerValue="Todas" list="categorias" id="categoria" name="categoria" listKey="id" listValue="nombre" cssClass="form-control"/>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre</label>

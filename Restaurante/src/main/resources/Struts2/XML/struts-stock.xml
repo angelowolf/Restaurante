@@ -15,13 +15,6 @@
         <action name="getAjusteStock" method="getAjusteStock" class="Acciones.StockAction">
             <result name="success" type="tiles">/stock/ajusteStock.tiles</result>
         </action>         
-        <action name="postBuscarInsumo" method="postBuscarInsumo" class="Acciones.StockAction">
-            <result name="success">/WEB-INF/stock/tablaInsumo.jsp</result>
-        </action>         
-        <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.StockAction">
-            <result type="json" >
-                <param name="root">listaAC</param>
-            </result>            
-        </action>         
+        <action name="postAjusteCompra" method="postAjusteCompra" class="Acciones.StockAction"/>
     </package>
 </struts>

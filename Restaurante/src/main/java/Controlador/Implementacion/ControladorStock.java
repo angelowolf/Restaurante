@@ -7,6 +7,7 @@ package Controlador.Implementacion;
 
 import Controlador.Interface.IControladorInsumoBruto;
 import Controlador.Interface.IControladorStock;
+import Modelo.Insumo;
 import Modelo.InsumoBruto;
 import Modelo.Stock;
 import java.util.List;
@@ -47,6 +48,14 @@ public class ControladorStock implements IControladorStock {
             controladorInsumoBruto.actualizar(insumo);
         }
 
+    }
+
+    public void regstrarAjuste(List<Integer> idInsumos, List<Integer> cantidades) {
+        for (int i = 0; i < idInsumos.size(); i++) {
+            Insumo insumo = INSUMODAO.buscar(idInsumos.get(i));
+            insumo.registrarAjusteStock(cantidades.get(i));
+            INSUMODAO.actualizar(insumo);
+        }
     }
 
 }

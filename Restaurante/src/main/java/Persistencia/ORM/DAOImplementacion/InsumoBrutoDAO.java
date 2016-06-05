@@ -65,7 +65,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
             if (idCategoria > 0) {
                 criterio.add(Restrictions.eq("categoriaInsumo.id", idCategoria));
             }
-            if (ids != null) {
+            if (ids != null && !ids.isEmpty()) {
                 criterio.add(Restrictions.not(Restrictions.in("id", ids)));
             }
             criterio.addOrder(Order.asc("nombre"));

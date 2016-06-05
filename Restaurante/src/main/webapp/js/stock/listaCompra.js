@@ -1,7 +1,7 @@
 (function ($) {
 
     $("#nombre").autocomplete({
-        source: "/stock/postBuscarInsumoAutoComplete?" + $('#categoria').val(),
+        source: "/insumo/postBuscarInsumoAutoComplete?" + $('#categoria').val(),
         minLength: 2,
         select: function (event, ui) {
             console.log(ui.item.value);
@@ -11,7 +11,7 @@
     $('#nombre').autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/stock/postBuscarInsumoAutoComplete",
+                url: "/insumo/postBuscarInsumoAutoComplete",
                 type: "POST",
                 data: {
                     term: request.term,

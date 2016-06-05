@@ -35,11 +35,8 @@ public class InsumoBruto extends Insumo {
     public void actualizar(Insumo insumo) {
         if (insumo instanceof InsumoBruto) {
             InsumoBruto insumo2 = (InsumoBruto) insumo;
-            this.nombre = insumo2.getNombre();
             this.precioUnidad = insumo2.getPrecioUnidad();
-            this.unidadMedida = insumo2.getUnidadMedida();
-            this.categoriaInsumo = insumo2.getCategoriaInsumo();
-            this.stock.setCantidadMinima(insumo2.getStock().getCantidadMinima());
+            super.actualizar(insumo);
         } else {
             throw new ClassCastException("Error al castear un objeto a insumobruto");
         }
