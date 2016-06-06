@@ -22,7 +22,7 @@
         <property name="fechaAlta" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <property name="fechaBaja" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
         <property name="fechaNacimiento" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
-        <set name="roles" table="rol_usuario">
+        <set name="roles" table="Rol_Usuario">
             <key column="id"/>
             <element column="roles" type="rolTipo"/>
         </set>

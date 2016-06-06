@@ -193,7 +193,11 @@ public class Usuario {
      * @return True si lo son.
      */
     public boolean iniciarSesion(String password) {
-        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && fechaBaja != null;
+        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && activo();
+    }
+
+    private boolean activo() {
+        return fechaBaja == null;
     }
 
     public boolean esResponsableUsuario() {
