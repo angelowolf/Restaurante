@@ -21,8 +21,8 @@
         <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all" headerClass="text-center-all"/>
         <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all" headerClass="text-center-all"/>            
         <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>            
-        <display:column title="Agregar">
-            <input type="checkbox" id="<s:property value="%{#attr.row.id}"/>" /> Agregar
+        <display:column title="Agregar" class="text-center-all" headerClass="text-center-all"   >
+            <button id="<s:property value="%{#attr.row.id}"/>" class="btn btn-info"><i class="fa fa-arrow-down"></i></button> 
         </display:column>
     </display:table>     
 </div>

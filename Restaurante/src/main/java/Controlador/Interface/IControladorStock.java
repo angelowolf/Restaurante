@@ -45,5 +45,5 @@ public interface IControladorStock {
      * @param cantidades las cantidades a ajustar positivas o negativas segun el
      * caso
      */
-    public void regstrarAjuste(List<Integer> idInsumos, List<Integer> cantidades);
+    public void registrarAjuste(List<Integer> idInsumos, List<Integer> cantidades);
 }

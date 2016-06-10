@@ -84,6 +84,7 @@ public class StockAction extends Accion {
 
     public String postCargarCompra() {
         controladorStock.registrarCompraInsumoBruto(ids, cantidad, precio);
+        sesion.put("mensaje", Soporte.Mensaje.COMPRAREGISTRADA);
         return SUCCESS;
     }
 
@@ -106,7 +107,7 @@ public class StockAction extends Accion {
     }
 
     public String postAjusteStock() {
-        controladorStock.regstrarAjuste(ids, cantidad);
+        controladorStock.registrarAjuste(ids, cantidad);
         return SUCCESS;
     }
 

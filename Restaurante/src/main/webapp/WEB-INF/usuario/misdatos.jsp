@@ -1,9 +1,6 @@
 <%@page import="Decorator.RolDecorator"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <div class="form-group">
-    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
-        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
-    </s:action>
     <h2 class="page-header">Mis Datos</h2>
     <form class="well" id="formulario" method="post">
         <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">

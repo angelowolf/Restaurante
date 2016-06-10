@@ -3,9 +3,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <div class="form-group">   
-    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
-        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
-    </s:action>
     <h2 class="page-header">Usuarios</h2>
     <div class="panel panel-default">        
         <div class="panel-body">        
@@ -47,7 +44,9 @@
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
                     <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                    <button id="blanquear" class="btn btn-default"><i class="fa fa-key"></i></button>
+                        <s:if test="(#attr.row.fechaBaja != null)">
+                        <button id="blanquear" class="btn btn-default"><i class="fa fa-key"></i></button>
+                        </s:if>
                         <s:if test="(#attr.row.fechaBaja == null)">
                         <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>

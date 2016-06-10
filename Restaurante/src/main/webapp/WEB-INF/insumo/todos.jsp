@@ -2,9 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <div class="form-group">   
-    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
-        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
-    </s:action>
     <h2 class="page-header">Insumos</h2>
     <div class="panel panel-default">        
         <div class="panel-body">        

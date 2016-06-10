@@ -8,6 +8,7 @@ package Modelo;
 import Soporte.Encriptar;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.Set;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.joda.time.LocalDate;
 
@@ -193,10 +194,10 @@ public class Usuario {
      * @return True si lo son.
      */
     public boolean iniciarSesion(String password) {
-        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && activo();
+        return this.clave.equals(Encriptar.encriptaEnMD5(password)) && esActivo();
     }
 
-    private boolean activo() {
+    private boolean esActivo() {
         return fechaBaja == null;
     }
 
@@ -256,5 +257,9 @@ public class Usuario {
 
     public void blanquear() {
         this.clave = Encriptar.encriptaEnMD5(this.nombre + this.apellido);
+    }
+
+    public boolean esPrimerLogin() {
+        return StringUtils.isBlank(this.getPreguntaSecreta());
     }
 }

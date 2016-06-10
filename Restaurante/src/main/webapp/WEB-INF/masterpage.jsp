@@ -117,6 +117,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
+                            <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
+                                <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
+                            </s:action>
                             <tiles:insertAttribute name="body" />
                         </div>
                         <!-- /.col-lg-12 -->

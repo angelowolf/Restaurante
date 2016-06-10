@@ -8,11 +8,12 @@
         <!--        <property name="hibernate.connection.url">jdbc:mysql://127.7.1.130:3306/restaurante</property>
         <property name="hibernate.connection.username">adminnKR1QLx</property>
         <property name="hibernate.connection.password">fd-jReyR7DhZ</property>
-        <property name="hbm2ddl.auto">create-drop</property>-->
+        -->
+        <property name="hbm2ddl.auto">create-drop</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/restaurante</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"/>
-        <property name="hbm2ddl.auto">update</property>
+        <!--<property name="hbm2ddl.auto">update</property>-->
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <!--Configuracion correspondiente al pool.-->

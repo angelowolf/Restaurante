@@ -32,20 +32,22 @@ var ids = [];
         });
     });
 
-    $('body').on('change', '#row input[type=checkbox]', function () {
+    $('body').on('click', '#row button', function (e) {
+        e.preventDefault();
         ids.push($(this).attr('id'));
         $(this).parents('tr').fadeOut('normal', function () {
             var tr = $(this).detach();
-            var td = tr.find('td:last').detach();
-            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td>');
-            tr.append(td);
+            var id = tr.find('td:last').val();
+            tr.find('td:last').remove();
+            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="'+id+'" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
             $('#row2 tbody').append(tr);
             tr.fadeIn();
         });
         console.log(ids);
     });
 
-    $('body').on('change', '#row2 input[type=checkbox]', function () {
+    $('body').on('click', '#row2 button', function (e) {
+        e.preventDefault();
         ids.remove($(this).attr('id'));
         $(this).parents('tr').fadeOut('normal', function () {
             $(this).remove();

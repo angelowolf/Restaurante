@@ -7,11 +7,8 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
-import Modelo.Insumo;
 import Modelo.Rol;
 import Modelo.Usuario;
-import Persistencia.ORM.DAOImplementacion.InsumoDAO;
-import Persistencia.ORM.DAOInterface.IInsumo;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
@@ -193,11 +190,8 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateLogin() {
-        if (StringUtils.isBlank(usuario.getNick())) {
-            addActionError(Soporte.Mensaje.INGRESENICK);
-        }
-        if (StringUtils.isBlank(usuario.getClave())) {
-            addActionError(Soporte.Mensaje.INGRESECLAVE);
+        if (StringUtils.isBlank(usuario.getNick()) || StringUtils.isBlank(usuario.getClave())) {
+            addActionError(Soporte.Mensaje.ERRORVALIDAR);
         }
         if (hasErrors()) {
             codigo = 400;
@@ -216,7 +210,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         sesion.put("rolStock", u.esResponsableStock());
         sesion.put("rolCaja", u.esResponsableCaja());
         sesion.put("rolMesa", u.esResponsableMesa());
-        if (StringUtils.isBlank(u.getPreguntaSecreta())) {
+        if (u.esPrimerLogin()) {
             return "primeravez";
         } else {
             return SUCCESS;
