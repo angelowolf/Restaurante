@@ -10,9 +10,7 @@ import Modelo.Usuario;
 import Persistencia.ORM.DAOInterface.IUsuario;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.log4j.Logger;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -63,7 +61,7 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements IUsuario
         boolean f2 = false;
         boolean f3 = false;
         try {
-            StringBuilder sb = new StringBuilder("select * from usuario usuario inner join rol_usuario rol on usuario.id = rol.id  where usuario.id is not null");
+            StringBuilder sb = new StringBuilder("select * from Usuario usuario inner join Rol_Usuario rol on usuario.id = rol.id  where usuario.id is not null");
             if (nombre != null) {
                 sb.append(" and usuario.nombre like :nombre");
                 f1 = true;
