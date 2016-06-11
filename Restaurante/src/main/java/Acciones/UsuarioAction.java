@@ -50,26 +50,26 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public void validateRegistrar() {
         if (StringUtils.isBlank(usuario.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getApellido())) {
-            addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
+            addFieldError("apellido", Soporte.Mensaje.OBLIGATORIO);
         }
         if (usuario.getRoles() == null) {
-            addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
+            addFieldError("rol", Soporte.Mensaje.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
-            addFieldError("nick", Soporte.Mensaje.INGRESENICK);
+            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
+            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
         }
         if (usuario.getDocumento() == 0) {
-            addFieldError("documento", Soporte.Mensaje.INGRESEDOCUMENTO);
+            addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
         }
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.DOCUMENTONODISPONIBLE);
+            addFieldError("documento", Soporte.Mensaje.NODISPONIBLEDOCUMENTO);
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -84,21 +84,26 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public void validateModificar() {
         if (StringUtils.isBlank(usuario.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getApellido())) {
-            addFieldError("apellido", Soporte.Mensaje.INGRESEAPELLIDO);
+            addFieldError("apellido", Soporte.Mensaje.OBLIGATORIO);
         }
         if (usuario.getRoles() == null) {
-            addFieldError("rol", Soporte.Mensaje.SELECCIONEROL);
+            addFieldError("rol", Soporte.Mensaje.OBLIGATORIO);
+        }
+        if (StringUtils.isBlank(usuario.getNick())) {
+            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
+        } else if (!controladorUsuario.nickDisponible(usuario)) {
+            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
         }
         if (usuario.getDocumento() == 0) {
-            addFieldError("documento", Soporte.Mensaje.INGRESEDOCUMENTO);
+            addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
         }
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.DOCUMENTONODISPONIBLE);
+            addFieldError("documento", Soporte.Mensaje.NODISPONIBLEDOCUMENTO);
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -119,7 +124,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
 
     public String recuperar() {
         controladorUsuario.recuperar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.USUARIORECUPERADO);
+        sesion.put("mensaje", Soporte.Mensaje.RECUPERADOUSUARIO);
         return SUCCESS;
     }
 
@@ -138,15 +143,18 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String misdatos() {
+        if (!sesion.containsKey("idUsuario")) {
+            return LOGIN;
+        }
         usuario = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
         return SUCCESS;
     }
 
     public void validateModificarmisdatos() {
         if (StringUtils.isBlank(usuario.getNick())) {
-            addFieldError("nick", Soporte.Mensaje.INGRESENICK);
+            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.NICKNODISPONIBLE);
+            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
         }
         if (StringUtils.isNotBlank(usuario.getClave()) || StringUtils.isNotBlank(usuario.getClave2())) {
             if (StringUtils.isBlank(usuario.getClave())) {
@@ -169,10 +177,10 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
             usuario.setClaveOriginal("");
         }
         if (StringUtils.isBlank(usuario.getRespuestaSecreta())) {
-            addFieldError("respuestaSecreta", Soporte.Mensaje.INGRESERESPUESTA);
+            addFieldError("respuestaSecreta", Soporte.Mensaje.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getPreguntaSecreta())) {
-            addFieldError("preguntaSecreta", Soporte.Mensaje.SELECCIONEPREGUNTA);
+            addFieldError("preguntaSecreta", Soporte.Mensaje.OBLIGATORIO);
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -185,7 +193,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
-        sesion.put("mensaje", Soporte.Mensaje.getModificado(Soporte.Mensaje.USUARIO));
+        sesion.put("mensaje", Soporte.Mensaje.DATOSMODIFICADOS);
         return SUCCESS;
     }
 
@@ -196,7 +204,12 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         if (hasErrors()) {
             codigo = 400;
         } else if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
-            addActionError(Soporte.Mensaje.ERRORVALIDAR);
+            Usuario us = controladorUsuario.getUsuario(usuario.getNick());
+            if (us != null && !us.esActivo()) {
+                addActionError(Soporte.Mensaje.USUARIODADODEBAJA);
+            } else {
+                addActionError(Soporte.Mensaje.ERRORVALIDAR);
+            }
             codigo = 400;
         }
     }
@@ -225,6 +238,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         sesion.put("rolStock", null);
         sesion.put("rolMesa", null);
         sesion.put("rolCaja", null);
+        sesion.put("mensaje", null);
         return SUCCESS;
     }
 

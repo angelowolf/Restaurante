@@ -108,6 +108,8 @@ public class ControladorUsuario implements IControladorUsuario {
         u.setTelefono(usuario.getTelefono());
         u.setDireccion(usuario.getDireccion());
         u.setNick(usuario.getNick());
+        u.setPreguntaSecreta(usuario.getPreguntaSecreta());
+        u.setRespuestaSecreta(usuario.getRespuestaSecreta());
         USUARIODAO.actualizar(u);
     }
 

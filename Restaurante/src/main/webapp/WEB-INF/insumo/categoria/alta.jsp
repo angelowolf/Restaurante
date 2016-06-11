@@ -9,8 +9,8 @@
         <label for="descrpcion">Descripción</label>
         <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
     </div>
-    <div id="botones" class="pull-right">
-        <button type="submit" id="cancelar" class="btn btn-danger">Cancelar</button>
-        <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+    <div id="botones" class="form-group">
+        <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
+        <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
     </div>
 </form>           

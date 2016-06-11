@@ -21,4 +21,6 @@ public interface IInsumoBruto extends IGenericDAO<InsumoBruto, Integer> {
 
     public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
 
+    public InsumoBruto buscar(String nombre);
+
 }

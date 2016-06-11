@@ -19,8 +19,8 @@
         </s:action>
         <s:form namespace="/usuario" action="obtenerPregunta" class="well col-md-6 col-md-offset-3" id="formulario">
             <div class="form-group">
-                <label for="nick">Nick</label>
-                <input required type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+                <label for="nick">Nombre de Usuario</label>
+                <input required type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario">
             </div>
             <s:submit class="btn btn-success pull-right" value="Siguiente"/>
         </s:form>           

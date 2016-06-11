@@ -197,7 +197,12 @@ public class Usuario {
         return this.clave.equals(Encriptar.encriptaEnMD5(password)) && esActivo();
     }
 
-    private boolean esActivo() {
+    /**
+     * Si este usuario esta activo o no.
+     *
+     * @return true si esta activo.
+     */
+    public boolean esActivo() {
         return fechaBaja == null;
     }
 
@@ -262,4 +267,5 @@ public class Usuario {
     public boolean esPrimerLogin() {
         return StringUtils.isBlank(this.getPreguntaSecreta());
     }
+
 }

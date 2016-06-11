@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-             
+                <button type="button" class="btn btn-default pull-right" id="salir" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>    

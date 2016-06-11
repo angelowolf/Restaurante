@@ -38,4 +38,7 @@ public interface IControladorInsumoBruto {
     public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
 
     public List<InsumoBruto> buscar(String nombreFiltro, int categoriaInsumoFiltro);
+
+    public boolean nombreDisponible(InsumoBruto insumo);
+
 }

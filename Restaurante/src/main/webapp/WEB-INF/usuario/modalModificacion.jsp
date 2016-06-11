@@ -47,6 +47,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" id="cancelarEditar" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success" id="editar">Guardar</button>
             </div>
         </div>

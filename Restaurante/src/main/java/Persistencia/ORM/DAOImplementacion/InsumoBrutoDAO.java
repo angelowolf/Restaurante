@@ -76,4 +76,21 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
         return objetos;
     }
 
+    @Override
+    public InsumoBruto buscar(String nombre) {
+        Session session = getHibernateTemplate();
+        List<InsumoBruto> objetos = new ArrayList<>();
+        try {
+            String sql = "from Insumo where nombre = :nombre";
+            objetos = session.createQuery(sql).setParameter("nombre", nombre).list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar  insumo", e);
+        }
+        if (!objetos.isEmpty()) {
+            return objetos.get(0);
+        } else {
+            return null;
+        }
+    }
+
 }

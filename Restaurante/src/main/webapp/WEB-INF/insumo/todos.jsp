@@ -27,15 +27,17 @@
             <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="text-center-all"/>            
             <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>
             <display:column sortable="true" property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="fechaAlta" title="Fecha de alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="fechaBaja" title="Fecha de baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
+            <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all" headerClass="text-center-all"/>
+            <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="text-center-all"/>
+            <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
+            <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
             <display:column title="Funciones" class="text-center-all" headerClass="text-center-all">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                    <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                        <s:if test="(#attr.row.fechaBaja == null)">
+                        <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                        </s:if>
                         <s:if test="(#attr.row.fechaBaja == null)">
                         <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>

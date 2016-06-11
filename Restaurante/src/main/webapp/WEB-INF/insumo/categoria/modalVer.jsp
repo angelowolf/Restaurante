@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="editar">Guardar</button>
+                <button type="button" class="btn btn-default pull-right" id="salir" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>    

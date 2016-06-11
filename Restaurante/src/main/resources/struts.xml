@@ -32,17 +32,18 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
         <global-results>
+            <result name="login">/WEB-INF/login.jsp</result>
             <result name="success" type="json">
                 <param name="root">action</param>  
                 <param name="ignoreHierarchy">false</param> 
                 <!--con las 2 lineas anteriores decimos que agregue absolutamente todo al json..  que incluya los elementos de
                 las clase que hereda(con el ignoreHiererchy-->
-                <param name="includeProperties">actionMessages.*,model.*,codigo</param>
+                <param name="includeProperties">actionMessages.*,model.*,codigo,backUrl</param>
             </result>
             <result name="input" type="json">
                 <param name="root">action</param>  
                 <param name="ignoreHierarchy">false</param>
-                <param name="includeProperties">actionErrors.*,fieldErrors.*,codigo</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*,codigo,backUrl</param>
             </result>
         </global-results>
     </package>

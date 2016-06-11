@@ -12,6 +12,7 @@ import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 import Controlador.Interface.IControladorInsumoBruto;
+import Modelo.Insumo;
 import Modelo.InsumoBruto;
 
 /**
@@ -82,5 +83,14 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
             nombreFiltro = null;
         }
         return INSUMODAO.getTodosByCategoriaByNombreSinEstos(categoriaInsumoFiltro, nombreFiltro, null);
+    }
+
+    @Override
+    public boolean nombreDisponible(InsumoBruto insumo) {
+        InsumoBruto insumoBd = INSUMODAO.buscar(insumo.getNombre());
+        if (insumoBd == null) {
+            return true;
+        }
+        return insumoBd.getId() == insumo.getId();
     }
 }

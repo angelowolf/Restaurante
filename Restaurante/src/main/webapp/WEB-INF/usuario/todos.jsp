@@ -43,8 +43,8 @@
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                    <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                        <s:if test="(#attr.row.fechaBaja != null)">
+                        <s:if test="(#attr.row.fechaBaja == null)">
+                        <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
                         <button id="blanquear" class="btn btn-default"><i class="fa fa-key"></i></button>
                         </s:if>
                         <s:if test="(#attr.row.fechaBaja == null)">

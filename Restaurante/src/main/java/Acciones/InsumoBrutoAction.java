@@ -106,19 +106,29 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
             addFieldError("categoriaInsumo.id", Soporte.Mensaje.SELECCIONECATEGORIAINSUMO);
         }
         if (StringUtils.isBlank(insumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+        } else if (!controladorInsumo.nombreDisponible(insumo)) {
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
         }
         if (insumo.getUnidadMedida() == null) {
-            addFieldError("unidad", Soporte.Mensaje.SELECCIONEUNIDADMEDIDA);
+            addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
         }
-        if (insumo.getPrecioUnidad() <= 0) {
+        if (insumo.getPrecioUnidad() < 0) {
             addFieldError("precioUnidad", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+        } else if (insumo.getPrecioUnidad() == 0) {
+            addFieldError("precioUnidad", Soporte.Mensaje.OBLIGATORIO);
         }
+        
         if (insumo.getStock().getCantidadActual() < 0) {
             addFieldError("stock.cantidadActual", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+        } else if (insumo.getStock().getCantidadActual() == 0) {
+            addFieldError("stock.cantidadActual", Soporte.Mensaje.OBLIGATORIO);
         }
+        
         if (insumo.getStock().getCantidadMinima() < 0) {
             addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+        } else if (insumo.getStock().getCantidadMinima() == 0) {
+            addFieldError("stock.cantidadMinima", Soporte.Mensaje.OBLIGATORIO);
         }
         this.clearMessages();
         if (hasFieldErrors()) {
@@ -144,7 +154,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
     public String recuperar() {
         controladorInsumo.recuperar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.ISUMORECUPERADO);
+        sesion.put("mensaje", Soporte.Mensaje.RECUPERADOINSUMO);
         return SUCCESS;
     }
 
@@ -222,5 +232,4 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
     public void setIds(List<Integer> ids) {
         this.ids = ids;
     }
-
 }

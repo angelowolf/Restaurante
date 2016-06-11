@@ -384,7 +384,7 @@
                 <div class="mat-in">
                     <input type="text" name="nick" value="admin" required />
                     <span class="bar"></span>
-                    <label>Email</label>
+                    <label>Nombre de Usuario</label>
                 </div>
                 <div class="mat-in">
                     <input type="password" name="clave" value="admin" required />

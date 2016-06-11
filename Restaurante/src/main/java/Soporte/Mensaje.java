@@ -13,8 +13,7 @@ public class Mensaje {
     private static final String AGREGADA = "La %s ha sido agregada.";
     private static final String ELIMINADO = "El %s ha sido eliminado.";
     private static final String ELIMINADA = "La %s ha sido eliminada.";
-    private static final String ELEXISTE = "El %s ya existe.";
-    private static final String LAEXISTE = "La %s ya existe.";
+    private static final String ELEXISTE = "El nombre de %s ya está en uso.";
     private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe eliminarla o desvincularlos para poder eliminar este %s.";
     private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe eliminarlo o desvincularlos para poder eliminar este %s.";
     private static final String USADAPORUNA = "La %s está siendo utilizada por alguna %s, debe eliminarla o desvincularlas para poder eliminar esta %s.";
@@ -43,6 +42,7 @@ public class Mensaje {
     public static final String BLOQUEO = "Bloqueo";
     public static final String INSUMO = "Insumo";
     public static final String CATEGORIAINSUMO = "Categoría de Insumo";
+    public static final String PAGO = "Pago";
     //************************************************************************//
     public static final String TIPOSUCCESS = "success";
     public static final String TIPOINFO = "info";
@@ -50,76 +50,71 @@ public class Mensaje {
     public static final String TIPODANGER = "danger";
     //************************************************************************//
     //Mensajes de validacion//
-    public static final String PAGO = "Pago";
     public static final String INGRESENOMBRE = "Ingrese un nombre.";
     public static final String INGRESESIMBOLO = "Ingrese un símbolo.";
     public static final String INGRESEDIRECCION = "Ingrese una dirección.";
     public static final String INGRESEUNCODIGO = "Ingrese un código.";
-    public static final String SELECCIONEUBIACION = "Seleccione una ubicación en el mapa.";
     public static final String INGRESETITULO = "Ingrese un título.";
     public static final String INGRESEAPELLIDO = "Ingrese un apellido.";
     public static final String INGRESENICK = "Ingrese un nick.";
     public static final String INGRESECLAVE = "Ingrese una clave.";
     public static final String INGRESEUSUARIO = "Ingrese el usuario.";
     public static final String INGRESECLAVEACTUAL = "Ingrese su clave actual.";
-    public static final String USERCLAVEINCORRECTO = "Usuario o contraseña incorrectos.";
     public static final String INGRESEMAIL = "Ingrese un email.";
-    public static final String ERRORVALIDAR = "Error al validar el usuario.";
-    public static final String CODIGOCREADO = "Se ha enviado un email con el código a la dirección ingresada. Verifique en la carpeta de SPAM.";
     public static final String INGRESECODIGO = "Ingrese el código.";
-    public static final String CODIGOINCORRECTO = "El código ingresado no es correcto.";
-    public static final String INGRESENUEVACLAVE = "Ingrese la nueva clave.";
-    public static final String MINIMOCARACTERES = "Mínimo 5 caracteres.";
-    public static final String REPITACLAVE = "Repita la clave.";
-    public static final String CLAVENOCOINCIDE = "La clave no coincide.";
-    public static final String CLAVECAMBIADA = "Clave cambiada con éxito.";
-    public static final String CLAVEINGRESADAMAL = "Su clave ingresada no es correcta.";
-    public static final String CODIGOENUSO = "El código ingresado ya se encuentra en uso.";
-    public static final String EMAILNOENVIADO = "Lo sentimos pero su consulta no ha sido enviada.";
-    public static final String EMAILENVIADO = "Recibimos su consulta correctamente. Nos comunicaremos a la brevedad.";
     public static final String INGRESETELEFONO = "Ingrese un teléfono.";
     public static final String INGRESECONSULTA = "Ingrese su consulta.";
     public static final String INGRESERECARGO = "Ingrese un recargo positivo.";
     public static final String INGRESECARACTERISTICA = "Ingrese una característica.";
-    public static final String PRECIONOVALIDO = "Ingrese un precio válido.";
-    public static final String IDINVALIDO = "Id inválido.";
-    public static final String NICKNODISPONIBLE = "Este nombre de usuario no se encuentra disponible.";
-    public static final String EMAILNODISPONIBLE = "Este email no se encuentra disponible.";
-    public static final String PLANNOEXISTE = "El plan seleccionado no existe.";
-    public static final String EMAILNOVALIDO = "El formato del email no es correcto.";
     public static final String INGRESECAPACIDAD = "Ingrese la capacidad de la habitación.";
+    public static final String INGRESENUEVACLAVE = "Ingrese la nueva clave.";
     public static final String INGRESENOMBREHABITACION = "Ingrese el nombre de la habitación.";
     public static final String INGRESENOMBRETIPOHABITACION = "Ingrese el nombre del tipo de habitación.";
-    public static final String ELTIPOHABITACIONNOESVALIDO = "El " + TIPOHABITACION + " no es válido.";
-    public static final String IDHOTELINVALIDO = "Usted no tiene acceso a esta información.";
     public static final String INGRESENOMBRETEMPORADA = "Ingrese el nombre de la temporada.";
     public static final String INGRESEFECHAFIN = "Ingrese la fecha de finalización.";
     public static final String INGRESEFECHAINICIO = "Ingrese la fecha de inicio.";
-    public static final String FORMATOFECHANOCORRECTO = "El formato de la fecha ingresada no es correcto.";
-    public static final String SELECCIONEUNTIPODEHABITACION = "Seleccione almenos un " + TIPOHABITACION + ".";
-    public static final String LATEMPORADANOESVALIDO = "La " + TEMPORADA + " no es válida.";
     public static final String INGRESEDESCRIPCION = "Ingrese una descripción.";
     public static final String INGRESEFECHA = "Ingrese la fecha en la que ocurrió el evento.";
-    public static final String FORMATOCPACIDADNOCORRECTO = "El formato de la capacidad ingresada no es correcta.";
     public static final String INGRESEPRECIOALGUNACAPACIDAD = "Ingrese algun precio.";
-    public static final String SELECCIONEROL = "Seleccione un Rol.";
-    public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
     public static final String INGRESEPRECIO = "Ingrese un precio.";
     public static final String INGRESELACANTIDADACTUAL = "Ingrese la cantidad actual";
-    public static final String FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
     public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
-    public static final String DOCUMENTONODISPONIBLE = "El documento ingresdo ya esta en uso.";
-    public static final String USUARIORECUPERADO = "Usuario recuperado.";
-    public static final String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
     public static final String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
-    public static final String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
-    public static final String NICKINCORRECTO = "El nick ingresado no se encuentra en el sistema.";
     public static final String INGRESEDOCUMENTO = "Ingrese un número de documento.";
-    public static final String ISUMORECUPERADO = "Insumo recuperado.";
-    public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
-    public static final String CLAVERESETEADA = " La clave del usuario ha sido reseteada.";
-    public static final String SELECCIONEINSUMO = "Seleecione algun insumo.";
     public static final String INGRESECANTIDADCOMPRADA = "Ingrese la cantidad comprada.";
+
+    public static final String OBLIGATORIO = "Este campo es obligatorio";
+
+    public static final String SELECCIONEROL = "Seleccione un Rol.";
+    public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
+    public static final String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
+    public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
+    public static final String SELECCIONEINSUMO = "Seleecione algun insumo.";
+    public static final String USERCLAVEINCORRECTO = "Usuario o contraseña incorrectos.";
+
+    public static final String MINIMOCARACTERES = "Mínimo 5 caracteres.";
+    public static final String IDINVALIDO = "Id inválido.";
+    public static final String PRECIONOVALIDO = "Ingrese un precio válido.";
+    public static final String FORMATONOCORRECTO = "El valor ingresado no esta en un formato correcto.";
+    public static final String FORMATOFECHANOCORRECTO = "El formato de la fecha ingresada no es correcto.";
+
+    public static final String ERRORVALIDAR = "El Nombre de Usuario y/o la Contraseña son Incorrectos.";
+    public static final String REPITACLAVE = "Repita la clave.";
+    public static final String CLAVEINGRESADAMAL = "La clave ingresada no coincide con la anterior.";
+    public static final String CLAVENOCOINCIDE = "La clave no coincide.";
+    public static final String CLAVECAMBIADA = "Clave cambiada con éxito.";
+    public static final String CLAVERESETEADA = " La clave del usuario ha sido reseteada.";
+    public static final String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
+    public static final String NICKINCORRECTO = "El nombre de usuario no existe.";
+    public static final String DATOSMODIFICADOS = "Tus datos han sido modificados con éxito.";
+    public static final String USUARIODADODEBAJA = "Usuario dado de baja.";
+
+    public static final String NODISPONIBLENICK = "Ya existe el usuario ingresado.";
+    public static final String NODISPONIBLEDOCUMENTO = "El Número de Documento ya está en uso.";
+
+    public static final String RECUPERADOINSUMO = "Insumo recuperado.";
+    public static final String RECUPERADOUSUARIO = "Usuario recuperado.";
+
     public static final String COMPRAREGISTRADA = "La compra ha sido registrada.";
 
     /**
@@ -214,24 +209,13 @@ public class Mensaje {
 
     /**
      * Crea un mensaje que notifica que el nombre ingresado ya esta ocupado. "El
-     * %s ya existe."
+     * nombre de %s ya esta en uso."
      *
      * @param arg El objeto usado.
      * @return El mensaje.
      */
-    public static String getElExiste(String arg) {
+    public static String getExiste(String arg) {
         return String.format(ELEXISTE, arg);
-    }
-
-    /**
-     * Crea un mensaje que notifica que el nombre ingresado ya esta ocupado. "La
-     * %s ya existe."
-     *
-     * @param arg El objeto usado.
-     * @return El mensaje.
-     */
-    public static String getLaExiste(String arg) {
-        return String.format(LAEXISTE, arg);
     }
 
     /**

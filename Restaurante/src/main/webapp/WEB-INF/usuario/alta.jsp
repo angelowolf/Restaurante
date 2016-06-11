@@ -27,11 +27,11 @@
     </div>
     <s:include value="/WEB-INF/rol/roles.jsp"/>
     <div class="form-group">
-        <label for="nick">Nick</label>
-        <input type="text" class="form-control" id="nick" name="nick" placeholder="Nick">
+        <label for="nick">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario">
     </div>   
-    <div id="botones" class="pull-right">
-        <button type="submit" id="cancelar" class="btn btn-danger">Cancelar</button>
-        <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+    <div id="botones">
+        <button id="cancelar" class="btn btn-default pull-left">Cancelar</button>
+        <button id="registrar" class="btn btn-success pull-right">Registrar</button>
     </div>
 </form>           
