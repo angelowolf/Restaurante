@@ -1,7 +1,8 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
+<h2 class="page-header">Cargar Compras</h2>
 <div class="panel panel-default" id="contenedor">
-    <div class="panel-heading">
+    <div class="panel-heading ">
         <form class="form-inline">
             <div class="form-group">
                 <label for="categoria">Categoria</label>
@@ -23,11 +24,11 @@
         <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>            
         <display:column title="Agregar" class="text-center-all" headerClass="text-center-all"   >
             <button id="<s:property value="%{#attr.row.id}"/>" class="btn btn-info"><i class="fa fa-arrow-down"></i></button> 
-        </display:column>
-    </display:table>     
+            </display:column>
+        </display:table>     
 </div>
 <hr>
-<div class="panel  panel-default">
+<div class="panel panel-default" id="insumosComprados" style="display: none;">
     <div class="panel-heading">
         Insumos a Cargar
     </div>
@@ -50,6 +51,8 @@
         </table>
     </form>
 </div>
-<div id="botones" class="pull-right">
-    <button type="submit" id="registrar" class="btn btn-success">Registrar</button>
+<hr>
+<div id="botones" class="form-group">
+    <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
+    <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
 </div>

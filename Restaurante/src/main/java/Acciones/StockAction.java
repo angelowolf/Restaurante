@@ -108,10 +108,13 @@ public class StockAction extends Accion {
 
     public String postAjusteStock() {
         controladorStock.registrarAjuste(ids, cantidad);
+        sesion.put("mensaje", Soporte.Mensaje.AJUSTEREALIZADO);
         return SUCCESS;
     }
 
     public String getAjusteStock() {
+        lista = controladorInsumo.getTodos();
+        categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
     }
 

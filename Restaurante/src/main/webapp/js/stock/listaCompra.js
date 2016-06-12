@@ -1,5 +1,9 @@
 (function ($) {
 
+    $('#cancelar').click(function (e) {
+        e.preventDefault();
+        window.location.replace('/home');
+    });
     $("#nombre").autocomplete({
         source: "/insumo/postBuscarInsumoAutoComplete?" + $('#categoria').val(),
         minLength: 2,

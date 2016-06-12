@@ -9,6 +9,6 @@
     <display:column property="stock.cantidadActual" title="Cantidad Actual"/>            
     <display:column property="stock.cantidadMinima" title="Cantidad Mínima"/>            
     <display:column title="Agregar">
-        <input type="checkbox" id="<s:property value="%{#attr.row.id}"/>" /> Agregar
+          <button id="<s:property value="%{#attr.row.id}"/>" class="btn btn-info"><i class="fa fa-arrow-down"></i></button> 
     </display:column>
 </display:table>

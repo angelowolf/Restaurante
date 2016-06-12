@@ -89,7 +89,7 @@ public class Mensaje {
     public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
     public static final String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
     public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
-    public static final String SELECCIONEINSUMO = "Seleecione algun insumo.";
+    public static final String SELECCIONEINSUMO = "Seleccione algun insumo.";
     public static final String USERCLAVEINCORRECTO = "Usuario o contraseña incorrectos.";
 
     public static final String MINIMOCARACTERES = "Mínimo 5 caracteres.";
@@ -116,6 +116,7 @@ public class Mensaje {
     public static final String RECUPERADOUSUARIO = "Usuario recuperado.";
 
     public static final String COMPRAREGISTRADA = "La compra ha sido registrada.";
+    public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

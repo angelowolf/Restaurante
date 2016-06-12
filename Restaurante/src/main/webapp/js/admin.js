@@ -107,3 +107,26 @@ var erroresM = (function () {
 
     return modulo;
 })();
+
+
+function getIdsFormatoPOST() {
+    var allVals = '';
+    $.each(ids, function (index, id) {
+        allVals += "ids=" + id + "&";  //prepare the string
+    });
+    if (allVals.length > 0) {
+        allVals = allVals.substring(0, allVals.length - 1); //remove last '&'
+    }
+    return allVals; //submit this string as parameter
+}
+
+Array.prototype.remove = function () {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};

@@ -88,6 +88,6 @@ public class Stock {
     public void registrarAjusteStock(int cantidadAjuste) {
         DetalleStock ajuste = new DetalleStock(cantidadAjuste, LocalDate.now(), TipoMovimiento.Ajuste);
         this.detalleStocks.add(ajuste);
-        this.cantidadActual += cantidadAjuste;
+        this.cantidadActual = cantidadAjuste;
     }
 }

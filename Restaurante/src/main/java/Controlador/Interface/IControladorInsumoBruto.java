@@ -23,6 +23,11 @@ public interface IControladorInsumoBruto {
 
     public int guardar(InsumoBruto insumo);
 
+    /**
+     * Busca TODOS los INSUMOS
+     *
+     * @return
+     */
     public List<InsumoBruto> getTodos();
 
     public InsumoBruto getInsumo(int id);

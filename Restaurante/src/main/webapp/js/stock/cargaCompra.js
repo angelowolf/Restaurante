@@ -2,6 +2,11 @@ var ids = [];
 
 (function ($) {
 
+    $('#cancelar').click(function (e) {
+        e.preventDefault();
+        window.location.replace('/home');
+    });
+    
     $('#categoria').on('change', function () {
         var data = getIdsFormatoPOST();
         if (data !== "") {
@@ -9,7 +14,6 @@ var ids = [];
         }
         data += 'idCategoria=' + $(this).find('option:selected').val();
         data += '&nombreInsumo=' + $('#nombre').val();
-        console.log(data);
         $.post('/insumo/postBuscarInsumoBruto', data, function (response) {
             $('#row').fadeOut().remove();
             $('#notificacion').remove();
@@ -24,7 +28,6 @@ var ids = [];
         }
         data += 'nombreInsumo=' + $(this).val();
         data += '&idCategoria=' + $('#categoria').find('option:selected').val();
-        console.log(data);
         $.post('/insumo/postBuscarInsumoBruto', data, function (response) {
             $('#row').fadeOut().remove();
             $('#notificacion').remove();
@@ -37,22 +40,24 @@ var ids = [];
         ids.push($(this).attr('id'));
         $(this).parents('tr').fadeOut('normal', function () {
             var tr = $(this).detach();
-            var id = tr.find('td:last').val();
+            var id = tr.find('td:last button').attr('id');
             tr.find('td:last').remove();
-            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="'+id+'" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
+            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="' + id + '" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
             $('#row2 tbody').append(tr);
             tr.fadeIn();
+            mostrarTabla();
         });
-        console.log(ids);
     });
 
     $('body').on('click', '#row2 button', function (e) {
         e.preventDefault();
-        ids.remove($(this).attr('id'));
+        console.log($(this));
+        var id = $(this).val();
+        ids.remove(id);
         $(this).parents('tr').fadeOut('normal', function () {
             $(this).remove();
+            mostrarTabla();
         });
-        console.log(ids);
     });
 
 
@@ -70,31 +75,21 @@ var ids = [];
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        //console.log('request: '+data);
-        console.log('aca termina');
     });
+
+
 
 })(jQuery);
 
-
-function getIdsFormatoPOST() {
-    var allVals = '';
-    $.each(ids, function (index, id) {
-        allVals += "ids=" + id + "&";  //prepare the string
-    });
-    if (allVals.length > 0) {
-        allVals = allVals.substring(0, allVals.length - 1); //remove last '&'
-    }
-    return allVals; //submit this string as parameter
-}
-
-Array.prototype.remove = function () {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
+function mostrarTabla() {
+    var tabla = $('#insumosComprados');
+    if (ids.length !== 0) {
+        if (!tabla.is(':visible')) {
+            tabla.fadeIn();
+            $('#registrar').prop('disabled', false);
         }
+    } else {
+        tabla.fadeOut();
+        $('#registrar').prop('disabled', true);
     }
-    return this;
-};
+}

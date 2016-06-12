@@ -12,3 +12,25 @@
 #alerta{
     margin-top: 15px;
 }
+
+p#notificacion {
+    padding: 10px 10px 0 10px;
+}
+
+.checkbox.tamaño-medio input{
+    width: 17px;
+    height: 17px;
+}
+
+ul {
+	list-style: none;
+}
+
+#lista .fa {
+	color: green;
+}
+
+.panel form .table{
+    margin: 0px;
+    padding: 0px;
+}
