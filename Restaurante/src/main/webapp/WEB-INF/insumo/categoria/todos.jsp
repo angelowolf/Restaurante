@@ -17,7 +17,7 @@
     </div>
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
-            <display:setProperty name="basic.msg.empty_list" >Aún no hay Categorias registradas. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/insumo/categoria'/>">aquí</a>.</display:setProperty>
+            <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Categorias.</p></display:setProperty>
             <display:column sortable="true" property="nombre" title="Nombre" class="col-md-4 text-center-all" headerClass="text-center-all"/>
             <display:column property="descripcion" title="Descripción" decorator="Decorator.DescripcionDecorator" class="col-md-4 text-center-all" headerClass="text-center-all"/>
             <display:column title="Funciones" class="col-md-4 text-center-all" headerClass="text-center-all">

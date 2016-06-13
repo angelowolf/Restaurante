@@ -17,7 +17,7 @@
                 </form>
             </div>     
             <form id="datos">
-                <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" decorator="Decorator.RowDecorator">
+                <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" decorator="Decorator.RowCategoriaIdDecorator">
                     <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron insumos por debajo del stock mínimo.</p></display:setProperty>
                     <display:column property="nombre" title="Nombre" class="text-center-all col-md-2" headerClass="text-center-all"/>            
                     <display:column property="categoriaInsumo.nombre" title="Categoria" class="text-center-all col-md-2" headerClass="text-center-all" />            

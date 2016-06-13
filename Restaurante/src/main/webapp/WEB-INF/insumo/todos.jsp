@@ -22,7 +22,7 @@
     </div>
     <div class=" col-md-12">
         <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
-            <display:setProperty name="basic.msg.empty_list" >Aún no hay insumos registrados. Puede crear uno desde <a href="<s:url action='nuevo' namespace='/insumo'/>">aquí</a>.</display:setProperty>
+            <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Insumos.</p></display:setProperty>
             <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
             <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="text-center-all"/>            
             <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>

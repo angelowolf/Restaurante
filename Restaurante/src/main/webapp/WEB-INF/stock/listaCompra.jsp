@@ -12,12 +12,11 @@
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del insumo">
             </div>
-            <button type="submit" class="btn btn-info">Agregar</button>
         </form>
     </div>  
 
     <form>
-        <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row">
+        <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" decorator="Decorator.RowInsumoIdDecorator">
             <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron insumos por debajo del stock mínimo.</p></display:setProperty>
             <display:column property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
             <display:column property="categoriaInsumo.nombre" title="Categoria" class=" text-center-all" headerClass="text-center-all"/>            
@@ -27,7 +26,7 @@
             <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>            
             <display:column title="Cantidad a Comprar" class="text-center-all" headerClass="text-center-all">
                 <div class="form-group">
-                    <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad a comprar">
+                    <input min="0" type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad a comprar">
                 </div>
             </display:column>
             <display:column title="Quitar" class="text-center-all" headerClass="text-center-all">

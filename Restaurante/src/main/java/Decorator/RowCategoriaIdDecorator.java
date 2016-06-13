@@ -12,7 +12,7 @@ import org.displaytag.decorator.TableDecorator;
  *
  * @author ang_2
  */
-public class RowDecorator extends TableDecorator {
+public class RowCategoriaIdDecorator extends TableDecorator {
 
     @Override
     public String addRowId() {

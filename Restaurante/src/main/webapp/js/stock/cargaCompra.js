@@ -42,7 +42,7 @@ var ids = [];
             var tr = $(this).detach();
             var id = tr.find('td:last button').attr('id');
             tr.find('td:last').remove();
-            tr.append('<td><input name="cantidad" type="number" class="form-control text-center-all"/></td><td><input name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="' + id + '" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
+            tr.append('<td><input name="cantidad" type="number" min="0" class="form-control text-center-all"/></td><td><input min="0"  name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="' + id + '" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
             $('#row2 tbody').append(tr);
             tr.fadeIn();
             mostrarTabla();
