@@ -9,15 +9,15 @@ public class Mensaje {
 
     private static final String MODIFICADO = "El %s ha sido modificado con éxito.";
     private static final String MODIFICADA = "La %s ha sido modificada con éxito.";
-    private static final String AGREGADO = "El %s ha sido agregado.";
-    private static final String AGREGADA = "La %s ha sido agregada.";
-    private static final String ELIMINADO = "El %s ha sido eliminado.";
-    private static final String ELIMINADA = "La %s ha sido eliminada.";
+    private static final String AGREGADO = "El %s ha sido agregado con éxito.";
+    private static final String AGREGADA = "La %s ha sido agregada con éxito.";
+    private static final String ELIMINADO = "El %s ha sido eliminado con éxito.";
+    private static final String ELIMINADA = "La %s ha sido eliminada con éxito.";
     private static final String ELEXISTE = "El nombre de %s ya está en uso.";
-    private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe eliminarla o desvincularlos para poder eliminar este %s.";
-    private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe eliminarlo o desvincularlos para poder eliminar este %s.";
-    private static final String USADAPORUNA = "La %s está siendo utilizada por alguna %s, debe eliminarla o desvincularlas para poder eliminar esta %s.";
-    private static final String USADAPORUN = "La %s está siendo utilizada por algun %s, debe eliminarlo o desvincularlos para poder eliminar esta %s.";
+    private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe darla de baja o desvincularlos para continuar";
+    private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe darlo de baja o desvincularlos para continuar.";
+    private static final String USADAPORUNA = "La %s está siendo utilizada por alguna %s, debe darla de baja o desvincularlas para continuar.";
+    private static final String USADAPORUN = "La %s está siendo utilizada por algun %s, debe darlo de baja o desvincularlos para continuar.";
     private static final String CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
     private static final String CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
     public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
@@ -76,12 +76,12 @@ public class Mensaje {
     public static final String INGRESEDESCRIPCION = "Ingrese una descripción.";
     public static final String INGRESEFECHA = "Ingrese la fecha en la que ocurrió el evento.";
     public static final String INGRESEPRECIOALGUNACAPACIDAD = "Ingrese algun precio.";
-    public static final String INGRESEPRECIO = "Ingrese un precio.";
+    public static final String INGRESEPRECIO = "No se ha especificado el precio de compra de todos los insumos.";
     public static final String INGRESELACANTIDADACTUAL = "Ingrese la cantidad actual";
     public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
     public static final String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
     public static final String INGRESEDOCUMENTO = "Ingrese un número de documento.";
-    public static final String INGRESECANTIDADCOMPRADA = "Ingrese la cantidad comprada.";
+    public static final String INGRESECANTIDADCOMPRADA = "No se ha especificado la cantidad comprada de todos los insumos.";
 
     public static final String OBLIGATORIO = "Este campo es obligatorio";
 
@@ -115,8 +115,9 @@ public class Mensaje {
     public static final String RECUPERADOINSUMO = "Insumo recuperado.";
     public static final String RECUPERADOUSUARIO = "Usuario recuperado.";
 
-    public static final String COMPRAREGISTRADA = "La compra ha sido registrada.";
+    public static final String COMPRAREGISTRADA = "La compra ha sido registrada con éxito.";
     public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
+    public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
@@ -229,7 +230,7 @@ public class Mensaje {
      * @return El mensaje.
      */
     public static String getUsadoPorUna(String arg, String arg2) {
-        return String.format(USADOPORUNA, arg, arg2, arg);
+        return String.format(USADOPORUNA, arg, arg2);
     }
 
     /**
@@ -242,7 +243,7 @@ public class Mensaje {
      * @return El mensaje.
      */
     public static String getUsadaPorUna(String arg, String arg2) {
-        return String.format(USADAPORUNA, arg, arg2, arg);
+        return String.format(USADAPORUNA, arg, arg2);
     }
 
     /**
@@ -255,7 +256,7 @@ public class Mensaje {
      * @return El mensaje.
      */
     public static String getUsadoPorUn(String arg, String arg2) {
-        return String.format(USADOPORUN, arg, arg2, arg);
+        return String.format(USADOPORUN, arg, arg2);
     }
 
     /**
@@ -268,7 +269,7 @@ public class Mensaje {
      * @return El mensaje.
      */
     public static String getUsadaPorUn(String arg, String arg2) {
-        return String.format(USADAPORUN, arg, arg2, arg);
+        return String.format(USADAPORUN, arg, arg2);
     }
 
     /**

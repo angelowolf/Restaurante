@@ -42,7 +42,6 @@ public class StockAction extends Accion {
 
     public String getListaCompra() {
         lista = controladorInsumo.getTodosStockMinimo();
-        categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
     }
 
@@ -92,11 +91,11 @@ public class StockAction extends Accion {
         if (ids == null || ids.isEmpty()) {
             addActionError(Soporte.Mensaje.SELECCIONEINSUMO);
         } else if (cantidad == null || cantidad.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+            addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
         } else {
             for (Integer integer : cantidad) {
                 if (integer == null) {
-                    addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+                    addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
                     break;
                 }
             }

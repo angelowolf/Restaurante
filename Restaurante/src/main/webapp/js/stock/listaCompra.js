@@ -14,8 +14,7 @@
                 url: "/insumo/postBuscarInsumoAutoComplete",
                 type: "POST",
                 data: {
-                    term: request.term,
-                    idCategoria: $('#categoria').val()
+                    term: request.term
                 },
                 dataType: "json",
                 success: function (data) {

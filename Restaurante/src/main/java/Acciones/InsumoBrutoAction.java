@@ -61,7 +61,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
     public String postBuscarInsumoAutoComplete() {
         listaAC = new ArrayList<>();
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, term, null);
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(-1, term, null);
         for (InsumoBruto insumoBruto : lista) {
             listaAC.add(AutoComplete.generarAC(insumoBruto));
         }

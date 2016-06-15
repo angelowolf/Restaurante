@@ -31,7 +31,7 @@
             <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="text-center-all"/>
             <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
             <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
-            <display:column title="Funciones" class="text-center-all" headerClass="text-center-all">
+            <display:column title="Acciones" class="text-center-all" headerClass="text-center-all">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>

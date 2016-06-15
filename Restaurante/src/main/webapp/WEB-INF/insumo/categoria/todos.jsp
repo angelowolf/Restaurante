@@ -20,7 +20,7 @@
             <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Categorias.</p></display:setProperty>
             <display:column sortable="true" property="nombre" title="Nombre" class="col-md-4 text-center-all" headerClass="text-center-all"/>
             <display:column property="descripcion" title="Descripción" decorator="Decorator.DescripcionDecorator" class="col-md-4 text-center-all" headerClass="text-center-all"/>
-            <display:column title="Funciones" class="col-md-4 text-center-all" headerClass="text-center-all">
+            <display:column title="Acciones" class="col-md-4 text-center-all" headerClass="text-center-all">
                 <div id="botones">
                     <s:hidden name="id" value="%{#attr.row.id}"/>
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
