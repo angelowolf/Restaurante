@@ -105,7 +105,7 @@ public abstract class Insumo {
     }
 
     public void regitrarDescuentoPorVenta(int cantidadARestar) {
-        this.stock.regitrarDescuento(cantidadARestar);
+        this.stock.regitrarDescuento(this, cantidadARestar);
     }
 
     public void registrarReposicion(int cantidadASumar) {
@@ -113,7 +113,7 @@ public abstract class Insumo {
     }
 
     public void registrarAjusteStock(int cantidadAjuste) {
-        this.stock.registrarAjusteStock(cantidadAjuste);
+        this.stock.registrarAjusteStock(this, cantidadAjuste);
     }
 
     @Override

@@ -20,6 +20,7 @@ public class Mensaje {
     private static final String USADAPORUN = "La %s está siendo utilizada por algun %s, debe darlo de baja o desvincularlos para continuar.";
     private static final String CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
     private static final String CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
+    private static final String NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
     public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
     public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
     //************************************************************************//
@@ -292,6 +293,10 @@ public class Mensaje {
      */
     public static String getPreguntaEliminarLa(String arg) {
         return String.format(PREGUNTAELIMINARLA, arg);
+    }
+
+    public static String getNotificacionInsumo(String nombre) {
+        return String.format(NOTIFICACIONINSUMO, nombre);
     }
 
 }//end Mensaje

@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.Implementacion.ControladorNotificacion;
 import java.util.Set;
 import org.joda.time.LocalDate;
 
@@ -59,12 +60,14 @@ public class Stock {
      * registra un descuento al stock del insumo y genera un detalle en el
      * historial.
      *
+     * @param insumo
      * @param cantidadARestar cantidad positiva.
      */
-    public void regitrarDescuento(int cantidadARestar) {
+    public void regitrarDescuento(Insumo insumo, int cantidadARestar) {
         DetalleStock venta = new DetalleStock(Math.negateExact(cantidadARestar), LocalDate.now(), TipoMovimiento.Venta);
         this.detalleStocks.add(venta);
         this.cantidadActual -= cantidadARestar;
+        this.verificarStockBajo(insumo);
     }
 
     /**
@@ -83,11 +86,23 @@ public class Stock {
      * registra un ajuste al stock del insumo y genera un detalle en el
      * historial.
      *
+     * @param insumo
      * @param cantidadAjuste positivo o negativo segun sea el ajuste.
      */
-    public void registrarAjusteStock(int cantidadAjuste) {
+    public void registrarAjusteStock(Insumo insumo, int cantidadAjuste) {
         DetalleStock ajuste = new DetalleStock(cantidadAjuste, LocalDate.now(), TipoMovimiento.Ajuste);
         this.detalleStocks.add(ajuste);
         this.cantidadActual = cantidadAjuste;
+        this.verificarStockBajo(insumo);
+    }
+
+    /**
+     * verifica si el stock actual esta debajo del minimo, si es el caso enviara
+     * una notificacion a los responsables de stock.
+     */
+    private void verificarStockBajo(Insumo insumo) {
+        if (this.cantidadActual - this.cantidadMinima <= 0) {
+            ControladorNotificacion.getControlador().notificarInsumoDebajoDelMinimo(insumo);
+        }
     }
 }

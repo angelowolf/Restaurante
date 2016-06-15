@@ -10,7 +10,7 @@
     <constant name="struts.custom.i18n.resources" value="struts-mensajes" />
     <!--quitar action de url-->
     <constant name="struts.action.extension" value="," />
-    <constant name="struts.action.excludePattern" value="/js/.*,/css/.*,/imagenes/.*" />
+    <constant name="struts.action.excludePattern" value="/js/.*,/css/.*,/imagenes/.*,/wsnotificacion" />
     <constant name="struts.ui.theme" value="simple" /> 
         
     <include file="Struts2/XML/struts-modal.xml"></include>

@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Notificacion.ISesion;
+import Notificacion.Mensaje;
 import Soporte.Encriptar;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.Set;
@@ -25,6 +27,8 @@ public class Usuario {
     private Set<Rol> roles;
     private String preguntaSecreta, respuestaSecreta;
 
+    private ISesion sesion;
+
     public Usuario() {
     }
 
@@ -43,6 +47,14 @@ public class Usuario {
         this.nick = nick;
         this.clave = clave;
         this.roles = rol;
+    }
+
+    public ISesion getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(ISesion sesion) {
+        this.sesion = sesion;
     }
 
     public LocalDate getFechaNacimiento() {
@@ -266,6 +278,23 @@ public class Usuario {
 
     public boolean esPrimerLogin() {
         return StringUtils.isBlank(this.getPreguntaSecreta());
+    }
+
+    /**
+     * Le manda un mensaje al usuario del tipo OK, indicandole que logeo con
+     * exito.
+     */
+    public void exitoAlLogear() {
+        sesion.exitoAlLogear(this);
+    }
+
+    /**
+     * Le manda un mensaje al usuario del tipo NOTIFICACION.
+     *
+     * @param mensaje
+     */
+    public void mandarMensaje(Mensaje mensaje) {
+        sesion.mandarMensaje(mensaje);
     }
 
 }

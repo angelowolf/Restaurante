@@ -28,6 +28,7 @@
             <add-attribute value="/../js/vendor/jquery-ui.min.js" />
             <add-attribute value="/../js/admin.js" />
             <add-attribute value="/../js/vendor/bootstrap-notify.min.js" />
+            <add-attribute value="/../js/notificacion.js" />
         </put-list-attribute>
     </definition>
     <!--FIN MASTER PAGE-->
