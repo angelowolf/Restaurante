@@ -29,19 +29,22 @@ public class NotificacionEndPoint {
 
     @OnOpen
     public void onOpen(final Session session) {
-        LOGGER.info("conexion abierta");
+        LOGGER.info("*******************ABRIENDO SESSION**************************");
+        LOGGER.info("*******************conexion abierta**************************");
     }
 
     @OnClose
     public void onClose(Session session) {
         int idUsuario = (int) session.getUserProperties().get("idUsuario");
-        ch.quitarUsuario(idUsuario);
-        LOGGER.info("conexion cerrada para usuario: " + idUsuario);
+        String key = (String) session.getUserProperties().get("key");
+        ch.quitarUsuario(idUsuario, key);
+        LOGGER.info("********************************CERRANDO SESION*************************************");
+        LOGGER.info("********conexion cerrada para usuario: " + idUsuario + " sesion key: " + key + "***********");
     }
 
     @OnMessage
     public void onMessage(final Session session, String msg) throws IOException {
-        LOGGER.info("intentando logear con: " + msg);
+        LOGGER.info("intentando logear con: " + msg + "key: " + session.getId());
         SesionWeb sesion = new SesionWeb(session);
         try {
             JSONObject objetoJSON = new JSONObject(msg);

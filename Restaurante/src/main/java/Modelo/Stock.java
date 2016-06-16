@@ -6,7 +6,6 @@
 package Modelo;
 
 import Controlador.Implementacion.ControladorNotificacion;
-import Notificacion.WSControlador;
 import java.util.Set;
 import org.joda.time.LocalDate;
 
@@ -102,9 +101,9 @@ public class Stock {
      * una notificacion a los responsables de stock.
      */
     private void verificarStockBajo(Insumo insumo) {
-        LOGGER.info("verificar stock");
+        LOGGER.info("Verificando Cantidad en Stock");
         if (this.cantidadActual - this.cantidadMinima <= 0) {
-            LOGGER.info("verificado mandando notificacion");
+            LOGGER.info("Cantidad Verificada, Debajo del Minimo");
             ControladorNotificacion.getControlador().notificarInsumoDebajoDelMinimo(insumo);
         }
     }

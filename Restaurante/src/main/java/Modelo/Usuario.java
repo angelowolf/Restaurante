@@ -6,9 +6,10 @@
 package Modelo;
 
 import Notificacion.ISesion;
-import Notificacion.Mensaje;
 import Soporte.Encriptar;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
@@ -28,7 +29,7 @@ public class Usuario {
     private Set<Rol> roles;
     private String preguntaSecreta, respuestaSecreta;
 
-    private ISesion sesion;
+    private HashMap<String, ISesion> sesiones = new HashMap<>();
 
     public Usuario() {
     }
@@ -50,6 +51,16 @@ public class Usuario {
         this.roles = rol;
     }
 
+    public void agregarSesion(ISesion sesion) {
+        LOGGER.info("Agregando sesion al hash de sesiones. key: " + sesion.getKey());
+        LOGGER.info("****************FIN LOGIN*******************************");
+        this.sesiones.put(sesion.getKey(), sesion);
+    }
+
+    public void quitarSesion(String key) {
+        this.sesiones.remove(key);
+    }
+
     public String getfAlta() {
         if (null == fechaAlta) {
             return null;
@@ -69,15 +80,6 @@ public class Usuario {
             return null;
         }
         return fechaNacimiento.toString(Soporte.Mensaje.FECHAJSON);
-    }
-
-    @JSON(serialize = false)
-    public ISesion getSesion() {
-        return sesion;
-    }
-
-    public void setSesion(ISesion sesion) {
-        this.sesion = sesion;
     }
 
     @JSON(serialize = false)
@@ -309,18 +311,25 @@ public class Usuario {
     /**
      * Le manda un mensaje al usuario del tipo OK, indicandole que logeo con
      * exito.
+     *
+     * @param key el numero de sesion al que se le notificara
      */
-    public void exitoAlLogear() {
-        sesion.exitoAlLogear(this);
+    public void exitoAlLogear(String key) {
+        sesiones.get(key).exitoAlLogear(this);
     }
 
     /**
-     * Le manda un mensaje al usuario del tipo NOTIFICACION.
+     * Le manda un mensaje al usuario del tipo NOTIFICACION en todas las
+     * sesiones abiertas que tenga
      *
-     * @param mensaje
+     * @param notificacion
      */
-    public void mandarMensaje(Mensaje mensaje) {
-        sesion.mandarMensaje(mensaje);
+    public void mandarMensaje(Notificacion notificacion) {
+        for (Map.Entry<String, ISesion> entry : sesiones.entrySet()) {
+            LOGGER.info("Buscando sesion activa para mandar notificacion key: " + entry.getKey() + " idUsuario: " + this.id);
+            ISesion value = entry.getValue();
+            value.mandarMensaje(notificacion);
+        }
     }
-
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Usuario.class);
 }

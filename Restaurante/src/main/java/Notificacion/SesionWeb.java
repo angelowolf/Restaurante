@@ -5,15 +5,13 @@
  */
 package Notificacion;
 
+import Modelo.Notificacion;
 import Modelo.Usuario;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.websocket.CloseReason;
 import javax.websocket.Session;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -22,25 +20,28 @@ import org.json.JSONObject;
  */
 public class SesionWeb implements ISesion {
 
-    Session sesion;
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(SesionWeb.class);
+    private final Session sesion;
+    private String key;
 
     public SesionWeb(Session session) {
         this.sesion = session;
-
+        key = session.getId();
     }
 
     @Override
-    public void mandarMensaje(Mensaje mensaje) {
+    public void mandarMensaje(Notificacion notificacion) {
         try {
             if (sesion.isOpen()) {
                 JSONObject json = new JSONObject();
-                json.append("mensaje", mensaje.getMensaje());
-                json.append("fecha", mensaje.getFecha().toString("dd-MM-yyyy"));
+                json.append("mensaje", notificacion.getMensaje());
+                json.append("fecha", notificacion.getFecha().toString("dd-MM-yyyy"));
                 json.append("tipo", TipoMensaje.NOTIFICACION);
                 sesion.getBasicRemote().sendText(json.toString());
+                LOGGER.info("Notificacion mandada con exito.");
             }
         } catch (IOException ex) {
-            Logger.getLogger(SesionWeb.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error("Error al mandar notificacion.", ex);
         }
     }
 
@@ -49,13 +50,13 @@ public class SesionWeb implements ISesion {
         try {
             if (sesion.isOpen()) {
                 sesion.getUserProperties().put("idUsuario", usuario.getId());
+                sesion.getUserProperties().put("key", sesion.getId());
                 JSONObject objetoJSON = new JSONObject();
                 objetoJSON.append("tipo", "OK");
-                System.out.println(usuario.toString());
                 sesion.getBasicRemote().sendText(objetoJSON.toString());
             }
         } catch (IOException ex) {
-            Logger.getLogger(SesionWeb.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error("Error al mandar notificacion.", ex);
         }
     }
 
@@ -68,8 +69,18 @@ public class SesionWeb implements ISesion {
             sesion.getBasicRemote().sendText(o.toString());
             sesion.close(new CloseReason(CloseReason.CloseCodes.VIOLATED_POLICY, "Algo salio muy mal... o no tan mal(como login mal viste..)"));
         } catch (IOException ex) {
-            Logger.getLogger(NotificacionEndPoint.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error("Error al mandar notificacion.", ex);
         }
+    }
+
+    @Override
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public String getKey() {
+        return key;
     }
 
 }

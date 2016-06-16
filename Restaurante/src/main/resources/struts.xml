@@ -21,6 +21,7 @@
     <include file="Struts2/XML/struts-categoriaInsumo.xml"></include>
     <include file="Struts2/XML/struts-insumo.xml"></include>
     <include file="Struts2/XML/struts-stock.xml"></include>
+     <include file="Struts2/XML/struts-notificacion.xml"></include>
     
     <package name="default" extends="struts-default">
         <result-types>
