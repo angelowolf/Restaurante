@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import Controlador.Interface.IControladorInsumoBruto;
 import Soporte.AutoComplete;
+import static Soporte.Mensaje.RECUPERADOINSUMO;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
@@ -148,13 +149,13 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
     public String eliminar() {
         controladorInsumo.eliminar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.getEliminado(Mensaje.INSUMO));
+        sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.INSUMO));
         return SUCCESS;
     }
 
     public String recuperar() {
         controladorInsumo.recuperar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.RECUPERADOINSUMO);
+        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(RECUPERADOINSUMO));
         return SUCCESS;
     }
 

@@ -7,12 +7,17 @@ package Soporte;
  */
 public class Mensaje {
 
+    public static final String FECHAJSON = "dd/MM/yyyy";
+
     private static final String MODIFICADO = "El %s ha sido modificado con éxito.";
     private static final String MODIFICADA = "La %s ha sido modificada con éxito.";
+    private static final String RECUPERADO = "El %s ha sido recuperado con éxito.";
+    private static final String RECUPERADA = "La %s ha sido recuperada con éxito.";
     private static final String AGREGADO = "El %s ha sido agregado con éxito.";
     private static final String AGREGADA = "La %s ha sido agregada con éxito.";
     private static final String ELIMINADO = "El %s ha sido eliminado con éxito.";
     private static final String ELIMINADA = "La %s ha sido eliminada con éxito.";
+    private static final String BAJA = "La %s ha sido dado de baja con éxito.";
     private static final String ELEXISTE = "El nombre de %s ya está en uso.";
     private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe darla de baja o desvincularlos para continuar";
     private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe darlo de baja o desvincularlos para continuar.";
@@ -20,6 +25,7 @@ public class Mensaje {
     private static final String USADAPORUN = "La %s está siendo utilizada por algun %s, debe darlo de baja o desvincularlos para continuar.";
     private static final String CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
     private static final String CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
+    private static final String NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
     public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
     public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
     //************************************************************************//
@@ -292,6 +298,40 @@ public class Mensaje {
      */
     public static String getPreguntaEliminarLa(String arg) {
         return String.format(PREGUNTAELIMINARLA, arg);
+    }
+
+    public static String getNotificacionInsumo(String nombre) {
+        return String.format(NOTIFICACIONINSUMO, nombre);
+    }
+
+    /**
+     * Crea un mensaje: "La %s ha sido dado de baja con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getBaja(String arg) {
+        return String.format(BAJA, arg);
+    }
+
+    /**
+     * Crea un mensaje: "El %s ha sido recuperado con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getRecuperado(String arg) {
+        return String.format(RECUPERADO, arg);
+    }
+
+    /**
+     * Crea un mensaje: "La %s ha recuperada con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getRecuperada(String arg) {
+        return String.format(RECUPERADA, arg);
     }
 
 }//end Mensaje

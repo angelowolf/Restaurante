@@ -5,11 +5,14 @@
  */
 package Modelo;
 
+import Notificacion.ISesion;
+import Notificacion.Mensaje;
 import Soporte.Encriptar;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
+import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
 
 /**
@@ -19,11 +22,13 @@ import org.joda.time.LocalDate;
 public class Usuario {
 
     private int id;
-    private String nombre, apellido, nick, clave, clave2, claveOriginal, telefono, direccion;
+    private String nombre, apellido, nick, clave, clave2, claveOriginal, telefono, direccion, fAlta, fBaja, fNacimiento;
     private long documento;
     private LocalDate fechaAlta, fechaBaja, fechaNacimiento;
     private Set<Rol> roles;
     private String preguntaSecreta, respuestaSecreta;
+
+    private ISesion sesion;
 
     public Usuario() {
     }
@@ -45,6 +50,37 @@ public class Usuario {
         this.roles = rol;
     }
 
+    public String getfAlta() {
+        if (null == fechaAlta) {
+            return null;
+        }
+        return fechaAlta.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    public String getfBaja() {
+        if (null == fechaBaja) {
+            return null;
+        }
+        return fechaBaja.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    public String getfNacimiento() {
+        if (null == fechaNacimiento) {
+            return null;
+        }
+        return fechaNacimiento.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    @JSON(serialize = false)
+    public ISesion getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(ISesion sesion) {
+        this.sesion = sesion;
+    }
+
+    @JSON(serialize = false)
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -96,6 +132,7 @@ public class Usuario {
         this.documento = documento;
     }
 
+    @JSON(serialize = false)
     public LocalDate getFechaAlta() {
         return fechaAlta;
     }
@@ -104,6 +141,7 @@ public class Usuario {
         this.fechaAlta = fechaAlta;
     }
 
+    @JSON(serialize = false)
     public LocalDate getFechaBaja() {
         return fechaBaja;
     }
@@ -266,6 +304,23 @@ public class Usuario {
 
     public boolean esPrimerLogin() {
         return StringUtils.isBlank(this.getPreguntaSecreta());
+    }
+
+    /**
+     * Le manda un mensaje al usuario del tipo OK, indicandole que logeo con
+     * exito.
+     */
+    public void exitoAlLogear() {
+        sesion.exitoAlLogear(this);
+    }
+
+    /**
+     * Le manda un mensaje al usuario del tipo NOTIFICACION.
+     *
+     * @param mensaje
+     */
+    public void mandarMensaje(Mensaje mensaje) {
+        sesion.mandarMensaje(mensaje);
     }
 
 }

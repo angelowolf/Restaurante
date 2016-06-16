@@ -79,19 +79,19 @@
                 $modal.find('#documento').val(response.model.documento);
                 $modal.find('#telefono').val(response.model.telefono);
                 $modal.find('#direccion').val(response.model.direccion);
-                if (response.model.fechaNacimiento !== null) {
-                    $modal.find('#fechaNacimiento').val(convertirFechaDeJODAAString(response.model.fechaNacimiento));
+                if (response.model.fNacimiento !== null) {
+                    $modal.find('#fechaNacimiento').val(response.model.fNacimiento);
                 }
-                if (response.model.fechaAlta !== null) {
-                    $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
+                if (response.model.fAlta !== null) {
+                    $modal.find('#fechaAlta').val(response.model.fAlta);
                 }
-                if (response.model.fechaBaja !== null) {
-                    $modal.find('#fechaBaja').val(convertirFechaDeJODAAString(response.model.fechaBaja));
+                if (response.model.fBaja !== null) {
+                    $modal.find('#fechaBaja').val(response.model.fBaja);
                 }
                 $modal.find('#nick').val(response.model.nick);
                 $('#roles-ver ul').empty();
-                for (var rol in response.model.roles) {
-                    $('#roles-ver ul').append('<li>' + response.model.roles[rol] + '</li>');
+                for (var i = 0; i < response.model.roles.length; i++) {
+                    $('#roles-ver ul').append('<li>' + response.model.roles[i] + '</li>');
                 }
                 $modal.find('#rol').val(response.model.rol);
             } else {
@@ -117,13 +117,13 @@
                 $modal.find('#documento').val(response.model.documento);
                 $modal.find('#telefono').val(response.model.telefono);
                 $modal.find('#direccion').val(response.model.direccion);
-                if (response.model.fechaNacimiento != null) {
-                    $modal.find('#fechaNacimiento').val(convertirFechaDeJODAAString(response.model.fechaNacimiento));
+                if (response.model.fNacimiento != null) {
+                    $modal.find('#fechaNacimiento').val(response.model.fNacimiento);
                 }
-                $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
+                $modal.find('#fechaAlta').val(response.model.fAlta);
                 $modal.find('#nick').val(response.model.nick);
-                for (var rol in response.model.roles) {
-                    $modal.find('#rol' + response.model.roles[rol]).prop('checked', true);
+                for (var i = 0; i < response.model.roles.length; i++) {
+                    $modal.find('#rol' + response.model.roles[i]).prop('checked', true);
                 }
                 $modal.find('#rol').val(response.model.rol);
             } else {

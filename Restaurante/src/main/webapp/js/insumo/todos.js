@@ -54,11 +54,11 @@
                 $modal.find('#precioUnidad').val(response.model.precioUnidad);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
                 $modal.find('#cantidadActual').val(response.model.stock.cantidadActual);
-                if (response.model.fechaAlta !== null) {
-                    $modal.find('#fechaAlta').val(convertirFechaDeJODAAString(response.model.fechaAlta));
+                if (response.model.fAlta !== null) {
+                    $modal.find('#fechaAlta').val(response.model.fAlta);
                 }
-                if (response.model.fechaBaja !== null) {
-                    $modal.find('#fechaBaja').val(convertirFechaDeJODAAString(response.model.fechaBaja));
+                if (response.model.fBaja !== null) {
+                    $modal.find('#fechaBaja').val(response.model.fBaja);
                 }
                 $modal.find('#unidadMedida').val(response.model.unidadMedida);
                 $modal.find('#categoria').val(response.model.categoriaInsumo.nombre);
