@@ -7,11 +7,13 @@ package Controlador.Implementacion;
 
 import Controlador.Interface.IControladorUsuario;
 import Modelo.Insumo;
+import Modelo.Notificacion;
+import Modelo.NotificacionStock;
 import Modelo.Rol;
-import Modelo.Stock;
 import Modelo.Usuario;
 import Notificacion.WSControlador;
-import Soporte.Mensaje;
+import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
+import Persistencia.ORM.DAOInterface.INotificacion;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
@@ -24,6 +26,7 @@ public class ControladorNotificacion {
 
     private static ControladorNotificacion instancia = null;
     private final IControladorUsuario controladorUsuario;
+    private final INotificacion DAONotificacion = new NotificacionDAO();
 
     /**
      * Crea una instancia de este controlador.
@@ -51,12 +54,57 @@ public class ControladorNotificacion {
         List<Rol> rolStock = new ArrayList<>();
         rolStock.add(Rol.Stock);
         List<Usuario> usuariosStock = controladorUsuario.buscar(null, null, rolStock);
-        Notificacion.Mensaje mensaje = new Notificacion.Mensaje(Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate());
         for (Usuario cadaUsuario : usuariosStock) {
-            LOGGER.info("Notificando para usuario: " + cadaUsuario.getId());
-            WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), mensaje);
-            //crear objeto notificacion y guardarlo para cada uno de estos usuarios
+            if (DAONotificacion.getNotificacionStock(cadaUsuario.getId(), insumo.getId()) == null) {
+                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate(), cadaUsuario, false);
+                LOGGER.info("Guardando notificacion para usuario: " + cadaUsuario.getId());
+                DAONotificacion.guardar(notificacionStock);
+                WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), notificacionStock);
+            } else {
+                LOGGER.info("El usuario " + cadaUsuario.getId() + " ya posee notificacion.Se cancela el envio y guardado.");
+            }
         }
+    }
+
+    /**
+     * Busca todas las notificaciones de un usuario.
+     *
+     * @param idUsuario
+     * @return
+     */
+    public List<Notificacion> buscar(int idUsuario) {
+        return DAONotificacion.getTodos(idUsuario);
+    }
+
+    /**
+     * Busca todas las notificaciones de insumos que seran mostradas en un
+     * panel.
+     *
+     * @param idUsuario
+     * @return
+     */
+    public List<Notificacion> buscarInsumo(int idUsuario) {
+        return DAONotificacion.getTodosStock(idUsuario, 5);
+    }
+
+    /**
+     * Elimina una notificacion de la BD.
+     *
+     * @param notificacion
+     */
+    public void eliminar(Notificacion notificacion) {
+        DAONotificacion.eliminar(notificacion);
+    }
+
+    /**
+     * Actualiza una notificacion como vista en la BD.
+     *
+     * @param notificacion
+     */
+    public void marcarComoVisto(Notificacion notificacion) {
+        Notificacion nBD = DAONotificacion.buscar(notificacion.getId());
+        nBD.setVisto(true);
+        DAONotificacion.actualizar(nBD);
     }
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
 }

@@ -49,6 +49,8 @@ public class Mensaje {
     public static final String INSUMO = "Insumo";
     public static final String CATEGORIAINSUMO = "Categoría de Insumo";
     public static final String PAGO = "Pago";
+    public static final String NOTFICACION = "Notificacion";
+
     //************************************************************************//
     public static final String TIPOSUCCESS = "success";
     public static final String TIPOINFO = "info";
@@ -124,6 +126,7 @@ public class Mensaje {
     public static final String COMPRAREGISTRADA = "La compra ha sido registrada con éxito.";
     public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
     public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
+    public static final String NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

@@ -1,4 +1,5 @@
 var wsocket;
+//var serviceLocation = "ws://restaurante-angelowolf.rhcloud.com:8000/wsnotificacion";
 var serviceLocation = "ws://localhost:8080/wsnotificacion";
 var idUsuario = 1;
 var $clave;

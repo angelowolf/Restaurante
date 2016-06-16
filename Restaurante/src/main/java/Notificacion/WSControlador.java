@@ -7,6 +7,7 @@ package Notificacion;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
+import Modelo.Notificacion;
 import Modelo.Usuario;
 import Persistencia.ORM.Util.HibernateUtil;
 import java.util.HashMap;
@@ -35,11 +36,19 @@ public class WSControlador {
         try {
             sf = HibernateUtil.getSESSIONFACTORY();
             sf.getCurrentSession().beginTransaction();
-            IControladorUsuario controladorUsuario = new ControladorUsuario();
-            Usuario usuarioBD = controladorUsuario.getUsuario(idUsuario);
-            usuarioBD.setSesion(sesion);
-            usuariosConectados.put(idUsuario, usuarioBD);
-            usuarioBD.exitoAlLogear();
+            Usuario u;
+            if (usuariosConectados.containsKey(idUsuario)) {
+                LOGGER.info("El usuario ya posee una sesion. Creando otra.");
+                u = usuariosConectados.get(idUsuario);
+                u.agregarSesion(sesion);
+            } else {
+                LOGGER.info("Creando sesion.");
+                IControladorUsuario controladorUsuario = new ControladorUsuario();
+                u = controladorUsuario.getUsuario(idUsuario);
+                u.agregarSesion(sesion);
+                usuariosConectados.put(idUsuario, u);
+            }
+            u.exitoAlLogear(sesion.getKey());
         } catch (Exception e) {
             sesion.notificarError("Se produjo un error al intentar logear el usuario con el websocket.");
             LOGGER.error("Error al iniciar sesion WebSocket", e);
@@ -53,13 +62,14 @@ public class WSControlador {
     }
 
     /**
-     * Quita al usuario de los usuarios conectados.
+     * Quita de los usuarios conectados esa sesion(key).
      *
      * @param idUsuario
+     * @param key
      */
-    public synchronized void quitarUsuario(int idUsuario) {
+    public synchronized void quitarUsuario(int idUsuario, String key) {
         if (usuariosConectados.containsKey(idUsuario)) {
-            usuariosConectados.remove(idUsuario);
+            usuariosConectados.get(idUsuario).quitarSesion(key);
         }
     }
 
@@ -68,13 +78,13 @@ public class WSControlador {
      * lo esta le envia el mensaje.
      *
      * @param idUsuarioDestino
-     * @param mensaje
+     * @param notificacion
      */
-    public synchronized void mandarNotificacion(int idUsuarioDestino, Mensaje mensaje) {
+    public synchronized void mandarNotificacion(int idUsuarioDestino, Notificacion notificacion) {
         if (usuariosConectados.containsKey(idUsuarioDestino)) {
-            LOGGER.info("Mandando notificacion");
-            usuariosConectados.get(idUsuarioDestino).mandarMensaje(mensaje);
-        }else{
+            LOGGER.info("Notificando para usuario: " + idUsuarioDestino);
+            usuariosConectados.get(idUsuarioDestino).mandarMensaje(notificacion);
+        } else {
             LOGGER.info("El usuario no esta logeado" + idUsuarioDestino);
         }
     }

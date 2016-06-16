@@ -5,8 +5,8 @@
  */
 package Notificacion;
 
+import Modelo.Notificacion;
 import Modelo.Usuario;
-import java.util.HashMap;
 
 /**
  *
@@ -15,11 +15,25 @@ import java.util.HashMap;
 public interface ISesion {
 
     /**
+     * Setea la key de esta sesion
+     *
+     * @param key
+     */
+    public void setKey(String key);
+
+    /**
+     * Devuelve la key de esta sesion.
+     *
+     * @return
+     */
+    public String getKey();
+
+    /**
      * Le manda un mensaje al usuario que representa una notificacion.
      *
-     * @param mensaje
+     * @param notificacion
      */
-    public void mandarMensaje(Mensaje mensaje);
+    public void mandarMensaje(Notificacion notificacion);
 
     /**
      * Manda un mensaje al usuario indicandole que pudo logear con exito.

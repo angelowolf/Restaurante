@@ -6,7 +6,6 @@
 package Persistencia.ORM.DAOImplementacion;
 
 import java.util.List;
-import Modelo.Insumo;
 import Modelo.InsumoBruto;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
