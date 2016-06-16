@@ -72,7 +72,10 @@ public class WSControlador {
      */
     public synchronized void mandarNotificacion(int idUsuarioDestino, Mensaje mensaje) {
         if (usuariosConectados.containsKey(idUsuarioDestino)) {
+            LOGGER.info("Mandando notificacion");
             usuariosConectados.get(idUsuarioDestino).mandarMensaje(mensaje);
+        }else{
+            LOGGER.info("El usuario no esta logeado" + idUsuarioDestino);
         }
     }
 

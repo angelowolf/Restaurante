@@ -27,7 +27,7 @@ function mensajeRecibido(evt) {
                 console.log(mensaje.mensaje);
                 var panelNotificaciones = $('#panel-notificaciones');
                 var not = "<li><a href='#'><div><i class='fa fa-bell fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li><li class='divider'></li>";
-                panelNotificaciones.append(not);
+                panelNotificaciones.prepend(not);
             }
             break;
         case 'ERROR':

@@ -7,12 +7,17 @@ package Soporte;
  */
 public class Mensaje {
 
+    public static final String FECHAJSON = "dd/MM/yyyy";
+
     private static final String MODIFICADO = "El %s ha sido modificado con éxito.";
     private static final String MODIFICADA = "La %s ha sido modificada con éxito.";
+    private static final String RECUPERADO = "El %s ha sido recuperado con éxito.";
+    private static final String RECUPERADA = "La %s ha sido recuperada con éxito.";
     private static final String AGREGADO = "El %s ha sido agregado con éxito.";
     private static final String AGREGADA = "La %s ha sido agregada con éxito.";
     private static final String ELIMINADO = "El %s ha sido eliminado con éxito.";
     private static final String ELIMINADA = "La %s ha sido eliminada con éxito.";
+    private static final String BAJA = "La %s ha sido dado de baja con éxito.";
     private static final String ELEXISTE = "El nombre de %s ya está en uso.";
     private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe darla de baja o desvincularlos para continuar";
     private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe darlo de baja o desvincularlos para continuar.";
@@ -297,6 +302,36 @@ public class Mensaje {
 
     public static String getNotificacionInsumo(String nombre) {
         return String.format(NOTIFICACIONINSUMO, nombre);
+    }
+
+    /**
+     * Crea un mensaje: "La %s ha sido dado de baja con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getBaja(String arg) {
+        return String.format(BAJA, arg);
+    }
+
+    /**
+     * Crea un mensaje: "El %s ha sido recuperado con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getRecuperado(String arg) {
+        return String.format(RECUPERADO, arg);
+    }
+
+    /**
+     * Crea un mensaje: "La %s ha recuperada con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getRecuperada(String arg) {
+        return String.format(RECUPERADA, arg);
     }
 
 }//end Mensaje

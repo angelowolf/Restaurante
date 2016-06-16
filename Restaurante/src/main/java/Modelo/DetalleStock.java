@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
 
 /**
@@ -16,6 +17,7 @@ public class DetalleStock {
     private int id, cantidad;
     private LocalDate fecha;
     private TipoMovimiento tipoMovimiento;
+    private String f;
 
     public DetalleStock() {
     }
@@ -42,6 +44,14 @@ public class DetalleStock {
         this.cantidad = cantidad;
     }
 
+    public String getF() {
+      if (null == fecha) {
+            return null;
+        }
+        return fecha.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    @JSON(serialize = false)
     public LocalDate getFecha() {
         return fecha;
     }

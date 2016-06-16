@@ -53,8 +53,10 @@ public class ControladorNotificacion {
         List<Usuario> usuariosStock = controladorUsuario.buscar(null, null, rolStock);
         Notificacion.Mensaje mensaje = new Notificacion.Mensaje(Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate());
         for (Usuario cadaUsuario : usuariosStock) {
+            LOGGER.info("Notificando para usuario: " + cadaUsuario.getId());
             WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), mensaje);
             //crear objeto notificacion y guardarlo para cada uno de estos usuarios
         }
     }
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
 }

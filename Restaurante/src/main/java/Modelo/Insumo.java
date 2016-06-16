@@ -6,6 +6,7 @@
 package Modelo;
 
 import org.apache.commons.lang.WordUtils;
+import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
 
 /**
@@ -17,7 +18,7 @@ public abstract class Insumo {
     protected int id;
     protected CategoriaInsumo categoriaInsumo;
     protected LocalDate fechaAlta, fechaBaja;
-    protected String nombre;
+    protected String nombre, fAlta, fBaja;
     protected Stock stock;
     protected UnidadMedida unidadMedida;
 
@@ -33,6 +34,21 @@ public abstract class Insumo {
         this.unidadMedida = unidadMedida;
     }
 
+    public String getfAlta() {
+        if (null == fechaAlta) {
+            return null;
+        }
+        return fechaAlta.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    public String getfBaja() {
+        if (null == fechaBaja) {
+            return null;
+        }
+        return fechaBaja.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    @JSON(serialize = false)
     public LocalDate getFechaBaja() {
         return fechaBaja;
     }
@@ -73,6 +89,7 @@ public abstract class Insumo {
         this.stock = stock;
     }
 
+    @JSON(serialize = false)
     public LocalDate getFechaAlta() {
         return fechaAlta;
     }
