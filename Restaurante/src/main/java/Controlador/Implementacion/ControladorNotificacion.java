@@ -11,6 +11,7 @@ import Modelo.Notificacion;
 import Modelo.NotificacionStock;
 import Modelo.Rol;
 import Modelo.Usuario;
+import Notificacion.TipoMensaje;
 import Notificacion.WSControlador;
 import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
 import Persistencia.ORM.DAOInterface.INotificacion;
@@ -56,7 +57,7 @@ public class ControladorNotificacion {
         List<Usuario> usuariosStock = controladorUsuario.buscar(null, null, rolStock);
         for (Usuario cadaUsuario : usuariosStock) {
             if (DAONotificacion.getNotificacionStock(cadaUsuario.getId(), insumo.getId()) == null) {
-                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate(), cadaUsuario, false);
+                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate(), cadaUsuario, false, TipoMensaje.NOTIFICACION_STOCK);
                 LOGGER.info("Guardando notificacion para usuario: " + cadaUsuario.getId());
                 DAONotificacion.guardar(notificacionStock);
                 WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), notificacionStock);

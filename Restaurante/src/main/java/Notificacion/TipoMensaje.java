@@ -10,5 +10,5 @@ package Notificacion;
  * @author ang_2
  */
 public enum TipoMensaje {
-    LOGIN, NOTIFICACION, ERROR;
+    LOGIN, NOTIFICACION_STOCK, ERROR;
 }

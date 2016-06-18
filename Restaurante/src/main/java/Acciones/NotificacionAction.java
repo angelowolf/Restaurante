@@ -20,6 +20,7 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     private Notificacion notificacion;
     private final Controlador.Implementacion.ControladorNotificacion controladorNotificacion = ControladorNotificacion.getControlador();
     private List<Notificacion> lista;
+    private int cantidad = 0;
 
     public NotificacionAction() {
         notificacion = new Notificacion();
@@ -33,6 +34,11 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
 
     public String panel() {
         lista = controladorNotificacion.buscarInsumo((int) sesion.get("idUsuario"));
+        for (Notificacion n : lista) {
+            if (!n.isVisto()) {
+                cantidad ++;
+            }
+        }
         return SUCCESS;
     }
 
@@ -64,6 +70,10 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
 
     public List<Notificacion> getLista() {
         return lista;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
 }

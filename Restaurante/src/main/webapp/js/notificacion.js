@@ -23,12 +23,18 @@ function mensajeRecibido(evt) {
                 console.log("logeado con exito.");
             }
             break;
-        case 'NOTIFICACION':
+        case 'NOTIFICACION_STOCK':
             {
-                console.log(mensaje.mensaje);
                 var panelNotificaciones = $('#panel-notificaciones');
                 var not = "<li><a href='#'><div><i class='fa fa-bell fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li><li class='divider'></li>";
                 panelNotificaciones.prepend(not);
+                var badgeCantidad = $('#panel-notificaciones-cantidad');
+                var cnt = 1;
+                if (badgeCantidad.text().length !== 0) {
+                    cnt = parseInt(badgeCantidad.text());
+                    cnt++;
+                }
+                badgeCantidad.text(cnt);
             }
             break;
         case 'ERROR':

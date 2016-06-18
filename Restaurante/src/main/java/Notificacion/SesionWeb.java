@@ -6,10 +6,9 @@
 package Notificacion;
 
 import Modelo.Notificacion;
+import Modelo.NotificacionStock;
 import Modelo.Usuario;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.websocket.CloseReason;
 import javax.websocket.Session;
 import org.json.JSONObject;
@@ -34,9 +33,20 @@ public class SesionWeb implements ISesion {
         try {
             if (sesion.isOpen()) {
                 JSONObject json = new JSONObject();
+                json.append("tipo", notificacion.getTipoMensaje());
                 json.append("mensaje", notificacion.getMensaje());
-                json.append("fecha", notificacion.getFecha().toString("dd-MM-yyyy"));
-                json.append("tipo", TipoMensaje.NOTIFICACION);
+                json.append("fecha", notificacion.getFecha().toString(Soporte.Mensaje.FECHAJSON));
+                switch (notificacion.getTipoMensaje()) {
+                    case NOTIFICACION_STOCK: {
+                        NotificacionStock ns = (NotificacionStock) notificacion;
+                        json.append("id_insumo", ns.getInsumo().getId());
+                    }
+                    break;
+                    default: {
+                        this.notificarError("Le falta el tipo de notificacion a esta notificacion.");
+                    }
+                    break;
+                }
                 sesion.getBasicRemote().sendText(json.toString());
                 LOGGER.info("Notificacion mandada con exito.");
             }

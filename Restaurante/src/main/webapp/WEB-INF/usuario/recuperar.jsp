@@ -17,7 +17,7 @@
         <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
             <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPODANGER);%></s:param>
         </s:action>
-        <s:form namespace="/usuario" action="obtenerPregunta" class="well col-md-6 col-md-offset-3" id="formulario">
+        <s:form namespace="/" action="obtenerPregunta" class="well col-md-6 col-md-offset-3" id="formulario">
             <div class="form-group">
                 <label for="nick">Nombre de Usuario</label>
                 <input required type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario">

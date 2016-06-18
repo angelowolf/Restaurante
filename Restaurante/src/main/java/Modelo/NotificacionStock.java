@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Notificacion.TipoMensaje;
 import org.joda.time.LocalDate;
 
 /**
@@ -18,8 +19,8 @@ public class NotificacionStock extends Notificacion {
     public NotificacionStock() {
     }
 
-    public NotificacionStock(Insumo insumo, String mensaje, LocalDate fecha, Usuario usuario, boolean visto) {
-        super(mensaje, fecha, usuario, visto);
+    public NotificacionStock(Insumo insumo, String mensaje, LocalDate fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
+        super(mensaje, fecha, usuario, visto, tipoMensaje);
         this.insumo = insumo;
     }
 

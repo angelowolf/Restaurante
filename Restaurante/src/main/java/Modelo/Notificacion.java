@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Notificacion.TipoMensaje;
 import org.joda.time.LocalDate;
 
 /**
@@ -18,15 +19,17 @@ public class Notificacion {
     private LocalDate fecha;
     private Usuario usuario;
     private boolean visto;
+    private TipoMensaje tipoMensaje;
 
     public Notificacion() {
     }
 
-    public Notificacion(String mensaje, LocalDate fecha, Usuario usuario, boolean visto) {
+    public Notificacion(String mensaje, LocalDate fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
         this.mensaje = mensaje;
         this.fecha = fecha;
         this.usuario = usuario;
         this.visto = visto;
+        this.tipoMensaje = tipoMensaje;
     }
 
     public boolean isVisto() {
@@ -67,6 +70,14 @@ public class Notificacion {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public TipoMensaje getTipoMensaje() {
+        return tipoMensaje;
+    }
+
+    public void setTipoMensaje(TipoMensaje tipoMensaje) {
+        this.tipoMensaje = tipoMensaje;
     }
 
 }

@@ -1,9 +1,9 @@
 <%@taglib uri="/struts-tags" prefix="s" %>
 <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-    </a>
-    <ul class="dropdown-menu dropdown-alerts" id="panel-notificaciones">
+        <i class="fa fa-bell fa-fw"></i><span class="badge" id="panel-notificaciones-cantidad"><s:if test="cantidad != 0"><s:property value="cantidad"/></s:if></span>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-alerts" id="panel-notificaciones">
         <s:if test="lista != null">
             <s:iterator value="lista" var="notificacion">
                 <li>
