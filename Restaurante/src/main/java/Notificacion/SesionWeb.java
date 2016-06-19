@@ -9,9 +9,11 @@ import Modelo.Notificacion;
 import Modelo.NotificacionStock;
 import Modelo.Usuario;
 import java.io.IOException;
+import java.util.Date;
 import javax.websocket.CloseReason;
 import javax.websocket.Session;
 import org.json.JSONObject;
+import org.ocpsoft.prettytime.PrettyTime;
 
 /**
  *
@@ -35,7 +37,7 @@ public class SesionWeb implements ISesion {
                 JSONObject json = new JSONObject();
                 json.append("tipo", notificacion.getTipoMensaje());
                 json.append("mensaje", notificacion.getMensaje());
-                json.append("fecha", notificacion.getFecha().toString(Soporte.Mensaje.FECHAJSON));
+                json.append("fecha", notificacion.getFecha2());
                 switch (notificacion.getTipoMensaje()) {
                     case NOTIFICACION_STOCK: {
                         NotificacionStock ns = (NotificacionStock) notificacion;

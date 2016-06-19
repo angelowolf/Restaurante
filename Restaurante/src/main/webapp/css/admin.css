@@ -23,14 +23,18 @@ p#notificacion {
 }
 
 ul {
-	list-style: none;
+    list-style: none;
 }
 
 #lista .fa {
-	color: green;
+    color: green;
 }
 
 .panel form .table{
     margin: 0px;
     padding: 0px;
+}
+
+#panel-notificaciones .novisto{
+    background: #ecf0f7;
 }

@@ -18,6 +18,7 @@ import Persistencia.ORM.DAOInterface.INotificacion;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -57,7 +58,7 @@ public class ControladorNotificacion {
         List<Usuario> usuariosStock = controladorUsuario.buscar(null, null, rolStock);
         for (Usuario cadaUsuario : usuariosStock) {
             if (DAONotificacion.getNotificacionStock(cadaUsuario.getId(), insumo.getId()) == null) {
-                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDate(), cadaUsuario, false, TipoMensaje.NOTIFICACION_STOCK);
+                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDateTime(), cadaUsuario, false, TipoMensaje.NOTIFICACION_STOCK);
                 LOGGER.info("Guardando notificacion para usuario: " + cadaUsuario.getId());
                 DAONotificacion.guardar(notificacionStock);
                 WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), notificacionStock);

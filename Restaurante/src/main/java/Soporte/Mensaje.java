@@ -1,5 +1,10 @@
 package Soporte;
 
+import org.joda.time.LocalDateTime;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
+
 /**
  * @author angelo
  * @version 1.0
@@ -337,4 +342,52 @@ public class Mensaje {
         return String.format(RECUPERADA, arg);
     }
 
+    public static String getFechaHumana(LocalDateTime fechaOriginal) {
+        LocalDateTime ahora = new LocalDateTime();
+        Period period = new Period(fechaOriginal, ahora);
+        StringBuilder cantidad = new StringBuilder("hace ");
+
+        if (period.getYears() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendYears().appendSuffix(" año", " años")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append("mas de ");
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+        if (period.getMonths() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendMonths().appendSuffix(" mes", " meses")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append("mas de ");
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+        if (period.getDays() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendDays().appendSuffix(" día", " días")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+        if (period.getHours() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendHours().appendSuffix(" hora", " horas")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+
+        PeriodFormatter formatter = new PeriodFormatterBuilder()
+                .appendMinutes().appendSuffix(" minuto", " minutos")
+                .printZeroNever()
+                .toFormatter();
+        cantidad.append(formatter.print(period));
+
+        return cantidad.toString();
+    }
 }//end Mensaje

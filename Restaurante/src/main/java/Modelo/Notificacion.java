@@ -6,7 +6,7 @@
 package Modelo;
 
 import Notificacion.TipoMensaje;
-import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -16,15 +16,19 @@ public class Notificacion {
 
     private int id;
     private String mensaje;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private Usuario usuario;
     private boolean visto;
     private TipoMensaje tipoMensaje;
 
+    public String getFecha2() {
+        return Soporte.Mensaje.getFechaHumana(fecha);
+    }
+
     public Notificacion() {
     }
 
-    public Notificacion(String mensaje, LocalDate fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
+    public Notificacion(String mensaje, LocalDateTime fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
         this.mensaje = mensaje;
         this.fecha = fecha;
         this.usuario = usuario;
@@ -64,11 +68,11 @@ public class Notificacion {
         this.mensaje = mensaje;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -78,6 +82,11 @@ public class Notificacion {
 
     public void setTipoMensaje(TipoMensaje tipoMensaje) {
         this.tipoMensaje = tipoMensaje;
+    }
+
+    @Override
+    public String toString() {
+        return "Notificacion{" + "id=" + id + ", mensaje=" + mensaje + ", fecha=" + fecha + ", usuario=" + usuario + ", visto=" + visto + ", tipoMensaje=" + tipoMensaje + '}';
     }
 
 }

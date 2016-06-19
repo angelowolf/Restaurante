@@ -11,4 +11,13 @@ package Notificacion;
  */
 public enum TipoMensaje {
     LOGIN, NOTIFICACION_STOCK, ERROR;
+
+    public String getIcono() {
+        switch (this) {
+            case NOTIFICACION_STOCK:
+                return "shopping-basket";
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }
