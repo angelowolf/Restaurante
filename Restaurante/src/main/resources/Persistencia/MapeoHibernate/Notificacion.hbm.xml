@@ -8,7 +8,7 @@
         </id>
         <property name="mensaje" type="string" />
         <property name="visto"/>
-        <property name="fecha" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
+        <property name="fecha" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime"/>    
         <many-to-one name="usuario" column="id_usuario"/>
         
         

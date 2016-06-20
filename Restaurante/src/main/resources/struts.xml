@@ -21,17 +21,29 @@
     <include file="Struts2/XML/struts-categoriaInsumo.xml"></include>
     <include file="Struts2/XML/struts-insumo.xml"></include>
     <include file="Struts2/XML/struts-stock.xml"></include>
-     <include file="Struts2/XML/struts-notificacion.xml"></include>
+    <include file="Struts2/XML/struts-notificacion.xml"></include>
     
-    <package name="default" extends="struts-default">
-        <result-types>
-            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
-        </result-types>
-    </package>
     <package name="json" extends="json-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
+        
+        
+        <interceptors>
+            <interceptor name="validarAcceso" class="Interceptores.InterceptorAcceso" />
+        
+            <interceptor-stack name="interceptorPropio">
+                <interceptor-ref name="validarAcceso">
+                    <param name="actionsPublicos">login,recuperar,logear,logout,recuperarClave,obtenerPregunta,postBuscarInsumoBruto,postBuscarInsumoAutoComplete</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="timer" />
+                <interceptor-ref name="logger" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="interceptorPropio"/>
+        
         <global-results>
             <result name="login">/WEB-INF/login.jsp</result>
             <result name="success" type="json">
@@ -39,12 +51,12 @@
                 <param name="ignoreHierarchy">false</param> 
                 <!--con las 2 lineas anteriores decimos que agregue absolutamente todo al json..  que incluya los elementos de
                 las clase que hereda(con el ignoreHiererchy-->
-                <param name="includeProperties">actionMessages.*,model.*,codigo,backUrl</param>
+                <param name="includeProperties">actionMessages.*,model.*,codigo</param>
             </result>
             <result name="input" type="json">
                 <param name="root">action</param>  
                 <param name="ignoreHierarchy">false</param>
-                <param name="includeProperties">actionErrors.*,fieldErrors.*,codigo,backUrl</param>
+                <param name="includeProperties">actionErrors.*,fieldErrors.*,codigo</param>
             </result>
         </global-results>
     </package>

@@ -232,14 +232,14 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public String logout() {
-        sesion.put("idUsuario", null);
-        sesion.put("rolUsuario", null);
-        sesion.put("rolMozo", null);
-        sesion.put("rolCocina", null);
-        sesion.put("rolStock", null);
-        sesion.put("rolMesa", null);
-        sesion.put("rolCaja", null);
-        sesion.put("mensaje", null);
+        sesion.remove("idUsuario");
+        sesion.remove("rolUsuario");
+        sesion.remove("rolMozo");
+        sesion.remove("rolCocina");
+        sesion.remove("rolStock");
+        sesion.remove("rolMesa");
+        sesion.remove("rolCaja");
+        sesion.remove("mensaje");
         return SUCCESS;
     }
 

@@ -10,5 +10,14 @@ package Notificacion;
  * @author ang_2
  */
 public enum TipoMensaje {
-    LOGIN, NOTIFICACION, ERROR;
+    LOGIN, NOTIFICACION_STOCK, ERROR;
+
+    public String getIcono() {
+        switch (this) {
+            case NOTIFICACION_STOCK:
+                return "shopping-basket";
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }
