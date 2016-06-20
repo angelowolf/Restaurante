@@ -20,8 +20,8 @@ public class NotificacionStock extends Notificacion {
         setTipoMensaje(TipoMensaje.NOTIFICACION_STOCK);
     }
 
-    public NotificacionStock(Insumo insumo, String mensaje, LocalDateTime fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
-        super(mensaje, fecha, usuario, visto, tipoMensaje);
+    public NotificacionStock(Insumo insumo, String mensaje, LocalDateTime fecha, Usuario usuario, boolean visto) {
+        super(mensaje, fecha, usuario, visto, TipoMensaje.NOTIFICACION_STOCK);
         this.insumo = insumo;
     }
 

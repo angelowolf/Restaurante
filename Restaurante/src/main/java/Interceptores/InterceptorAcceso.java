@@ -12,7 +12,6 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.apache.struts2.ServletActionContext;
 
 /**
  *
@@ -43,9 +42,9 @@ public class InterceptorAcceso extends AbstractInterceptor {
             //esta logeado ver si tiene el privilegio
 
             String namespace = actionInvocation.getProxy().getNamespace();
-            String[] caca = namespace.split("\\/");
-            if (caca.length > 0) {
-                switch (caca[1]) {
+            String[] namespace1 = namespace.split("\\/");
+            if (namespace1.length > 0) {
+                switch (namespace1[1]) {
                     //switch de los namespaces
                     case "usuario":
                         if (actionInvocation.getInvocationContext().getSession().containsKey("rolUsuario")) {
