@@ -381,13 +381,22 @@ public class Mensaje {
             cantidad.append(formatter.print(period));
             return cantidad.toString();
         }
-
-        PeriodFormatter formatter = new PeriodFormatterBuilder()
-                .appendMinutes().appendSuffix(" minuto", " minutos")
-                .printZeroNever()
-                .toFormatter();
-        cantidad.append(formatter.print(period));
-
-        return cantidad.toString();
+        if (period.getMinutes() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendMinutes().appendSuffix(" minuto", " minutos")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+        if (period.getSeconds() >= 1) {
+            PeriodFormatter formatter = new PeriodFormatterBuilder()
+                    .appendSeconds().appendSuffix(" segundo", " segundos")
+                    .printZeroNever()
+                    .toFormatter();
+            cantidad.append(formatter.print(period));
+            return cantidad.toString();
+        }
+        return "hace un instante";
     }
 }//end Mensaje

@@ -22,7 +22,10 @@ public class Notificacion {
     private TipoMensaje tipoMensaje;
 
     public String getFecha2() {
-        return Soporte.Mensaje.getFechaHumana(fecha);
+        if (fecha != null) {
+            return Soporte.Mensaje.getFechaHumana(fecha);
+        }
+        return null;
     }
 
     public Notificacion() {
@@ -86,7 +89,7 @@ public class Notificacion {
 
     @Override
     public String toString() {
-        return "Notificacion{" + "id=" + id + ", mensaje=" + mensaje + ", fecha=" + fecha + ", usuario=" + usuario + ", visto=" + visto + ", tipoMensaje=" + tipoMensaje + '}';
+        return "Notificacion{ HUMANO" + getFecha2() + "id=" + id + ", mensaje=" + mensaje + ", fecha=" + fecha + ", usuario=" + usuario + ", visto=" + visto + ", tipoMensaje=" + tipoMensaje + '}';
     }
 
 }

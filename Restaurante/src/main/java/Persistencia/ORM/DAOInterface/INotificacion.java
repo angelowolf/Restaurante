@@ -37,4 +37,6 @@ public interface INotificacion extends IGenericDAO<Notificacion, Integer> {
      */
     public NotificacionStock getNotificacionStock(int idUsuario, int idInsumo);
 
+    public int getCantidadNoVistas(int idUsuario);
+
 }

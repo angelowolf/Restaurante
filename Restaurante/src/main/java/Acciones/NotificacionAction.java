@@ -33,12 +33,8 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     }
 
     public String panel() {
-        lista = controladorNotificacion.buscarInsumo((int) sesion.get("idUsuario"));
-        for (Notificacion n : lista) {
-            if (!n.isVisto()) {
-                cantidad ++;
-            }
-        }
+        lista = controladorNotificacion.buscarNotificacionInsumo((int) sesion.get("idUsuario"));
+        cantidad = controladorNotificacion.getCantidadNoVistas((int) sesion.get("idUsuario"));
         return SUCCESS;
     }
 
@@ -51,6 +47,11 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     public String visto() {
         controladorNotificacion.marcarComoVisto(notificacion);
         sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONVISTA);
+        return SUCCESS;
+    }
+
+    public String vistoDesdePanel() {
+        controladorNotificacion.marcarComoVisto(notificacion);
         return SUCCESS;
     }
 

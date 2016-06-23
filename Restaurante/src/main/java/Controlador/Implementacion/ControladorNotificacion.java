@@ -11,7 +11,6 @@ import Modelo.Notificacion;
 import Modelo.NotificacionStock;
 import Modelo.Rol;
 import Modelo.Usuario;
-import Notificacion.TipoMensaje;
 import Notificacion.WSControlador;
 import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
 import Persistencia.ORM.DAOInterface.INotificacion;
@@ -84,7 +83,7 @@ public class ControladorNotificacion {
      * @param idUsuario
      * @return
      */
-    public List<Notificacion> buscarInsumo(int idUsuario) {
+    public List<Notificacion> buscarNotificacionInsumo(int idUsuario) {
         return DAONotificacion.getTodosStock(idUsuario, 5);
     }
 
@@ -108,4 +107,14 @@ public class ControladorNotificacion {
         DAONotificacion.actualizar(nBD);
     }
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
+
+    /**
+     * Devuelve la cantidad de notificaciones sin ver de este usuario
+     *
+     * @param idUsuario
+     * @return
+     */
+    public int getCantidadNoVistas(int idUsuario) {
+        return DAONotificacion.getCantidadNoVistas(idUsuario);
+    }
 }

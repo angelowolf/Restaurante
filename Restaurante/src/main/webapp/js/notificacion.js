@@ -1,13 +1,6 @@
 var wsocket;
 //var serviceLocation = "ws://restaurante-angelowolf.rhcloud.com:8000/wsnotificacion";
 var serviceLocation = "ws://localhost:8080/wsnotificacion";
-var idUsuario = 1;
-var $clave;
-var $lista_usuario;
-var $mensaje;
-var $destino;
-var $response;
-var token;
 
 function mensajeRecibido(evt) {
     var mensaje = JSON.parse(evt.data);
@@ -25,13 +18,23 @@ function mensajeRecibido(evt) {
             break;
         case 'NOTIFICACION_STOCK':
             {
+                console.log(mensaje);
                 var panelNotificaciones = $('#panel-notificaciones');
-                var not = "<li class='novisto'><a href='#'><div><i class='fa fa-shopping-basket fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li><li class='divider'></li>";
+                var not = "<li class='novisto notificacion'> <div class='circulo-notificacion' data-id='" + mensaje.id + "'> </div><a href='#'><div><i class='fa fa-shopping-basket fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li>";
                 panelNotificaciones.prepend(not);
                 var badgeCantidad = $('#panel-notificaciones-cantidad');
                 var cnt = 1;
                 if (badgeCantidad.text().length !== 0) {
                     cnt = parseInt(badgeCantidad.text());
+                    var sobran = cnt % 5;
+
+                    if (sobran > 0) {
+                        var $notifs = $('.notificacion');
+                        for (var i = 0; i < cnt; i++) {
+                            $notifs.last().remove();
+                        }
+                    }
+
                     cnt++;
                 }
                 badgeCantidad.text(cnt);
@@ -55,4 +58,41 @@ function conectarWebSocket() {
 $(document).ready(function () {
     idUsuario = $('#idUsuarioHidden').val();
     conectarWebSocket();
+
+    $('body').on('click', '.circulo-notificacion', function (e) {
+        var $boton = $(this);
+        if ($boton.parent().hasClass('novisto')) {
+            $.post('/notificacion/vistoDesdePanel', {id: $boton.data('id')}, function (response) {
+                if (response.codigo === 200) {
+                    $boton.parent().removeClass('novisto');
+                    var badgeCantidad = $('#panel-notificaciones-cantidad');
+                    var cnt = parseInt(badgeCantidad.text());
+                    if (cnt > 1) {
+                        cnt--;
+                        badgeCantidad.text(cnt);
+                    } else {
+                        badgeCantidad.text('');
+                    }
+                } else {
+                    console.log('mal error mal');
+                }
+            });
+        }
+    });
+
+    //setInterval(actualizarPanel, 1000);
+
 });
+
+function actualizarPanel() {
+
+    console.log("se actualiza el panel");
+
+    $.post('/notificacion/panel', null, function (response) {
+        var $parent = $('#contenedor-notificacion').parent();
+        $('#contenedor-notificacion').remove();
+        $parent.prepend(response);
+
+    });
+
+}
