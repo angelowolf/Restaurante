@@ -27,7 +27,7 @@ public class NotificacionDAO extends GenericDAO<Notificacion, Integer> implement
         Session session = getHibernateTemplate();
         List<Notificacion> objetos = new ArrayList<>();
         try {
-            String sql = "from Notificacion where idUsuario = :id_usuario order by fecha";
+            String sql = "from Notificacion where id_usuario = :id_usuario order by fecha";
             objetos = session.createQuery(sql).setParameter("id_usuario", idUsuario).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar las notificaciones.", e);

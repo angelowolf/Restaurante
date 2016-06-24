@@ -9,24 +9,19 @@ import javax.servlet.jsp.PageContext;
 import org.displaytag.decorator.DisplaytagColumnDecorator;
 import org.displaytag.exception.DecoratorException;
 import org.displaytag.properties.MediaTypeEnum;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 /**
  *
  * @author ang_2
  */
-public class DateDecorator implements DisplaytagColumnDecorator {
+public class NotificacionVistaDecorator implements DisplaytagColumnDecorator {
 
     @Override
     public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {
-        if (columnValue != null) {
-            DateTimeFormatter salida = DateTimeFormat.forPattern(Soporte.Mensaje.FECHAJSON);
-            LocalDate fecha = (LocalDate) columnValue;
-            return salida.print(fecha);
+        if ((boolean) columnValue) {
+            return "Leida";
         } else {
-            return "-";
+            return "Sin Leer";
         }
     }
 

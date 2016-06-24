@@ -40,7 +40,7 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
 
     public String eliminar() {
         controladorNotificacion.eliminar(notificacion);
-        sesion.put("mensaje", Soporte.Mensaje.getEliminada(Soporte.Mensaje.NOTFICACION));
+        sesion.put("mensaje", Soporte.Mensaje.getEliminada(Soporte.Mensaje.NOTIFICACION));
         return SUCCESS;
     }
 

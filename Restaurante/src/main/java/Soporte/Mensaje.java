@@ -13,6 +13,7 @@ import org.joda.time.format.PeriodFormatterBuilder;
 public class Mensaje {
 
     public static final String FECHAJSON = "dd/MM/yyyy";
+    public static final String FECHAHORAJSON = "dd/MM/yyyy HH:mm:ss";
 
     private static final String MODIFICADO = "El %s ha sido modificado con éxito.";
     private static final String MODIFICADA = "La %s ha sido modificada con éxito.";
@@ -54,7 +55,7 @@ public class Mensaje {
     public static final String INSUMO = "Insumo";
     public static final String CATEGORIAINSUMO = "Categoría de Insumo";
     public static final String PAGO = "Pago";
-    public static final String NOTFICACION = "Notificacion";
+    public static final String NOTIFICACION = "Notificacion";
 
     //************************************************************************//
     public static final String TIPOSUCCESS = "success";

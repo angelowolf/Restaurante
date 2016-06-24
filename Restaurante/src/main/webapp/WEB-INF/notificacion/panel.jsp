@@ -5,6 +5,9 @@
         </a>
         <ul class="dropdown-menu dropdown-messages" id="panel-notificaciones">
         <s:if test="lista != null">
+            <s:if test="lista.isEmpty()">
+                <p class="text-center-all">No posees notificaciones.</p>
+            </s:if>
             <s:iterator value="lista" var="notificacion">
                 <li class="notificacion<s:if test="%{!#notificacion.visto}"> novisto</s:if>">
                     <div class="circulo-notificacion" data-id="<s:property value="%{#notificacion.id}"/>"> </div>
@@ -18,7 +21,7 @@
         </s:if>
         <li class='divider'></li>
         <li >
-            <a class="text-center" href="#">
+            <a class="text-center" href="<s:url action="listar" namespace="/notificacion"/>">
                 <strong>Ver todas</strong>
                 <i class="fa fa-angle-right"></i>
             </a>

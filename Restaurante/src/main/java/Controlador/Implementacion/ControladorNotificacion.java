@@ -13,7 +13,9 @@ import Modelo.Rol;
 import Modelo.Usuario;
 import Notificacion.WSControlador;
 import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
+import Persistencia.ORM.DAOImplementacion.NotificacionStockDAO;
 import Persistencia.ORM.DAOInterface.INotificacion;
+import Persistencia.ORM.DAOInterface.INotificacionStock;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDateTime;
@@ -27,6 +29,7 @@ public class ControladorNotificacion {
     private static ControladorNotificacion instancia = null;
     private final IControladorUsuario controladorUsuario;
     private final INotificacion DAONotificacion = new NotificacionDAO();
+    private final INotificacionStock DAONotificacionStock = new NotificacionStockDAO();
 
     /**
      * Crea una instancia de este controlador.
@@ -93,7 +96,17 @@ public class ControladorNotificacion {
      * @param notificacion
      */
     public void eliminar(Notificacion notificacion) {
-        DAONotificacion.eliminar(notificacion);
+
+        switch (DAONotificacion.buscar(notificacion.getId()).getTipoMensaje()) {
+            case NOTIFICACION_STOCK:
+                NotificacionStock ns = new NotificacionStock();
+                ns.setId(notificacion.getId());
+                DAONotificacionStock.eliminar(ns);
+                break;
+                default:
+                    LOGGER.error("NO SE PUDO ELIMINAR EL OBJETO NOTIFICACIOn");
+        }
+
     }
 
     /**
