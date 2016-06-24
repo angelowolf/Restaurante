@@ -80,7 +80,7 @@ $(document).ready(function () {
         }
     });
 
-    //setInterval(actualizarPanel, 1000);
+    setInterval(actualizarPanel, 30000);
 
 });
 

@@ -6,6 +6,7 @@
     <!--MASTER PAGE EJEMPLO-->   
     <definition name="masterpage" template="/WEB-INF/masterpage.jsp">
         <put-attribute name="title" value="Administración" />
+        <put-attribute name="menu" value="/WEB-INF/menu.jsp" /> 
         <put-attribute name="body" value="" /> 
         <put-list-attribute name="stylesheet" >
             <add-attribute value="/../bower_components/bootstrap/dist/css/bootstrap.css" />

@@ -6,14 +6,17 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorCategoriaInsumo;
+import Controlador.Implementacion.ControladorInsumo;
 import Controlador.Implementacion.ControladorInsumoBruto;
 import Controlador.Implementacion.ControladorStock;
 import Controlador.Interface.IControladorCategoriaInsumo;
+import Controlador.Interface.IControladorInsumo;
 import Controlador.Interface.IControladorStock;
 import Modelo.CategoriaInsumo;
 import java.util.ArrayList;
 import java.util.List;
 import Controlador.Interface.IControladorInsumoBruto;
+import Modelo.Insumo;
 import Modelo.InsumoBruto;
 
 /**
@@ -23,9 +26,11 @@ import Modelo.InsumoBruto;
 public class StockAction extends Accion {
 
     private List<InsumoBruto> lista;
+    private List<Insumo> listaTodos;
     private List<CategoriaInsumo> categorias;
     private final IControladorStock controladorStock;
-    private final IControladorInsumoBruto controladorInsumo;
+    private final IControladorInsumoBruto controladorInsumoBruto;
+    private final IControladorInsumo controladorInsumo;
     private final IControladorCategoriaInsumo controladorCategoriaInsumo;
 
     private List<Integer> ids;
@@ -34,19 +39,20 @@ public class StockAction extends Accion {
 
     public StockAction() {
         controladorCategoriaInsumo = new ControladorCategoriaInsumo();
-        controladorInsumo = new ControladorInsumoBruto();
+        controladorInsumoBruto = new ControladorInsumoBruto();
+        controladorInsumo = new ControladorInsumo();
         controladorStock = new ControladorStock();
         lista = new ArrayList<>();
         categorias = new ArrayList<>();
     }
 
     public String getListaCompra() {
-        lista = controladorInsumo.getTodosStockMinimo();
+        lista = controladorInsumoBruto.getTodosStockMinimo();
         return SUCCESS;
     }
 
     public String getCargarCompra() {
-        lista = controladorInsumo.getTodosStockMinimo();
+        lista = controladorInsumoBruto.getTodosStockMinimo();
         categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
     }
@@ -112,7 +118,7 @@ public class StockAction extends Accion {
     }
 
     public String getAjusteStock() {
-        lista = controladorInsumo.getTodos();
+        listaTodos = controladorInsumo.getTodos(true);
         categorias = controladorCategoriaInsumo.getTodos();
         return SUCCESS;
     }
@@ -124,6 +130,10 @@ public class StockAction extends Accion {
 
     public List<InsumoBruto> getLista() {
         return lista;
+    }
+
+    public List<Insumo> getListaTodos() {
+        return listaTodos;
     }
 
     public List<CategoriaInsumo> getCategorias() {
