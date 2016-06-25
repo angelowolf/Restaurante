@@ -17,6 +17,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
         <title><tiles:insertAttribute name="title" ignore="true" /></title>
         <s:iterator value="#attr.stylesheet" var="cadaCSS">
             <link href="<s:url value="%{cadaCSS}"/>" rel="stylesheet" type="text/css" >

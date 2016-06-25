@@ -59,3 +59,20 @@ ul {
         display:none;
     }
 }
+
+.cursor-cargando{
+    cursor: wait !important;
+}
+
+
+
+
+
+
+#page-wrapper{
+    background:  #eee;
+}
+
+.navbar.navbar-default.navbar-static-top, .nav, body{
+    background: #000000;
+} 

@@ -130,3 +130,14 @@ Array.prototype.remove = function () {
     }
     return this;
 };
+
+function toggleBoton(boton) {
+    var btn = $(boton);
+    if (btn.is(':disabled')) {
+        btn.prop('disabled', false);
+        btn.removeClass('cursor-cargando');
+    } else {
+        btn.addClass('cursor-cargando');
+        btn.prop('disabled', true);
+    }
+}

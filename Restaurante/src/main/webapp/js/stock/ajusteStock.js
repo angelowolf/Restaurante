@@ -46,7 +46,7 @@ var ids = [];
 
     $('body').on('change', 'input[name=cantidad]', function () {
         var real = $(this).val();
-        
+
         if (real >= 0) {
             var actual = $(this).parent().prev().find('input').val();
             $(this).parent().next().find('input').val(actual - real);
@@ -54,25 +54,26 @@ var ids = [];
             $(this).parent().next().find('input').val('');
         }
     });
-    
+
     $('body').on('change', 'input[type=checkbox]', function () {
         var $check = $(this),
-            id = $check.attr('id');
+                id = $check.attr('id');
 
         if ($check.is(':checked')) {
             $check.parents('td').prev().prev().find('input').prop('disabled', false);
-            $('#lista').append('<li data-id="'+id+'"><span class="fa fa-check"></span> '+$check.parents('tr').find('td:first').html()+'</li>');
+            $('#lista').append('<li data-id="' + id + '"><span class="fa fa-check"></span> ' + $check.parents('tr').find('td:first').html() + '</li>');
             ids.push(id);
         } else {
             $check.parents('td').prev().prev().find('input').prop('disabled', true).val('');
             $check.parents('td').prev().find('input').val('');
-            $('#lista').find('li[data-id='+id+']').remove();
+            $('#lista').find('li[data-id=' + id + ']').remove();
             ids.remove(id);
         }
     });
 
-    $('#registrar').click(function(e){
+    $('#registrar').click(function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var data = getIdsFormatoPOST();
 
         if (data.length !== 0) {
@@ -86,6 +87,7 @@ var ids = [];
                 window.location.reload();
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                toggleBoton(e.target);
             }
         });
     });

@@ -1,7 +1,7 @@
 (function ($) {
     $('body').on('click', '#guardar', function (e) {
         e.preventDefault();
-        var btn = $('#guardar').prop('disabled', true);
+        toggleBoton(e.target);
         var data = $('#formulario').serialize();
         $.post('/usuario/modificarmisdatos', data, function (response) {
             erroresM.limpiarErrores('#formulario');
@@ -9,7 +9,7 @@
                 window.location.replace('/home');
             } else {
                 erroresM.mostrarErrores('#formulario', response);
-                btn.prop('disabled', false);
+                toggleBoton(e.target);
             }
         });
     });

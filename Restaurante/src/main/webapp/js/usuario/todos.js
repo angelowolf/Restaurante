@@ -10,6 +10,7 @@
 
     $('body').on('click', '#recuperar', function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var $boton = $(this);
         var $contenedor = $boton.parents('#botones');
         var id = $contenedor.find('#id').val();
@@ -19,12 +20,14 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                toggleBoton(e.target);
             }
         });
     });
 
     $('body').on('click', '#blanquear', function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var $boton = $(this);
         var $contenedor = $boton.parents('#botones');
         var id = $contenedor.find('#id').val();
@@ -34,6 +37,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                toggleBoton(e.target);
             }
         });
     });
@@ -50,6 +54,7 @@
     });
 
     $('body').on('click', '#eliminar', function (e) {
+        toggleBoton(e.target);
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
@@ -60,6 +65,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                toggleBoton(e.target);
             }
         });
     });
@@ -135,6 +141,7 @@
     });
     $('body').on('click', '#editar', function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var data = $('#form-editar').serialize();
         $.post('/usuario/modificar', data, function (response) {
             if (response.codigo === 200) {
@@ -142,6 +149,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarErrores('#form-editar', response);
+                toggleBoton(e.target);
             }
         })
     });
