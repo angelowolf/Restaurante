@@ -9,6 +9,12 @@
          <action name="modaleliminar" method="eliminar" class="Acciones.ModalAction">
             <result name="success">/WEB-INF/modal/eliminar.jsp</result>
         </action>
+        <action name="modalrecuperar" method="eliminar" class="Acciones.ModalAction">
+            <result name="success">/WEB-INF/modal/recuperar.jsp</result>
+        </action>
+        <action name="modalblanquear" method="eliminar" class="Acciones.ModalAction">
+            <result name="success">/WEB-INF/modal/blanquear.jsp</result>
+        </action>
          <action name="mensajeAlerta" method="alerta" class="Acciones.ModalAction">
             <result name="success">/WEB-INF/modal/alerta.jsp</result>
         </action>

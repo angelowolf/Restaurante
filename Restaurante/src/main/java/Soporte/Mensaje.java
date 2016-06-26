@@ -34,6 +34,8 @@ public class Mensaje {
     private static final String NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
     public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
     public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
+    public static final String PREGUNTARECUPERAREL = "¿Está seguro de que quiere recuperar este %s?";
+    public static final String PREGUNTARECUPERARLA = "¿Está seguro de que quiere recuperar esta %s?";
     //************************************************************************//
     //Nombre de clases...//
     public static final String USUARIO = "Usuario";
@@ -133,6 +135,7 @@ public class Mensaje {
     public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
     public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
     public static final String NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
+    public static final String FECHAINVALIDA = "La fecha no es válida.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
@@ -309,6 +312,34 @@ public class Mensaje {
         return String.format(PREGUNTAELIMINARLA, arg);
     }
 
+    /**
+     * Crea un mensaje que pregunta si el objeto quiere ser eliminado. "¿Está
+     * seguro de que quiere recuperar esta %s?"
+     *
+     * @param arg
+     * @return
+     */
+    public static String getPreguntaRecuperarLa(String arg) {
+        return String.format(PREGUNTARECUPERARLA, arg);
+    }
+
+    /**
+     * * Crea un mensaje que pregunta si el objeto quiere ser eliminado. "¿Está
+     * seguro de que quiere recuperar este %s?"
+     *
+     *  * @param arg
+     * @return
+     */
+    public static String getPreguntaRecuperarEl(String arg) {
+        return String.format(PREGUNTARECUPERAREL, arg);
+    }
+
+    /**
+     * * Crea un mensaje: "El insumo %s esta debajo del minimo".
+     *
+     * @param arg
+     * @return
+     */
     public static String getNotificacionInsumo(String nombre) {
         return String.format(NOTIFICACIONINSUMO, nombre);
     }

@@ -19,10 +19,6 @@ var erroresM = (function () {
         return s.replace(/(:|\.|\[|\])/g, "\\$1");
     }
 
-//    modulo.convertirFechaDeJODAAString = function (s) {
-//        return s.dayOfMonth + '/' + s.monthOfYear + '/' + s.year;
-//    };
-
     modulo.getConfig = defaultConfig;
 
     modulo.setConfig = function (config) {

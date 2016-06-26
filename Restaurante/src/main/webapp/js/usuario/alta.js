@@ -20,6 +20,7 @@
     });
     $('body').on('click', '#cancelar', function (e) {
         e.preventDefault();
+        alert('asd');
         window.location.replace('/usuario/listar');
     });
 })(jQuery);

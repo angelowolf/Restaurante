@@ -90,9 +90,12 @@ function actualizarPanel() {
 
     $.post('/notificacion/panel', null, function (response) {
         var $parent = $('#contenedor-notificacion').parent();
-        $('#contenedor-notificacion').remove();
-        $parent.prepend(response);
-
+        var success = $($.parseHTML(response)).find('#contenedor-notificacion');
+        if (success.length !== 0) {
+            $('#contenedor-notificacion').remove();
+            $parent.prepend(response);
+            $('#contenedor-notificacion').addClass("open");
+        }
     });
 
 }

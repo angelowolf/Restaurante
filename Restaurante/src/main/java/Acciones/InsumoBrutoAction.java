@@ -76,7 +76,9 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
     public void validatePostModificar() {
         if (StringUtils.isBlank(insumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+        } else if (!controladorInsumo.nombreDisponible(insumo)) {
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
         }
         if (insumo.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.SELECCIONEUNIDADMEDIDA);
