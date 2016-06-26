@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persistencia.ORM.DAOInterface;
+package Controlador.Implementacion;
 
+import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
-import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
 
 /**
  *
  * @author ang_2
  */
-public interface IInsumo extends IGenericDAO<Insumo, Integer> {
+public class ControladorInsumo implements IControladorInsumo {
 
-    public List<Insumo> getTodos(boolean activo);
+    @Override
+    public List<Insumo> getTodos(boolean activo) {
+        return INSUMODAO.getTodos(activo);
+    }
 
 }

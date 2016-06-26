@@ -23,13 +23,6 @@ public interface IControladorInsumoBruto {
 
     public int guardar(InsumoBruto insumo);
 
-    /**
-     * Busca TODOS los INSUMOS
-     *
-     * @return
-     */
-    public List<InsumoBruto> getTodos();
-
     public InsumoBruto getInsumo(int id);
 
     public void actualizar(InsumoBruto insumo);
@@ -40,7 +33,7 @@ public interface IControladorInsumoBruto {
 
     public List<InsumoBruto> getTodosStockMinimo();
 
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids, boolean activo);
 
     public List<InsumoBruto> buscar(String nombreFiltro, int categoriaInsumoFiltro);
 

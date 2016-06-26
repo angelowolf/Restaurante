@@ -27,7 +27,7 @@ public class NotificacionDAO extends GenericDAO<Notificacion, Integer> implement
         Session session = getHibernateTemplate();
         List<Notificacion> objetos = new ArrayList<>();
         try {
-            String sql = "from Notificacion where idUsuario = :id_usuario order by fecha";
+            String sql = "from Notificacion where id_usuario = :id_usuario order by fecha";
             objetos = session.createQuery(sql).setParameter("id_usuario", idUsuario).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar las notificaciones.", e);
@@ -41,7 +41,7 @@ public class NotificacionDAO extends GenericDAO<Notificacion, Integer> implement
         List<Notificacion> objetos = new ArrayList<>();
         try {
             StringBuilder sb = new StringBuilder("select * from Notificacion notificacion inner join NotificacionStock stock on notificacion.id = stock.id where notificacion.id_usuario = :id_usuario");
-            sb.append(" order by notificacion.fecha");
+            sb.append(" order by notificacion.fecha desc");
             if (limit > 0) {
                 sb.append(" limit ");
                 sb.append(limit);
@@ -69,5 +69,18 @@ public class NotificacionDAO extends GenericDAO<Notificacion, Integer> implement
         } else {
             return null;
         }
+    }
+
+    @Override
+    public int getCantidadNoVistas(int idUsuario) {
+        Session session = getHibernateTemplate();
+        long cnt = 0;
+        try {
+            String sb = "select count(id) from Notificacion where id_usuario = :id_usuario and visto = 0";
+            cnt = (long) session.createQuery(sb).setParameter("id_usuario", idUsuario).uniqueResult();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar las notificaciones.", e);
+        }
+        return (int) cnt;
     }
 }

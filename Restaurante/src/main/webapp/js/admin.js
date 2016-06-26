@@ -19,10 +19,6 @@ var erroresM = (function () {
         return s.replace(/(:|\.|\[|\])/g, "\\$1");
     }
 
-//    modulo.convertirFechaDeJODAAString = function (s) {
-//        return s.dayOfMonth + '/' + s.monthOfYear + '/' + s.year;
-//    };
-
     modulo.getConfig = defaultConfig;
 
     modulo.setConfig = function (config) {
@@ -130,3 +126,14 @@ Array.prototype.remove = function () {
     }
     return this;
 };
+
+function toggleBoton(boton) {
+    var btn = $(boton);
+    if (btn.is(':disabled')) {
+        btn.prop('disabled', false);
+        btn.removeClass('cursor-cargando');
+    } else {
+        btn.addClass('cursor-cargando');
+        btn.prop('disabled', true);
+    }
+}

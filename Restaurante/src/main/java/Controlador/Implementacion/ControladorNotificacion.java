@@ -11,10 +11,11 @@ import Modelo.Notificacion;
 import Modelo.NotificacionStock;
 import Modelo.Rol;
 import Modelo.Usuario;
-import Notificacion.TipoMensaje;
 import Notificacion.WSControlador;
 import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
+import Persistencia.ORM.DAOImplementacion.NotificacionStockDAO;
 import Persistencia.ORM.DAOInterface.INotificacion;
+import Persistencia.ORM.DAOInterface.INotificacionStock;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class ControladorNotificacion {
     private static ControladorNotificacion instancia = null;
     private final IControladorUsuario controladorUsuario;
     private final INotificacion DAONotificacion = new NotificacionDAO();
+    private final INotificacionStock DAONotificacionStock = new NotificacionStockDAO();
 
     /**
      * Crea una instancia de este controlador.
@@ -84,7 +86,7 @@ public class ControladorNotificacion {
      * @param idUsuario
      * @return
      */
-    public List<Notificacion> buscarInsumo(int idUsuario) {
+    public List<Notificacion> buscarNotificacionInsumo(int idUsuario) {
         return DAONotificacion.getTodosStock(idUsuario, 5);
     }
 
@@ -94,7 +96,17 @@ public class ControladorNotificacion {
      * @param notificacion
      */
     public void eliminar(Notificacion notificacion) {
-        DAONotificacion.eliminar(notificacion);
+
+        switch (DAONotificacion.buscar(notificacion.getId()).getTipoMensaje()) {
+            case NOTIFICACION_STOCK:
+                NotificacionStock ns = new NotificacionStock();
+                ns.setId(notificacion.getId());
+                DAONotificacionStock.eliminar(ns);
+                break;
+                default:
+                    LOGGER.error("NO SE PUDO ELIMINAR EL OBJETO NOTIFICACIOn");
+        }
+
     }
 
     /**
@@ -108,4 +120,14 @@ public class ControladorNotificacion {
         DAONotificacion.actualizar(nBD);
     }
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
+
+    /**
+     * Devuelve la cantidad de notificaciones sin ver de este usuario
+     *
+     * @param idUsuario
+     * @return
+     */
+    public int getCantidadNoVistas(int idUsuario) {
+        return DAONotificacion.getCantidadNoVistas(idUsuario);
+    }
 }

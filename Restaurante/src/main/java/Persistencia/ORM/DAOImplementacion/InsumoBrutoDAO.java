@@ -25,19 +25,6 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
     private static final Logger LOG = Logger.getLogger(InsumoBrutoDAO.class);
 
     @Override
-    public List<InsumoBruto> getTodos() {
-        Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
-        try {
-            String sql = "from Insumo order by nombre";
-            objetos = session.createQuery(sql).list();
-        } catch (RuntimeException e) {
-            LOG.error("Error al buscar los insumos.", e);
-        }
-        return objetos;
-    }
-
-    @Override
     public List<InsumoBruto> getTodosStockMinimo() {
         Session session = getHibernateTemplate();
         List<InsumoBruto> objetos = new ArrayList<>();
@@ -51,7 +38,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
     }
 
     @Override
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids, boolean activo) {
         Session session = getHibernateTemplate();
         List<InsumoBruto> objetos = new ArrayList<>();
         try {
@@ -63,6 +50,9 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
             }
             if (idCategoria > 0) {
                 criterio.add(Restrictions.eq("categoriaInsumo.id", idCategoria));
+            }
+            if (activo) {
+                criterio.add(Restrictions.isNull("fechaBaja"));
             }
             if (ids != null && !ids.isEmpty()) {
                 criterio.add(Restrictions.not(Restrictions.in("id", ids)));

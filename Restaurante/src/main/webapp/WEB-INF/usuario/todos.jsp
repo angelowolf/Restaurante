@@ -45,13 +45,13 @@
                     <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
                         <s:if test="(#attr.row.fechaBaja == null)">
                         <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                        <button id="blanquear" class="btn btn-default"><i class="fa fa-key"></i></button>
+                        <button id="modalblanquear" class="btn btn-default"><i class="fa fa-key"></i></button>
                         </s:if>
                         <s:if test="(#attr.row.fechaBaja == null)">
                         <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>
                         <s:else>
-                        <button id="recuperar" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
+                        <button id="modalrecuperar" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
                         </s:else>
                 </div>
             </display:column>
@@ -61,6 +61,16 @@
 <s:action name="modaleliminar" namespace="/modal" executeResult="true">
     <s:param name="titulo"><%out.println(Soporte.Mensaje.USUARIO);%></s:param>
     <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarEl(Soporte.Mensaje.USUARIO));%></s:param>
+    <s:param name="modelo">usuario</s:param>
+</s:action>
+<s:action name="modalrecuperar" namespace="/modal" executeResult="true">
+    <s:param name="titulo"><%out.println(Soporte.Mensaje.USUARIO);%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.USUARIO));%></s:param>
+    <s:param name="modelo">usuario</s:param>
+</s:action>
+<s:action name="modalblanquear" namespace="/modal" executeResult="true">
+    <s:param name="titulo"><%out.println(Soporte.Mensaje.USUARIO);%></s:param>
+    <s:param name="mensaje">¿Está seguro de que quiere blanquear este usuario?</s:param>
     <s:param name="modelo">usuario</s:param>
 </s:action>
 <s:include value="/WEB-INF/usuario/modalModificacion.jsp"/>

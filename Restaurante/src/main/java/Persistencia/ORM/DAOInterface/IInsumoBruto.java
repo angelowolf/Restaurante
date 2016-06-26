@@ -15,11 +15,14 @@ import java.util.List;
  */
 public interface IInsumoBruto extends IGenericDAO<InsumoBruto, Integer> {
 
-    public List<InsumoBruto> getTodos();
-
+    /**
+     * busca todos los insumos brutos que esten activos y por debajo del minimo.
+     *
+     * @return
+     */
     public List<InsumoBruto> getTodosStockMinimo();
 
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids);
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String capitalize, List<Integer> ids, boolean activo);
 
     public InsumoBruto buscar(String nombre);
 

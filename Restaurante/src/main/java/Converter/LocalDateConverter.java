@@ -20,7 +20,7 @@ public class LocalDateConverter extends StrutsTypeConverter {
     public LocalDate convertFromString(Map context, String[] values, Class toClass) {
         LocalDate d = null;
         if (values.length > 0 && values[0] != null && values[0].trim().length() > 0) {
-            d = LocalDate.parse(values[0], DateTimeFormat.forPattern("dd/MM/yyyy"));
+            d = LocalDate.parse(values[0], DateTimeFormat.forPattern(Soporte.Mensaje.FECHAJSON));
         }
         return d;
     }
@@ -28,7 +28,7 @@ public class LocalDateConverter extends StrutsTypeConverter {
     @Override
     public String convertToString(Map context, Object o) {
         if (o instanceof LocalDate) {
-            return ((LocalDate) o).toString("dd/MM/yyyy");
+            return ((LocalDate) o).toString(Soporte.Mensaje.FECHAJSON);
         }
         return "";
     }

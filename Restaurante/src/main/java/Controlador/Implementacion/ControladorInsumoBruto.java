@@ -31,11 +31,6 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
     }
 
     @Override
-    public List<InsumoBruto> getTodos() {
-        return INSUMODAO.getTodos();
-    }
-
-    @Override
     public InsumoBruto getInsumo(int id) {
         return INSUMODAO.buscar(id);
     }
@@ -67,13 +62,13 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
     }
 
     @Override
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids) {
+    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids, boolean activo) {
         if (StringUtils.isBlank(nombreInsumo) || nombreInsumo.equals("undefined")) {
             LOGGER.info("2");
-            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, null, ids);
+            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, null, ids, activo);
         } else {
             LOGGER.info("4");
-            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, WordUtils.capitalize(nombreInsumo), ids);
+            return INSUMODAO.getTodosByCategoriaByNombreSinEstos(idCategoria, WordUtils.capitalize(nombreInsumo), ids, activo);
         }
     }
 
@@ -82,7 +77,7 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
         if (StringUtils.isBlank(nombreFiltro)) {
             nombreFiltro = null;
         }
-        return INSUMODAO.getTodosByCategoriaByNombreSinEstos(categoriaInsumoFiltro, nombreFiltro, null);
+        return INSUMODAO.getTodosByCategoriaByNombreSinEstos(categoriaInsumoFiltro, nombreFiltro, null, false);
     }
 
     @Override

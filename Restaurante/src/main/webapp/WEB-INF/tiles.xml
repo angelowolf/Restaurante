@@ -6,6 +6,7 @@
     <!--MASTER PAGE EJEMPLO-->   
     <definition name="masterpage" template="/WEB-INF/masterpage.jsp">
         <put-attribute name="title" value="Administración" />
+        <put-attribute name="menu" value="/WEB-INF/menu.jsp" /> 
         <put-attribute name="body" value="" /> 
         <put-list-attribute name="stylesheet" >
             <add-attribute value="/../bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -17,7 +18,7 @@
             <add-attribute value="/../css/vendor/jquery-ui.css" />
             <add-attribute value="/../css/vendor/jquery-ui.structure.min.css" />
             <add-attribute value="/../css/vendor/jquery-ui.theme.min.css" />
-            <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />            
+            <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />           
         </put-list-attribute>
         <put-list-attribute name="javascript" >
             <add-attribute value="/../js/vendor/jquery.min.js" />

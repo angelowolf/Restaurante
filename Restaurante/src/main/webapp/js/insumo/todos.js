@@ -1,6 +1,7 @@
 (function ($) {
     $('body').on('click', '#recuperar', function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var $boton = $(this);
         var $contenedor = $boton.parents('#botones');
         var id = $contenedor.find('#id').val();
@@ -10,6 +11,7 @@
                 window.location.replace('/insumo/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                toggleBoton(e.target);
             }
         });
     });
@@ -29,6 +31,7 @@
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
+        toggleBoton(e.target);
         $.post('/insumo/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
@@ -36,6 +39,7 @@
                 window.location.replace('/insumo/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                toggleBoton(e.target);
             }
         });
     });
@@ -97,12 +101,14 @@
 
     $('body').on('click', '#editar', function (e) {
         e.preventDefault();
+        toggleBoton(e.target);
         var data = $('#form-editar').serialize();
         $.post('/insumo/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumo/listar?' + data);
             } else {
+                toggleBoton(e.target);
                 erroresM.mostrarErrores('#form-editar', response);
             }
         })

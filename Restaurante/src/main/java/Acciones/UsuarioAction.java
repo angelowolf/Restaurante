@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -50,6 +51,11 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateRegistrar() {
+        if (usuario.getFechaNacimiento() != null) {
+            if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
+                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+            }
+        }
         if (StringUtils.isBlank(usuario.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         }
@@ -84,6 +90,11 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateModificar() {
+        if (usuario.getFechaNacimiento() != null) {
+            if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
+                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+            }
+        }
         if (StringUtils.isBlank(usuario.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         }
@@ -152,6 +163,11 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
     }
 
     public void validateModificarmisdatos() {
+        if (usuario.getFechaNacimiento() != null) {
+            if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
+                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+            }
+        }
         if (StringUtils.isBlank(usuario.getNick())) {
             addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {

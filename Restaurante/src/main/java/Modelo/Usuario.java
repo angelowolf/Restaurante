@@ -7,6 +7,7 @@ package Modelo;
 
 import Notificacion.ISesion;
 import Soporte.Encriptar;
+import com.opensymphony.xwork2.validator.annotations.DateRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.HashMap;
 import java.util.Map;
@@ -156,7 +157,7 @@ public class Usuario {
         return claveOriginal;
     }
 
-    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "claveOriginal")
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "claveOriginal")
     public void setClaveOriginal(String claveOriginal) {
         this.claveOriginal = claveOriginal;
     }
@@ -301,7 +302,7 @@ public class Usuario {
     }
 
     public void blanquear() {
-        this.clave = Encriptar.encriptaEnMD5(this.nombre + this.apellido);
+        this.clave = Encriptar.encriptaEnMD5(this.nombre.trim() + this.apellido.trim());
     }
 
     public boolean esPrimerLogin() {

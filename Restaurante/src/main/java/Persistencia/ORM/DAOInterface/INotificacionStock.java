@@ -5,16 +5,15 @@
  */
 package Persistencia.ORM.DAOInterface;
 
-import Modelo.Insumo;
+import Modelo.NotificacionStock;
 import Persistencia.ORM.Util.IGenericDAO;
-import java.util.List;
 
 /**
  *
  * @author ang_2
  */
-public interface IInsumo extends IGenericDAO<Insumo, Integer> {
+public interface INotificacionStock extends IGenericDAO<NotificacionStock, Integer> {
 
-    public List<Insumo> getTodos(boolean activo);
+  
 
 }

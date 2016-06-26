@@ -56,13 +56,13 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
     }
 
     public String postBuscarInsumo() {
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids);
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids, true);
         return SUCCESS;
     }
 
     public String postBuscarInsumoAutoComplete() {
         listaAC = new ArrayList<>();
-        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(-1, term, null);
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(-1, term, null, true);
         for (InsumoBruto insumoBruto : lista) {
             listaAC.add(AutoComplete.generarAC(insumoBruto));
         }
@@ -76,7 +76,9 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
 
     public void validatePostModificar() {
         if (StringUtils.isBlank(insumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.INGRESENOMBRE);
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+        } else if (!controladorInsumo.nombreDisponible(insumo)) {
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
         }
         if (insumo.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.SELECCIONEUNIDADMEDIDA);
@@ -119,13 +121,13 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         } else if (insumo.getPrecioUnidad() == 0) {
             addFieldError("precioUnidad", Soporte.Mensaje.OBLIGATORIO);
         }
-        
+
         if (insumo.getStock().getCantidadActual() < 0) {
             addFieldError("stock.cantidadActual", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (insumo.getStock().getCantidadActual() == 0) {
             addFieldError("stock.cantidadActual", Soporte.Mensaje.OBLIGATORIO);
         }
-        
+
         if (insumo.getStock().getCantidadMinima() < 0) {
             addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (insumo.getStock().getCantidadMinima() == 0) {
