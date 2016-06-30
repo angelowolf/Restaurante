@@ -25,7 +25,7 @@ import org.joda.time.LocalDate;
  *
  * @author ang_2
  */
-public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
+public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD {
 
     private static final Logger LOGGER = Logger.getLogger(UsuarioAction.class);
     private Usuario usuario;
@@ -83,6 +83,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         }
     }
 
+    @Override
     public String registrar() {
         controladorUsuario.guardar(usuario);
         sesion.put("mensaje", Soporte.Mensaje.getAgregado(Mensaje.USUARIO));
@@ -122,12 +123,14 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         }
     }
 
-    public String modificar() {
+    @Override
+    public String postModificar() {
         controladorUsuario.actualizar(usuario);
         sesion.put("mensaje", Soporte.Mensaje.getModificado(Mensaje.USUARIO));
         return SUCCESS;
     }
 
+    @Override
     public String eliminar() {
         controladorUsuario.eliminar(usuario);
         sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.USUARIO));
@@ -140,16 +143,14 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario> {
         return SUCCESS;
     }
 
+    @Override
     public String listar() {
         lista = controladorUsuario.buscar(nombreFiltro, apellidoFiltro, rolesSeleccionados);
         return SUCCESS;
     }
 
-    public String nuevo() {
-        return SUCCESS;
-    }
-
-    public String editar() {
+    @Override
+    public String getModificar() {
         usuario = controladorUsuario.getUsuario(usuario.getId());
         return SUCCESS;
     }

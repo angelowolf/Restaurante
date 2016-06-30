@@ -6,7 +6,6 @@
 package Controlador.Interface;
 
 import Controlador.Implementacion.ControladorStock;
-import Modelo.Insumo;
 import Modelo.InsumoBruto;
 import Persistencia.ORM.DAOImplementacion.InsumoBrutoDAO;
 import java.util.List;

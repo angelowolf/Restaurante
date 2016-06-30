@@ -26,4 +26,8 @@ public interface IControladorInsumo {
      */
     public List<Insumo> getTodos(boolean activo);
 
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int i, String term, Object object, boolean b);
+
+    public Insumo buscar(int id);
+
 }

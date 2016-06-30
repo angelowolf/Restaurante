@@ -5,7 +5,7 @@
         var $boton = $(this);
         var $contenedor = $boton.parents('#botones');
         var id = $contenedor.find('#id').val();
-        $.post('/insumo/recuperar', {id: id}, function (response) {
+        $.post('/insumobruto/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('formulario-buscar').serialize();
                 window.location.replace('/insumo/listar?' + data);
@@ -32,11 +32,11 @@
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
         toggleBoton(e.target);
-        $.post('/insumo/eliminar', {id: id}, function (response) {
+        $.post('/insumobruto/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
                 var data = $('formulario-buscar').serialize();
-                window.location.replace('/insumo/listar?' + data);
+                window.location.replace('/insumobruto/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
                 toggleBoton(e.target);
@@ -51,7 +51,7 @@
         var id = $contenedor.find('#id').val();
         var $modal = $('#modal-ver');
         $modal.find('#id').val(id);
-        $.post('/insumo/getModificar', {id: id}, function (response) {
+        $.post('/insumobruto/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
@@ -83,7 +83,7 @@
         var id = $contenedor.find('#id').val();
         var $modal = $('#modal-editar');
         $modal.find('#id').val(id);
-        $.post('/insumo/getModificar', {id: id}, function (response) {
+        $.post('/insumobruto/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
@@ -103,10 +103,10 @@
         e.preventDefault();
         toggleBoton(e.target);
         var data = $('#form-editar').serialize();
-        $.post('/insumo/postModificar', data, function (response) {
+        $.post('/insumobruto/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
-                window.location.replace('/insumo/listar?' + data);
+                window.location.replace('/insumobruto/listar?' + data);
             } else {
                 toggleBoton(e.target);
                 erroresM.mostrarErrores('#form-editar', response);

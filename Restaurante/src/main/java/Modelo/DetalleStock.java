@@ -14,7 +14,8 @@ import org.joda.time.LocalDate;
  */
 public class DetalleStock {
 
-    private int id, cantidad;
+    private int id;
+    private float cantidad;
     private LocalDate fecha;
     private TipoMovimiento tipoMovimiento;
     private String f;
@@ -22,7 +23,7 @@ public class DetalleStock {
     public DetalleStock() {
     }
 
-    public DetalleStock(int cantidad, LocalDate fecha, TipoMovimiento tipoMovimiento) {
+    public DetalleStock(float cantidad, LocalDate fecha, TipoMovimiento tipoMovimiento) {
         this.cantidad = cantidad;
         this.fecha = fecha;
         this.tipoMovimiento = tipoMovimiento;
@@ -36,16 +37,16 @@ public class DetalleStock {
         this.id = id;
     }
 
-    public int getCantidad() {
+    public float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
 
     public String getF() {
-      if (null == fecha) {
+        if (null == fecha) {
             return null;
         }
         return fecha.toString(Soporte.Mensaje.FECHAJSON);

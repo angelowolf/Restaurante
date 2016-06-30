@@ -16,10 +16,10 @@
         <action name="home" method="home" class="Acciones.UsuarioAction">
             <result name="success" type="tiles">/home.tiles</result>
         </action>    
-        <action name="recuperar" method="execute" class="Acciones.LinkAction">
-            <result name="success">/WEB-INF/usuario/recuperar.jsp</result>
+        <action name="recuperar" >
+            <result>/WEB-INF/usuario/recuperar.jsp</result>
         </action>    
-        <action name="logear" class="Acciones.LinkAction">
+        <action name="logear">
             <result name="success">/WEB-INF/login.jsp</result>
         </action>    
         <action name="recuperarClave" method="recuperarClave" class="Acciones.UsuarioAction"/>

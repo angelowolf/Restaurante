@@ -34,7 +34,7 @@ public class StockAction extends Accion {
     private final IControladorCategoriaInsumo controladorCategoriaInsumo;
 
     private List<Integer> ids;
-    private List<Integer> cantidad;
+    private List<Float> cantidad;
     private List<Float> precio;
 
     public StockAction() {
@@ -64,8 +64,8 @@ public class StockAction extends Accion {
             if (cantidad == null || cantidad.isEmpty()) {
                 addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
             } else {
-                for (Integer integer : cantidad) {
-                    if (integer == null) {
+                for (Float cadaCantidad : cantidad) {
+                    if (cadaCantidad == null) {
                         addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
                         break;
                     }
@@ -74,8 +74,8 @@ public class StockAction extends Accion {
             if (precio == null || precio.isEmpty()) {
                 addActionError(Soporte.Mensaje.INGRESEPRECIO);
             } else {
-                for (Float float1 : precio) {
-                    if (float1 == null) {
+                for (Float cadaPrecio : precio) {
+                    if (cadaPrecio == null) {
                         addActionError(Soporte.Mensaje.INGRESEPRECIO);
                         break;
                     }
@@ -86,7 +86,7 @@ public class StockAction extends Accion {
             codigo = 400;
         }
     }
-
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(StockAction.class);
     public String postCargarCompra() {
         controladorStock.registrarCompraInsumoBruto(ids, cantidad, precio);
         sesion.put("mensaje", Soporte.Mensaje.COMPRAREGISTRADA);
@@ -99,7 +99,7 @@ public class StockAction extends Accion {
         } else if (cantidad == null || cantidad.isEmpty()) {
             addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
         } else {
-            for (Integer integer : cantidad) {
+            for (Float integer : cantidad) {
                 if (integer == null) {
                     addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
                     break;
@@ -144,7 +144,7 @@ public class StockAction extends Accion {
         this.ids = ids;
     }
 
-    public void setCantidad(List<Integer> cantidad) {
+    public void setCantidad(List<Float> cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -121,15 +121,15 @@ public abstract class Insumo {
         fechaBaja = null;
     }
 
-    public void regitrarDescuentoPorVenta(int cantidadARestar) {
+    public void regitrarDescuentoPorVenta(float cantidadARestar) {
         this.stock.regitrarDescuento(this, cantidadARestar);
     }
 
-    public void registrarReposicion(int cantidadASumar) {
+    public void registrarReposicion(float cantidadASumar) {
         this.stock.registrarReposicion(cantidadASumar);
     }
 
-    public void registrarAjusteStock(int cantidadAjuste) {
+    public void registrarAjusteStock(float cantidadAjuste) {
         this.stock.registrarAjusteStock(this, cantidadAjuste);
     }
 

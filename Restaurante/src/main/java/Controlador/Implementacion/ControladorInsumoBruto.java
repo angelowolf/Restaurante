@@ -5,14 +5,12 @@
  */
 package Controlador.Implementacion;
 
-import Modelo.Stock;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 import Controlador.Interface.IControladorInsumoBruto;
-import Modelo.Insumo;
 import Modelo.InsumoBruto;
 
 /**

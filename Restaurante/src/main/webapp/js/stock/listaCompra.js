@@ -11,7 +11,7 @@
     $('#nombre').autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/insumo/postBuscarInsumoAutoComplete",
+                url: "/insumobruto/postBuscarInsumoBrutoAutoComplete",
                 type: "POST",
                 data: {
                     term: request.term
@@ -24,7 +24,7 @@
         },
         select: function (event, ui) {
             var data = {id: ui.item.id};
-            $.post("/insumo/getModificar", data, function (response) {
+            $.post("/insumobruto/getModificar", data, function (response) {
                 if (response.codigo === 200) {
                     $('#nombre').val('');
                     if ($('#' + response.model.id + '').length !== 1) {

@@ -54,5 +54,5 @@
     <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarEl(Soporte.Mensaje.INSUMO));%></s:param>
     <s:param name="modelo">insumo</s:param>
 </s:action>
-<s:include value="/WEB-INF/insumo/modalModificacion.jsp"/>
-<s:include value="/WEB-INF/insumo/modalVer.jsp"/>
+<s:include value="/WEB-INF/insumo/bruto/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/insumo/bruto/modalVer.jsp"/>

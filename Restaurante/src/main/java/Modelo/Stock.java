@@ -14,43 +14,43 @@ import org.joda.time.LocalDate;
  * @author ang_2
  */
 public class Stock {
-    
+
     private int id;
-    private int cantidadActual, cantidadMinima;
+    private float cantidadActual, cantidadMinima;
     private Set<DetalleStock> detalleStocks;
-    
+
     public int getId() {
         return id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public Set<DetalleStock> getDetalleStocks() {
         return detalleStocks;
     }
-    
+
     public void setDetalleStocks(Set<DetalleStock> detalleStocks) {
         this.detalleStocks = detalleStocks;
     }
-    
-    public int getCantidadActual() {
+
+    public float getCantidadActual() {
         return cantidadActual;
     }
-    
-    public void setCantidadActual(int cantidadActual) {
+
+    public void setCantidadActual(float cantidadActual) {
         this.cantidadActual = cantidadActual;
     }
-    
-    public int getCantidadMinima() {
+
+    public float getCantidadMinima() {
         return cantidadMinima;
     }
-    
-    public void setCantidadMinima(int cantidadMinima) {
+
+    public void setCantidadMinima(float cantidadMinima) {
         this.cantidadMinima = cantidadMinima;
     }
-    
+
     @Override
     public String toString() {
         return "Stock{" + "id=" + id + ", cantidadActual=" + cantidadActual + ", cantidadMinima=" + cantidadMinima + '}';
@@ -63,8 +63,8 @@ public class Stock {
      * @param insumo
      * @param cantidadARestar cantidad positiva.
      */
-    public void regitrarDescuento(Insumo insumo, int cantidadARestar) {
-        DetalleStock venta = new DetalleStock(Math.negateExact(cantidadARestar), LocalDate.now(), TipoMovimiento.Venta);
+    public void regitrarDescuento(Insumo insumo, float cantidadARestar) {
+        DetalleStock venta = new DetalleStock(-cantidadARestar, LocalDate.now(), TipoMovimiento.Venta);
         this.detalleStocks.add(venta);
         this.cantidadActual -= cantidadARestar;
         this.verificarStockBajo(insumo);
@@ -76,7 +76,7 @@ public class Stock {
      *
      * @param cantidadASumar cantidad positiva.
      */
-    public void registrarReposicion(int cantidadASumar) {
+    public void registrarReposicion(float cantidadASumar) {
         DetalleStock aSumar = new DetalleStock(cantidadASumar, LocalDate.now(), TipoMovimiento.Reposicion);
         this.detalleStocks.add(aSumar);
         this.cantidadActual += cantidadASumar;
@@ -89,7 +89,7 @@ public class Stock {
      * @param insumo
      * @param cantidadAjuste positivo o negativo segun sea el ajuste.
      */
-    public void registrarAjusteStock(Insumo insumo, int cantidadAjuste) {
+    public void registrarAjusteStock(Insumo insumo, float cantidadAjuste) {
         DetalleStock ajuste = new DetalleStock(cantidadAjuste, LocalDate.now(), TipoMovimiento.Ajuste);
         this.detalleStocks.add(ajuste);
         this.cantidadActual = cantidadAjuste;

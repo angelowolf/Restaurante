@@ -28,7 +28,7 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
  *
  * @author ang_2
  */
-public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
+public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CRUD {
 
     private static final Logger LOGGER = Logger.getLogger(InsumoBrutoAction.class);
 
@@ -60,7 +60,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         return SUCCESS;
     }
 
-    public String postBuscarInsumoAutoComplete() {
+    public String postBuscarInsumoBrutoAutoComplete() {
         listaAC = new ArrayList<>();
         lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(-1, term, null, true);
         for (InsumoBruto insumoBruto : lista) {
@@ -69,6 +69,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         return SUCCESS;
     }
 
+    @Override
     public String getModificar() {
         insumo = controladorInsumo.getInsumo(insumo.getId());
         return SUCCESS;
@@ -98,6 +99,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         }
     }
 
+    @Override
     public String postModificar() {
         controladorInsumo.actualizar(insumo);
         sesion.put("mensaje", Mensaje.getModificado(Mensaje.INSUMO));
@@ -139,6 +141,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         }
     }
 
+    @Override
     public String registrar() {
         controladorInsumo.guardar(insumo);
         sesion.put("mensaje", Mensaje.getAgregado(Mensaje.INSUMO));
@@ -149,6 +152,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         LOGGER.warn("VALIDAR AL ELIMINAR INSUMO");
     }
 
+    @Override
     public String eliminar() {
         controladorInsumo.eliminar(insumo);
         sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.INSUMO));
@@ -161,12 +165,9 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo> {
         return SUCCESS;
     }
 
+    @Override
     public String listar() {
         lista = controladorInsumo.buscar(nombreFiltro, categoriaInsumoFiltro);
-        return SUCCESS;
-    }
-
-    public String nuevo() {
         return SUCCESS;
     }
 

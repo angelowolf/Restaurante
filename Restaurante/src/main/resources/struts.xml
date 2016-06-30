@@ -20,6 +20,8 @@
     <include file="Struts2/XML/struts-pedido.xml"></include>
     <include file="Struts2/XML/struts-categoriaInsumo.xml"></include>
     <include file="Struts2/XML/struts-insumo.xml"></include>
+    <include file="Struts2/XML/struts-insumoBruto.xml"></include>
+    <include file="Struts2/XML/struts-insumoElaborado.xml"></include>
     <include file="Struts2/XML/struts-stock.xml"></include>
     <include file="Struts2/XML/struts-notificacion.xml"></include>
     

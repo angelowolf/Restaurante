@@ -3,7 +3,7 @@
         e.preventDefault();
         toggleBoton(e.target);
         var data = $('#formulario').serialize();
-        $.post('/insumo/registrar', data, function (response) {
+        $.post('/insumobruto/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumo/listar');
             } else {
@@ -14,6 +14,6 @@
     });
     $('body').on('click', '#cancelar', function (e) {
         e.preventDefault();
-        window.location.replace('/insumo/listar');
+        window.location.replace('/insumobruto/listar');
     });
 })(jQuery);

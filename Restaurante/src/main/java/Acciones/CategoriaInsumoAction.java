@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  *
  * @author ang_2
  */
-public class CategoriaInsumoAction extends Accion implements ModelDriven<CategoriaInsumo> {
+public class CategoriaInsumoAction extends Accion implements ModelDriven<CategoriaInsumo> ,CRUD{
 
     private static final Logger LOGGER = Logger.getLogger(CategoriaInsumoAction.class);
 
@@ -36,6 +36,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         controladorCategoriaInsumo = new ControladorCategoriaInsumo();
     }
 
+    @Override
     public String getModificar() {
         categoriaInsumo = controladorCategoriaInsumo.getCategoria(categoriaInsumo.getId());
         return SUCCESS;
@@ -56,6 +57,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         this.validar();
     }
 
+    @Override
     public String postModificar() {
         controladorCategoriaInsumo.actualizar(categoriaInsumo);
         sesion.put("mensaje", Mensaje.getModificada(Mensaje.CATEGORIAINSUMO));
@@ -66,6 +68,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         this.validar();
     }
 
+    @Override
     public String registrar() {
         controladorCategoriaInsumo.guardar(categoriaInsumo);
         sesion.put("mensaje", Mensaje.getAgregada(Mensaje.CATEGORIAINSUMO));
@@ -81,18 +84,16 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         }
     }
 
+    @Override
     public String eliminar() {
         controladorCategoriaInsumo.eliminar(categoriaInsumo);
         sesion.put("mensaje", Soporte.Mensaje.getEliminada(Mensaje.CATEGORIAINSUMO));
         return SUCCESS;
     }
 
+    @Override
     public String listar() {
         lista = controladorCategoriaInsumo.buscar(nombreFiltro);
-        return SUCCESS;
-    }
-
-    public String nuevo() {
         return SUCCESS;
     }
 

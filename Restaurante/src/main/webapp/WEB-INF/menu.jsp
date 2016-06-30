@@ -16,15 +16,15 @@
             <li>
                 <a href="#"><i class="fa fa-apple fa-fw"></i> Brutos<span class="fa arrow"></span></a>
                 <ul class="nav nav-third-level">
-                    <li><a href="<s:url action="listar" namespace="/insumo"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                    <li><a href="<s:url action="nuevo" namespace="/insumo"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
+                    <li><a href="<s:url action="listar" namespace="/insumobruto"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
+                    <li><a href="<s:url action="nuevo" namespace="/insumobruto"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
                 </ul>  
             </li>
             <li>
                 <a href="#"><i class="fa fa-sign-language fa-fw"></i> Elaborados<span class="fa arrow"></span></a>
                 <ul class="nav nav-third-level">
-                    <li><a href="<s:url action="listar" namespace="/insumoElaborado"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                    <li><a href="<s:url action="nuevo" namespace="/insumoElaborado"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
+                    <li><a href="<s:url action="listar" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
+                    <li><a href="<s:url action="nuevo" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
                 </ul>  
             </li>
             <li>

@@ -7,7 +7,6 @@ package Modelo;
 
 import Notificacion.ISesion;
 import Soporte.Encriptar;
-import com.opensymphony.xwork2.validator.annotations.DateRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.HashMap;
 import java.util.Map;
@@ -197,6 +196,7 @@ public class Usuario {
         this.nick = nick;
     }
 
+    @JSON(serialize = false)
     public String getClave() {
         return clave;
     }

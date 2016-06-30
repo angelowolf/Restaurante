@@ -8,7 +8,10 @@ package Acciones;
 import Controlador.Implementacion.ControladorPedido;
 import Controlador.Interface.IControladorPedido;
 import Modelo.Pedido;
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,7 +30,7 @@ public class PedidoAction extends Accion implements ModelDriven<Pedido> {
     public String test() {
         controladorPedido.guardar(pedido);
         return SUCCESS;
-    }
+        }
 
     public Pedido getPedido() {
         return pedido;

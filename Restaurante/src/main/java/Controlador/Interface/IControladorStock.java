@@ -36,7 +36,7 @@ public interface IControladorStock {
      * @param cantidad las cantidad comprada, positiva
      * @param precio los precio pagada por la unidad de medida
      */
-    public void registrarCompraInsumoBruto(List<Integer> ids, List<Integer> cantidad, List<Float> precio);
+    public void registrarCompraInsumoBruto(List<Integer> ids, List<Float> cantidad, List<Float> precio);
 
     /**
      * registra para estos insumos un ajuste de stock.
@@ -45,5 +45,5 @@ public interface IControladorStock {
      * @param cantidades las cantidades a ajustar positivas o negativas segun el
      * caso
      */
-    public void registrarAjuste(List<Integer> idInsumos, List<Integer> cantidades);
+    public void registrarAjuste(List<Integer> idInsumos, List<Float> cantidades);
 }

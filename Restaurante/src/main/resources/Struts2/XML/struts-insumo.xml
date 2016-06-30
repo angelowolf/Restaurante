@@ -4,24 +4,16 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <package name="insumo" extends="json" namespace="/insumo">
-        <action name="getModificar" method="getModificar" class="Acciones.InsumoBrutoAction"/>
-        <action name="postModificar" method="postModificar" class="Acciones.InsumoBrutoAction"/>
-        <action name="registrar" method="registrar" class="Acciones.InsumoBrutoAction"/>
-        <action name="eliminar" method="eliminar" class="Acciones.InsumoBrutoAction"/>
-        <action name="recuperar" method="recuperar" class="Acciones.InsumoBrutoAction"/>
-        <action name="listar" method="listar" class="Acciones.InsumoBrutoAction">
-            <result name="success" type="tiles">/insumo/todos.tiles</result>
+    <package name="insumo" extends="json" namespace="/insumo">        
+        <action name="listar" method="listar" class="Acciones.InsumoAction">
+            <result name="success" type="tiles">/insumobruto/todos.tiles</result>
         </action>
-        <action name="nuevo" method="nuevo" class="Acciones.InsumoBrutoAction">
-            <result name="success" type="tiles">/insumo/alta.tiles</result>
-        </action>      
-        
+      
         <!--RUTAS DE EVENTOS DINAMICOS....-->
-        <action name="postBuscarInsumoBruto" method="postBuscarInsumo" class="Acciones.InsumoBrutoAction">
+        <action name="postBuscarInsumo" method="postBuscarInsumo" class="Acciones.InsumoBrutoAction">
             <result name="success">/WEB-INF/insumo/tablaInsumo.jsp</result>
         </action>         
-        <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.InsumoBrutoAction">
+        <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.InsumoAction">
             <result type="json" >
                 <param name="root">listaAC</param>
             </result>            

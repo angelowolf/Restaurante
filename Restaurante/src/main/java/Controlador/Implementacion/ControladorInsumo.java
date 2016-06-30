@@ -20,4 +20,14 @@ public class ControladorInsumo implements IControladorInsumo {
         return INSUMODAO.getTodos(activo);
     }
 
+    @Override
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int i, String term, Object object, boolean b) {
+        return null;
+    }
+
+    @Override
+    public Insumo buscar(int id) {
+        return null;
+    }
+
 }
