@@ -5,7 +5,7 @@
         var data = $('#formulario').serialize();
         $.post('/insumobruto/registrar', data, function (response) {
             if (response.codigo === 200) {
-                window.location.replace('/insumo/listar');
+                window.location.replace('/insumobruto/listar');
             } else {
                 erroresM.mostrarErrores('#formulario', response);
                 toggleBoton(e.target);

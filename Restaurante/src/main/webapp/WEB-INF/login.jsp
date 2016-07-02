@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon">
         <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
-        <link href='../css/login.css' rel='stylesheet' type='text/css'>
+        <link href='/css/login.css' rel='stylesheet' type='text/css'>
 
     </head>
     <body>
@@ -72,7 +72,7 @@
             <rect width="50px" height="50px" x="25px" y="25px" class="bubble" id="bub11" />
             </svg>
         </div>
-        <script src="../js/vendor/jquery.min.js"></script>
-        <script src="../js/vendor/bootstrap.min.js"></script>
+        <script src="/js/vendor/jquery.min.js"></script>
+        <script src="/js/vendor/bootstrap.min.js"></script>
     </body>
 </html>

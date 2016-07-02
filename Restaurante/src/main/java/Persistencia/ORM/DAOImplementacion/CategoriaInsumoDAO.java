@@ -29,7 +29,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         Session session = getHibernateTemplate();
         List<CategoriaInsumo> objetos = new ArrayList<>();
         try {
-            String sql = "from CategoriaInsumo order by nombre";
+            String sql = "from CategoriaInsumo where nombre != 'Elaborado' order by nombre";
             objetos = session.createQuery(sql).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar las categorias.", e);
@@ -59,7 +59,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         Session session = getHibernateTemplate();
         List<CategoriaInsumo> objetos = new ArrayList<>();
         try {
-            String sql = "select * from CategoriaInsumo categoria inner join insumo insumo ON insumo.id_categoria = categoria.id WHERE insumo.id_categoria LIKE :id ";
+            String sql = "select * from CategoriaInsumo categoria inner join insumo insumo ON insumo.id_categoria = categoria.id WHERE insumo.id_categoria LIKE :id and categoria.nombre != 'Elaborado '  ";
             objetos = session.createSQLQuery(sql).addEntity(CategoriaInsumo.class).setParameter("id", categoriaInsumo.getId()).list();
         } catch (RuntimeException e) {
             LOG.error("Error al verificar si esta en uso la categoria", e);
@@ -74,6 +74,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         try {
             Criteria criterio = session.createCriteria(CategoriaInsumo.class);
             criterio.add(Restrictions.neOrIsNotNull("id", null));
+            criterio.add(Restrictions.not(Restrictions.eq("nombre", "Elaborado")));
             if (nombreFiltro != null) {
                 criterio.add(Restrictions.like("nombre", nombreFiltro + "%"));
             }

@@ -23,8 +23,8 @@
         e.preventDefault();
         toggleBoton(e.target);
         var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
+        var $dialog = $boton.parents('.modal.recuperar');
+        var id = $dialog.find('#id').val();
         $.post('/usuario/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();

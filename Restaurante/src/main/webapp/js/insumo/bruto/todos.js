@@ -1,14 +1,26 @@
 (function ($) {
+   
+    $('body').on('click', '#modalrecuperar', function (e) {
+        e.preventDefault();
+        var $boton = $(this);
+        var $contenedor = $boton.parents('#botones');
+        var id = $contenedor.find('#id').val();
+        var $modal = $('.modal.recuperar[data-modelo=insumo]');
+        $modal.find('#id').val(id);
+        $modal.find('#model').val('insumo');
+        $modal.modal('show');
+    });
+
     $('body').on('click', '#recuperar', function (e) {
         e.preventDefault();
         toggleBoton(e.target);
         var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
+        var $dialog = $boton.parents('.modal.recuperar');
+        var id = $dialog.find('#id').val();
         $.post('/insumobruto/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
-                var data = $('formulario-buscar').serialize();
-                window.location.replace('/insumo/listar?' + data);
+                var data = $('#formulario-buscar').serialize();
+                window.location.replace('/insumobruto/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
                 toggleBoton(e.target);
@@ -35,7 +47,7 @@
         $.post('/insumobruto/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
-                var data = $('formulario-buscar').serialize();
+                var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);

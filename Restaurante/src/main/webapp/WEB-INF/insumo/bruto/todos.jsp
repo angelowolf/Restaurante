@@ -5,7 +5,7 @@
     <h2 class="page-header">Insumos</h2>
     <div class="panel panel-default">        
         <div class="panel-body">        
-            <s:form class="form-inline" action="listar" namespace="/insumo" id="formulario-buscar">
+            <s:form class="form-inline" action="listar" namespace="/insumobruto" id="formulario-buscar">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>
@@ -42,7 +42,7 @@
                         <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
                         </s:if>
                         <s:else>
-                        <button id="recuperar" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
+                        <button id="modalrecuperar" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
                         </s:else>
                 </div>
             </display:column>
@@ -52,6 +52,11 @@
 <s:action name="modaleliminar" namespace="/modal" executeResult="true">
     <s:param name="titulo"><%out.println(Soporte.Mensaje.INSUMO);%></s:param>
     <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarEl(Soporte.Mensaje.INSUMO));%></s:param>
+    <s:param name="modelo">insumo</s:param>
+</s:action>
+<s:action name="modalrecuperar" namespace="/modal" executeResult="true">
+    <s:param name="titulo"><%out.println(Soporte.Mensaje.INSUMO);%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.INSUMO));%></s:param>
     <s:param name="modelo">insumo</s:param>
 </s:action>
 <s:include value="/WEB-INF/insumo/bruto/modalModificacion.jsp"/>
