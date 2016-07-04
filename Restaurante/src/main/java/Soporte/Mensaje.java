@@ -32,10 +32,12 @@ public class Mensaje {
     private static final String CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
     private static final String CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
     private static final String NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
-    public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
-    public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
+    public static final String PREGUNTADARBAJAEL = "¿Está seguro de que quiere dar de baja este %s?";
+    public static final String PREGUNTADARBAJALA = "¿Está seguro de que quiere dar de baja esta %s?";
     public static final String PREGUNTARECUPERAREL = "¿Está seguro de que quiere recuperar este %s?";
     public static final String PREGUNTARECUPERARLA = "¿Está seguro de que quiere recuperar esta %s?";
+    public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
+    public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
     //************************************************************************//
     //Nombre de clases...//
     public static final String USUARIO = "Usuario";
@@ -136,6 +138,9 @@ public class Mensaje {
     public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
     public static final String NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
     public static final String FECHAINVALIDA = "La fecha no es válida.";
+    public static final String INGRESEINSUMO = "Ingrese algun Insumo.";
+    public static final String INGRESECANTIDADUTILIZAR = "No se ha especificado la cantidad a utilizar de todos los insumos ingresados.";
+    public static final String INGRESECANTIDADCONFECCIONAR = "Ingrese la cantidad a confeccionar.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
@@ -288,6 +293,28 @@ public class Mensaje {
      */
     public static String getUsadaPorUn(String arg, String arg2) {
         return String.format(USADAPORUN, arg, arg2);
+    }
+
+    /**
+     * Crea un mensaje que pregunta si el objeto quiere ser eliminado. "¿Está
+     * seguro de que quiere dar de baja este %s?"
+     *
+     * @param arg
+     * @return
+     */
+    public static String getPreguntaDarBajaEl(String arg) {
+        return String.format(PREGUNTADARBAJAEL, arg);
+    }
+
+    /**
+     * Crea un mensaje que pregunta si el objeto quiere ser eliminado. "¿Está
+     * seguro de que quiere dar de baja esta %s?"
+     *
+     * @param arg
+     * @return
+     */
+    public static String getPreguntaDarBajaLa(String arg) {
+        return String.format(PREGUNTADARBAJALA, arg);
     }
 
     /**

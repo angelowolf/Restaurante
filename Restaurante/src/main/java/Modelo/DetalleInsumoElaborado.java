@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.Objects;
+
 /**
  *
  * @author ang_2
@@ -45,6 +47,15 @@ public class DetalleInsumoElaborado {
 
     public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleInsumoElaborado{" + "id=" + id + ", insumoBruto=" + insumoBruto + ", cantidad=" + cantidad + '}';
+    }
+
+    void registrarConfeccion(float cantidadConfeccionarInsumo) {
+        this.getInsumoBruto().registrarConfeccion(cantidadConfeccionarInsumo * cantidad);
     }
 
 }

@@ -29,8 +29,10 @@ public interface IControladorCategoriaInsumo {
     public void eliminar(CategoriaInsumo categoria);
 
     public boolean nombreDisponible(CategoriaInsumo categoria);
-    
+
     public boolean enUso(CategoriaInsumo categoriaInsumo);
 
     public List<CategoriaInsumo> buscar(String nombreFiltro);
+
+    public List<CategoriaInsumo> buscarTodos(String nombreFiltro);
 }

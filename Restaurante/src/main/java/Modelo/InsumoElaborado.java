@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import org.joda.time.LocalDate;
 
@@ -33,19 +36,70 @@ public class InsumoElaborado extends Insumo {
     }
 
     @Override
-    public void actualizar(Insumo insumo) {
-        if (insumo instanceof InsumoElaborado) {
-            InsumoElaborado insumo2 = (InsumoElaborado) insumo;
-            this.detalleInsumoElaborados = insumo2.getDetalleInsumoElaborados();
-            super.actualizar(insumo);
+    public String toString() {
+        return super.toString() + " " + "detalleInsumoElaborados=" + detalleInsumoElaborados;
+    }
+
+    public void agregarInsumoBruto(InsumoBruto ib, Float get) {
+        DetalleInsumoElaborado die = new DetalleInsumoElaborado(ib, get);
+        if (this.getDetalleInsumoElaborados() != null) {
+            this.getDetalleInsumoElaborados().add(die);
         } else {
-            throw new ClassCastException("Error al castear un objeto a insumoelaborado");
+            this.detalleInsumoElaborados = new HashSet<>();
+            this.getDetalleInsumoElaborados().add(die);
         }
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " " + "detalleInsumoElaborados=" + detalleInsumoElaborados;
+    public void actualizar(InsumoElaborado insumoElaborado, List<InsumoBruto> insumosRequest, List<Float> cantidades) {
+        super.actualizar(insumoElaborado);
+        for (Iterator<DetalleInsumoElaborado> iterator = this.detalleInsumoElaborados.iterator(); iterator.hasNext();) {
+            DetalleInsumoElaborado insumoElaboradoBD = iterator.next();
+            boolean flag = false;
+            for (InsumoBruto insumoBrutoRquest : insumosRequest) {
+                if (insumoElaboradoBD.getInsumoBruto().getId() == insumoBrutoRquest.getId()) {
+                    //Si el insumo que esta en la bd, no esta en el request hay que eliminarlo
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                //Elimino este dettale de insumo.
+                iterator.remove();
+            }
+        }
+
+        for (int i = 0; i < insumosRequest.size(); i++) {
+            InsumoBruto insumoBrutoRequest = insumosRequest.get(i);
+            boolean flag = false;
+            for (DetalleInsumoElaborado detalleInsumoElaboradoBD : this.detalleInsumoElaborados) {
+                if (detalleInsumoElaboradoBD.getInsumoBruto().getId() == insumoBrutoRequest.getId()) {
+                    //Si los ids son iguales actualizo
+                    detalleInsumoElaboradoBD.setCantidad(cantidades.get(i));
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                //si no son iguales es un alta
+                this.agregarInsumoBruto(insumoBrutoRequest, cantidades.get(i));
+                System.out.println("agregando " + insumoBrutoRequest.toString() + "cnt " + cantidades.get(i));
+            }
+        }
+        System.out.println("al final");
+        for (DetalleInsumoElaborado detalleInsumoElaborado : this.detalleInsumoElaborados) {
+            System.out.println(detalleInsumoElaborado.toString());
+        }
+    }
+
+    public void confeccionar(float cantidadConfeccionarInsumo) {
+        for (DetalleInsumoElaborado cadaDetalle : detalleInsumoElaborados) {
+            cadaDetalle.registrarConfeccion(cantidadConfeccionarInsumo);
+        }
+        this.registrarConfeccion(cantidadConfeccionarInsumo);
+    }
+
+    private void registrarConfeccion(float cantidadConfeccionarInsumo) {
+        this.stock.setCantidadActual(cantidadConfeccionarInsumo+this.stock.getCantidadActual());
     }
 
 }

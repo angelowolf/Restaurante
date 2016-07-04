@@ -10,11 +10,20 @@
         <action name="registrar" method="registrar" class="Acciones.InsumoElaboradoAction"/>
         <action name="eliminar" method="eliminar" class="Acciones.InsumoElaboradoAction"/>
         <action name="recuperar" method="recuperar" class="Acciones.InsumoElaboradoAction"/>
+        <action name="confeccionar" method="confeccionar" class="Acciones.InsumoElaboradoAction"/>
         <action name="listar" method="listar" class="Acciones.InsumoElaboradoAction">
             <result name="success" type="tiles">/insumoelaborado/todos.tiles</result>
         </action>
-        <action name="nuevo">
+        <action name="nuevo" class="Acciones.InsumoElaboradoAction">
             <result type="tiles">/insumoelaborado/alta.tiles</result>
         </action>      
+        <action name="postBuscarInsumoElaboradoAutoComplete" method="postBuscarInsumoElaboradoAutoComplete" class="Acciones.InsumoElaboradoAction">
+            <result type="json" >
+                <param name="root">listaAC</param>
+            </result>            
+        </action>    
+        <action name="getResultadoMensaje" method="getResultadoMensaje" class="Acciones.InsumoElaboradoAction">
+            <result name="success">/WEB-INF/insumo/elaborado/resultadoElbararInsumo.jsp</result>
+        </action>             
     </package>
 </struts>

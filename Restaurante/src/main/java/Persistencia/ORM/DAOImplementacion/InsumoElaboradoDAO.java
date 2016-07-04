@@ -7,6 +7,7 @@ package Persistencia.ORM.DAOImplementacion;
 
 import java.util.List;
 import Modelo.InsumoBruto;
+import Modelo.InsumoElaborado;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
@@ -14,23 +15,24 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import Persistencia.ORM.DAOInterface.IInsumoBruto;
+import Persistencia.ORM.DAOInterface.IInsumoElaborado;
 import org.hibernate.criterion.Order;
 
 /**
  *
  * @author ang_2
  */
-public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements IInsumoBruto {
+public class InsumoElaboradoDAO extends GenericDAO<InsumoElaborado, Integer> implements IInsumoElaborado {
 
-    private static final Logger LOG = Logger.getLogger(InsumoBrutoDAO.class);
+    private static final Logger LOG = Logger.getLogger(InsumoElaboradoDAO.class);
 
     @Override
-    public List<InsumoBruto> getTodosStockMinimo() {
+    public List<InsumoElaborado> getTodosStockMinimo() {
         Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
+        List<InsumoElaborado> objetos = new ArrayList<>();
         try {
-            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumobruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
-            objetos = session.createSQLQuery(sql).addEntity(InsumoBruto.class).list();
+            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumoelaborado insumoelaborado on insumo.id = insumoelaborado.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
+            objetos = session.createSQLQuery(sql).addEntity(InsumoElaborado.class).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);
         }
@@ -38,18 +40,15 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
     }
 
     @Override
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombreInsumo, List<Integer> ids, boolean activo) {
+    public List<InsumoElaborado> getTodosByNombreSinEstos(String nombreInsumo, List<Integer> ids, boolean activo) {
         Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
+        List<InsumoElaborado> objetos = new ArrayList<>();
         try {
-            Criteria criterio = session.createCriteria(InsumoBruto.class);
+            Criteria criterio = session.createCriteria(InsumoElaborado.class);
             criterio.add(Restrictions.neOrIsNotNull("id", null));
 
             if (nombreInsumo != null) {
                 criterio.add(Restrictions.like("nombre", nombreInsumo + "%"));
-            }
-            if (idCategoria > 0) {
-                criterio.add(Restrictions.eq("categoriaInsumo.id", idCategoria));
             }
             if (activo) {
                 criterio.add(Restrictions.isNull("fechaBaja"));
@@ -66,11 +65,11 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
     }
 
     @Override
-    public InsumoBruto buscar(String nombre) {
+    public InsumoElaborado buscar(String nombre) {
         Session session = getHibernateTemplate();
-        List<InsumoBruto> objetos = new ArrayList<>();
+        List<InsumoElaborado> objetos = new ArrayList<>();
         try {
-            String sql = "from Insumo where nombre = :nombre";
+            String sql = "from InsumoElaborado where nombre = :nombre";
             objetos = session.createQuery(sql).setParameter("nombre", nombre).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar  insumo", e);

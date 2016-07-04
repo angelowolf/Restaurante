@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import org.apache.commons.lang.WordUtils;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
@@ -69,6 +70,7 @@ public abstract class Insumo {
         return nombre;
     }
 
+    @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
         this.nombre = WordUtils.capitalize(nombre);
     }

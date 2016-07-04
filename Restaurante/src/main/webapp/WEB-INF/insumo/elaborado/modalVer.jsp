@@ -8,41 +8,27 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form id="form-ver" class="well">
-                        <input type="hidden" id="id" name="id">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="precioUnidad">Precio</label>
-                            <input type="number" class="form-control" id="precioUnidad" name="precioUnidad" placeholder="Precio por unidad" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="categoria" name="categoria">Categoria de Insumo</label>
-                            <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoria" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="unidad" name="unidad">Unidad de Medida</label>
-                            <input type="text" class="form-control" id="unidadMedida" name="unidadMedida" placeholder="Unidad de Medida" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="cantidadActual">Cantidad Actual</label>
-                            <input type="number" class="form-control" id="cantidadActual" name="cantidadActual" placeholder="Cantidad actual" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="cantidadMinima">Cantidad Mínima</label>
-                            <input type="number" class="form-control" id="cantidadMinima" name="cantidadMinima" placeholder="Cantidad mínima" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="fechaAlta">Fecha de Alta</label>
-                            <input type="text" class="form-control" id="fechaAlta" name="fechaAlta" placeholder="Fecha de Alta" readonly="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="fechaBaja">Fecha de Baja</label>
-                            <input type="text" class="form-control" id="fechaBaja" name="fechaBaja" placeholder="Insumo Activo" readonly="true">
-                        </div>
-                    </form>
+                    <p id="nombre-ver">
+
+                    </p>
+                    <p id="unidadmedida-ver">
+
+                    </p>
+                    <p id="cantidadactual-ver">
+
+                    </p>
+                    <p id="cantidadminima-ver">
+
+                    </p>
+                    <p id="fechaalta-ver">
+
+                    </p>
+                    <p id="fechabaja-ver">
+
+                    </p>
+                    <p id="receta-ver">
+
+                    </p>
                 </div>
             </div>
             <div class="modal-footer">

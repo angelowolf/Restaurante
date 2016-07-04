@@ -25,10 +25,9 @@
         
         <joined-subclass name="InsumoElaborado" table="InsumoElaborado">
             <key column="id"/>
-            <set name="detalleInsumoElaborados" table="detalles_insumosElaborados">
-                <key>
-                    <column name="id_InsumoElaborado" not-null="true"/>
-                </key>
+            <!--<set name="detalleInsumoElaborados" cascade="save-update,merge, delete-orphan">-->
+            <set name="detalleInsumoElaborados" cascade="all-delete-orphan">
+                <key column="id_InsumoElaborado"/>
                 <one-to-many class="Modelo.DetalleInsumoElaborado"/>
             </set>
         </joined-subclass>

@@ -108,4 +108,11 @@ public class Stock {
         }
     }
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Stock.class);
+
+    public void registrarConfeccion(InsumoBruto aThis, float f) {
+        DetalleStock ajuste = new DetalleStock(-f, LocalDate.now(), TipoMovimiento.Confeccion);
+        this.detalleStocks.add(ajuste);
+        this.cantidadActual -= f;
+        this.verificarStockBajo(aThis);
+    }
 }

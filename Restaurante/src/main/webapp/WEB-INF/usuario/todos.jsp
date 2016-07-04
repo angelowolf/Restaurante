@@ -60,7 +60,7 @@
 </div>
 <s:action name="modaleliminar" namespace="/modal" executeResult="true">
     <s:param name="titulo"><%out.println(Soporte.Mensaje.USUARIO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarEl(Soporte.Mensaje.USUARIO));%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaDarBajaEl(Soporte.Mensaje.USUARIO));%></s:param>
     <s:param name="modelo">usuario</s:param>
 </s:action>
 <s:action name="modalrecuperar" namespace="/modal" executeResult="true">

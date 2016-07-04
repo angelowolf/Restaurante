@@ -86,4 +86,21 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         return objetos;
     }
 
+    @Override
+    public List<CategoriaInsumo> buscarFiltroTodos(String nombreFiltro) {
+        Session session = getHibernateTemplate();
+        List<CategoriaInsumo> objetos = new ArrayList<>();
+        try {
+            Criteria criterio = session.createCriteria(CategoriaInsumo.class);
+            criterio.add(Restrictions.neOrIsNotNull("id", null));
+            if (nombreFiltro != null) {
+                criterio.add(Restrictions.like("nombre", nombreFiltro + "%"));
+            }
+            criterio.addOrder(Order.asc("nombre"));
+            objetos = criterio.list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar las categorias insumo.", e);
+        }
+        return objetos;
+    }
 }

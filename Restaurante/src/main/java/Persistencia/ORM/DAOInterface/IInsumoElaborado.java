@@ -5,7 +5,7 @@
  */
 package Persistencia.ORM.DAOInterface;
 
-import Modelo.InsumoBruto;
+import Modelo.InsumoElaborado;
 import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
 
@@ -13,17 +13,17 @@ import java.util.List;
  *
  * @author ang_2
  */
-public interface IInsumoBruto extends IGenericDAO<InsumoBruto, Integer> {
+public interface IInsumoElaborado extends IGenericDAO<InsumoElaborado, Integer> {
 
     /**
      * busca todos los insumos brutos que esten activos y por debajo del minimo.
      *
      * @return
      */
-    public List<InsumoBruto> getTodosStockMinimo();
+    public List<InsumoElaborado> getTodosStockMinimo();
 
-    public List<InsumoBruto> getTodosByCategoriaByNombreSinEstos(int idCategoria, String capitalize, List<Integer> ids, boolean activo);
+    public List<InsumoElaborado> getTodosByNombreSinEstos(String capitalize, List<Integer> ids, boolean activo);
 
-    public InsumoBruto buscar(String nombre);
+    public InsumoElaborado buscar(String nombre);
 
 }

@@ -21,13 +21,6 @@
                 </ul>  
             </li>
             <li>
-                <a href="#"><i class="fa fa-sign-language fa-fw"></i> Elaborados<span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level">
-                    <li><a href="<s:url action="listar" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
-                    <li><a href="<s:url action="nuevo" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
-                </ul>  
-            </li>
-            <li>
                 <a href="#"><i class="fa fa-cogs fa-fw"></i> Categorías<span class="fa arrow"></span></a>
                 <ul class="nav nav-third-level">
                     <li><a href="<s:url action="listar" namespace="/insumo/categoria"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
@@ -47,6 +40,18 @@
     </li>
 </s:if>
 <s:if test="#session.rolCocina">
+    <li>
+        <a href="#"><i class="fa fa-fire fa-fw"></i> Cocina<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="#"><i class="fa fa-sign-language fa-fw"></i> Elaborados<span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                    <li><a href="<s:url action="listar" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-list fa-fw "></i> Todos</a></li>
+                    <li><a href="<s:url action="nuevo" namespace="/insumoelaborado"/>"><i class="glyphicon glyphicon-plus fa-fw "></i> Nuevo</a></li>
+                </ul>  
+            </li>
+        </ul>    
+    </li>
 </s:if>
 <s:if test="#session.rolCaja">
 </s:if>

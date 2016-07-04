@@ -12,6 +12,9 @@
 #alerta{
     margin-top: 15px;
 }
+.alert {
+    z-index: 99999 !important;
+}
 
 p#notificacion {
     padding: 10px 10px 0 10px;
