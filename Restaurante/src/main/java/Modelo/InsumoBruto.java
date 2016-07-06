@@ -48,6 +48,11 @@ public class InsumoBruto extends Insumo {
         }
     }
 
+    /**
+     * actualiza el stock con esa cantidad. manda notificacion si es el caso.
+     *
+     * @param f
+     */
     public void registrarConfeccion(float f) {
         stock.registrarConfeccion(this, f);
     }

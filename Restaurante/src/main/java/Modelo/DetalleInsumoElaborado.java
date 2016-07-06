@@ -54,7 +54,14 @@ public class DetalleInsumoElaborado {
         return "DetalleInsumoElaborado{" + "id=" + id + ", insumoBruto=" + insumoBruto + ", cantidad=" + cantidad + '}';
     }
 
-    void registrarConfeccion(float cantidadConfeccionarInsumo) {
+    /**
+     * Calcula la cantidad de este insumo bruto que es usado segun la cantidad
+     * confeccionada del insumo elaborado, y registra un detalle stock
+     * actualizando esa cantidad.
+     *
+     * @param cantidadConfeccionarInsumo
+     */
+    public void registrarConfeccion(float cantidadConfeccionarInsumo) {
         this.getInsumoBruto().registrarConfeccion(cantidadConfeccionarInsumo * cantidad);
     }
 

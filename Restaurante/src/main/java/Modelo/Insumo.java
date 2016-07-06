@@ -128,7 +128,7 @@ public abstract class Insumo {
     }
 
     public void registrarReposicion(float cantidadASumar) {
-        this.stock.registrarReposicion(cantidadASumar);
+        this.stock.registrarReposicion(this, cantidadASumar);
     }
 
     public void registrarAjusteStock(float cantidadAjuste) {

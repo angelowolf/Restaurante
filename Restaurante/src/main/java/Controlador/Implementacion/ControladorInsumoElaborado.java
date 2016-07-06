@@ -61,7 +61,6 @@ public class ControladorInsumoElaborado implements IControladorInsumoElaborado {
             InsumoBruto ib = controladorInsumoBruto.getInsumo(ids.get(i));
             insumosRequest.add(ib);
         }
-
         insumoElaborado.setCategoriaInsumo(insumoEnBd.getCategoriaInsumo());
         insumoEnBd.actualizar(insumoElaborado, insumosRequest, cantidades);
         InsumoElaboradoDAO.actualizar(insumoEnBd);

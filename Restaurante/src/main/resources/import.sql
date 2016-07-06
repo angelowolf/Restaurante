@@ -98,7 +98,7 @@ insert into InsumoBruto(id,precioUnidad) values(21,15);
 
 
 insert into Stock(cantidadActual,cantidadMinima) values(30,150);
-insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Milanesa','Unidad','2016-01-02',20,1);
+insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Milanesa','Unidad','2016-01-02',22,1);
 insert into InsumoElaborado(id) values(22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(1,4,22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.05,20,22);

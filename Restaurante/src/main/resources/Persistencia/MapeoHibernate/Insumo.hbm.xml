@@ -26,7 +26,7 @@
         <joined-subclass name="InsumoElaborado" table="InsumoElaborado">
             <key column="id"/>
             <!--<set name="detalleInsumoElaborados" cascade="save-update,merge, delete-orphan">-->
-            <set name="detalleInsumoElaborados" cascade="all-delete-orphan">
+            <set name="detalleInsumoElaborados" cascade="all-delete-orphan" order-by="id_insumoBruto">
                 <key column="id_InsumoElaborado"/>
                 <one-to-many class="Modelo.DetalleInsumoElaborado"/>
             </set>

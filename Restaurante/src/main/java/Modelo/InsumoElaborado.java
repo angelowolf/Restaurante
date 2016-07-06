@@ -91,15 +91,21 @@ public class InsumoElaborado extends Insumo {
         }
     }
 
+    /**
+     * Confecciona una cantdad de este insumo elaborado, descuenta las
+     * cantidades de su receta. verifica si esta por debajo del stock y manda
+     * notificacion.
+     *
+     * @param cantidadConfeccionarInsumo
+     */
     public void confeccionar(float cantidadConfeccionarInsumo) {
         for (DetalleInsumoElaborado cadaDetalle : detalleInsumoElaborados) {
+            System.out.println("blucle insumo. " + cadaDetalle.toString());
             cadaDetalle.registrarConfeccion(cantidadConfeccionarInsumo);
+            System.out.println("del elaborado " + stock.getCantidadActual());
         }
-        this.registrarConfeccion(cantidadConfeccionarInsumo);
-    }
-
-    private void registrarConfeccion(float cantidadConfeccionarInsumo) {
-        this.stock.setCantidadActual(cantidadConfeccionarInsumo+this.stock.getCantidadActual());
+        System.out.println("fin blucle");
+        this.stock.registrarConfeccion(this, cantidadConfeccionarInsumo);
     }
 
 }
