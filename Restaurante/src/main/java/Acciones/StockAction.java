@@ -25,6 +25,7 @@ import Modelo.InsumoBruto;
  */
 public class StockAction extends Accion {
 
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(StockAction.class);
     private List<InsumoBruto> lista;
     private List<Insumo> listaTodos;
     private List<CategoriaInsumo> categorias;
@@ -86,7 +87,7 @@ public class StockAction extends Accion {
             codigo = 400;
         }
     }
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(StockAction.class);
+
     public String postCargarCompra() {
         controladorStock.registrarCompraInsumoBruto(ids, cantidad, precio);
         sesion.put("mensaje", Soporte.Mensaje.COMPRAREGISTRADA);

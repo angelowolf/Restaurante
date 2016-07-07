@@ -23,6 +23,7 @@ import Controlador.Interface.IControladorInsumoBruto;
 import Soporte.AutoComplete;
 import static Soporte.Mensaje.RECUPERADOINSUMO;
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 /**
  *
@@ -183,6 +184,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
         return insumo;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public void setInsumo(InsumoBruto insumo) {
         this.insumo = insumo;
     }

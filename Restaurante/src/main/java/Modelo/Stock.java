@@ -15,6 +15,8 @@ import org.joda.time.LocalDate;
  */
 public class Stock {
 
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Stock.class);
+
     private int id;
     private float cantidadActual, cantidadMinima;
     private Set<DetalleStock> detalleStocks;
@@ -76,10 +78,11 @@ public class Stock {
      *
      * @param cantidadASumar cantidad positiva.
      */
-    public void registrarReposicion(float cantidadASumar) {
+    public void registrarReposicion(Insumo insumo, float cantidadASumar) {
         DetalleStock aSumar = new DetalleStock(cantidadASumar, LocalDate.now(), TipoMovimiento.Reposicion);
         this.detalleStocks.add(aSumar);
         this.cantidadActual += cantidadASumar;
+        this.verificarStockBajo(insumo);
     }
 
     /**
@@ -97,6 +100,27 @@ public class Stock {
     }
 
     /**
+     * registra un detalle de stock del tipo Confeccion. si es un elaborado la
+     * cantidad sera sumada del stock acutal, si es bruto la cantidad sera
+     * restada del stock.
+     *
+     * @param insumo
+     * @param cantidadConfeccionada
+     */
+    public void registrarConfeccion(Insumo insumo, float cantidadConfeccionada) {
+        System.out.println("antes " + cantidadActual);
+        DetalleStock ajuste = new DetalleStock(cantidadConfeccionada, LocalDate.now(), TipoMovimiento.Confeccion);
+        this.detalleStocks.add(ajuste);
+        if (insumo instanceof InsumoBruto) {
+            this.cantidadActual -= cantidadConfeccionada;
+        } else if (insumo instanceof InsumoElaborado) {
+            this.cantidadActual += cantidadConfeccionada;
+        }
+        this.verificarStockBajo(insumo);
+        System.out.println("dsp " + cantidadActual);
+    }
+
+    /**
      * verifica si el stock actual esta debajo del minimo, si es el caso enviara
      * una notificacion a los responsables de stock.
      */
@@ -107,5 +131,5 @@ public class Stock {
             ControladorNotificacion.getControlador().notificarInsumoDebajoDelMinimo(insumo);
         }
     }
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Stock.class);
+
 }

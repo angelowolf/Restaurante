@@ -5,7 +5,10 @@
  */
 package Controlador.Interface;
 
+import Controlador.Implementacion.ControladorStock;
 import Modelo.InsumoElaborado;
+import Persistencia.ORM.DAOImplementacion.InsumoElaboradoDAO;
+import Persistencia.ORM.DAOInterface.IInsumoElaborado;
 import java.util.List;
 
 /**
@@ -14,16 +17,23 @@ import java.util.List;
  */
 public interface IControladorInsumoElaborado {
 
+    IInsumoElaborado InsumoElaboradoDAO = new InsumoElaboradoDAO();
+    final IControladorStock CS = new ControladorStock();
+
     public List<InsumoElaborado> buscar(String nombreFiltro);
 
     public void eliminar(InsumoElaborado insumoElaborado);
 
-    public void guardar(InsumoElaborado insumoElaborado);
+    public int guardar(InsumoElaborado insumoElaborado, List<Integer> ids, List<Float> cantidades);
 
-    public void actualizar(InsumoElaborado insumoElaborado);
+    public void actualizar(InsumoElaborado insumoElaborado, List<Integer> ids, List<Float> cantidades);
 
     public InsumoElaborado getInsumo(int id);
 
     public void recuperar(InsumoElaborado insumoElaborado);
-    
+
+    public boolean nombreDisponible(InsumoElaborado insumoElaborado);
+
+    public void confeccionar(InsumoElaborado insumoElaborado, float cantidadConfeccionarInsumo);
+
 }

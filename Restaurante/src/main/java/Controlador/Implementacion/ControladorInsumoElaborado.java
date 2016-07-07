@@ -5,9 +5,16 @@
  */
 package Controlador.Implementacion;
 
+import Controlador.Interface.IControladorCategoriaInsumo;
+import Controlador.Interface.IControladorInsumoBruto;
 import Controlador.Interface.IControladorInsumoElaborado;
+import Modelo.CategoriaInsumo;
+import Modelo.InsumoBruto;
 import Modelo.InsumoElaborado;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -17,28 +24,72 @@ public class ControladorInsumoElaborado implements IControladorInsumoElaborado {
 
     @Override
     public List<InsumoElaborado> buscar(String nombreFiltro) {
-        return null;
+        if (StringUtils.isBlank(nombreFiltro)) {
+            nombreFiltro = null;
+        }
+        return InsumoElaboradoDAO.getTodosByNombreSinEstos(nombreFiltro, null, false);
     }
 
     @Override
     public void eliminar(InsumoElaborado insumoElaborado) {
+        InsumoElaborado insumoEnBD = this.getInsumo(insumoElaborado.getId());
+        insumoEnBD.darDeBaja();
+        InsumoElaboradoDAO.actualizar(insumoEnBD);
     }
 
     @Override
-    public void guardar(InsumoElaborado insumoElaborado) {
+    public int guardar(InsumoElaborado insumoElaborado, List<Integer> ids, List<Float> cantidades) {
+        CS.guardar(insumoElaborado.getStock());
+        IControladorCategoriaInsumo icci = new ControladorCategoriaInsumo();
+        CategoriaInsumo ci = icci.buscarTodos("Elaborado").get(0);
+        insumoElaborado.setFechaAlta(new LocalDate());
+        insumoElaborado.setCategoriaInsumo(ci);
+        IControladorInsumoBruto controladorInsumoBruto = new ControladorInsumoBruto();
+        for (int i = 0; i < ids.size(); i++) {
+            InsumoBruto ib = controladorInsumoBruto.getInsumo(ids.get(i));
+            insumoElaborado.agregarInsumoBruto(ib, cantidades.get(i));
+        }
+        return InsumoElaboradoDAO.guardar(insumoElaborado);
     }
 
     @Override
-    public void actualizar(InsumoElaborado insumoElaborado) {
+    public void actualizar(InsumoElaborado insumoElaborado, List<Integer> ids, List<Float> cantidades) {
+        List<InsumoBruto> insumosRequest = new ArrayList<>();
+        InsumoElaborado insumoEnBd = this.getInsumo(insumoElaborado.getId());
+        IControladorInsumoBruto controladorInsumoBruto = new ControladorInsumoBruto();
+        for (int i = 0; i < ids.size(); i++) {
+            InsumoBruto ib = controladorInsumoBruto.getInsumo(ids.get(i));
+            insumosRequest.add(ib);
+        }
+        insumoElaborado.setCategoriaInsumo(insumoEnBd.getCategoriaInsumo());
+        insumoEnBd.actualizar(insumoElaborado, insumosRequest, cantidades);
+        InsumoElaboradoDAO.actualizar(insumoEnBd);
     }
 
     @Override
     public InsumoElaborado getInsumo(int id) {
-        return null;
+        return InsumoElaboradoDAO.buscar(id);
     }
 
     @Override
     public void recuperar(InsumoElaborado insumoElaborado) {
+        InsumoElaborado insumoEnBD = this.getInsumo(insumoElaborado.getId());
+        insumoEnBD.recuperar();
+        InsumoElaboradoDAO.actualizar(insumoEnBD);
     }
 
+    @Override
+    public boolean nombreDisponible(InsumoElaborado insumo) {
+        InsumoElaborado insumoBd = InsumoElaboradoDAO.buscar(insumo.getNombre());
+        if (insumoBd == null) {
+            return true;
+        }
+        return insumoBd.getId() == insumo.getId();
+    }
+
+    @Override
+    public void confeccionar(InsumoElaborado insumoElaborado, float cantidadConfeccionarInsumo) {
+        InsumoElaborado insumoBD = InsumoElaboradoDAO.buscar(insumoElaborado.getId());
+        insumoBD.confeccionar(cantidadConfeccionarInsumo);
+    }
 }

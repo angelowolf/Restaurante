@@ -68,4 +68,12 @@ public class ControladorCategoriaInsumo implements IControladorCategoriaInsumo {
         return CATEGORIAINSUMODAO.buscarFiltro(nombreFiltro);
     }
 
+    @Override
+    public List<CategoriaInsumo> buscarTodos(String nombreFiltro) {
+        if (StringUtils.isBlank(nombreFiltro)) {
+            nombreFiltro = null;
+        }
+        return CATEGORIAINSUMODAO.buscarFiltroTodos(nombreFiltro);
+    }
+
 }

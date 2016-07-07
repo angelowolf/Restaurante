@@ -22,4 +22,6 @@ public interface ICategoriaInsumo extends IGenericDAO<CategoriaInsumo, Integer> 
     public List<CategoriaInsumo> categoriaInsumosEnUso(CategoriaInsumo categoriaInsumo);
 
     public List<CategoriaInsumo> buscarFiltro(String nombreFiltro);
+
+    public List<CategoriaInsumo> buscarFiltroTodos(String nombreFiltro);
 }

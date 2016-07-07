@@ -15,6 +15,12 @@ public class InsumoBruto extends Insumo {
 
     private float precioUnidad;
 
+    public InsumoBruto(InsumoBruto ib) {
+        super(ib.getCategoriaInsumo(), ib.getFechaAlta(), ib.getFechaBaja(), ib.getNombre(), ib.getStock(), ib.getUnidadMedida());
+        super.setId(id);
+        this.precioUnidad = ib.getPrecioUnidad();
+    }
+
     public InsumoBruto() {
     }
 
@@ -40,5 +46,14 @@ public class InsumoBruto extends Insumo {
         } else {
             throw new ClassCastException("Error al castear un objeto a insumobruto");
         }
+    }
+
+    /**
+     * actualiza el stock con esa cantidad. manda notificacion si es el caso.
+     *
+     * @param f
+     */
+    public void registrarConfeccion(float f) {
+        stock.registrarConfeccion(this, f);
     }
 }

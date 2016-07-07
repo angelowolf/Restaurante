@@ -87,6 +87,22 @@ insert into Stock(cantidadActual,cantidadMinima) values(30,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola','Unidad','2016-01-1',19,2);
 insert into InsumoBruto(id,precioUnidad) values(19,15);
 
+insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Pan Rallado','Kilogramos','2016-01-1',20,2);
+insert into InsumoBruto(id,precioUnidad) values(20,15);
+
+insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Bife','Kilogramos','2016-01-1',21,4);
+insert into InsumoBruto(id,precioUnidad) values(21,15);
+
+
+
+insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Milanesa','Unidad','2016-01-02',22,1);
+insert into InsumoElaborado(id) values(22);
+insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(1,4,22);
+insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.05,20,22);
+insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.1,21,22);
 
 insert into Usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿cual era la marca de tu primer auto?','fiat');
 insert into Rol_Usuario(id,roles) values(1,'Usuario');
