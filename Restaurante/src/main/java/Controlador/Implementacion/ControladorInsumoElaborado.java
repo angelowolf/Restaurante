@@ -11,6 +11,7 @@ import Controlador.Interface.IControladorInsumoElaborado;
 import Modelo.CategoriaInsumo;
 import Modelo.InsumoBruto;
 import Modelo.InsumoElaborado;
+import Modelo.Stock;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -39,7 +40,9 @@ public class ControladorInsumoElaborado implements IControladorInsumoElaborado {
 
     @Override
     public int guardar(InsumoElaborado insumoElaborado, List<Integer> ids, List<Float> cantidades) {
-        CS.guardar(insumoElaborado.getStock());
+        Stock s = insumoElaborado.getStock();
+        s.nuevoInsumo();
+        CS.guardar(s);
         IControladorCategoriaInsumo icci = new ControladorCategoriaInsumo();
         CategoriaInsumo ci = icci.buscarTodos("Elaborado").get(0);
         insumoElaborado.setFechaAlta(new LocalDate());

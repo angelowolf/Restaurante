@@ -9,8 +9,8 @@
         <property name="hibernate.connection.username">adminnKR1QLx</property>
         <property name="hibernate.connection.password">fd-jReyR7DhZ</property>
         -->
-    <property name="hbm2ddl.auto">create-drop</property>
-    <!--<property name="hbm2ddl.auto">update</property>-->
+    <!--<property name="hbm2ddl.auto">create-drop</property>-->
+    <property name="hbm2ddl.auto">update</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/restaurante</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password"/>

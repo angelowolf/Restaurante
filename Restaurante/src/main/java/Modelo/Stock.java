@@ -7,7 +7,7 @@ package Modelo;
 
 import Controlador.Implementacion.ControladorNotificacion;
 import java.util.Set;
-import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -66,9 +66,9 @@ public class Stock {
      * @param cantidadARestar cantidad positiva.
      */
     public void regitrarDescuento(Insumo insumo, float cantidadARestar) {
-        DetalleStock venta = new DetalleStock(-cantidadARestar, LocalDate.now(), TipoMovimiento.Venta);
-        this.detalleStocks.add(venta);
         this.cantidadActual -= cantidadARestar;
+        DetalleStock venta = new DetalleStock(-cantidadARestar, cantidadActual, LocalDateTime.now(), TipoMovimiento.Venta);
+        this.detalleStocks.add(venta);
         this.verificarStockBajo(insumo);
     }
 
@@ -79,9 +79,9 @@ public class Stock {
      * @param cantidadASumar cantidad positiva.
      */
     public void registrarReposicion(Insumo insumo, float cantidadASumar) {
-        DetalleStock aSumar = new DetalleStock(cantidadASumar, LocalDate.now(), TipoMovimiento.Reposicion);
-        this.detalleStocks.add(aSumar);
         this.cantidadActual += cantidadASumar;
+        DetalleStock aSumar = new DetalleStock(cantidadASumar, cantidadActual, LocalDateTime.now(), TipoMovimiento.Reposicion);
+        this.detalleStocks.add(aSumar);
         this.verificarStockBajo(insumo);
     }
 
@@ -93,9 +93,9 @@ public class Stock {
      * @param cantidadAjuste positivo o negativo segun sea el ajuste.
      */
     public void registrarAjusteStock(Insumo insumo, float cantidadAjuste) {
-        DetalleStock ajuste = new DetalleStock(cantidadAjuste, LocalDate.now(), TipoMovimiento.Ajuste);
-        this.detalleStocks.add(ajuste);
         this.cantidadActual = cantidadAjuste;
+        DetalleStock ajuste = new DetalleStock(cantidadAjuste, cantidadActual, LocalDateTime.now(), TipoMovimiento.Ajuste);
+        this.detalleStocks.add(ajuste);
         this.verificarStockBajo(insumo);
     }
 
@@ -108,16 +108,15 @@ public class Stock {
      * @param cantidadConfeccionada
      */
     public void registrarConfeccion(Insumo insumo, float cantidadConfeccionada) {
-        System.out.println("antes " + cantidadActual);
-        DetalleStock ajuste = new DetalleStock(cantidadConfeccionada, LocalDate.now(), TipoMovimiento.Confeccion);
-        this.detalleStocks.add(ajuste);
+        DetalleStock ajuste = null;
+        this.cantidadActual -= cantidadConfeccionada;
         if (insumo instanceof InsumoBruto) {
-            this.cantidadActual -= cantidadConfeccionada;
+            ajuste = new DetalleStock(-cantidadConfeccionada, cantidadActual, LocalDateTime.now(), TipoMovimiento.Confeccion);
         } else if (insumo instanceof InsumoElaborado) {
-            this.cantidadActual += cantidadConfeccionada;
+            ajuste = new DetalleStock(cantidadConfeccionada, cantidadActual, LocalDateTime.now(), TipoMovimiento.Confeccion);
         }
+        this.detalleStocks.add(ajuste);
         this.verificarStockBajo(insumo);
-        System.out.println("dsp " + cantidadActual);
     }
 
     /**
@@ -132,4 +131,10 @@ public class Stock {
         }
     }
 
+    /**
+     * Crea un detalle stock con cantidad actual.
+     */
+    public void nuevoInsumo() {
+        this.detalleStocks.add(new DetalleStock(this.cantidadActual, cantidadActual, new LocalDateTime(), TipoMovimiento.Ajuste));
+    }
 }
