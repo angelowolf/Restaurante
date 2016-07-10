@@ -11,7 +11,21 @@
     <div class="panel-body">
         <div class="col-md-4">
             <label class="">Cantidad Actual:</label>
-            <s:property value="insumo.stock.cantidadActual"/>
+            <s:if test="insumo.stock.cantidadActual < 0">
+                <span class="text-danger"><strong>
+                        <s:property value="insumo.stock.cantidadActual"/>
+                    </strong>
+                </span>
+            </s:if><s:else>
+                <s:if test="insumo.stock.cantidadActual <= insumo.stock.cantidadMinima">
+                    <span class="text-amarillo"><strong>
+                            <s:property value="insumo.stock.cantidadActual"/>
+                        </strong>
+                    </span >
+                </s:if><s:else>
+                    <s:property value="insumo.stock.cantidadActual"/>
+                </s:else>
+            </s:else>
         </div>
         <div class="col-md-4">
             <label class="">Cantidad Mínima:</label>

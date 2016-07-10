@@ -96,4 +96,7 @@ public class Notificacion {
         return "Notificacion{ HUMANO" + getFecha2() + "id=" + id + ", mensaje=" + mensaje + ", fecha=" + fecha + ", usuario=" + usuario + ", visto=" + visto + ", tipoMensaje=" + tipoMensaje + '}';
     }
 
+    public int getIdInforme() {
+        return 0;
+    }
 }

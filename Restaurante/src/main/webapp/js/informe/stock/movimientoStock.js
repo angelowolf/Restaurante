@@ -8,19 +8,19 @@ var chart = null;
     $('#movimiento').on('change', function () {
         switch ($(this).val()) {
             case '-1':
-                chart.dataProvider = datos[0];
+                graficar(datos[0]);
                 break;
             case 'Venta':
-                chart.dataProvider = datos[1];
+                graficar(datos[1]);
                 break;
             case 'Reposicion':
-                chart.dataProvider = datos[2];
+                graficar(datos[2]);
                 break;
             case 'Ajuste':
-                chart.dataProvider = datos[3];
+                graficar(datos[3]);
                 break;
             case 'Confeccion':
-                chart.dataProvider = datos[4];
+                graficar(datos[4]);
                 break;
         }
         AmCharts.checkEmptyData(chart);
