@@ -103,8 +103,8 @@ public class ControladorNotificacion {
                 ns.setId(notificacion.getId());
                 DAONotificacionStock.eliminar(ns);
                 break;
-                default:
-                    LOGGER.error("NO SE PUDO ELIMINAR EL OBJETO NOTIFICACIOn");
+            default:
+                LOGGER.error("NO SE PUDO ELIMINAR EL OBJETO NOTIFICACIOn");
         }
 
     }
@@ -129,5 +129,15 @@ public class ControladorNotificacion {
      */
     public int getCantidadNoVistas(int idUsuario) {
         return DAONotificacion.getCantidadNoVistas(idUsuario);
+    }
+
+    /**
+     * Busca una notificacion
+     *
+     * @param id
+     * @return
+     */
+    public Notificacion buscarNotificacion(int id) {
+        return DAONotificacion.buscar(id);
     }
 }
