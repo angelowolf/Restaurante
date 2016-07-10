@@ -12,8 +12,8 @@
                 <li class="notificacion<s:if test="%{!#notificacion.visto}"> novisto</s:if>">
                     <div class="circulo-notificacion" data-id="<s:property value="%{#notificacion.id}"/>"> </div>
                     <a href='<s:url action="ver" namespace="/informe/stock"><s:param name="id" value="%{#notificacion.insumo.id}"/></s:url>'>
-                        <div>
-                            <i class='fa fa-<s:property value="%{#notificacion.tipoMensaje.getIcono()}"/>  fa-fw'></i> <s:property value="%{#notificacion.mensaje}"/><span class='pull-right text-muted small'><s:property value="%{#notificacion.fecha2}"/></span>
+                            <div>
+                                <i class='fa fa-<s:property value="%{#notificacion.tipoMensaje.getIcono()}"/>  fa-fw'></i> <s:property value="%{#notificacion.mensaje}"/><span class='pull-right text-muted small'><s:property value="%{#notificacion.fecha2}"/></span>
                         </div>
                     </a>
                 </li>

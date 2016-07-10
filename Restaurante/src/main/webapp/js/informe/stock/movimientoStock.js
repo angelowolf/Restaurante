@@ -23,6 +23,7 @@ var chart = null;
                 chart.dataProvider = datos[4];
                 break;
         }
+        AmCharts.checkEmptyData(chart);
         chart.validateData();
     });
 })(jQuery);

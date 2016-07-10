@@ -1,5 +1,13 @@
 (function ($) {
-   
+
+    $('#check-todos').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('input[type="checkbox"]').prop('checked', true);
+        } else {
+            $('input[type="checkbox"]').prop('checked', false);
+        }
+    });
+
     $('body').on('click', '#visto', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -14,7 +22,7 @@
         });
     });
 
-   
+
     $('body').on('click', '#modaleliminar', function (e) {
         e.preventDefault();
         var $boton = $(this);
@@ -40,4 +48,27 @@
         });
     });
 
+    $('#ver-seleccion').click(function (e) {
+        e.preventDefault();
+        var data = $('form').serialize();
+        $.post('/notificacion/visto-seleccion', data, function (response) {
+            if (response.codigo === 200) {
+                window.location.replace('/notificacion/listar');
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+            }
+        });
+    });
+
+    $('#eliminar-seleccion').click(function (e) {
+        e.preventDefault();
+        var data = $('form').serialize();
+        $.post('/notificacion/eliminar-seleccion', data, function (response) {
+            if (response.codigo === 200) {
+                window.location.replace('/notificacion/listar');
+            } else {
+                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+            }
+        });
+    });
 })(jQuery);

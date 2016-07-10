@@ -159,6 +159,7 @@
             <add-attribute value="/../amcharts/serial.js" />
             <add-attribute value="/../amcharts/lang/es.js" />
             <add-attribute value="/../amcharts/themes/light.js" />
+            <add-attribute value="/../js/graficos.js" />
             <add-attribute value="/../js/informe/stock/movimientoStock.js" />
         </put-list-attribute>
     </definition>

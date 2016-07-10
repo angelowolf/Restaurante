@@ -31,6 +31,10 @@ public class Notificacion {
     public Notificacion() {
     }
 
+    public Notificacion(int id) {
+        this.id = id;
+    }
+
     public Notificacion(String mensaje, LocalDateTime fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
         this.mensaje = mensaje;
         this.fecha = fecha;

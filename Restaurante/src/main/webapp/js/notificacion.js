@@ -61,6 +61,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.circulo-notificacion', function (e) {
         e.preventDefault();
+        e.stopPropagation();
         var $boton = $(this);
         if ($boton.parent().hasClass('novisto')) {
             $.post('/notificacion/vistoDesdePanel', {id: $boton.data('id')}, function (response) {
@@ -81,7 +82,7 @@ $(document).ready(function () {
         }
     });
 
-    setInterval(actualizarPanel, 4000);
+    setInterval(actualizarPanel, 60000);
 
 });
 var a = null;

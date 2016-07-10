@@ -1,6 +1,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<h2 class="page-header">Cargar Compras</h2>
+<h2 class="page-header">Reponer Insumos</h2>
 <div class="panel panel-default" id="contenedor">
     <div class="panel-heading ">
         <form class="form-inline">

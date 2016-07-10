@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form id="form-confeccionar" class="well">
+                    <form id="form-confeccionar" class="well" autocomplete='off'>
                         <input type="hidden" id="id" name="id">
                         <p id="nombre-insumo">
 

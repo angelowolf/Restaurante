@@ -10,8 +10,11 @@ import Controlador.Implementacion.ControladorStock;
 import Controlador.Interface.IControladorInsumo;
 import Controlador.Interface.IControladorStock;
 import Modelo.DetalleStock;
+import Modelo.Insumo;
+import Modelo.InsumoBruto;
 import Modelo.TipoMovimiento;
 import Soporte.InformeDateBasedData;
+import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,17 +24,17 @@ import org.apache.log4j.Logger;
  *
  * @author ang_2
  */
-public class InformeStockAction extends Accion {
+public class InformeStockAction extends Accion implements ModelDriven<Insumo> {
 
     private static final Logger LOGGER = Logger.getLogger(InformeStockAction.class);
-    private int id;
-    private String nombre;
+    private Insumo insumo;
     private final List listaDatos;
     private final List<TipoMovimiento> movimientos;
     private final IControladorInsumo ci;
     private final IControladorStock cs;
 
     public InformeStockAction() {
+        insumo = new InsumoBruto();
         cs = new ControladorStock();
         ci = new ControladorInsumo();
         movimientos = Arrays.asList(TipoMovimiento.values());
@@ -40,7 +43,7 @@ public class InformeStockAction extends Accion {
     }
 
     public String ver() {
-        this.nombre = ci.buscar(id).getNombre();
+        insumo = ci.buscar(insumo.getId());
         return SUCCESS;
     }
 
@@ -53,11 +56,11 @@ public class InformeStockAction extends Accion {
     }
 
     public String getMovimientoStock() {
-        this.listaDatos.add(this.agregar(cs.getDetalles(id)));
-        this.listaDatos.add(this.agregar(cs.getDetalles(id, TipoMovimiento.Venta)));
-        this.listaDatos.add(this.agregar(cs.getDetalles(id, TipoMovimiento.Reposicion)));
-        this.listaDatos.add(this.agregar(cs.getDetalles(id, TipoMovimiento.Ajuste)));
-        this.listaDatos.add(this.agregar(cs.getDetalles(id, TipoMovimiento.Confeccion)));
+        this.listaDatos.add(this.agregar(cs.getDetalles(insumo.getId())));
+        this.listaDatos.add(this.agregar(cs.getDetalles(insumo.getId(), TipoMovimiento.Venta)));
+        this.listaDatos.add(this.agregar(cs.getDetalles(insumo.getId(), TipoMovimiento.Reposicion)));
+        this.listaDatos.add(this.agregar(cs.getDetalles(insumo.getId(), TipoMovimiento.Ajuste)));
+        this.listaDatos.add(this.agregar(cs.getDetalles(insumo.getId(), TipoMovimiento.Confeccion)));
         return SUCCESS;
     }
 
@@ -65,25 +68,26 @@ public class InformeStockAction extends Accion {
         return listaDatos;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
     public List<TipoMovimiento> getMovimientos() {
         return movimientos;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     @Override
     public int getCodigo() {
         return codigo;
+    }
+
+    @Override
+    public Insumo getModel() {
+        return insumo;
+    }
+
+    public Insumo getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
     }
 
 }

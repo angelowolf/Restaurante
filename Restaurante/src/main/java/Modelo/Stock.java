@@ -109,10 +109,11 @@ public class Stock {
      */
     public void registrarConfeccion(Insumo insumo, float cantidadConfeccionada) {
         DetalleStock ajuste = null;
-        this.cantidadActual -= cantidadConfeccionada;
         if (insumo instanceof InsumoBruto) {
+            this.cantidadActual -= cantidadConfeccionada;
             ajuste = new DetalleStock(-cantidadConfeccionada, cantidadActual, LocalDateTime.now(), TipoMovimiento.Confeccion);
         } else if (insumo instanceof InsumoElaborado) {
+            this.cantidadActual += cantidadConfeccionada;
             ajuste = new DetalleStock(cantidadConfeccionada, cantidadActual, LocalDateTime.now(), TipoMovimiento.Confeccion);
         }
         this.detalleStocks.add(ajuste);

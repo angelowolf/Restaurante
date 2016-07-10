@@ -38,6 +38,11 @@ ul {
     padding: 0px;
 }
 
+#panel-notificaciones a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
 #panel-notificaciones .novisto{
     background: #ecf0f7;
 }
@@ -60,6 +65,9 @@ ul {
     top:19px;
     right: 5px;
     cursor: pointer;
+}
+.circulo-notificacion:active{
+    background: #fff;
 }
 
 .notificacion{

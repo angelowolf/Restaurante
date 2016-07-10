@@ -1,7 +1,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <h2 class="page-header">Nuevo Insumo</h2>
 <div class="well col-md-6 col-md-offset-3">
-    <form class="form-group" id="formulario">
+    <form class="form-group" id="formulario" autocomplete='off'>
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
