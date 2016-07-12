@@ -15,13 +15,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon">
         <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
         <title><tiles:insertAttribute name="title" ignore="true" /></title>
         <s:iterator value="#attr.stylesheet" var="cadaCSS">
-            <link href="<s:url value="%{cadaCSS}"/>" rel="stylesheet" type="text/css" >
+            <link href='<s:url value="%{cadaCSS}"/>' rel="stylesheet" type="text/css" >
         </s:iterator>
     </head>
 
@@ -29,30 +27,27 @@
         <s:hidden value="%{#session.idUsuario}" id="idUsuarioHidden"/>
         <div id="wrapper">
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<s:url action="home" namespace="/"/>">Restaurante Ruhaj</a>
-                </div>
-                <!-- /.navbar-header -->
-
-                <ul class="nav navbar-top-links navbar-right">
+            <nav class="navbar navbar-ruhaj navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+                <a id="navbar-toggle-menu" href="#"><i class="fa fa-bars fa-2x"></i></a>
+                <ul class="nav pull-right navbar-top-links">
                     <s:action name="panel" namespace="/notificacion" executeResult="true"/>
-                    <!-- /.dropdown -->
+                    <!-- /.dropdown-notificaciones -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user fa-fw"></i> 
+                            <i class="fa fa-caret-down"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<s:url action="misdatos" namespace="/usuario"/>"><i class="fa fa-gear fa-fw"></i> Configuración</a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a id="mostrar-modal-modificar-perfil" href='#'>
+                                    <i class="fa fa-gear fa-fw"></i> Ver Mi Perfil
+                                </a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="<s:url action="logout" namespace="/"/>"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesión</a>
+                            <li>
+                                <a href='<s:url action="logout" namespace="/"/>'>
+                                    <i class="fa fa-sign-out fa-fw"></i> Cerrar sesión
+                                </a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -61,8 +56,8 @@
                 </ul>
                 <!-- /.navbar-top-links -->
 
-                <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse" id="menu-collapse">
+                <div class="navbar-ruhaj sidebar" role="navigation">
+                    <div class="sidebar-nav" id="menu-collapse">
                         <ul class="nav" id="side-menu">
                             <tiles:insertAttribute name="menu" />
                         </ul>
@@ -91,7 +86,7 @@
             <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
-
+        <s:include value="/WEB-INF/usuario/modalPerfil.jsp"/>
         <s:iterator value="#attr.javascript" var="cadaJS">
             <script src="<s:url value="%{cadaJS}"/>" ></script>
         </s:iterator>

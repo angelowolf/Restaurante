@@ -17,11 +17,7 @@
         <action name="nuevo" class="Acciones.UsuarioAction">
             <result type="tiles">/usuario/altamodificacion.tiles</result>
         </action>
-        <action name="misdatos" method="misdatos" class="Acciones.UsuarioAction">
-            <result name="success" type="tiles">/usuario/misdatos.tiles</result>
-       
-        </action>
-        <action name="modificarmisdatos" method="modificarmisdatos" class="Acciones.UsuarioAction"/>
-      
+        <action name="ver-perfil" method="getModificarPerfil" class="Acciones.UsuarioAction"/>
+        <action name="modificar-perfil" method="postModificarPerfil" class="Acciones.UsuarioAction"/>
     </package>
 </struts>

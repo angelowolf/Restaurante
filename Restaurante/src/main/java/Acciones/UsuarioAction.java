@@ -90,7 +90,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         return SUCCESS;
     }
 
-    public void validateModificar() {
+    public void validatePostModificar() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
                 addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
@@ -155,15 +155,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         return SUCCESS;
     }
 
-    public String misdatos() {
-        if (!sesion.containsKey("idUsuario")) {
-            return LOGIN;
-        }
-        usuario = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
-        return SUCCESS;
-    }
-
-    public void validateModificarmisdatos() {
+    public void validatePostModificarPerfil() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
                 addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
@@ -205,13 +197,21 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         }
     }
 
-    public String modificarmisdatos() {
+    public String postModificarPerfil() {
         if (StringUtils.isBlank(usuario.getClave())) {
             controladorUsuario.actualizarMisDatos(usuario, false);
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
         sesion.put("mensaje", Soporte.Mensaje.DATOSMODIFICADOS);
+        return SUCCESS;
+    }
+    
+    public String getModificarPerfil() {
+        if (!sesion.containsKey("idUsuario")) {
+            return LOGIN;
+        }
+        usuario = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
         return SUCCESS;
     }
 
