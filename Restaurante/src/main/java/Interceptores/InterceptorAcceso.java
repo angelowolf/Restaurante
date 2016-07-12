@@ -31,7 +31,6 @@ public class InterceptorAcceso extends AbstractInterceptor {
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         String result = Action.LOGIN;
         String actionActual = (String) ActionContext.getContext().get(ActionContext.ACTION_NAME);
-
         //Si es una accion publica se ejecuta
         if (actionsSinFiltrar.contains(actionActual)) {
             return actionInvocation.invoke();
@@ -40,7 +39,6 @@ public class InterceptorAcceso extends AbstractInterceptor {
             return result;
         } else {
             //esta logeado ver si tiene el privilegio
-
             String namespace = actionInvocation.getProxy().getNamespace();
             String[] namespace1 = namespace.split("\\/");
             if (namespace1.length > 0) {
@@ -70,6 +68,22 @@ public class InterceptorAcceso extends AbstractInterceptor {
                             }
                         }
                         break;
+                    case "insumobruto":
+                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolStock")) {
+                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolStock");
+                            if (f) {
+                                return actionInvocation.invoke();
+                            }
+                        }
+                        break;
+                    case "insumoelaborado":
+                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolCocina")) {
+                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolCocina");
+                            if (f) {
+                                return actionInvocation.invoke();
+                            }
+                        }
+                        break;
                     default:
                         return actionInvocation.invoke();
                 }
@@ -77,7 +91,7 @@ public class InterceptorAcceso extends AbstractInterceptor {
                 //esta en el namespace '/'
                 return actionInvocation.invoke();
             }
-        }      
+        }
         return result;
 
     }
