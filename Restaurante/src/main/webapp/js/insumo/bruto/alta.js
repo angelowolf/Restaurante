@@ -1,14 +1,14 @@
 (function ($) {
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var data = $('#formulario').serialize();
         $.post('/insumobruto/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumobruto/listar');
             } else {
                 erroresM.mostrarErrores('#formulario', response);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });

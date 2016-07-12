@@ -10,14 +10,14 @@
 
     $('#alta-usuario-form').on('click', '.registrar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var data = $('#alta-usuario-form').serialize();
         $.post('/usuario/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/usuario/listar');
             } else {
                 erroresM.mostrarErrores('#alta-usuario-form', response);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });

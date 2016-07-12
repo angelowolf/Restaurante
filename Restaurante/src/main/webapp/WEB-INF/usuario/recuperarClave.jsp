@@ -50,6 +50,6 @@
     </body>
     <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
     <script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/admin.js"></script>
     <script type="text/javascript" src="/js/usuario/recuperarClave.js"></script>
 </html>

@@ -21,9 +21,9 @@
         $modal.modal('show');
     });
 
-    $('body').on('click', '#recuperar-usuario', function (e) {
+    $('body').on('click', '#recuperar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.recuperar');
         var id = $dialog.find('#id').val();
@@ -33,7 +33,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -49,9 +49,9 @@
         $modal.modal('show');
     });
 
-    $('body').on('click', '#reiniciar-contraseña', function (e) {
+    $('body').on('click', '#blanquear', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.blanquear');
         var id = $dialog.find('#id').val();
@@ -61,7 +61,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -78,7 +78,7 @@
     });
 
     $('body').on('click', '#eliminar', function (e) {
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
@@ -89,7 +89,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -165,7 +165,7 @@
     });
     $('#modal-modificar-usuario').on('click', '.guardar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var data = $('#modificar-usuario-form').serialize();
         $.post('/usuario/modificar', data, function (response) {
             if (response.codigo === 200) {
@@ -173,7 +173,7 @@
                 window.location.replace('/usuario/listar?' + data);
             } else {
                 erroresM.mostrarErrores('#modificar-usuario-form', response);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });

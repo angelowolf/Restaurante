@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="documento">Documento *</label>
-                                <input type="number" class="form-control" id="documento" name="documento" placeholder="documento">
+                                <input type="number" class="form-control" id="documento" min="5000000" max="9999999999" name="documento" placeholder="documento">
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>

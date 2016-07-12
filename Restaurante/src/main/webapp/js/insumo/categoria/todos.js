@@ -14,7 +14,7 @@
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         $.post('/insumo/categoria/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
@@ -22,7 +22,7 @@
                 window.location.replace('/insumo/categoria/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -69,14 +69,14 @@
     $('body').on('click', '#editar', function (e) {
         e.preventDefault();
         var data = $('#modificar-categoria-form').serialize();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         $.post('/insumo/categoria/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumo/categoria/listar?' + data);
             } else {
                 erroresM.mostrarErrores('#modificar-categoria-form', response);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });

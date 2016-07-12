@@ -13,7 +13,7 @@
 
     $('body').on('click', '#recuperar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.recuperar');
         var id = $dialog.find('#id').val();
@@ -23,7 +23,7 @@
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -43,7 +43,7 @@
         var $boton = $(this);
         var $dialog = $boton.parents('.modal.eliminar');
         var id = $dialog.find('#id').val();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         $.post('/insumobruto/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
@@ -51,7 +51,7 @@
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
-                toggleButton(e.target);
+                toggleBoton(e.target);
             }
         });
     });
@@ -113,14 +113,14 @@
 
     $('body').on('click', '#editar', function (e) {
         e.preventDefault();
-        toggleButton(e.target);
+        toggleBoton(e.target);
         var data = $('#form-editar').serialize();
         $.post('/insumobruto/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
-                toggleButton(e.target);
+                toggleBoton(e.target);
                 erroresM.mostrarErrores('#form-editar', response);
             }
         })

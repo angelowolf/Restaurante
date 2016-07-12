@@ -43,6 +43,6 @@
     <script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/vendor/bootstrap-select.min.js"></script>
 
-    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/admin.js"></script>
     <script type="text/javascript" src="/js/usuario/primerLogin.js"></script>
 </html>
