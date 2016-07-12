@@ -143,11 +143,25 @@
         </put-list-attribute>
     </definition>
     <!--NOTIFICACION-->
-     <definition name="/notificacion/todos.tiles" extends="masterpage">
+    <definition name="/notificacion/todos.tiles" extends="masterpage">
         <put-attribute name="title" value="Mis Notificaciones" />
         <put-attribute name="body" value="/WEB-INF/notificacion/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/notificacion/todos.js" />
         </put-list-attribute>
     </definition>
+    <!--INFORMES-->
+    <definition name="/informe/stock/insumo.tiles" extends="masterpage">
+        <put-attribute name="title" value="Evolución de Insumo" />
+        <put-attribute name="body" value="/WEB-INF/informe/stock/movimientoStock.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../amcharts/amcharts.js" />
+            <add-attribute value="/../amcharts/serial.js" />
+            <add-attribute value="/../amcharts/lang/es.js" />
+            <add-attribute value="/../amcharts/themes/light.js" />
+            <add-attribute value="/../js/graficos.js" />
+            <add-attribute value="/../js/informe/stock/movimientoStock.js" />
+        </put-list-attribute>
+    </definition>
+    <!--FIN INFORMES-->
 </tiles-definitions>

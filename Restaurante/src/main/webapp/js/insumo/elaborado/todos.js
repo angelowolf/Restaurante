@@ -229,7 +229,7 @@
                 toggleBoton(e.target);
                 erroresM.mostrarErrores('#form-confeccionar', response);
             }
-        })
+        });
     });
 
 })(jQuery);

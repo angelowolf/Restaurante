@@ -5,7 +5,7 @@
     <h2 class="page-header">Insumos Elaborados</h2>
     <div class="panel panel-default">        
         <div class="panel-body">        
-            <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar">
+            <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar" autocomplete='off'>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>

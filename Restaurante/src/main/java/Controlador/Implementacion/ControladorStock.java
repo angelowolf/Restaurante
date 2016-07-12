@@ -7,9 +7,11 @@ package Controlador.Implementacion;
 
 import Controlador.Interface.IControladorInsumoBruto;
 import Controlador.Interface.IControladorStock;
+import Modelo.DetalleStock;
 import Modelo.Insumo;
 import Modelo.InsumoBruto;
 import Modelo.Stock;
+import Modelo.TipoMovimiento;
 import java.util.List;
 
 /**
@@ -57,6 +59,16 @@ public class ControladorStock implements IControladorStock {
             insumo.registrarAjusteStock(cantidades.get(i));
             INSUMODAO.actualizar(insumo);
         }
+    }
+
+    @Override
+    public List<DetalleStock> getDetalles(int id) {
+        return DETALLESTOCKDAO.getTodos(id, null);
+    }
+
+    @Override
+    public List<DetalleStock> getDetalles(int id, TipoMovimiento tipoMovimiento) {
+        return DETALLESTOCKDAO.getTodos(id, tipoMovimiento);
     }
 
 }

@@ -141,6 +141,10 @@ public class Mensaje {
     public static final String INGRESEINSUMO = "Ingrese algun Insumo.";
     public static final String INGRESECANTIDADUTILIZAR = "No se ha especificado la cantidad a utilizar de todos los insumos ingresados.";
     public static final String INGRESECANTIDADCONFECCIONAR = "Ingrese la cantidad a confeccionar.";
+    public static final String SELECCIONENOTIFICACION = "Seleecione alguna notificación.";
+    public static final String NOTIFICACIONESELIMINADAS = "Las notificaciones fueron elimindas con éxito.";
+    public static final String NOTIFICACIONESVISTAS = "Las notificaciones fueron marcadas como vistas con éxito.";
+    public static final String CONFECCIONREGISTRADA = "La confeccion fue registrada con éxito.";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un

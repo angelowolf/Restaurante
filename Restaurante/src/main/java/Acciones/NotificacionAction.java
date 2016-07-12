@@ -21,6 +21,7 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     private final Controlador.Implementacion.ControladorNotificacion controladorNotificacion = ControladorNotificacion.getControlador();
     private List<Notificacion> lista;
     private int cantidad = 0;
+    private List<Integer> ids;
 
     public NotificacionAction() {
         notificacion = new Notificacion();
@@ -35,6 +36,36 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     public String panel() {
         lista = controladorNotificacion.buscarNotificacionInsumo((int) sesion.get("idUsuario"));
         cantidad = controladorNotificacion.getCantidadNoVistas((int) sesion.get("idUsuario"));
+        return SUCCESS;
+    }
+
+    public void validateEliminarSeleccion() {
+        if (ids == null || ids.isEmpty()) {
+            addActionError(Soporte.Mensaje.SELECCIONENOTIFICACION);
+            codigo = 400;
+        }
+    }
+
+    public String eliminarSeleccion() {
+        for (Integer id : ids) {
+            controladorNotificacion.eliminar(new Notificacion(id));
+        }
+        sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONESELIMINADAS);
+        return SUCCESS;
+    }
+
+    public void validateVistoSeleccion() {
+        if (ids == null || ids.isEmpty()) {
+            addActionError(Soporte.Mensaje.SELECCIONENOTIFICACION);
+            codigo = 400;
+        }
+    }
+
+    public String vistoSeleccion() {
+        for (Integer id : ids) {
+            controladorNotificacion.marcarComoVisto(new Notificacion(id));
+        }
+        sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONESVISTAS);
         return SUCCESS;
     }
 
@@ -75,6 +106,10 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
 
     public int getCantidad() {
         return cantidad;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
     }
 
 }

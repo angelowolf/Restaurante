@@ -6,7 +6,7 @@
 package Modelo;
 
 import org.apache.struts2.json.annotations.JSON;
-import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 /**
  *
@@ -15,18 +15,34 @@ import org.joda.time.LocalDate;
 public class DetalleStock {
 
     private int id;
-    private float cantidad;
-    private LocalDate fecha;
+    private float cantidad, total;
+    private LocalDateTime fecha;
     private TipoMovimiento tipoMovimiento;
     private String f;
 
     public DetalleStock() {
     }
 
-    public DetalleStock(float cantidad, LocalDate fecha, TipoMovimiento tipoMovimiento) {
+    public DetalleStock(float cantidad, float total, LocalDateTime fecha, TipoMovimiento tipoMovimiento) {
         this.cantidad = cantidad;
+        this.total = total;
         this.fecha = fecha;
         this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public String getf() {
+        if (null == fecha) {
+            return null;
+        }
+        return fecha.toString(Soporte.Mensaje.FECHAJSON);
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     public int getId() {
@@ -53,11 +69,11 @@ public class DetalleStock {
     }
 
     @JSON(serialize = false)
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

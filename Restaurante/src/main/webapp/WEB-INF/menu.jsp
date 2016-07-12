@@ -31,7 +31,7 @@
                 <a href="<s:url action="getAjusteStock" namespace="/stock"/>"><i class="fa fa-wrench fa-fw"></i> Ajuste de Stock</a>
             </li>
             <li>
-                <a href="<s:url action="getCargarCompra" namespace="/stock"/>"><i class="fa fa-edit fa-fw"></i> Cargar Compras</a>
+                <a href="<s:url action="getCargarCompra" namespace="/stock"/>"><i class="fa fa-edit fa-fw"></i> Reponer Insumos</a>
             </li>
             <li>
                 <a href="<s:url action="getListaCompra" namespace="/stock"/>"><i class="fa fa-cart-arrow-down fa-fw"></i> Generar Lista de Compra</a>

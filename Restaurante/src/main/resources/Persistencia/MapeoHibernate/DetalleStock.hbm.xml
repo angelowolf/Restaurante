@@ -7,7 +7,8 @@
             <generator class="native"/>
         </id>
         <property name="cantidad"/>
-        <property name="fecha" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate"/>    
+        <property name="total"/>
+        <property name="fecha" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime"/>    
         <property name="tipoMovimiento">
             <type name="org.hibernate.type.EnumType">
                 <param name="type">12</param>

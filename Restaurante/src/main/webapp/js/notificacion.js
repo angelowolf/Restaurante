@@ -20,7 +20,7 @@ function mensajeRecibido(evt) {
             {
                 console.log(mensaje);
                 var panelNotificaciones = $('#panel-notificaciones');
-                var not = "<li class='novisto notificacion'> <div class='circulo-notificacion' data-id='" + mensaje.id + "'> </div><a href='#'><div><i class='fa fa-shopping-basket fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li>";
+                var not = "<li class='novisto notificacion'> <div class='circulo-notificacion' data-id='" + mensaje.id + "'> </div><a href='/informe/stock/ver?id=" + mensaje.id_insumo + "'><div><i class='fa fa-shopping-basket fa-fw'></i>" + mensaje.mensaje + " <span class='pull-right text-muted small'>" + mensaje.fecha + "</span></div></a></li>";
                 panelNotificaciones.prepend(not);
                 var badgeCantidad = $('#panel-notificaciones-cantidad');
                 var cnt = 1;
@@ -60,6 +60,8 @@ $(document).ready(function () {
     conectarWebSocket();
 
     $('body').on('click', '.circulo-notificacion', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var $boton = $(this);
         if ($boton.parent().hasClass('novisto')) {
             $.post('/notificacion/vistoDesdePanel', {id: $boton.data('id')}, function (response) {
@@ -80,21 +82,25 @@ $(document).ready(function () {
         }
     });
 
-    setInterval(actualizarPanel, 30000);
+    setInterval(actualizarPanel, 60000);
 
 });
-
+var a = null;
 function actualizarPanel() {
 
     console.log("se actualiza el panel");
 
     $.post('/notificacion/panel', null, function (response) {
         var $parent = $('#contenedor-notificacion').parent();
-        var success = $($.parseHTML(response)).find('#contenedor-notificacion');
-        if (success.length !== 0) {
+        var res = $(response);
+        var success = res.find("#panel-notificaciones");
+        if (success.length > 0) {
+            var flag = $('#contenedor-notificacion').hasClass('open') ? true : false;
             $('#contenedor-notificacion').remove();
-            $parent.prepend(response);
-            $('#contenedor-notificacion').addClass("open");
+            $parent.prepend(res);
+            if (flag) {
+                $('#contenedor-notificacion').addClass("open");
+            }
         }
     });
 

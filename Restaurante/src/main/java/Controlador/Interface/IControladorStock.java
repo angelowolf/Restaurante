@@ -5,9 +5,13 @@
  */
 package Controlador.Interface;
 
+import Modelo.DetalleStock;
 import Modelo.Stock;
+import Modelo.TipoMovimiento;
+import Persistencia.ORM.DAOImplementacion.DetalleStockDAO;
 import Persistencia.ORM.DAOImplementacion.InsumoDAO;
 import Persistencia.ORM.DAOImplementacion.StockDAO;
+import Persistencia.ORM.DAOInterface.IDetalleStock;
 import Persistencia.ORM.DAOInterface.IInsumo;
 import Persistencia.ORM.DAOInterface.IStock;
 import java.util.List;
@@ -19,6 +23,7 @@ import java.util.List;
 public interface IControladorStock {
 
     final IStock STOCKDAO = new StockDAO();
+    final IDetalleStock DETALLESTOCKDAO = new DetalleStockDAO();
     final IInsumo INSUMODAO = new InsumoDAO();
 
     public void eliminar(Stock stock);
@@ -46,4 +51,21 @@ public interface IControladorStock {
      * caso
      */
     public void registrarAjuste(List<Integer> idInsumos, List<Float> cantidades);
+
+    /**
+     * Busca todos los detalles de stock para este insumo.
+     *
+     * @param id
+     * @return
+     */
+    public List<DetalleStock> getDetalles(int id);
+
+    /**
+     * Busca todos los detalles de stock para este insumo y este movimiento.
+     *
+     * @param id
+     * @param tipoMovimiento
+     * @return
+     */
+    public List<DetalleStock> getDetalles(int id, TipoMovimiento tipoMovimiento);
 }
