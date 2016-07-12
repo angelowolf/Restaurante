@@ -63,7 +63,7 @@ var ids = [];
 
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
-        toggleBoton(e.target);
+        toggleButton(e.target);
         var data = getIdsFormatoPOST();
         if (data.length !== 0) {
             data += '&';
@@ -74,7 +74,7 @@ var ids = [];
                 window.location.replace('/stock/getCargarCompra');
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
-                toggleBoton(e.target);
+                toggleButton(e.target);
             }
         });
     });

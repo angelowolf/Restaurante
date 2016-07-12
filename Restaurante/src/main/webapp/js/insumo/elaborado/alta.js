@@ -1,7 +1,7 @@
 (function ($) {
     $('body').on('click', '#registrar', function (e) {
         e.preventDefault();
-        toggleBoton(e.target);
+        toggleButton(e.target);
         var data = $('#formulario').serialize();
         var data2 = $('#detalleElaborado').serialize();
         $.post('/insumoelaborado/registrar', data + '&' + data2, function (response) {
@@ -9,7 +9,7 @@
                 window.location.replace('/insumoelaborado/listar');
             } else {
                 erroresM.mostrarErrores('#formulario', response);
-                toggleBoton(e.target);
+                toggleButton(e.target);
             }
         });
     });

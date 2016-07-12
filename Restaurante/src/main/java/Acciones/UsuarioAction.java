@@ -90,7 +90,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         return SUCCESS;
     }
 
-    public void validateModificar() {
+    public void validatePostModificar() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
                 addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
@@ -163,7 +163,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         return SUCCESS;
     }
 
-    public void validateModificarmisdatos() {
+    public void validateModificarPerfil() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
                 addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
@@ -205,7 +205,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         }
     }
 
-    public String modificarmisdatos() {
+    public String modificarPerfil() {
         if (StringUtils.isBlank(usuario.getClave())) {
             controladorUsuario.actualizarMisDatos(usuario, false);
         } else {

@@ -1,16 +1,30 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<h2 class="page-header">Nueva Categoria Insumo</h2>
-<form class="well col-md-6 col-md-offset-3" id="formulario">
-    <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+<div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12">
+    <div class="panel panel-ruhaj">
+        <div class="panel-heading">
+            <h3 class="panel-title">Nueva Categoria de Insumo</h3>
+        </div>
+        <form id="alta-categoria-form">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Nombre de Categoria *</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Categoria">
+                </div>
+                <div class="form-group">
+                    <label for="descrpcion">Descripción de Categoria</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion de Categoria"></textarea>
+                </div>
+            </div>
+            <div class="panel-footer" id="botones">
+                <div class="row">
+                    <div class="col-xs-6 text-left">
+                        <button class="btn btn-default cancelar">Cancelar</button>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button class="btn btn-ruhaj text-right registrar" type="submit" >Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="descrpcion">Descripción</label>
-        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
-    </div>
-    <div id="botones" class="form-group">
-        <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
-        <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
-    </div>
-</form>           
+</div>

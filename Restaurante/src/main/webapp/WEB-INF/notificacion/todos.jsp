@@ -15,7 +15,7 @@
                     <s:if test="(!#attr.row.visto)">
                         <button id="visto" class="btn btn-info  "><i class="fa fa-eye"></i></button>
                         </s:if>
-                    <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
+                    <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>
                 </div>
             </display:column>
         </display:table>

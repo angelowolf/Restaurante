@@ -73,7 +73,7 @@ var ids = [];
 
     $('#registrar').click(function (e) {
         e.preventDefault();
-        toggleBoton(e.target);
+        toggleButton(e.target);
         var data = getIdsFormatoPOST();
 
         if (data.length !== 0) {
@@ -87,7 +87,7 @@ var ids = [];
                 window.location.reload();
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
-                toggleBoton(e.target);
+                toggleButton(e.target);
             }
         });
     });

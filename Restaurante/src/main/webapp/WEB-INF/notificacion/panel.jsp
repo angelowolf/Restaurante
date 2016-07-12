@@ -3,10 +3,13 @@
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="fa fa-bell fa-fw"></i><span class="badge" id="panel-notificaciones-cantidad"><s:if test="cantidad != 0"><s:property value="cantidad"/></s:if></span>  <i class="fa fa-caret-down"></i>
         </a>
-        <ul class="dropdown-menu dropdown-messages" id="panel-notificaciones">
+        <ul class="dropdown-menu dropdown-messages dropdown-menu-right" id="panel-notificaciones">
         <s:if test="lista != null">
             <s:if test="lista.isEmpty()">
-                <p class="text-center-all">No posees notificaciones.</p>
+                <div class="text-center">
+                    <h3><i class="fa fa-bell-slash-o fa-lg"></i></h3>
+                    <strong>No posees notificaciones</strong>
+                </div>
             </s:if>
             <s:iterator value="lista" var="notificacion">
                 <li class="notificacion<s:if test="%{!#notificacion.visto}"> novisto</s:if>">
