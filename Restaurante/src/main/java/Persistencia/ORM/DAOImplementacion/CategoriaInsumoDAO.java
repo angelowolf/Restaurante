@@ -59,7 +59,7 @@ public class CategoriaInsumoDAO extends GenericDAO<CategoriaInsumo, Integer> imp
         Session session = getHibernateTemplate();
         List<CategoriaInsumo> objetos = new ArrayList<>();
         try {
-            String sql = "select * from CategoriaInsumo categoria inner join insumo insumo ON insumo.id_categoria = categoria.id WHERE insumo.id_categoria LIKE :id and categoria.nombre != 'Elaborado '  ";
+            String sql = "select * from CategoriaInsumo categoria inner join Insumo insumo ON insumo.id_categoria = categoria.id WHERE insumo.id_categoria LIKE :id and categoria.nombre != 'Elaborado '  ";
             objetos = session.createSQLQuery(sql).addEntity(CategoriaInsumo.class).setParameter("id", categoriaInsumo.getId()).list();
         } catch (RuntimeException e) {
             LOG.error("Error al verificar si esta en uso la categoria", e);
