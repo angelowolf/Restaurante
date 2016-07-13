@@ -6,7 +6,7 @@
 <struts>
     <package name="sesion" extends="json" namespace="/">       
         <action name="login" method="login" class="Acciones.UsuarioAction">
-            <result name="success" type="tiles">/home.tiles</result>
+            <result name="success" type="redirectAction">home</result>
             <result name="input">/WEB-INF/login.jsp</result>
             <result name="primeravez">/WEB-INF/usuario/primerLogin.jsp</result>
         </action>
