@@ -100,11 +100,8 @@ public class InsumoElaborado extends Insumo {
      */
     public void confeccionar(float cantidadConfeccionarInsumo) {
         for (DetalleInsumoElaborado cadaDetalle : detalleInsumoElaborados) {
-            System.out.println("blucle insumo. " + cadaDetalle.toString());
             cadaDetalle.registrarConfeccion(cantidadConfeccionarInsumo);
-            System.out.println("del elaborado " + stock.getCantidadActual());
         }
-        System.out.println("fin blucle");
         this.stock.registrarConfeccion(this, cantidadConfeccionarInsumo);
     }
 

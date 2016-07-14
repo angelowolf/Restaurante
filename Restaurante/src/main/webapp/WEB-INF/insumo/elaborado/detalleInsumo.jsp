@@ -5,7 +5,7 @@
             <input type="text" class="form-control" id="nombre-ac"  placeholder="Nombre del insumo">
         </div>
     </div>
-    <form id="detalleElaborado">
+    <form id="detalleElaborado" autocomplete='off'>
         <table class="table table-striped table-bordered" id="tabla-detalleElaborados">
             <thead>
                 <tr>

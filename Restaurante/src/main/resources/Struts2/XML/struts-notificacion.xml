@@ -11,6 +11,8 @@
         <action name="panel" method="panel" class="Acciones.NotificacionAction">
             <result name="success">/WEB-INF/notificacion/panel.jsp</result>
         </action>    
+        <action name="eliminar-seleccion" method="eliminarSeleccion" class="Acciones.NotificacionAction"/>
+        <action name="visto-seleccion" method="vistoSeleccion" class="Acciones.NotificacionAction"/>
         <action name="eliminar" method="eliminar" class="Acciones.NotificacionAction"/>
         <action name="visto" method="visto" class="Acciones.NotificacionAction"/>        
         <action name="vistoDesdePanel" method="vistoDesdePanel" class="Acciones.NotificacionAction">   

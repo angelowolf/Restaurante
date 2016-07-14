@@ -38,4 +38,8 @@ public class NotificacionStock extends Notificacion {
         return super.toString() + " NotificacionStock{" + "insumo=" + insumo + '}';
     }
 
+    @Override
+    public int getIdInforme() {
+        return insumo.getId();
+    }
 }

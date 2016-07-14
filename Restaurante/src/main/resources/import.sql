@@ -14,88 +14,107 @@ INSERT INTO CategoriaInsumo(nombre) VALUES ('Verduleria');
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Tomate','Kilogramos','2016-01-1',1,4);
 insert into InsumoBruto(id,precioUnidad) values(1,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',1);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Acelga','Kilogramos','2016-01-1',2,4);
 insert into InsumoBruto(id,precioUnidad) values(2,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',2);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Cebolla','Kilogramos','2016-01-1',3,4);
 insert into InsumoBruto(id,precioUnidad) values(3,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',3);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Banana','Kilogramos','2016-01-1',4,4);
 insert into InsumoBruto(id,precioUnidad) values(4,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',4);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Berenjena','Kilogramos','2016-01-1',5,4);
 insert into InsumoBruto(id,precioUnidad) values(5,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',5);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Lechuga','Kilogramos','2016-01-1',6,4);
 insert into InsumoBruto(id,precioUnidad) values(6,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',6);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Huevo','Kilogramos','2016-01-1',7,4);
 insert into InsumoBruto(id,precioUnidad) values(7,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',7);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Manzana','Kilogramos','2016-01-1',8,4);
 insert into InsumoBruto(id,precioUnidad) values(8,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',8);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Sandia','Kilogramos','2016-01-1',9,4);
 insert into InsumoBruto(id,precioUnidad) values(9,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',9);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Melon','Kilogramos','2016-01-1',10,4);
 insert into InsumoBruto(id,precioUnidad) values(10,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',10);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Champiñon','Kilogramos','2016-01-1',11,4);
 insert into InsumoBruto(id,precioUnidad) values(11,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',11);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coco','Kilogramos','2016-01-1',12,4);
 insert into InsumoBruto(id,precioUnidad) values(12,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',12);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Naranja','Kilogramos','2016-01-1',13,4);
 insert into InsumoBruto(id,precioUnidad) values(13,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',13);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Mandarina','Kilogramos','2016-01-1',14,4);
 insert into InsumoBruto(id,precioUnidad) values(14,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',14);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Espinaca','Kilogramos','2016-01-1',15,4);
 insert into InsumoBruto(id,precioUnidad) values(15,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',15);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Remolacha','Kilogramos','2016-01-1',16,4);
 insert into InsumoBruto(id,precioUnidad) values(16,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',16);
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Zanahoria','Kilogramos','2016-01-1',17,4);
 insert into InsumoBruto(id,precioUnidad) values(17,38);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',17);
 
 insert into Stock(cantidadActual,cantidadMinima) values(2,10);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Papa','Kilogramos','2016-01-1',18,4);
 insert into InsumoBruto(id,precioUnidad) values(18,5);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',18);
 
 insert into Stock(cantidadActual,cantidadMinima) values(30,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola','Unidad','2016-01-1',19,2);
 insert into InsumoBruto(id,precioUnidad) values(19,15);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',19);
 
 insert into Stock(cantidadActual,cantidadMinima) values(30,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Pan Rallado','Kilogramos','2016-01-1',20,2);
 insert into InsumoBruto(id,precioUnidad) values(20,15);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',20);
 
 insert into Stock(cantidadActual,cantidadMinima) values(30,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Bife','Kilogramos','2016-01-1',21,4);
 insert into InsumoBruto(id,precioUnidad) values(21,15);
-
-
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',12);
 
 insert into Stock(cantidadActual,cantidadMinima) values(30,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Milanesa','Unidad','2016-01-02',22,1);
@@ -103,6 +122,7 @@ insert into InsumoElaborado(id) values(22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(1,4,22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.05,20,22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.1,21,22);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',22);
 
 insert into Usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿cual era la marca de tu primer auto?','fiat');
 insert into Rol_Usuario(id,roles) values(1,'Usuario');
@@ -116,3 +136,12 @@ insert into Rol_Usuario(id,roles) values(2,'Cocina');
 insert into Rol_Usuario(id,roles) values(2,'Stock');
 insert into Usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta) values('Barrero','De La Barra','barra','97c1fad8d8d23747d6184693dffab860',null,1235435612,'calle sin numero',5642523,'2016-01-03');
 insert into Rol_Usuario(id,roles) values(3,'Mozo');
+
+
+
+
+
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(50,60,'2016-01-2 00:00:00','Reposicion',1);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(-20,40,'2016-01-3 05:00:00','Venta',1);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(-10,30,'2016-01-3 07:00:00','Confeccion',1);
+insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(5,35,'2016-01-4 00:00:00','Reposicion',1);

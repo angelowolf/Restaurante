@@ -55,6 +55,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
 
     public String confeccionar() {
         controladorInsumoElaborado.confeccionar(insumoElaborado, cantidadConfeccionarInsumo);
+        sesion.put("mensaje", Soporte.Mensaje.CONFECCIONREGISTRADA);
         return SUCCESS;
     }
 

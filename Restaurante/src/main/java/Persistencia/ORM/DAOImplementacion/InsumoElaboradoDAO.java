@@ -6,7 +6,6 @@
 package Persistencia.ORM.DAOImplementacion;
 
 import java.util.List;
-import Modelo.InsumoBruto;
 import Modelo.InsumoElaborado;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import Persistencia.ORM.DAOInterface.IInsumoBruto;
 import Persistencia.ORM.DAOInterface.IInsumoElaborado;
 import org.hibernate.criterion.Order;
 

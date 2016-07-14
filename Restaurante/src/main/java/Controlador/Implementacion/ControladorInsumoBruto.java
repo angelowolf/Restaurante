@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 import Controlador.Interface.IControladorInsumoBruto;
 import Modelo.InsumoBruto;
+import Modelo.Stock;
 
 /**
  *
@@ -23,7 +24,9 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
 
     @Override
     public int guardar(InsumoBruto insumo) {
-        CS.guardar(insumo.getStock());
+        Stock s = insumo.getStock();
+        s.nuevoInsumo();
+        CS.guardar(s);
         insumo.setFechaAlta(new LocalDate());
         return INSUMODAO.guardar(insumo);
     }

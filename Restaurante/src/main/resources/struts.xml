@@ -24,6 +24,8 @@
     <include file="Struts2/XML/struts-insumoElaborado.xml"></include>
     <include file="Struts2/XML/struts-stock.xml"></include>
     <include file="Struts2/XML/struts-notificacion.xml"></include>
+    <include file="Struts2/XML/struts-informeStock.xml"></include>
+    <include file="Struts2/XML/struts-informe.xml"></include>
     
     <package name="json" extends="json-default">
         <result-types>
@@ -36,8 +38,7 @@
         
             <interceptor-stack name="interceptorPropio">
                 <interceptor-ref name="validarAcceso">
-                    <param name="actionsPublicos">login,recuperar,logear,logout,recuperarClave,obtenerPregunta,postBuscarInsumoBruto,
-                        postBuscarInsumoBrutoAutoComplete,postBuscarInsumoElaboradoAutoComplete</param>
+                    <param name="actionsPublicos">misdatos,modificarmisdatos,login,recuperar,logear,logout,recuperarClave,obtenerPregunta,postBuscarInsumoBruto,postBuscarInsumoBrutoAutoComplete,postBuscarInsumoElaboradoAutoComplete</param>
                 </interceptor-ref>
                 <interceptor-ref name="defaultStack" />
                 <interceptor-ref name="timer" />

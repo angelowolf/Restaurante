@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form id="form-editar" class="well">
+                    <form id="form-editar" class="well" autocomplete='off'>
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>

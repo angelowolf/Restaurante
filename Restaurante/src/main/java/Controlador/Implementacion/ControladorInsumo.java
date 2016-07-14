@@ -27,7 +27,7 @@ public class ControladorInsumo implements IControladorInsumo {
 
     @Override
     public Insumo buscar(int id) {
-        return null;
+        return INSUMODAO.buscar(id);
     }
 
 }

@@ -31,6 +31,10 @@ public class Notificacion {
     public Notificacion() {
     }
 
+    public Notificacion(int id) {
+        this.id = id;
+    }
+
     public Notificacion(String mensaje, LocalDateTime fecha, Usuario usuario, boolean visto, TipoMensaje tipoMensaje) {
         this.mensaje = mensaje;
         this.fecha = fecha;
@@ -92,4 +96,7 @@ public class Notificacion {
         return "Notificacion{ HUMANO" + getFecha2() + "id=" + id + ", mensaje=" + mensaje + ", fecha=" + fecha + ", usuario=" + usuario + ", visto=" + visto + ", tipoMensaje=" + tipoMensaje + '}';
     }
 
+    public int getIdInforme() {
+        return 0;
+    }
 }
