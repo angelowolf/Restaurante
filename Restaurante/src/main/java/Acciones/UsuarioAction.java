@@ -206,7 +206,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.put("mensaje", Soporte.Mensaje.DATOSMODIFICADOS);
         return SUCCESS;
     }
-    
+
     public String getModificarPerfil() {
         if (!sesion.containsKey("idUsuario")) {
             return LOGIN;
@@ -242,6 +242,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.put("rolCaja", u.esResponsableCaja());
         sesion.put("rolMesa", u.esResponsableMesa());
         if (u.esPrimerLogin()) {
+            sesion.put("primeraVez", true);
             return "primeravez";
         } else {
             return SUCCESS;
@@ -257,6 +258,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.remove("rolMesa");
         sesion.remove("rolCaja");
         sesion.remove("mensaje");
+        sesion.remove("primeraVez");
         return SUCCESS;
     }
 
@@ -278,6 +280,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public String primerLogin() {
         controladorUsuario.actualizar((int) sesion.get("idUsuario"), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
+        sesion.remove("primeraVez");
         return SUCCESS;
     }
 
