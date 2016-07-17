@@ -10,6 +10,17 @@ INSERT INTO CategoriaInsumo(nombre) VALUES ('Almacen');
 INSERT INTO CategoriaInsumo(nombre) VALUES ('Carniceria');
 INSERT INTO CategoriaInsumo(nombre) VALUES ('Verduleria');
 
+INSERT INTO CategoriaReceta(nombre) VALUES ('Salsa');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Ensalada');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Minuta');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Guarnicion');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Trago');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Picada');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Postre');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Infusion');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Entrada');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Pizza');
+INSERT INTO CategoriaReceta(nombre) VALUES ('Agregado');
 
 insert into Stock(cantidadActual,cantidadMinima) values(10,50);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Tomate','Kilogramos','2016-01-1',1,4);

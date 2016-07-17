@@ -159,4 +159,35 @@
         </put-list-attribute>
     </definition>
     <!--FIN INFORMES-->
+    
+    <!--CATEGORIA RECETA-->
+    <definition name="/receta/categoria/alta.tiles" extends="masterpage">
+        <put-attribute name="title" value="Formulario Categoria Receta" />
+        <put-attribute name="body" value="/WEB-INF/receta/categoria/alta.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/receta/categoria/alta.js" />
+        </put-list-attribute>
+    </definition>
+    <definition name="/receta/categoria/todos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Recetas Categoria" />
+        <put-attribute name="body" value="/WEB-INF/receta/categoria/todos.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/receta/categoria/todos.js" />
+        </put-list-attribute>
+    </definition>
+    <!--RECETAS-->
+    <definition name="/receta/alta.tiles" extends="masterpage">
+        <put-attribute name="title" value="Formulario Receta" />
+        <put-attribute name="body" value="/WEB-INF/receta/alta.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/receta/alta.js" />
+        </put-list-attribute>
+    </definition>
+    <definition name="/receta/todos.tiles" extends="masterpage">
+        <put-attribute name="title" value="Recetas Categoria" />
+        <put-attribute name="body" value="/WEB-INF/receta/todos.jsp" />
+        <put-list-attribute name="javascript" inherit="true">
+            <add-attribute value="/../js/receta/todos.js" />
+        </put-list-attribute>
+    </definition>
 </tiles-definitions>

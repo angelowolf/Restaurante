@@ -91,6 +91,14 @@ public class InterceptorAcceso extends AbstractInterceptor {
                             }
                         }
                         break;
+                    case "receta":
+                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolCocina")) {
+                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolCocina");
+                            if (f) {
+                                return actionInvocation.invoke();
+                            }
+                        }
+                        break;
                     default:
                         return actionInvocation.invoke();
                 }

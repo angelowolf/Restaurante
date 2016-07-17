@@ -104,6 +104,42 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-book fa-fw"></i> Recetas
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-third-level">
+                    <li>
+                        <a href='<s:url action="listar" namespace="/receta"/>'>
+                            <i class="fa fa-list fa-fw"></i> Ver Listado
+                        </a>
+                    </li>
+                    <li>
+                        <a href='<s:url action="nuevo" namespace="/receta"/>'>
+                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
+                        </a>
+                    </li>
+                </ul>  
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-cogs fa-fw"></i> Categorías
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-third-level">
+                    <li>
+                        <a href='<s:url action="listar" namespace="/receta/categoria"/>'>
+                            <i class="fa fa-list fa-fw"></i> Ver Listado
+                        </a>
+                    </li>
+                    <li>
+                        <a href='<s:url action="nuevo" namespace="/receta/categoria"/>'>
+                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
+                        </a>
+                    </li>
+                </ul>  
+            </li>
         </ul>
     </li>
 </s:if>

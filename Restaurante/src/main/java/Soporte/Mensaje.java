@@ -145,6 +145,8 @@ public class Mensaje {
     public static final String NOTIFICACIONESELIMINADAS = "Las notificaciones fueron elimindas con éxito.";
     public static final String NOTIFICACIONESVISTAS = "Las notificaciones fueron marcadas como vistas con éxito.";
     public static final String CONFECCIONREGISTRADA = "La confeccion fue registrada con éxito.";
+    public static final String CATEGORIARECETA = "Categoria Receta";
+    public static final String RECETA = "Receta";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
