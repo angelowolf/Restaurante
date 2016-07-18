@@ -28,7 +28,7 @@ public class InformeStockAction extends Accion implements ModelDriven<Insumo> {
 
     private static final Logger LOGGER = Logger.getLogger(InformeStockAction.class);
     private Insumo insumo;
-    private final List listaDatos;
+    private final List<List> listaDatos;
     private final List<TipoMovimiento> movimientos;
     private final IControladorInsumo ci;
     private final IControladorStock cs;
@@ -64,7 +64,7 @@ public class InformeStockAction extends Accion implements ModelDriven<Insumo> {
         return SUCCESS;
     }
 
-    public List getListaDatos() {
+    public List<List> getListaDatos() {
         return listaDatos;
     }
 
