@@ -5,8 +5,19 @@
  */
 package Acciones;
 
+import Controlador.Implementacion.ControladorCategoriaReceta;
+import Controlador.Implementacion.ControladorReceta;
+import Controlador.Interface.IControladorCategoriaReceta;
+import Controlador.Interface.IControladorReceta;
+import Modelo.CategoriaReceta;
 import Modelo.Receta;
+import Soporte.AutoComplete;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -14,31 +25,105 @@ import com.opensymphony.xwork2.ModelDriven;
  */
 public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
 
+    private static final Logger LOGGER = Logger.getLogger(RecetaAction.class);
+    private final IControladorCategoriaReceta controladorCategoriaReceta;
+    private final IControladorReceta controladorReceta;
     private Receta receta;
+
+    private List<Integer> idsIngredientes;
+    private List<Float> cantidadesIngredientes;
+    private List<Integer> opcionalIngredientesID;
+    private List<Integer> idsRecetas;
+    private List<Integer> opcionalRecetasID;
+
+    private final List<CategoriaReceta> categorias;
+    private List<Receta> lista;
+    private List<AutoComplete> listaAC;
+    private String term, nombreFiltro;
+    private int categoriaRecetaFiltro;
+
+    public RecetaAction() {
+        controladorCategoriaReceta = new ControladorCategoriaReceta();
+        controladorReceta = new ControladorReceta();
+        lista = new ArrayList<>();
+        categorias = controladorCategoriaReceta.getTodos();
+        receta = new Receta();
+    }
+
+    public String postBuscarRecetaAutoComplete() {
+        listaAC = new ArrayList<>();
+        lista = controladorReceta.getTodosByCategoriaByNombre(-1, term, true);
+        for (Receta cadaReceta : lista) {
+            listaAC.add(AutoComplete.generarAC(cadaReceta));
+        }
+        return SUCCESS;
+    }
 
     @Override
     public String getModificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        receta = controladorReceta.getReceta(receta.getId());
+        return SUCCESS;
+    }
+
+    public void validatePostModificar() {
+
     }
 
     @Override
     public String postModificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controladorReceta.actualizar(receta);
+        sesion.put("mensaje", Soporte.Mensaje.getModificada(Soporte.Mensaje.RECETA));
+        return SUCCESS;
+    }
+
+    public void validateRegistrar() {
+        if (receta.getCategoriaReceta().getId() == -1) {
+            addFieldError("categoriaReceta.id", Soporte.Mensaje.SELECCIONECATEGORIARECETA);
+        }
+        if (StringUtils.isBlank(receta.getNombre())) {
+            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+        } else if (!controladorReceta.nombreDisponible(receta)) {
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.RECETA));
+        }
+        if (idsIngredientes == null || idsIngredientes.isEmpty()) {
+            addActionError(Soporte.Mensaje.INGRESEINSUMO);
+        } else if (cantidadesIngredientes == null || cantidadesIngredientes.isEmpty()) {
+            addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+        } else {
+            for (Float cadaCantidad : cantidadesIngredientes) {
+                if (cadaCantidad == null) {
+                    addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+                    break;
+                }
+            }
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        }
     }
 
     @Override
     public String registrar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controladorReceta.guardar(receta, idsIngredientes, cantidadesIngredientes, opcionalIngredientesID, idsRecetas, opcionalRecetasID);
+        sesion.put("mensaje", Soporte.Mensaje.getAgregada(Soporte.Mensaje.RECETA));
+        return SUCCESS;
+    }
+
+    public void validateEliminar() {
+        LOGGER.warn("VALIDAR AL ELIMINAR RECETA");
     }
 
     @Override
     public String eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controladorReceta.eliminar(receta);
+        sesion.put("mensaje", Soporte.Mensaje.getBaja(Soporte.Mensaje.RECETA));
+        return SUCCESS;
     }
 
     @Override
     public String listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista = controladorReceta.getTodosByCategoriaByNombre(categoriaRecetaFiltro, nombreFiltro, false);
+        return SUCCESS;
     }
 
     @Override
@@ -51,12 +136,61 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
         return receta;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public Receta getReceta() {
         return receta;
     }
 
     public void setReceta(Receta receta) {
         this.receta = receta;
+    }
+
+    public List<CategoriaReceta> getCategorias() {
+        return categorias;
+    }
+
+    public List<Receta> getLista() {
+        return lista;
+    }
+
+    public List<AutoComplete> getListaAC() {
+        return listaAC;
+    }
+
+    public void setIdsIngredientes(List<Integer> idsIngredientes) {
+        this.idsIngredientes = idsIngredientes;
+    }
+
+    public void setCantidadesIngredientes(List<Float> cantidadesIngredientes) {
+        this.cantidadesIngredientes = cantidadesIngredientes;
+    }
+
+    public void setOpcionalIngredientesID(List<Integer> opcionalIngredientesID) {
+        this.opcionalIngredientesID = opcionalIngredientesID;
+    }
+
+    public void setIdsRecetas(List<Integer> idsRecetas) {
+        this.idsRecetas = idsRecetas;
+    }
+
+    public void setOpcionalRecetasID(List<Integer> opcionalRecetasID) {
+        this.opcionalRecetasID = opcionalRecetasID;
+    }
+
+    public String getNombreFiltro() {
+        return nombreFiltro;
+    }
+
+    public void setNombreFiltro(String nombreFiltro) {
+        this.nombreFiltro = nombreFiltro;
+    }
+
+    public int getCategoriaRecetaFiltro() {
+        return categoriaRecetaFiltro;
+    }
+
+    public void setCategoriaRecetaFiltro(int categoriaRecetaFiltro) {
+        this.categoriaRecetaFiltro = categoriaRecetaFiltro;
     }
 
 }

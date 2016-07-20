@@ -6,26 +6,31 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorInsumo;
+import Controlador.Implementacion.ControladorReceta;
 import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
+import Modelo.InsumoBruto;
 import Soporte.AutoComplete;
+import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author ang_2
  */
-public class InsumoAction extends Accion {
+public class InsumoAction extends Accion implements ModelDriven<Insumo> {
 
+    private static final Logger LOGGER = Logger.getLogger(InsumoAction.class);
     private IControladorInsumo controladorInsumo = new ControladorInsumo();
     private List<Insumo> lista;
     private List<AutoComplete> listaAC;
     private String term;
     private Insumo insumo;
-    private int id;
 
     public InsumoAction() {
+        insumo = new InsumoBruto();
         lista = new ArrayList<>();
         listaAC = new ArrayList<>();
     }
@@ -36,7 +41,8 @@ public class InsumoAction extends Accion {
     }
 
     public String postBuscarInsumo() {
-        insumo = controladorInsumo.buscar(id);
+        insumo = controladorInsumo.buscar(insumo.getId());
+        LOGGER.info("POST");
         return SUCCESS;
     }
 
@@ -46,6 +52,7 @@ public class InsumoAction extends Accion {
         for (Insumo cadaInsumo : lista) {
             listaAC.add(AutoComplete.generarAC(cadaInsumo));
         }
+        LOGGER.info("AC");
         return SUCCESS;
     }
 
@@ -61,17 +68,22 @@ public class InsumoAction extends Accion {
         return listaAC;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Insumo getInsumo() {
         return insumo;
+    }
+
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
     }
 
     @Override
     public int getCodigo() {
         return codigo;
+    }
+
+    @Override
+    public Insumo getModel() {
+        return insumo;
     }
 
 }

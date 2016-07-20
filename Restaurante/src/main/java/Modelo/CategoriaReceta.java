@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+
 /**
  *
  * @author ang_2
@@ -39,6 +41,7 @@ public class CategoriaReceta {
         return nombre;
     }
 
+    @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -47,6 +50,7 @@ public class CategoriaReceta {
         return descripcion;
     }
 
+    @StringLengthFieldValidator(maxLength = "255", message = "La cantidad máxima de carácter es de 255", fieldName = "descripcion")
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }

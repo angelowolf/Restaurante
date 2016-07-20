@@ -4,15 +4,15 @@
         <div class="panel-heading">
             <h3 class="panel-title">Nueva Categoria de Insumo</h3>
         </div>
-        <form id="alta-categoria-form">
+        <form id="alta-categoria-form" autocomplete="off">
             <div class="panel-body">
                 <div class="form-group">
                     <label for="nombre" class="control-label">Nombre de Categoria *</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Categoria">
+                    <input type="text" maxlength="100" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Categoria">
                 </div>
                 <div class="form-group">
                     <label for="descrpcion">Descripción de Categoria</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion de Categoria"></textarea>
+                    <textarea class="form-control" maxlength="255" id="descripcion" name="descripcion" placeholder="Descripcion de Categoria"></textarea>
                 </div>
             </div>
             <div class="panel-footer" id="botones">

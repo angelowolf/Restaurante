@@ -12,6 +12,8 @@
             <key column="id_receta"/>
             <one-to-many class="Modelo.Ingrediente"/>
         </set>
+        <property name="fechaAlta" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime"/>    
+        <property name="fechaBaja" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime"/>    
         <set name="recetas" cascade="all-delete-orphan">
             <key column="id_receta_padre"/>
             <one-to-many class="Modelo.DetalleReceta"/>

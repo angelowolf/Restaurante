@@ -21,7 +21,7 @@
         <action name="postBuscarInsumoBruto" method="postBuscarInsumo" class="Acciones.RecetaAction">
             <result name="success">/WEB-INF/receta/tablaReceta.jsp</result>
         </action>          
-        <action name="postBuscarInsumoBrutoAutoComplete" method="postBuscarInsumoBrutoAutoComplete" class="Acciones.RecetaAction">
+        <action name="postBuscarRecetaAutoComplete" method="postBuscarRecetaAutoComplete" class="Acciones.RecetaAction">
             <result type="json" >
                 <param name="root">listaAC</param>
             </result>            

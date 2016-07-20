@@ -10,6 +10,7 @@ import Controlador.Interface.IControladorCategoriaReceta;
 import Modelo.CategoriaReceta;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -73,7 +74,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
 
     public void validateEliminar() {
         if (ccr.enUso(categoria)) {
-            addActionError(Soporte.Mensaje.getUsadaPorUn(Soporte.Mensaje.CATEGORIARECETA, Soporte.Mensaje.RECETA));
+            addActionError(Soporte.Mensaje.getUsadaPorUnDesvincular(Soporte.Mensaje.CATEGORIARECETA, Soporte.Mensaje.RECETA));
         }
         if (hasErrors()) {
             codigo = 400;
@@ -107,6 +108,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
         return lista;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public CategoriaReceta getCategoria() {
         return categoria;
     }

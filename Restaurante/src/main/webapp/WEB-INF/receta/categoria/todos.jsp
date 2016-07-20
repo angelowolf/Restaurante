@@ -5,12 +5,12 @@
 
 <div class="panel panel-ruhaj">
     <div class="panel-heading">
-        <h3 class="panel-title">Listado de Usuarios</h3>
+        <h3 class="panel-title">Listado de Categorias Recetas</h3>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/receta/categoria" id="formulario-buscar">
+                <s:form class="form-inline" action="listar" namespace="/receta/categoria" id="formulario-buscar" autocomplete="off">
                     <div class="form-group">
                         <label for="nombre">Nombre de Categoria</label>
                         <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria"/>
@@ -28,8 +28,8 @@
                     </display:setProperty>
                     <display:setProperty name="paging.banner.placement">bottom</display:setProperty>
 
-                    <display:column sortable="true" property="nombre" title="Nombre" headerClass="table-header-ruhaj"/>
-                    <display:column property="descripcion" title="Descripción" class="text-center" decorator="Decorator.DescripcionDecorator" headerClass="table-header-ruhaj"/>
+                    <display:column sortable="true" property="nombre" title="Nombre" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
+                    <display:column property="descripcion" title="Descripción" class="text-center" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
                     <display:column title="Acciones" class="text-center" headerClass="table-header-ruhaj">
                         <div id="botones">
                             <s:hidden name="id" value="%{#attr.row.id}"/>
@@ -44,9 +44,9 @@
     </div>
 </div>
 <s:action name="modaleliminar" namespace="/modal" executeResult="true">
-    <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIAINSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIAINSUMO));%></s:param>
+    <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIARECETA);%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIARECETA));%></s:param>
     <s:param name="modelo">categoria</s:param>
 </s:action>
-<s:include value="/WEB-INF/insumo/categoria/modalModificacion.jsp"/>
-<s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
+<s:include value="/WEB-INF/receta/categoria/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/receta/categoria/modalVer.jsp"/>

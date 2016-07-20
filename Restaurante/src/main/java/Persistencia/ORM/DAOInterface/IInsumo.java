@@ -17,4 +17,6 @@ public interface IInsumo extends IGenericDAO<Insumo, Integer> {
 
     public List<Insumo> getTodos(boolean activo);
 
+    public List<Insumo> getTodosByCategoriaByNombre(int idCategoria, String nombre, List<Integer> ids, boolean activo);
+
 }

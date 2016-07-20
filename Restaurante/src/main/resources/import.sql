@@ -156,3 +156,9 @@ insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(50
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(-20,40,'2016-08-3 05:00:00','Venta',1);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(-10,30,'2016-08-3 07:00:00','Confeccion',1);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(5,35,'2016-08-4 00:00:00','Reposicion',1);
+
+
+
+insert into Receta(nombre,id_categoria,fechaAlta,fechaBaja) values ('Milanesa a la napolitana',3,NOW(),null);
+insert into Receta(nombre,id_categoria,fechaAlta,fechaBaja) values ('Milanesa a la suiza',3,NOW(),null);
+insert into Receta(nombre,id_categoria,fechaAlta,fechaBaja) values ('Milanesa caballo',3,NOW(),null);
