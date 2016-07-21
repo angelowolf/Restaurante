@@ -6,6 +6,7 @@
 package Controlador.Implementacion;
 
 import Controlador.Interface.IControladorCategoriaReceta;
+import Controlador.Interface.IControladorReceta;
 import Modelo.CategoriaReceta;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -57,7 +58,8 @@ public class ControladorCategoriaReceta implements IControladorCategoriaReceta {
 
     @Override
     public boolean enUso(CategoriaReceta categoria) {
-        return !CATEGORIARECETADAO.categoriaInsumosEnUso(categoria).isEmpty();
+        IControladorReceta cr = new ControladorReceta();
+        return !cr.getTodosByCategoriaByNombre(categoria.getId(), null, false).isEmpty();
     }
 
     @Override

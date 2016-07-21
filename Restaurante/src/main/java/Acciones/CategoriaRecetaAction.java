@@ -95,11 +95,6 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
     }
 
     @Override
-    public int getCodigo() {
-        return codigo;
-    }
-
-    @Override
     public CategoriaReceta getModel() {
         return categoria;
     }

@@ -19,7 +19,5 @@ public interface ICategoriaReceta extends IGenericDAO<CategoriaReceta, Integer> 
 
     public CategoriaReceta buscar(String nombre);
 
-    public List<CategoriaReceta> categoriaInsumosEnUso(CategoriaReceta categoria);
-
     public List<CategoriaReceta> buscarFiltro(String nombreFiltro);
 }

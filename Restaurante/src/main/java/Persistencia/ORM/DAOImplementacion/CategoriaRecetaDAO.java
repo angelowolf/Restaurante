@@ -54,18 +54,6 @@ public class CategoriaRecetaDAO extends GenericDAO<CategoriaReceta, Integer> imp
         }
     }
 
-    @Override
-    public List<CategoriaReceta> categoriaInsumosEnUso(CategoriaReceta categoriaReceta) {
-        Session session = getHibernateTemplate();
-        List<CategoriaReceta> objetos = new ArrayList<>();
-        try {
-            String sql = "select * from CategoriaReceta categoria inner join Receta receta ON receta.id_categoria = categoria.id WHERE receta.id_categoria LIKE :id ";
-            objetos = session.createSQLQuery(sql).addEntity(CategoriaReceta.class).setParameter("id", categoriaReceta.getId()).list();
-        } catch (RuntimeException e) {
-            LOG.error("Error al verificar si esta en uso la categoria", e);
-        }
-        return objetos;
-    }
 
     @Override
     public List<CategoriaReceta> buscarFiltro(String nombreFiltro) {

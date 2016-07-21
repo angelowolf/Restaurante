@@ -5,11 +5,8 @@
  */
 package Controlador.Interface;
 
-import Modelo.CategoriaInsumo;
 import Modelo.CategoriaReceta;
-import Persistencia.ORM.DAOImplementacion.CategoriaInsumoDAO;
 import Persistencia.ORM.DAOImplementacion.CategoriaRecetaDAO;
-import Persistencia.ORM.DAOInterface.ICategoriaInsumo;
 import Persistencia.ORM.DAOInterface.ICategoriaReceta;
 import java.util.List;
 

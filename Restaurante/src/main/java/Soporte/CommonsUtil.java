@@ -25,4 +25,8 @@ public class CommonsUtil {
         return map;
     }
 
+    public static String upFirstLetter(String palabra) {
+        return palabra.substring(0, 1).toUpperCase() + palabra.substring(1);
+    }
+
 }
