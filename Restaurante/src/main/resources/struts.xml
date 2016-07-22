@@ -38,7 +38,7 @@
         
             <interceptor-stack name="interceptorPropio">
                 <interceptor-ref name="validarAcceso">
-                    <param name="actionsPublicos">misdatos,modificarmisdatos,login,recuperar,logear,logout,recuperarClave,obtenerPregunta,postBuscarInsumoBruto,postBuscarInsumoBrutoAutoComplete,postBuscarInsumoElaboradoAutoComplete</param>
+                    <param name="actionsPublicos">misdatos,modificarmisdatos,login,recuperar,obtenerPregunta,verificarRespuesta,logear,logout,recuperarClave,postBuscarInsumoBruto,postBuscarInsumoBrutoAutoComplete,postBuscarInsumoElaboradoAutoComplete</param>
                 </interceptor-ref>
                 <interceptor-ref name="defaultStack" />
                 <interceptor-ref name="timer" />

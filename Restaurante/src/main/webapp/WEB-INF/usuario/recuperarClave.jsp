@@ -19,19 +19,11 @@
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
                     <div class="panel">
                         <div class="panel-body">
-                            <form id="formulario">
-                                <h4>Pregunta Secreta</h4>
-                                <p>Para restablecer la contraseña deberás responder a la pregunta secreta que configuraste en el primer inicio de sesión.</p>
+                            <form id="formulario" autocomplete="off">
+                                <h4>Recuperar Contraseña</h4>
+                                <p>Ahora ya puedes restablecer la contraseña.</p>
                                 <hr />
-                                <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
-                                <div class="form-group">
-                                    <h4 id="preguntaSecreta"><s:property value="usuario.preguntaSecreta"/></h4>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="respuestaSecreta">Respuesta Secreta</label>
-                                    <input required type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta">
-                                </div>
-                                <hr />
+                                <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">                               
                                 <div class="form-group">
                                     <label class="control-label" for="clave">Nueva Contraseña</label>
                                     <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña">

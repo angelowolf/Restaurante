@@ -19,7 +19,7 @@
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
                     <div class="panel">
                         <div class="panel-body">
-                            <form id="formulario">
+                            <s:form namespace="/" action="verificarRespuesta" id="formulario" autocomplete="off">
                                 <h4>Pregunta Secreta</h4>
                                 <p>Para restablecer la contraseña deberás responder a la pregunta secreta que configuraste en el primer inicio de sesión.</p>
                                 <hr />
@@ -31,19 +31,13 @@
                                     <label class="control-label" for="respuestaSecreta">Respuesta Secreta</label>
                                     <input required type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta">
                                 </div>
-                                <hr />
-                                <div class="form-group">
-                                    <label class="control-label" for="clave">Nueva Contraseña</label>
-                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="clave2">Repite la Nueva Contraseña</label>
-                                    <input type="password" required  class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña">
-                                </div>
                                 <button type="submit" id="guardar" class="btn btn-ruhaj pull-right">Cambiar Contraseña</button>
-                            </form>
+                            </s:form>
                         </div>
                     </div>
+                    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
+                        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPODANGER);%></s:param>
+                    </s:action>
                 </div>
             </div>
         </div>
@@ -51,5 +45,4 @@
     <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
     <script type="text/javascript" src="/js/vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/admin.js"></script>
-    <script type="text/javascript" src="/js/usuario/recuperarClave.js"></script>
 </html>

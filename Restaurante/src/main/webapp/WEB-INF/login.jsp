@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-lg-7 col-sm-6 col-xs-12">
                                 <br />
-                                <s:form action="login" namespace="/" >
+                                <s:form action="login" namespace="/" autocomplete="off">
                                     <div class="form-group">
                                         <label for="nick">Nombre de Usuario</label>
                                         <input class="form-control" type="text" name="nick" value="admin" placeholder="Tu Nombre de Usuario" required />
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                <s:actionerror theme="bootstrap" />
+                    <s:actionerror theme="bootstrap" />
                 </div>
             </div>
         </div>

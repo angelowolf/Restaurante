@@ -26,11 +26,11 @@
                                 <br />
                                 <h4>Recuperar Contraseña</h4>
                                 <p>A continuacion ingresa el nombre de usuario de la cuenta que deseas recuperar.</p>
-                                <s:form namespace="/" action="obtenerPregunta" id="recuperar-contraseña-form">
+                                <s:form namespace="/" action="obtenerPregunta" id="recuperar-contraseña-form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="nick" class="control-label">Nombre de Usuario</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" name="nick" value="admin" placeholder="Nombre de Usuario" required />
+                                            <input class="form-control" type="text" name="nick" value="" placeholder="Nombre de Usuario" required />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-ruhaj" type="submit">
                                                     Siguiente
@@ -43,9 +43,9 @@
                             </div>
                         </div>
                     </div>
-                <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
-                    <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPODANGER);%></s:param>
-                </s:action>
+                    <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
+                        <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPODANGER);%></s:param>
+                    </s:action>
                 </div>
             </div>
         </div>
