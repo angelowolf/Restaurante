@@ -316,7 +316,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (temp.getRespuestaSecreta() == null) {
             sesion.put("mensaje", "Usted aun no respondio la pregunta secreta.");
             addFieldError(NONE, ERROR);
-        } else if (!temp.getRespuestaSecreta().equals(usuario.getRespuestaSecreta())) {
+        } else if (!temp.getRespuestaSecreta().toLowerCase().equals(usuario.getRespuestaSecreta().toLowerCase())) {
             sesion.put("mensaje", Soporte.Mensaje.RESPUESTANOVALIDA);
             addFieldError(NONE, ERROR);
         }
