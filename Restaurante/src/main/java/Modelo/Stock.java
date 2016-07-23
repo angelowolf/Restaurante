@@ -6,6 +6,7 @@
 package Modelo;
 
 import Controlador.Implementacion.ControladorNotificacion;
+import java.util.HashSet;
 import java.util.Set;
 import org.joda.time.LocalDateTime;
 
@@ -136,6 +137,9 @@ public class Stock {
      * Crea un detalle stock con cantidad actual.
      */
     public void nuevoInsumo() {
+        if (detalleStocks == null) {
+            detalleStocks = new HashSet<>();
+        }
         this.detalleStocks.add(new DetalleStock(this.cantidadActual, cantidadActual, new LocalDateTime(), TipoMovimiento.Ajuste));
     }
 }
