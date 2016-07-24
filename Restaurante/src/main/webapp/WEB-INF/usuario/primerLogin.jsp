@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
-                    <form id="primer-login-form">
+                    <form id="primer-login-form" method="POST">
                         <div class="panel">
                             <div class="panel-body">
                                 <h4>Bienvenido a Ruhaj!</h4>
@@ -37,9 +37,9 @@
                                         </button>
                                     </div>
                                     <div class="col-xs-6 text-right">
-                                        <button class="btn btn-ruhaj guardar" type="submit">
-                                            Listo!
-                                            <i class="fa fa-chevron-right fa-fw"></i>
+                                        <button class="btn btn-ruhaj confirmar" type="submit">
+                                            Listo
+                                            <i class="fa fa-thumbs-up fa-fw"></i>
                                         </button>
                                     </div>
                                 </div>

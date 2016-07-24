@@ -206,8 +206,8 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.put("mensaje", Soporte.Mensaje.DATOSMODIFICADOS);
         return SUCCESS;
     }
-    
-    public String modificarPerfil() {
+
+    public String getModificarPerfil() {
         if (!sesion.containsKey("idUsuario")) {
             return LOGIN;
         }
@@ -243,6 +243,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.put("rolCaja", u.esResponsableCaja());
         sesion.put("rolMesa", u.esResponsableMesa());
         if (u.esPrimerLogin()) {
+            sesion.put("primeraVez", true);
             return "primeravez";
         } else {
             return SUCCESS;
@@ -258,6 +259,8 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.remove("rolMesa");
         sesion.remove("rolCaja");
         sesion.remove("mensaje");
+        sesion.remove("primeraVez");
+        sesion.remove("nombreCompletoUsuario");
         return SUCCESS;
     }
 
@@ -279,27 +282,25 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public String primerLogin() {
         controladorUsuario.actualizar((int) sesion.get("idUsuario"), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
+        sesion.remove("primeraVez");
         return SUCCESS;
     }
 
     public void validateRecuperarClave() {
-        if (StringUtils.isBlank(usuario.getClave())) {
-            addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
-        }
-        if (StringUtils.isBlank(usuario.getClave2())) {
-            addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
-        }
-        if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
-            if (!usuario.getClave().equals(usuario.getClave2())) {
-                addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+        if (sesion.containsKey("respuesta_respondida") && (boolean) sesion.get("respuesta_respondida")) {
+            if (StringUtils.isBlank(usuario.getClave())) {
+                addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
             }
-        }
-        Usuario temp = controladorUsuario.getUsuario(usuario.getId());
-        if (temp.getRespuestaSecreta() != null && !temp.getRespuestaSecreta().equals(usuario.getRespuestaSecreta())) {
-            addFieldError("respuestaSecreta", Soporte.Mensaje.RESPUESTANOVALIDA);
-        }
-        if (temp.getRespuestaSecreta() == null) {
-            addFieldError("respuestaSecreta", "Usted aun no respondio la pregunta secreta.");
+            if (StringUtils.isBlank(usuario.getClave2())) {
+                addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
+            }
+            if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
+                if (!usuario.getClave().equals(usuario.getClave2())) {
+                    addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+                }
+            }
+        } else {
+            addFieldError("clave2", "Responda la pregunta secreta... -.- ");
         }
         if (hasErrors()) {
             codigo = 400;
@@ -308,6 +309,24 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public String recuperarClave() {
         controladorUsuario.actualizarClave(usuario.getId(), usuario.getClave());
+        sesion.remove("respuesta_respondida");
+        return SUCCESS;
+    }
+
+    public void validateVerificarRespuesta() {
+        Usuario temp = controladorUsuario.getUsuario(usuario.getId());
+        if (temp.getRespuestaSecreta() == null) {
+            sesion.put("mensaje", "Usted aun no respondio la pregunta secreta.");
+            addFieldError(NONE, ERROR);
+        } else if (!temp.getRespuestaSecreta().toLowerCase().equals(usuario.getRespuestaSecreta().toLowerCase())) {
+            sesion.put("mensaje", Soporte.Mensaje.RESPUESTANOVALIDA);
+            addFieldError(NONE, ERROR);
+        }
+        usuario = temp;
+    }
+
+    public String verificarRespuesta() {
+        sesion.put("respuesta_respondida", true);
         return SUCCESS;
     }
 

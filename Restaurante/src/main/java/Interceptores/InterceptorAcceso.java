@@ -31,6 +31,7 @@ public class InterceptorAcceso extends AbstractInterceptor {
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         String result = Action.LOGIN;
         String actionActual = (String) ActionContext.getContext().get(ActionContext.ACTION_NAME);
+
         //Si es una accion publica se ejecuta
         if (actionsSinFiltrar.contains(actionActual)) {
             return actionInvocation.invoke();
@@ -38,6 +39,12 @@ public class InterceptorAcceso extends AbstractInterceptor {
             //si entra aca es que esta intentando acceder a una ruta en la que tiene que estar logeado y no lo esta
             return result;
         } else {
+            if (actionInvocation.getInvocationContext().getSession().containsKey("primeraVez")) {
+                if (actionActual.equals("primerLogin")) {
+                    return actionInvocation.invoke();
+                }
+                return result;
+            }
             //esta logeado ver si tiene el privilegio
             String namespace = actionInvocation.getProxy().getNamespace();
             String[] namespace1 = namespace.split("\\/");

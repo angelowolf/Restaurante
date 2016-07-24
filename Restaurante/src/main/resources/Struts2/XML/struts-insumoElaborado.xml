@@ -21,9 +21,6 @@
             <result type="json" >
                 <param name="root">listaAC</param>
             </result>            
-        </action>    
-        <action name="getResultadoMensaje" method="getResultadoMensaje" class="Acciones.InsumoElaboradoAction">
-            <result name="success">/WEB-INF/insumo/elaborado/resultadoElbararInsumo.jsp</result>
-        </action>             
+        </action>                
     </package>
 </struts>

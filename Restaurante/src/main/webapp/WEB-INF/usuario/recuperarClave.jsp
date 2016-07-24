@@ -22,28 +22,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
-                    <form id="formulario">
+                    <form id="cambiar-contraseña-form" method="POST">
                         <div class="panel">
                             <div class="panel-body">
-                                <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
-                                <div class="form-group">
-                                    <h4 id="preguntaSecreta"><s:property value="usuario.preguntaSecreta"/></h4>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="respuestaSecreta">Respuesta Secreta</label>
-                                    <input required type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" autocomplete="off" autofocus="autofocus">
-                                    <span class="help-block">
-                                        Responde la pregunta secreta que configuraste en tu primer inicio de sesión.
-                                    </span>
-                                </div>
-                                <hr />
+                                <input type="hidden" id="id" name="id" value='<s:property value="usuario.id"/>'>
                                 <div class="form-group">
                                     <label class="control-label" for="clave">Nueva Contraseña</label>
-                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off">
+                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off" autofocus="autofocus">
+                                    <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="clave2">Repite la Nueva Contraseña</label>
                                     <input type="password" required  class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off">
+                                    <span class="help-block"></span>
                                 </div>
                                 <hr />
                                 <div class="row">
@@ -55,6 +46,7 @@
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <button type="submit" id="guardar" class="btn btn-ruhaj pull-right">
+                                            <i class="fa fa-lock fa-fw"></i>
                                             Cambiar Contraseña
                                         </button>
                                     </div>

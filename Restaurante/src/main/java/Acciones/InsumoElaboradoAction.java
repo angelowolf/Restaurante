@@ -59,22 +59,6 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         return SUCCESS;
     }
 
-    public void validateGetResultadoMensaje() {
-        if (insumoElaborado.getId() <= 0) {
-            addActionError("Id Invalido.");
-            codigo = 400;
-        }
-    }
-
-    public String getResultadoMensaje() {
-        insumoElaborado = controladorInsumoElaborado.getInsumo(insumoElaborado.getId());
-        brutos = new ArrayList<>();
-        for (DetalleInsumoElaborado detalleInsumoElaborado : insumoElaborado.getDetalleInsumoElaborados()) {
-            brutos.add(new InsumoBrutoVista(detalleInsumoElaborado.getInsumoBruto(), cantidadConfeccionarInsumo * detalleInsumoElaborado.getCantidad()));
-        }
-        return SUCCESS;
-    }
-
     public String postBuscarInsumoElaboradoAutoComplete() {
         listaAC = new ArrayList<>();
         lista = controladorInsumoElaborado.buscar(term);
