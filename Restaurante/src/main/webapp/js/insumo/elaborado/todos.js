@@ -6,6 +6,8 @@
         var $modal = $('#modal-confeccionar-insumo-elaborado');
             $modal.find('#model-id').val(id);
             $modal.modal('show');
+            $modal.find('#confeccionar-detalle-insumo-elaborado').empty();
+            $modal.find('#confeccionar-insumo-elaborado-form').reset();
         $.post("/insumoelaborado/getModificar", {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#nombre').html(response.model.nombre);
@@ -35,7 +37,7 @@
 
     $('#cantidad-insumo-a-confeccionar').on('change', function (e) {
         var cantidadElaboracion = parseFloat($(this).val()) || 0;
-        $('#detalle-insumo-elaborado .cantidad').each(function (i, v) {
+        $('#confeccionar-detalle-insumo-elaborado .cantidad').each(function (i, v) {
             var cantidadInsumo = parseFloat($(this).parents('tr').children('.cantidad-original').val()) || 0;
             var cantidadUtilizar = cantidadInsumo * cantidadElaboracion;
             $(this).html(cantidadUtilizar.toFixed(2));

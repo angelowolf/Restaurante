@@ -16,7 +16,7 @@
         <action name="home" method="home" class="Acciones.UsuarioAction">
             <result name="success" type="tiles">/home.tiles</result>
         </action>    
-        <action name="recuperar" >
+        <action name="recuperar" class="Acciones.UsuarioAction">
             <result>/WEB-INF/usuario/recuperar.jsp</result>
         </action>    
         <action name="logear">

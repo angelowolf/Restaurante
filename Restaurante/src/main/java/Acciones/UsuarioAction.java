@@ -260,6 +260,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         sesion.remove("rolCaja");
         sesion.remove("mensaje");
         sesion.remove("primeraVez");
+        sesion.remove("nombreCompletoUsuario");
         return SUCCESS;
     }
 

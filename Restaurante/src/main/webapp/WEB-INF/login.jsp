@@ -25,15 +25,15 @@
                             </div>
                             <div class="col-lg-7 col-sm-6 col-xs-12">
                                 <br />
-                                <s:form action="login" namespace="/" autocomplete="off">
+                                <form id="login-form" action="/login" method="POST">
                                     <div class="form-group">
                                         <label for="nick">Nombre de Usuario</label>
-                                        <input class="form-control" type="text" name="nick" placeholder="Tu Nombre de Usuario" required autocomplete="off" autofocus="autofocus" />
+                                        <input class="form-control" type="text" id="nick" name="nick" placeholder="Tu Nombre de Usuario" required autocomplete="off" autofocus="autofocus" />
                                     </div>
                                     <div class="form-group">
                                         <label for="clave">Contraseña</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" name="clave" placeholder="Tu Contraseña" required autocomplete="off" />
+                                            <input class="form-control" type="password" id="clave" name="clave" placeholder="Tu Contraseña" required autocomplete="off" />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-ruhaj" type="submit">
                                                     Ingresar
@@ -45,19 +45,20 @@
                                     <div class="form-group">
                                         <small class="forgotpass">
                                             <i class="fa fa-bell fa-fw"></i>
-                                            <a href="<s:url action='recuperar' namespace='/'/>">¿Olvidaste la contraseña?</a>
+                                            <a id="recover-link" href="/recuperar?nick=">¿Olvidaste la contraseña?</a>
                                         </small>
                                     </div>
-                                </s:form>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <s:actionerror theme="bootstrap" />
+                    <s:actionerror theme="bootstrap"/>
                 </div>
             </div>
         </div>
 
-        <script src="/js/vendor/jquery.min.js"></script>
-        <script src="/js/vendor/bootstrap.min.js"></script>
+        <script src="/js/vendor/jquery.min.js" type="text/javascript"></script>
+        <script src="/js/vendor/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/login.js" type="text/javascript"></script>
     </body>
 </html>
