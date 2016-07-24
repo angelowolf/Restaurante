@@ -15,15 +15,19 @@ import org.displaytag.properties.MediaTypeEnum;
  *
  * @author ang_2
  */
-public class DescripcionDecorator implements DisplaytagColumnDecorator {
+public class LimitadorCaracteresDecorator implements DisplaytagColumnDecorator {
 
     @Override
     public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {
         if (columnValue != null && StringUtils.isNotBlank((String) columnValue)) {
             String descripcion = (String) columnValue;
-            StringBuilder sb = new StringBuilder();
-            sb.append(descripcion.substring(0, Math.min(20, descripcion.length()))).append("...");
-            return sb.toString();
+            if (descripcion.length() > 40) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(descripcion.substring(0, Math.min(40, descripcion.length()))).append("[...]");
+                return sb.toString();
+            } else {
+                return descripcion;
+            }
         } else {
             return "-";
         }

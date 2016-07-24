@@ -1,23 +1,28 @@
-<div class="panel panel-default">        
-    <div class="panel-body">        
+<div class="row">
+    <div class="col-xs-12">
         <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre-ac"  placeholder="Nombre del insumo">
+            <label for="busqueda-insumo" class="control-label">Insumos de la Elaboracion</label>
+            <input type="text" id="busqueda-insumo" class="form-control">
         </div>
     </div>
-    <form id="detalleElaborado" autocomplete='off'>
-        <table class="table table-striped table-bordered" id="tabla-detalleElaborados">
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
             <thead>
                 <tr>
-                    <th class="text-center-all">Nombre</th>
-                    <th class="text-center-all">Unidad de Medida</th>
-                    <th class="text-center-all">Cantidad Actual</th>
-                    <th class="text-center-all">Cantidad a Utilizar</th>
-                    <th class="text-center-all">Quitar</th>
+                    <th class="table-header-ruhaj">Nombre</th>
+                    <th class="table-header-ruhaj">Unidad de Medida</th>
+                    <th class="table-header-ruhaj">Cantidad Actual</th>
+                    <th class="table-header-ruhaj">Cantidad a Utilizar</th>
+                    <th class="table-header-ruhaj">Acciones</th>
                 </tr>
             </thead>
-            <tbody id="table-body">
+            <tbody id="detalle-insumo-elaborado">
+                <tr class="empty well">
+                    <td class="text-center-all" colspan="5">Aun no se han agregado insumos a esta elaboracion</td>
+                </tr>
             </tbody>
         </table>
-    </form>
+    </div>
 </div>

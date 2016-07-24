@@ -6,16 +6,10 @@
 <struts>
     <package name="modal" extends="struts-default" namespace="/modal">
         <!--COMIENZO ACCIONES-->       
-         <action name="modaleliminar" method="eliminar" class="Acciones.ModalAction">
-            <result name="success">/WEB-INF/modal/eliminar.jsp</result>
+         <action name="modal" method="modal" class="Acciones.ModalAction">
+            <result name="success">/WEB-INF/modal/modal.jsp</result>
         </action>
-        <action name="modalrecuperar" method="eliminar" class="Acciones.ModalAction">
-            <result name="success">/WEB-INF/modal/recuperar.jsp</result>
-        </action>
-        <action name="modalblanquear" method="eliminar" class="Acciones.ModalAction">
-            <result name="success">/WEB-INF/modal/blanquear.jsp</result>
-        </action>
-         <action name="mensajeAlerta" method="alerta" class="Acciones.ModalAction">
+         <action name="alerta" method="alerta" class="Acciones.ModalAction">
             <result name="success">/WEB-INF/modal/alerta.jsp</result>
         </action>
         <!--FIN ACCIONES-->       

@@ -23,9 +23,8 @@ var erroresM = (function () {
     };
 
     modulo.limpiarErrores = function (formId) {
-        $(formId + ' .error').remove();
+        $(formId + ' .help-block').html('');
         $(formId + ' .has-error').removeClass('has-error');
-         //$.notifyClose();
     };
 
     modulo.mostrarErrores = function (formId, data, noLimpiar) {
@@ -37,11 +36,15 @@ var erroresM = (function () {
             modulo.mostrarAlertError(data.actionErrors, alert.DANGER);
         }
         if (data.fieldErrors) {
-            var errores = data.fieldErrors;
-            for (var input in errores) {
-                var error = errores[input];
-                $(formId + ' [name=' + escapeSelector(input) + ']').parents('.form-group').append('<span class="error help-block">' + error + '</span>').addClass('has-error');
-            }
+            $.each(data.fieldErrors, function (input, errors) {
+                var $frmgrp = $(formId + ' [name="' + input + '"]').parents('.form-group');
+                var strerror= '';
+                $.each(errors, function (idx, error) {
+                    strerror += error + '<br />';
+                });
+                $frmgrp.addClass('has-error');
+                $frmgrp.children('.help-block').html(strerror);
+            });
         }
         if (data.actionMessages) {
             var mensajes = data.actionMessages;
@@ -54,10 +57,6 @@ var erroresM = (function () {
 
     modulo.mostrarAlertError = function (mensaje, tipo) {
         for (var i = 0; i < mensaje.length; i++) {
-            console.log(mensaje[i]);
-            //console.log('input ' + index);
-            //console.log('mensaje '+mensaje);
-            //console.log('mensaje2 '+ mensaje[index]);
             $.notify({
                 message: mensaje[i]
             }, {
@@ -137,7 +136,18 @@ function toggleBoton(button) {
 }
 
 $(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({
+        container : 'body'
+    });
+
+    $('.input-group.date').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true,
+        todayHighlight: true,
+        orientation: 'bottom auto',
+        container: 'body'
+    });
 
     $('.selectpicker').selectpicker({
         countSelectedText : '{0} Roles Seleccionados...',
@@ -146,18 +156,39 @@ $(document).ready(function () {
         container : 'body'
     });
 
-    $("#navbar-toggle-menu").on('click', function (evt) {
-        if($("#page-wrapper").hasClass('closed')) {
-            $(".sidebar").removeClass('closed');
-            $("#navbar-toggle-menu").removeClass('closed');
-            $("#page-wrapper").removeClass('closed');
-        }
-        else {
-            $(".sidebar").addClass('closed');
-            $("#navbar-toggle-menu").addClass('closed');
-            $("#page-wrapper").addClass('closed');
+    $('input.numeric-nodot[type=text]').blur(function (evt) {
+        var $input = $(this);
+        var patrn  = /[^\d]/g;
+        if($input.val().trim() && patrn.test($input.val())) {
+            var hlbl = $input.parents('.form-group').children('.help-block');
+            $input.val($input.val().replace(patrn, ''));
+            hlbl.html('Este campo solo acepta numeros sin puntos y/o comas');
         }
     });
+
+    $('input.numeric[type=text]').blur(function (evt) {
+        var $input = $(this);
+        var patrn  = /[^\d\.,]/g;
+        if($input.val().trim() && patrn.test($input.val())) {
+            var hlbl = $input.parents('.form-group').children('.help-block');
+            $input.val($input.val().replace(patrn, ''));
+            hlbl.html('Este campo solo acepta numeros');
+        }
+    });
+
+    $('input.numeric-signed[type=text]').blur(function (evt) {
+        var $input = $(this);
+        var patrn  = /[^\d\.,\+\-]/g;
+        if($input.val().trim() && patrn.test($input.val())) {
+            var hlbl = $input.parents('.form-group').children('.help-block');
+            $input.val($input.val().replace(patrn, ''));
+            hlbl.html('Este campo solo acepta numeros');
+        }
+    });
+
+
+
+
 
     $('#mostrar-modal-modificar-perfil').on('click', function (evt) {
         var $modal = $('#modal-modificar-perfil');

@@ -1,6 +1,6 @@
 <%@page import="Decorator.RolDecorator"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<div class="modal fade" id="modal-modificar-perfil" tabindex="-1" role="dialog">
+<div class="modal fade" id="modal-modificar-perfil" tabindex="-1" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-center">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,7 +23,7 @@
                             <input type="hidden" id="id" name="id">
                             <div class="form-group">
                                 <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento">
+                                <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" autocomplete="off" autofocus="autofocus">
                             </div>
 
                             <div class="form-group">
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="direccion">Dirección</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
+                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-xs-12">
@@ -51,12 +51,12 @@
                             <input type="hidden" id="preguntaSecretaOriginal" value="">
                             <div class="form-group">
                                 <label class="control-label" for="nick">Nombre de Usuario *</label>
-                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario">
+                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off">
                             </div>
                             <s:include value="/WEB-INF/usuario/preguntasSecretas.jsp"/>
                             <div class="form-group">
                                 <label for="respuestaSecreta">Respuesta Secreta *</label>
-                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" value="">
+                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" value="" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="clave">Nueva Contraseña</label>

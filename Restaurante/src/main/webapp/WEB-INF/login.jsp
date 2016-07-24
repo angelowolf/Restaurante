@@ -28,12 +28,12 @@
                                 <s:form action="login" namespace="/" >
                                     <div class="form-group">
                                         <label for="nick">Nombre de Usuario</label>
-                                        <input class="form-control" type="text" name="nick" value="admin" placeholder="Tu Nombre de Usuario" required />
+                                        <input class="form-control" type="text" name="nick" placeholder="Tu Nombre de Usuario" required autocomplete="off" autofocus="autofocus" />
                                     </div>
                                     <div class="form-group">
                                         <label for="clave">Contraseña</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" name="clave" value="admin" placeholder="Tu Contraseña" required />
+                                            <input class="form-control" type="password" name="clave" placeholder="Tu Contraseña" required autocomplete="off" />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-ruhaj" type="submit">
                                                     Ingresar
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group">
                                         <small class="forgotpass">
-                                            <i class="fa fa-bell"></i>
+                                            <i class="fa fa-bell fa-fw"></i>
                                             <a href="<s:url action='recuperar' namespace='/'/>">¿Olvidaste la contraseña?</a>
                                         </small>
                                     </div>

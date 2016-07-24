@@ -207,7 +207,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         return SUCCESS;
     }
     
-    public String getModificarPerfil() {
+    public String modificarPerfil() {
         if (!sesion.containsKey("idUsuario")) {
             return LOGIN;
         }
@@ -235,6 +235,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public String login() {
         Usuario u = controladorUsuario.getUsuario(usuario.getNick());
         sesion.put("idUsuario", u.getId());
+        sesion.put("nombreCompletoUsuario", String.format("%s %s", u.getNombre(), u.getApellido()));
         sesion.put("rolUsuario", u.esResponsableUsuario());
         sesion.put("rolMozo", u.esMozo());
         sesion.put("rolCocina", u.esResponsableCocina());

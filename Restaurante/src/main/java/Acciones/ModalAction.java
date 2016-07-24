@@ -16,9 +16,9 @@ import java.util.Map;
 public class ModalAction extends ActionSupport {
 
     protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
-    private String titulo, mensaje, modelo, tipo;
+    private String modalId, titulo, mensaje, modelo, tipoAlerta;
 
-    public String eliminar() {
+    public String modal() {
         return SUCCESS;
     }
 
@@ -28,12 +28,12 @@ public class ModalAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getModalId() {
+        return modalId;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setModalId(String modalId) {
+        this.modalId = modalId;
     }
 
     public String getTitulo() {
@@ -60,4 +60,11 @@ public class ModalAction extends ActionSupport {
         this.modelo = modelo;
     }
 
+    public String getTipoAlerta() {
+        return tipoAlerta;
+    }
+
+    public void setTipoAlerta(String tipoAlerta) {
+        this.tipoAlerta = tipoAlerta;
+    }
 }
