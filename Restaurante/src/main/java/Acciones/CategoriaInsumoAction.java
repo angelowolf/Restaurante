@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  *
  * @author ang_2
  */
-public class CategoriaInsumoAction extends Accion implements ModelDriven<CategoriaInsumo> ,CRUD{
+public class CategoriaInsumoAction extends Accion implements ModelDriven<CategoriaInsumo>, CRUD {
 
     private static final Logger LOGGER = Logger.getLogger(CategoriaInsumoAction.class);
 
