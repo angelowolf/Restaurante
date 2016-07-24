@@ -1,32 +1,16 @@
 (function ($) {
-    /*
-    $('#rolesSeleccionados').multiselect({
-        nonSelectedText: 'Seleccionar',
-        nSelectedText: 'seleccionado',
-        allSelectedText: 'Todos seleccionados',
-        selectAllText: ' Elegir todo',
-        buttonClass: 'btn btn-primary',
-        includeSelectAllOption: true
-    });
-    */
+    $('.mostrar-modal-recuperar-usuario').on('click', function (e) {
 
-    $('body').on('click', '#mostrar-modal-recuperar-usuario', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.recuperar[data-modelo=usuario]');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('usuario');
-        $modal.modal('show');
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-recuperar-usuario');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#recuperar', function (e) {
-        e.preventDefault();
+    $('#modal-recuperar-usuario .confirmar').on('click', function (e) {
         toggleBoton(e.target);
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.recuperar');
-        var id = $dialog.find('#id').val();
+        var $dialog = $('#modal-recuperar-usuario');
+        var id =  $dialog.find('#model-id').val();
         $.post('/usuario/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
@@ -38,23 +22,18 @@
         });
     });
 
-    $('body').on('click', '#mostrar-modal-reiniciar-contraseña', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.blanquear[data-modelo=usuario]');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('usuario');
-        $modal.modal('show');
+    $('.mostrar-modal-reiniciar-contraseña').on('click', function (e) {
+
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-reiniciar-contraseña');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#blanquear', function (e) {
-        e.preventDefault();
+    $('#modal-reiniciar-contraseña .confirmar').on('click', function (e) {
+        var $dialog = $('#modal-reiniciar-contraseña');
+        var id =  $dialog.find('#model-id').val();
         toggleBoton(e.target);
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.blanquear');
-        var id = $dialog.find('#id').val();
         $.post('/usuario/blanquear', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
@@ -66,22 +45,17 @@
         });
     });
 
-    $('body').on('click', '#mostrar-modal-baja-usuario', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.eliminar[data-modelo=usuario]');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('usuario');
-        $modal.modal('show');
+    $('.mostrar-modal-baja-usuario').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-baja-usuario');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#eliminar', function (e) {
+    $('#modal-baja-usuario .confirmar').on('click', function (e) {
+        var $dialog = $('#modal-baja-usuario');
+        var id =  $dialog.find('#model-id').val();
         toggleBoton(e.target);
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.eliminar');
-        var id = $dialog.find('#id').val();
         $.post('/usuario/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
@@ -94,14 +68,11 @@
         });
     });
 
-    $('body').on('click', '#mostrar-modal-ver-usuario', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
+    $('.mostrar-modal-ver-usuario').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-ver-usuario');
-        $modal.find('#id').val(id);
-        $.post('/usuario/editar', {id: id}, function (response) {
+            $modal.find('#id').val(id);
+        $.get('/usuario/editar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').html(response.model.id);
                 $modal.find('#nombre').html(response.model.nombre);
@@ -109,15 +80,9 @@
                 $modal.find('#documento').html(response.model.documento);
                 $modal.find('#telefono').html(response.model.telefono);
                 $modal.find('#direccion').html(response.model.direccion);
-                if (response.model.fNacimiento !== null) {
-                    $modal.find('#fechaNacimiento').html(response.model.fNacimiento);
-                }
-                if (response.model.fAlta !== null) {
-                    $modal.find('#fechaAlta').html(response.model.fAlta);
-                }
-                if (response.model.fBaja !== null) {
-                    $modal.find('#fechaBaja').html(response.model.fBaja);
-                }
+                $modal.find('#fechaNacimiento').html(response.model.fNacimiento ? response.model.fNacimiento : '-');
+                $modal.find('#fechaAlta').html(response.model.fAlta ? response.model.fAlta : '-');
+                $modal.find('#fechaBaja').html(response.model.fBaja ? response.model.fBaja : '-');
                 $modal.find('#nick').html(response.model.nick);
                 $('#roles-ver ul').empty();
                 for (var i = 0; i < response.model.roles.length; i++) {
@@ -131,14 +96,11 @@
         $modal.modal('show');
     });
 
-    $('body').on('click', '#mostrar-modal-modificar-usuario', function (e) {
-        e.preventDefault();
+    $('.mostrar-modal-modificar-usuario').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
         $('#modificar-usuario-form').trigger("reset");
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
         var $modal = $('#modal-modificar-usuario');
-        $modal.find('#id').val(id);
+            $modal.find('#id').val(id);
         $.post('/usuario/editar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
@@ -161,20 +123,24 @@
             }
         });
         erroresM.limpiarErrores('#modificar-usuario-form');
+        setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
-    $('#modal-modificar-usuario').on('click', '.guardar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = $('#modificar-usuario-form').serialize();
+
+    $('#modal-modificar-usuario #modificar-usuario-form').submit(function (e) {
+        var $form = $(this);
+        var $boton = $form.find('.confirmar');
+        var data = $form.serialize();
+        toggleBoton($boton);
         $.post('/usuario/modificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/usuario/listar?' + data);
             } else {
-                erroresM.mostrarErrores('#modificar-usuario-form', response);
-                toggleBoton(e.target);
+                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                toggleBoton($boton);
             }
         });
+        return false;
     });
 })(jQuery);

@@ -3,6 +3,7 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <tiles:importAttribute name="stylesheet" />
 <tiles:importAttribute name="javascript" />
+<tiles:importAttribute name="main" />
 <%
     HttpSession sesion = request.getSession();
     if (null == sesion.getAttribute("idUsuario")) {
@@ -10,16 +11,19 @@
     }
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><tiles:insertAttribute name="title" ignore="true" /></title>
         <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon">
         <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
-        <title><tiles:insertAttribute name="title" ignore="true" /></title>
-        <s:iterator value="#attr.stylesheet" var="cadaCSS">
-            <link href='<s:url value="%{cadaCSS}"/>' rel="stylesheet" type="text/css" >
+        <s:iterator value="#attr.stylesheet" var="cascadeUrl">
+            <link href='<s:url value="%{cascadeUrl}"/>' rel="stylesheet" type="text/css" >
+        </s:iterator>
+        <s:iterator value="#attr.main" var="headUrl">
+            <script src='<s:url value="%{headUrl}"/>'></script>
         </s:iterator>
     </head>
 
@@ -28,14 +32,15 @@
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-ruhaj navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-                <a id="navbar-toggle-menu" href="#"><i class="fa fa-bars fa-2x"></i></a>
+                <a id="navbar-toggle-menu" class="closed"><i class="fa fa-bars fa-2x"></i></a>
                 <ul class="nav pull-right navbar-top-links">
                     <s:action name="panel" namespace="/notificacion" executeResult="true"/>
                     <!-- /.dropdown-notificaciones -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i> 
-                            <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user fa-fw"></i>
+                            <s:text name="%{#session.nombreCompletoUsuario}" />
+                            <i class="fa fa-caret-down fa-fw"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li>
@@ -56,7 +61,7 @@
                 </ul>
                 <!-- /.navbar-top-links -->
 
-                <div class="navbar-ruhaj sidebar" role="navigation">
+                <div class="navbar-ruhaj sidebar closed" role="navigation">
                     <div class="sidebar-nav" id="menu-collapse">
                         <ul class="nav" id="side-menu">
                             <tiles:insertAttribute name="menu" />
@@ -68,16 +73,22 @@
             </nav>
 
             <!-- Page Content -->
-            <div id="page-wrapper">
+            <div id="page-wrapper" class="closed">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <s:action name="mensajeAlerta" namespace="/modal" executeResult="true">
-                                <s:param name="tipo"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
+                        <div class="col-xs-12">
+                            <s:action name="alerta" namespace="/modal" executeResult="true">
+                                <s:param name="tipoAlerta"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
                             </s:action>
+                        </div> 
+                        <!-- /.col-xs-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-xs-12">
                             <tiles:insertAttribute name="body" />
                         </div>
-                        <!-- /.col-lg-12 -->
+                        <!-- /.col-xs-12 -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -87,8 +98,8 @@
         </div>
         <!-- /#wrapper -->
         <s:include value="/WEB-INF/usuario/modalPerfil.jsp"/>
-        <s:iterator value="#attr.javascript" var="cadaJS">
-            <script src="<s:url value="%{cadaJS}"/>" ></script>
+        <s:iterator value="#attr.javascript" var="scriptUrl">
+            <script src='<s:url value="%{scriptUrl}"/>'></script>
         </s:iterator>
     </body>
 </html>

@@ -8,34 +8,60 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recuperar Contraseña</title>
-        <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-        <link href="/css/login.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="/imagenes/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/imagenes/favicon.ico" type="image/x-icon">
+        <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css'>
+        <link href='/css/login.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <form id="formulario" autocomplete="off">
-                                <h4>Recuperar Contraseña</h4>
-                                <p>Ahora ya puedes restablecer la contraseña.</p>
+                    <form id="formulario">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
+                                <div class="form-group">
+                                    <h4 id="preguntaSecreta"><s:property value="usuario.preguntaSecreta"/></h4>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="respuestaSecreta">Respuesta Secreta</label>
+                                    <input required type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" autocomplete="off" autofocus="autofocus">
+                                    <span class="help-block">
+                                        Responde la pregunta secreta que configuraste en tu primer inicio de sesión.
+                                    </span>
+                                </div>
                                 <hr />
-                                <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">                               
                                 <div class="form-group">
                                     <label class="control-label" for="clave">Nueva Contraseña</label>
-                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña">
+                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="clave2">Repite la Nueva Contraseña</label>
-                                    <input type="password" required  class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña">
+                                    <input type="password" required  class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off">
                                 </div>
-                                <button type="submit" id="guardar" class="btn btn-ruhaj pull-right">Cambiar Contraseña</button>
-                            </form>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <a class="btn btn-default" href="/recuperar">
+                                            <i class="fa fa-chevron-left fa-fw"></i>
+                                            Volver
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <button type="submit" id="guardar" class="btn btn-ruhaj pull-right">
+                                            Cambiar Contraseña
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

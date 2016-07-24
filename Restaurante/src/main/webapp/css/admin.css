@@ -10,12 +10,65 @@ textarea {
   overflow: none;
 }
 
-.panel, .panel-heading, .well, .modal-content, .dropdown-menu, .alert, .form-control, .btn {
+td > .form-control.fixed-width-4{
+  width: 100px;
+  margin: auto;
+}
+
+td > .form-control.fixed-width-3{
+  width: 80px;
+  margin: auto;
+}
+
+td > .form-control.fixed-width-2{
+  width: 60px;
+  margin: auto;
+}
+
+td > .form-control.fixed-width{
+  width: 40px;
+  margin: auto;
+}
+
+.bootstrap-select .btn, .panel, .panel-heading, .well, .modal-content, .dropdown-menu, .alert, .form-control, .input-group-addon {
+  border-radius: 0;
+}
+
+.easy-autocomplete > input {
   border-radius: 0;
 }
 
 .form-inline .form-group {
   padding-right: 10px;
+}
+
+.datepicker {
+  margin-top: 60px;
+}
+
+.ruhaj-paginator > li > span {
+  font-weight: bold;
+  color: #f8557d;
+  background-color: #fdfdfd;
+  border-color: #f73d6a;
+}
+
+.ruhaj-paginator > li > span:hover {
+  color: #f8557d;
+  background-color: #fdfdfd;
+  border-color: #f73d6a;
+}
+
+.ruhaj-paginator > .active > span {
+  color: #fdfdfd;
+  background-color: #f8557d;
+  border-color: #f73d6a;
+}
+
+.ruhaj-paginator > .active > span:hover {
+  color: #fdfdfd;
+  background-color: #f62457;
+  border-color: #f50c44;
 }
 
 .text-inline {
@@ -29,7 +82,7 @@ textarea {
   text-align: center;
   vertical-align: middle !important;
   color: #000000;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
 }
 
 .table-header-ruhaj a {
@@ -123,7 +176,7 @@ ul {
 #grafico {
     width	: 100%;
     height	: 500px;
-}									
+}
 
 
 .sombra{
@@ -139,9 +192,10 @@ ul {
   top: 12px;
   left: 260px;
   color: #fdfdfd;
-  -webkit-transition: left 250ms;
-  -moz-transition: left 250ms;
-  transition: left 250ms;
+  cursor: pointer;
+  -webkit-transition: left 150ms;
+  -moz-transition: left 150ms;
+  transition: left 150ms;
 }
 
 #navbar-toggle-menu.closed{

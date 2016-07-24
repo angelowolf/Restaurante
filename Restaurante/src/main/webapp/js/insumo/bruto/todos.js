@@ -1,22 +1,16 @@
 (function ($) {
    
-    $('body').on('click', '#modalrecuperar', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.recuperar[data-modelo=insumo]');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('insumo');
-        $modal.modal('show');
+    $('.mostrar-modal-recuperar-insumo-bruto').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-recuperar-insumo-bruto');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#recuperar', function (e) {
-        e.preventDefault();
+    $('#modal-recuperar-insumo-bruto .confirmar').on('click', function (e) {
+        var $dialog = $('#modal-recuperar-insumo-bruto');
+        var id =  $dialog.find('#model-id').val();
         toggleBoton(e.target);
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.recuperar');
-        var id = $dialog.find('#id').val();
         $.post('/insumobruto/recuperar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
@@ -28,21 +22,16 @@
         });
     });
 
-    $('body').on('click', '#modaleliminar', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.eliminar[data-modelo=insumo]');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('insumo');
-        $modal.modal('show');
+    $('.mostrar-modal-baja-insumo-bruto').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-baja-insumo-bruto');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#eliminar', function (e) {
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.eliminar');
-        var id = $dialog.find('#id').val();
+    $('#modal-baja-insumo-bruto .confirmar').on('click', function (e) {
+        var $dialog = $('#modal-baja-insumo-bruto');
+        var id =  $dialog.find('#model-id').val();
         toggleBoton(e.target);
         $.post('/insumobruto/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
@@ -56,30 +45,21 @@
         });
     });
 
-    $('body').on('click', '#modalver', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('#modal-ver');
-        $modal.find('#id').val(id);
+    $('.mostrar-modal-ver-insumo-bruto').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-ver-insumo-bruto');
+            $modal.find('#id').val(id);
         $.post('/insumobruto/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
-                $modal.find('#id').val(response.model.id);
-                $modal.find('#nombre').val(response.model.nombre);
-                $modal.find('#precioUnidad').val(response.model.precioUnidad);
-                $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
-                $modal.find('#cantidadActual').val(response.model.stock.cantidadActual);
-                if (response.model.fAlta !== null) {
-                    $modal.find('#fechaAlta').val(response.model.fAlta);
-                }
-                if (response.model.fBaja !== null) {
-                    $modal.find('#fechaBaja').val(response.model.fBaja);
-                }
-                $modal.find('#unidadMedida').val(response.model.unidadMedida);
-                $modal.find('#categoria').val(response.model.categoriaInsumo.nombre);
-                $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
-                $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
+                $modal.find('#id').html(response.model.id);
+                $modal.find('#nombre').html(response.model.nombre);
+                $modal.find('#precioUnidad').html(response.model.precioUnidad);
+                $modal.find('#cantidadMinima').html(response.model.stock.cantidadMinima);
+                $modal.find('#cantidadActual').html(response.model.stock.cantidadActual);
+                $modal.find('#fechaAlta').html(response.model.fAlta ? response.model.fAlta : '-');
+                $modal.find('#fechaBaja').html(response.model.fBaja ? response.model.fBaja : '-');
+                $modal.find('#unidadMedida').html(response.model.unidadMedida);
+                $modal.find('#categoria').html(response.model.categoriaInsumo.nombre);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
@@ -88,13 +68,10 @@
         $modal.modal('show');
     });
 
-    $('body').on('click', '#modaleditar', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('#modal-editar');
-        $modal.find('#id').val(id);
+    $('.mostrar-modal-modificar-insumo-bruto').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-modificar-insumo-bruto');
+            $modal.find('#id').val(id);
         $.post('/insumobruto/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
@@ -107,22 +84,25 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#form-editar');
+        erroresM.limpiarErrores('#modificar-insumo-bruto-form');
+        setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
 
-    $('body').on('click', '#editar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = $('#form-editar').serialize();
+    $('#modal-modificar-insumo-bruto #modificar-insumo-bruto-form').submit(function (e) {
+        var $form = $(this);
+        var $boton = $form.find('.confirmar');
+        var data = $form.serialize();
+        toggleBoton($boton);
         $.post('/insumobruto/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
-                toggleBoton(e.target);
-                erroresM.mostrarErrores('#form-editar', response);
+                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                toggleBoton($boton);
             }
         })
+        return false;
     });
 })(jQuery);

@@ -30,4 +30,5 @@
             <input type="checkbox" name="roles" id="rolMozo" value="<%out.println(Modelo.Rol.Mozo);%>">Mozo
         </label>
     </div>
+    <span class="help-block"></span>
 </div>

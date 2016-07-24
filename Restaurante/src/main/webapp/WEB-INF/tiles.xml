@@ -5,30 +5,33 @@
 <tiles-definitions>
     <!--MASTER PAGE EJEMPLO-->   
     <definition name="masterpage" template="/WEB-INF/masterpage.jsp">
-        <put-attribute name="title" value="Administración" />
+        <put-attribute name="title" value="Ruhaj" />
         <put-attribute name="menu" value="/WEB-INF/menu.jsp" /> 
-        <put-attribute name="body" value="" /> 
+        <put-attribute name="body" value="" />
+        <put-list-attribute name="main" >
+            <add-attribute value="/../js/vendor/jquery.min.js" />
+            <add-attribute value="/../js/vendor/metisMenu.min.js" />
+            <add-attribute value="/../js/main-menu.js" />
+        </put-list-attribute>
         <put-list-attribute name="stylesheet" >
             <add-attribute value="/../bower_components/bootstrap/dist/css/bootstrap.css" />
             <add-attribute value="/../bower_components/font-awesome/css/font-awesome.min.css" />
-            <add-attribute value="/../css/vendor/bootstrap-multiselect.min.css" />
-            <add-attribute value="/../css/vendor/bootstrap-select.min.css" />
             <add-attribute value="/../css/vendor/metisMenu.min.css" />
             <add-attribute value="/../css/vendor/sb-admin-2.css" />
             <add-attribute value="/../css/vendor/animate.css" />
-            <add-attribute value="/../css/vendor/jquery-ui.css" />
-            <add-attribute value="/../css/vendor/jquery-ui.structure.min.css" />
-            <add-attribute value="/../css/vendor/jquery-ui.theme.min.css" />
+            <add-attribute value="/../css/vendor/bootstrap-select.min.css" />
+            <add-attribute value="/../css/vendor/bootstrap-datepicker3.min.css" />
+            <add-attribute value="/../css/vendor/easy-autocomplete.min.css" />
+            <add-attribute value="/../css/vendor/easy-autocomplete.themes.min.css" />
             <add-attribute value="/../css/admin.css" />
         </put-list-attribute>
         <put-list-attribute name="javascript" >
-            <add-attribute value="/../js/vendor/jquery.min.js" />
-            <add-attribute value="/../js/vendor/bootstrap-multiselect.js" />
-            <add-attribute value="/../js/vendor/bootstrap-select.min.js" />
             <add-attribute value="/../js/vendor/bootstrap.min.js" />
-            <add-attribute value="/../js/vendor/metisMenu.min.js" />
             <add-attribute value="/../js/vendor/sb-admin-2.js" />
-            <add-attribute value="/../js/vendor/jquery-ui.min.js" />
+            <add-attribute value="/../js/vendor/bootstrap-select.min.js" />
+            <add-attribute value="/../js/vendor/bootstrap-datepicker.min.js" />
+            <add-attribute value="/../js/vendor/bootstrap-datepicker.es.min.js" />
+            <add-attribute value="/../js/vendor/jquery.easy-autocomplete.min.js" />
             <add-attribute value="/../js/admin.js" />
             <add-attribute value="/../js/vendor/bootstrap-notify.min.js" />
             <add-attribute value="/../js/notificacion.js" />
@@ -37,34 +40,28 @@
     <!--FIN MASTER PAGE-->
     <!--INICIO-->
     <definition name="/home.tiles" extends="masterpage">
-        <put-attribute name="title" value="Home" />
+        <put-attribute name="title" value="Ruhaj - Inicio" />
         <put-attribute name="body" value="/WEB-INF/home.jsp" />
     </definition>
     <!--SALA-->
-    <definition name="/sala/altamodificacion.tiles" extends="masterpage">
-        <put-attribute name="title" value="Formulario Sala" />
+    <definition name="/sala/alta.tiles" extends="masterpage">
+        <put-attribute name="title" value="Nuevo Salon" />
         <put-attribute name="body" value="/WEB-INF/sala/altamodificacion.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <!--<add-attribute value="/../js/sala.js" />-->
-        </put-list-attribute>
     </definition>
     <definition name="/sala/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Salas" />
+        <put-attribute name="title" value="Listado de Salones" />
         <put-attribute name="body" value="/WEB-INF/sala/todos.jsp" />
-        <put-list-attribute name="javascript" inherit="true">
-            <!--<add-attribute value="/../js/root.js" />-->
-        </put-list-attribute>
     </definition>
     <!--USUARIO-->
-    <definition name="/usuario/altamodificacion.tiles" extends="masterpage">
-        <put-attribute name="title" value="Formulario Usuario" />
+    <definition name="/usuario/alta.tiles" extends="masterpage">
+        <put-attribute name="title" value="Nuevo Usuario" />
         <put-attribute name="body" value="/WEB-INF/usuario/alta.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/usuario/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/usuario/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Usuarios" />
+        <put-attribute name="title" value="Listado de Usuarios" />
         <put-attribute name="body" value="/WEB-INF/usuario/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/usuario/todos.js" />
@@ -72,14 +69,14 @@
     </definition>
     <!--INSUMOS BRUTOS-->
     <definition name="/insumobruto/alta.tiles" extends="masterpage">
-        <put-attribute name="title" value="Formulario Insumo" />
+        <put-attribute name="title" value="Nuevo Insumo" />
         <put-attribute name="body" value="/WEB-INF/insumo/bruto/alta.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/bruto/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/insumobruto/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Insumos" />
+        <put-attribute name="title" value="Listado de Insumos" />
         <put-attribute name="body" value="/WEB-INF/insumo/bruto/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/bruto/todos.js" />
@@ -87,14 +84,14 @@
     </definition>
     <!--INSUMOS ELABORADOS-->
     <definition name="/insumoelaborado/alta.tiles" extends="masterpage">
-        <put-attribute name="title" value="Formulario Insumo" />
+        <put-attribute name="title" value="Nueva Elaboracion" />
         <put-attribute name="body" value="/WEB-INF/insumo/elaborado/alta.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/elaborado/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/insumoelaborado/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Insumos" />
+        <put-attribute name="title" value="Listado de Elaboraciones" />
         <put-attribute name="body" value="/WEB-INF/insumo/elaborado/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/elaborado/todos.js" />
@@ -102,14 +99,14 @@
     </definition>
     <!--CATEGORIA INSUMOS-->
     <definition name="/insumo/categoria/alta.tiles" extends="masterpage">
-        <put-attribute name="title" value="Formulario Categoria Insumo" />
+        <put-attribute name="title" value="Nueva Categoria de Insumo" />
         <put-attribute name="body" value="/WEB-INF/insumo/categoria/alta.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/categoria/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/insumo/categoria/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Insumos" />
+        <put-attribute name="title" value="Listado de Categorias de Insumo" />
         <put-attribute name="body" value="/WEB-INF/insumo/categoria/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/categoria/todos.js" />
@@ -117,21 +114,21 @@
     </definition>
     <!--Stock-->
     <definition name="/stock/ajusteStock.tiles" extends="masterpage">
-        <put-attribute name="title" value="Ajuste de Stock" />
+        <put-attribute name="title" value="Ajuste Manual de Stock" />
         <put-attribute name="body" value="/WEB-INF/stock/ajusteStock.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/stock/ajusteStock.js" />
         </put-list-attribute>
     </definition>
     <definition name="/stock/cargaCompra.tiles" extends="masterpage">
-        <put-attribute name="title" value="Carga de Compras" />
+        <put-attribute name="title" value="Cargae Compras" />
         <put-attribute name="body" value="/WEB-INF/stock/cargaCompra.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/stock/cargaCompra.js" />
         </put-list-attribute>
     </definition>
     <definition name="/stock/listaCompra.tiles" extends="masterpage">
-        <put-attribute name="title" value="Generar Listado de Compra" />
+        <put-attribute name="title" value="Crear Listado de Compra" />
         <put-attribute name="body" value="/WEB-INF/stock/listaCompra.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/stock/listaCompra.js" />
@@ -147,7 +144,7 @@
     </definition>
     <!--INFORMES-->
     <definition name="/informe/stock/insumo.tiles" extends="masterpage">
-        <put-attribute name="title" value="Evolución de Insumo" />
+        <put-attribute name="title" value="Seguimiento de Insumos" />
         <put-attribute name="body" value="/WEB-INF/informe/stock/movimientoStock.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../amcharts/amcharts.js" />

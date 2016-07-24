@@ -1,19 +1,19 @@
 (function ($) {
     $('#alta-categoria-form').submit( function (e) {
-        e.preventDefault();
-        toggleBoton("#alta-categoria-form > .registrar");
-        var data = $('#alta-categoria-form').serialize();
+        var $boton = $(this).find('.confirmar');
+        var data = $(this).serialize();
+        toggleBoton($boton);
         $.post('/insumo/categoria/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumo/categoria/listar');
             } else {
                 erroresM.mostrarErrores('#alta-categoria-form', response);
-                toggleBoton("#alta-categoria-form > .registrar");
+                toggleBoton($boton);
             }
         });
+        return false;
     });
-    $('#alta-categoria-form').on('click', '.cancelar', function (e) {
-        e.preventDefault();
+    $('#alta-categoria-form .cancelar').on('click', function (e) {
         window.location.replace('/insumo/categoria/listar');
     });
 })(jQuery);

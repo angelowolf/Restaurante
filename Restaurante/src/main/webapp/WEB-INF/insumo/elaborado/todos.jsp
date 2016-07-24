@@ -1,58 +1,93 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-<div class="form-group">   
-    <h2 class="page-header">Insumos Elaborados</h2>
-    <div class="panel panel-default">        
-        <div class="panel-body">        
-            <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar" autocomplete='off'>
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre"/>
-                </div>
-                <button type="submit" class="btn btn-info">Buscar</button>
-            </s:form>
-        </div>
+
+<div class="row">
+    <div class="col-xs-6 text-left">
+        <h2 class="pull-left">Listado de Elaboraciones</h2>
     </div>
-    <div class=" col-md-12">
-        <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
-            <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Insumos.</p></display:setProperty>
-            <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
-            <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="text-center-all"/>            
-            <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
-            <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="text-center-all"/>
-            <display:column title="Acciones" class="text-center-all" headerClass="text-center-all">
-                <div id="botones">
-                    <s:hidden name="id" value="%{#attr.row.id}"/>
-                    <button id="modalver" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                        <s:if test="(#attr.row.fechaBaja == null)">
-                        <button id="modalconfeccionar" class="btn btn-default"><i class="fa fa-gavel"></i></button>
-                        <button id="modaleditar" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                        </s:if>
-                        <s:if test="(#attr.row.fechaBaja == null)">
-                        <button id="modaleliminar" class="btn btn-danger"><i class="fa fa-close"></i></button>                        
-                        </s:if>
-                        <s:else>
-                        <button id="modalrecuperar" class="btn btn-success"><i class="fa fa-check-circle"></i></button>
-                        </s:else>
-                </div>
-            </display:column>
-        </display:table>
+    <div class="col-xs-6 text-right">
+        <br />
+        <a class="btn btn-default" data-toggle="tooltip" title="Imprimir Listado" data-placement="left">
+            <i class="fa fa-print"></i>
+        </a>
     </div>
 </div>
-<s:action name="modaleliminar" namespace="/modal" executeResult="true">
-    <s:param name="titulo"><%out.println(Soporte.Mensaje.INSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaDarBajaEl(Soporte.Mensaje.INSUMO));%></s:param>
-    <s:param name="modelo">insumo</s:param>
-</s:action>
-<s:action name="modalrecuperar" namespace="/modal" executeResult="true">
-    <s:param name="titulo"><%out.println(Soporte.Mensaje.INSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.INSUMO));%></s:param>
-    <s:param name="modelo">insumo</s:param>
-</s:action>
+<hr />
+<div class="panel">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre de Elaboracion</label>
+                        <input type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de la Elaboracion" autocomplete='off' autofocus="autofocus" />
+                    </div>
+                    <button type="submit" class="btn btn-ruhaj pull-right">
+                        Buscar
+                        <i class="fa fa-search fa-fw"></i>
+                    </button>
+                </s:form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+        <display:setProperty name="basic.msg.empty_list" >
+            <p id="notificacion">No se encontraron Elaboraciones.</p>
+        </display:setProperty>
+        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column title="Acciones" class="text-center-all" headerClass="table-header-ruhaj">
+            <div class="acciones">
+                <s:hidden class="model-id" value="%{#attr.row.id}"/>
+                <div class="btn-group">
+                    <button id="modalver" class="btn btn-sm btn-default mostrar-modal-ver-insumo-elaborado" data-toggle="tooltip" title="Ver Elaboración">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <s:if test="(#attr.row.fechaBaja == null)">
+                        <button  class="btn btn-sm btn-info mostrar-modal-confeccionar-insumo-elaborado" data-toggle="tooltip" title="Confeccionar Elaboración">
+                            <i class="fa fa-adjust fa-rotate-90"></i>
+                        </button>
+                        <button class="btn btn-sm btn-warning mostrar-modal-modificar-insumo-elaborado" data-toggle="tooltip" title="Modificar Elaboración">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </s:if>
+                    <s:if test="(#attr.row.fechaBaja == null)">
+                        <button class="btn btn-sm btn-danger mostrar-modal-baja-insumo-elaborado" data-toggle="tooltip" title="Dar de Baja Elaboración">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </s:if>
+                    <s:else>
+                        <button class="btn btn-sm btn-success mostrar-modal-recuperar-insumo-elaborado" data-toggle="tooltip" title="Recuperar Elaboración">
+                            <i class="fa fa-check-circle"></i>
+                        </button>
+                    </s:else>
+                </div>
+            </div>
+        </display:column>
+    </display:table>
+</div>
+
 <s:include value="/WEB-INF/insumo/elaborado/modalConfeccionar.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalVer.jsp"/>
+
+<s:action name="modal" namespace="/modal" executeResult="true">
+    <s:param name="modalId">modal-baja-insumo-elaborado</s:param>
+    <s:param name="titulo">Dar de Baja <%out.println(Soporte.Mensaje.INSUMO);%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaDarBajaEl(Soporte.Mensaje.INSUMO));%></s:param>
+    <s:param name="modelo">insumo</s:param>
+</s:action>
+<s:action name="modal" namespace="/modal" executeResult="true">
+    <s:param name="modalId">modal-recuperar-insumo-elaborado</s:param>
+    <s:param name="titulo">Recuperar <%out.println(Soporte.Mensaje.INSUMO);%></s:param>
+    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.INSUMO));%></s:param>
+    <s:param name="modelo">insumo</s:param>
+</s:action>

@@ -1,66 +1,136 @@
 (function ($) {
-    $('body').on('click', '#registrar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = $('#formulario').serialize();
-        var data2 = $('#detalleElaborado').serialize();
-        $.post('/insumoelaborado/registrar', data + '&' + data2, function (response) {
+    var cdetalles = 0;
+
+    $('#alta-insumo-elaborado-form').submit(function (e) {
+        var $boton = $(this).find('.confirmar');
+        var data = $(this).serialize();
+        toggleBoton($boton);
+        $.post('/insumoelaborado/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumoelaborado/listar');
             } else {
-                erroresM.mostrarErrores('#formulario', response);
-                toggleBoton(e.target);
+                erroresM.mostrarErrores('#alta-insumo-elaborado-form', response);
+                toggleBoton($boton);
             }
         });
+        return false;
     });
-    $('body').on('click', '#cancelar', function (e) {
-        e.preventDefault();
+
+    $('#alta-insumo-elaborado-form .cancelar').on('click', function (e) {
         window.location.replace('/insumoelaborado/listar');
     });
 
-
-    $('body').on('click', '#row button', function (e) {
-        e.preventDefault();
-        $(this).parents('tr').fadeOut('normal', function () {
-            var tr = $(this).detach();
-            tr.remove();
-        });
-    });
-
-
-
-    $('#nombre-ac').autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "/insumobruto/postBuscarInsumoBrutoAutoComplete",
-                type: "POST",
-                data: {
-                    term: request.term
-                },
-                dataType: "json",
-                success: function (data) {
-                    response(data);
-                }
-            });
+    $('#busqueda-insumo').easyAutocomplete({
+        url: function (phrase) {
+            return '/insumobruto/postBuscarInsumoBrutoAutoComplete';
         },
-        select: function (event, ui) {
-            var data = {id: ui.item.id};
-            $.post("/insumobruto/getModificar", data, function (response) {
-                if (response.codigo === 200) {
-                    $('#nombre-ac').val('');
-                    if ($('#' + response.model.id + '').length !== 1) {
-                        $('#table-body').append('<tr id="' + response.model.id + '"><td class="text-center-all">' + response.model.nombre + '</td><td class="text-center-all">' +
-                                response.model.unidadMedida +
-                                '</td><td class="text-center-all">' +
-                                response.model.stock.cantidadActual +
-                                '</td><td class="text-center-all"><input min="0" type="number" class="form-control" id="cantidadUtilizar" name="cantidadUtilizar" placeholder="Cantidad a utilizar"><input type="hidden" name="idUtilizar" value="' + response.model.id + '"></td>' +
-                                '<td class="text-center-all"><button class="btn btn-danger"><i class="fa fa-close"></i></button></td></tr>');
+        preparePostData: function(data) {
+            data = { term : $("#busqueda-insumo").val() };
+            return data;
+        },
+        getValue: 'value',
+        list: {
+            showAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+
+            hideAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+            onChooseEvent: function() {
+                var id = $("#busqueda-insumo").getSelectedItemData().id;
+
+                $.post("/insumobruto/getModificar", { id : id }, function (response) {
+                    if (response.codigo === 200) {
+                        $('#busqueda-insumo').val('');
+                        crearFilaDetalleInsumo(response.model);
+                    } else {
+                        erroresM.mostrarAlertError(response.actionErrors, 'danger');
                     }
-                } else {
-                    erroresM.mostrarAlertError(response.actionErrors, 'danger');
-                }
-            });
-        }
+                });
+            }
+        },
+        ajaxSettings: {
+            dataType: "json",
+            method: "POST",
+            data: {
+                dataType: "json"
+            }
+        },
+        theme: 'blue-light',
+        adjustWidth : false,
+        placeholder: "Buscar Insumo para Añadir a la Elaboracion..."
     });
 
+    function crearFilaDetalleInsumo(model) {
+        if (model.id) {
+            var    $hidden = $('<input>').attr('id', 'idUtilizar')
+                                        .prop('name', 'idUtilizar')
+                                        .prop('type', 'hidden')
+                                        .val(model.id);
+
+
+            var $tdNombre = $('<td>').addClass('text-center-all')
+                                     .html(model.nombre)
+                                     .append($hidden);
+
+            var $tdUniMed = $('<td>').addClass('text-center-all')
+                                     .html(model.unidadMedida);
+
+            var $tdCanAct = $('<td>').addClass('text-center-all')
+                                     .html(model.stock.cantidadActual);
+
+            var    $input = $('<input>').attr('id', 'cantidadUtilizar')
+                                        .prop('name', 'cantidadUtilizar')
+                                        .prop('type', 'text')
+                                        .prop('maxlength', '4')
+                                        .prop('placeholder', 'Cantidad')
+                                        .addClass('form-control fixed-width-4')
+                                        .val('1')
+                                        .blur(function () {
+                                            $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
+                                        });
+
+            var $tdCanUsa = $('<td>').addClass('text-center-all')
+                                     .append($input);
+
+            var     $icon = $('<i>').addClass('fa fa-minus')
+
+            var   $button = $('<button>').attr('tabindex', '-1')
+                                         .addClass('btn btn-xs btn-danger')
+                                         .append($icon)
+                                         .on('click', function () {
+                                            $(this).tooltip('destroy');
+                                            $(this).parents('tr').remove();
+                                            cdetalles--;
+                                            if(cdetalles < 1) {
+                                                $('#detalle-insumo-elaborado').find('.empty')
+                                                                              .show(); 
+                                            }
+                                          })
+                                         .tooltip({
+                                            title : 'Quitar Insumo',
+                                            placement : 'right',
+                                            container : 'body'
+                                          });
+
+            var $tdAccion = $('<td>').addClass('text-center-all')
+                                     .append($button);
+
+            var       $tr = $('<tr>').prop('id', model.id)
+                                     .append($tdNombre)
+                                     .append($tdUniMed)
+                                     .append($tdCanAct)
+                                     .append($tdCanUsa)
+                                     .append($tdAccion);
+
+            if(cdetalles < 1) {
+                $('#detalle-insumo-elaborado').find('.empty').hide();
+            }
+            $('#detalle-insumo-elaborado').append($tr);
+            cdetalles++;
+        }
+    }
 })(jQuery);

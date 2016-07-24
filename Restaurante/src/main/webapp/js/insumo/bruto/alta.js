@@ -1,19 +1,19 @@
 (function ($) {
-    $('body').on('click', '#registrar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = $('#formulario').serialize();
+    $('#alta-insumo-bruto-form').submit(function (e) {
+        var $boton = $(this).find('.confirmar');
+        var data = $(this).serialize();
+        toggleBoton($boton);
         $.post('/insumobruto/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/insumobruto/listar');
             } else {
-                erroresM.mostrarErrores('#formulario', response);
-                toggleBoton(e.target);
+                erroresM.mostrarErrores('#alta-insumo-bruto-form', response);
+                toggleBoton($boton);
             }
         });
+        return false;
     });
-    $('body').on('click', '#cancelar', function (e) {
-        e.preventDefault();
+    $('#alta-insumo-bruto-form .cancelar').on('click', function (e) {
         window.location.replace('/insumobruto/listar');
     });
 })(jQuery);
