@@ -62,4 +62,14 @@ public class Ingrediente {
         return "Ingrediente{" + "id=" + id + ", cantidad=" + cantidad + ", insumo=" + insumo + ", opcional=" + opcional + '}';
     }
 
+    /**
+     * Actualiza la cantidad y si es opcional.
+     *
+     * @param ingredienteRequest
+     */
+    void actualizar(Ingrediente ingredienteRequest) {
+        this.setCantidad(ingredienteRequest.getCantidad());
+        this.setOpcional(ingredienteRequest.isOpcional());
+    }
+
 }

@@ -28,7 +28,7 @@ public interface IControladorReceta {
 
     public boolean nombreDisponible(Receta receta);
 
-    public void actualizar(Receta receta);
+    public void actualizar(Receta receta, List<Integer> idsIngredientes, List<Float> cantidadesIngredientes, List<Integer> opcionalIngredientesID, List<Integer> idsRecetas, List<Integer> opcionalRecetasID);
 
     public void eliminar(Receta receta);
 }

@@ -60,6 +60,29 @@ public class ControladorReceta implements IControladorReceta {
     }
 
     @Override
+    public void actualizar(Receta receta, List<Integer> idsIngredientes, List<Float> cantidadesIngredientes, List<Integer> opcionalIngredientesID, List<Integer> idsRecetas, List<Integer> opcionalRecetasID) {
+        Set<Ingrediente> ingredientesSeleccionados = new HashSet<>();
+        Set<DetalleReceta> recetasSeleccionados = new HashSet<>();
+        Map<Integer, Integer> mapOpcionalesIngredientes = CommonsUtil.listToHash(opcionalIngredientesID);
+        Map<Integer, Integer> mapOpcionalesRecetas = CommonsUtil.listToHash(opcionalRecetasID);
+        if (idsIngredientes != null && !idsIngredientes.isEmpty()) {
+            for (int i = 0; i < idsIngredientes.size(); i++) {
+                Ingrediente cadaIngrediente = new Ingrediente(cantidadesIngredientes.get(i), controladorInsumo.buscar(idsIngredientes.get(i)), mapOpcionalesIngredientes.containsKey(idsIngredientes.get(i)));
+                ingredientesSeleccionados.add(cadaIngrediente);
+            }
+        }
+        if (idsRecetas != null && !idsRecetas.isEmpty()) {
+            for (int i = 0; i < idsRecetas.size(); i++) {
+                DetalleReceta cadaReceta = new DetalleReceta(getReceta(idsRecetas.get(i)), mapOpcionalesRecetas.containsKey(idsRecetas.get(i)));
+                recetasSeleccionados.add(cadaReceta);
+            }
+        }
+        Receta recetaEnBD = getReceta(receta.getId());
+        recetaEnBD.actualizar(receta, ingredientesSeleccionados, recetasSeleccionados);
+        RECETADAO.actualizar(recetaEnBD);
+    }
+
+    @Override
     public Receta getReceta(int id) {
         return RECETADAO.buscar(id);
     }
@@ -71,11 +94,6 @@ public class ControladorReceta implements IControladorReceta {
             return true;
         }
         return recetaBD.getId() == receta.getId();
-    }
-
-    @Override
-    public void actualizar(Receta receta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

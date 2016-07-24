@@ -59,24 +59,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
         return SUCCESS;
     }
 
-    @Override
-    public String getModificar() {
-        receta = controladorReceta.getReceta(receta.getId());
-        return SUCCESS;
-    }
-
-    public void validatePostModificar() {
-
-    }
-
-    @Override
-    public String postModificar() {
-        controladorReceta.actualizar(receta);
-        sesion.put("mensaje", Soporte.Mensaje.getModificada(Soporte.Mensaje.RECETA));
-        return SUCCESS;
-    }
-
-    public void validateRegistrar() {
+    private void validar() {
         if (receta.getCategoriaReceta().getId() == -1) {
             addFieldError("categoriaReceta.id", Soporte.Mensaje.SELECCIONECATEGORIARECETA);
         }
@@ -100,6 +83,27 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
         if (hasErrors()) {
             codigo = 400;
         }
+    }
+
+    @Override
+    public String getModificar() {
+        receta = controladorReceta.getReceta(receta.getId());
+        return SUCCESS;
+    }
+
+    public void validatePostModificar() {
+        validar();
+    }
+
+    @Override
+    public String postModificar() {
+        controladorReceta.actualizar(receta, idsIngredientes, cantidadesIngredientes, opcionalIngredientesID, idsRecetas, opcionalRecetasID);
+        sesion.put("mensaje", Soporte.Mensaje.getModificada(Soporte.Mensaje.RECETA));
+        return SUCCESS;
+    }
+
+    public void validateRegistrar() {
+        this.validar();
     }
 
     @Override

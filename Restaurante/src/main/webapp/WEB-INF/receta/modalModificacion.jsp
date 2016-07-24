@@ -8,19 +8,17 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form id="form-editar" class="well" autocomplete='off'>
-                        <input type="hidden" id="id" name="id">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-                        </div>
-                        <s:include value="/WEB-INF/unidadMedida/unidades.jsp"/>                       
-                        <div class="form-group">
-                            <label for="cantidadMinima">Cantidad Mínima</label>
-                            <input type="number" min="0" class="form-control" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima">
-                        </div>
-                        <s:include value="/WEB-INF/insumo/elaborado/detalleInsumo.jsp"/>
-                    </form>
+                    <%@taglib uri="/struts-tags" prefix="s"%>
+                    <form id="formulario" autocomplete="off">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                        <label for="categoria" name="categoria">Categoria de Insumo</label>
+                        <s:select headerKey="-1" headerValue="Seleccione una categoria" list="categorias" id="categoriaReceta" name="categoriaReceta.id" listKey="id" listValue="nombre" cssClass="form-control"/>
+                        <s:include value="/WEB-INF/receta/detalleRecetas.jsp"/>
+                        <s:include value="/WEB-INF/receta/detalleIngredientes.jsp"/>
+                        <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
+                        <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
+                    </form>           
                 </div>
             </div>
             <div class="modal-footer">

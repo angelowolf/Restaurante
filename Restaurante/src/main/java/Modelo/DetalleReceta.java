@@ -52,4 +52,13 @@ public class DetalleReceta {
         return "DetalleReceta{" + "id=" + id + ", receta=" + receta + ", opcional=" + opcional + '}';
     }
 
+    /**
+     * actualiza si es opcional o no.
+     *
+     * @param detalleRecetaRequest
+     */
+    void actualizar(DetalleReceta detalleRecetaRequest) {
+        this.setOpcional(detalleRecetaRequest.isOpcional());
+    }
+
 }

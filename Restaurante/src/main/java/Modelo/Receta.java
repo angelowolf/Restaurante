@@ -6,7 +6,10 @@
 package Modelo;
 
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDateTime;
@@ -128,6 +131,73 @@ public class Receta {
 
     public void darDeBaja() {
         this.setFechaBaja(new LocalDateTime());
+    }
+
+    public void actualizar(Receta receta, Set<Ingrediente> ingredientesSeleccionados, Set<DetalleReceta> recetasSeleccionados) {
+        this.nombre = receta.getNombre();
+        Map<Integer, DetalleReceta> mapDetalleRecetasRequest = new HashMap<>();
+        if (recetasSeleccionados != null && !recetasSeleccionados.isEmpty()) {
+            for (DetalleReceta i : recetasSeleccionados) {
+                mapDetalleRecetasRequest.put(i.getReceta().getId(), i);
+            }
+        }
+        //recorro todos los detalles recetas que estan en la bd, y verifico si en las que el usuario pasa no estan mas, si es el caso las elimino
+        for (Iterator<DetalleReceta> iterator = recetas.iterator(); iterator.hasNext();) {
+            DetalleReceta detalleRecetaEnBD = iterator.next();
+            if (!mapDetalleRecetasRequest.containsKey(detalleRecetaEnBD.getReceta().getId())) {
+                //es una eliminacion
+                iterator.remove();
+            }
+        }
+        for (Map.Entry<Integer, DetalleReceta> entry : mapDetalleRecetasRequest.entrySet()) {
+            Integer idReceta = entry.getKey();
+            DetalleReceta detalleRecetaRequest = entry.getValue();
+            boolean flag = false;
+            for (DetalleReceta detalleRecetaBD : recetas) {
+                if (detalleRecetaBD.getReceta().getId() == idReceta) {
+                    //si son iguales es una modificacion
+                    detalleRecetaBD.actualizar(detalleRecetaRequest);
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                //es alta
+                recetas.add(detalleRecetaRequest);
+            }
+        }
+        Map<Integer, Ingrediente> mapIngredientesRequest = new HashMap<>();
+        if (ingredientesSeleccionados != null && !ingredientesSeleccionados.isEmpty()) {
+            for (Ingrediente i : ingredientesSeleccionados) {
+                mapIngredientesRequest.put(i.getInsumo().getId(), i);
+            }
+        }
+        //veo si en la lista que pasa el usuario se saco algun ingrediente, si es el caso elimino.
+        for (Iterator<Ingrediente> iterator = ingredientes.iterator(); iterator.hasNext();) {
+            Ingrediente ingredienteEnBD = iterator.next();
+            if (!mapIngredientesRequest.containsKey(ingredienteEnBD.getInsumo().getId())) {
+                //es una eliminacion
+                iterator.remove();
+            }
+        }
+        for (Map.Entry<Integer, Ingrediente> entry : mapIngredientesRequest.entrySet()) {
+            Integer idInsumo = entry.getKey();
+            Ingrediente ingredienteRequest = entry.getValue();
+            boolean flag = false;
+            for (Ingrediente ingredienteBD : ingredientes) {
+                if (ingredienteBD.getInsumo().getId() == idInsumo) {
+                    //si son iguales es una modificacion
+                    ingredienteBD.actualizar(ingredienteRequest);
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                //es alta
+                ingredientes.add(ingredienteRequest);
+            }
+        }
+
     }
 
 }
