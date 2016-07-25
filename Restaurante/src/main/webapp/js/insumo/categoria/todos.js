@@ -7,7 +7,7 @@
             $modal.modal('show');
     });
 
-    $('#modal-eliminar-categoria > .confirmar').on('click', function (e) {
+    $('#modal-eliminar-categoria .confirmar').on('click', function (e) {
         toggleBoton(e.target);
         var $dialog = $('#modal-eliminar-categoria');
         var id =  $dialog.find('#model-id').val();

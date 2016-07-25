@@ -21,11 +21,11 @@
                 <s:form class="form-inline" action="listar" namespace="/usuario" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
+                        <input value="<s:property value="nombreFiltro"/>"  type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <div class="form-group">
                         <label for="apellido" class="control-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Apellido" maxlenght="100" autocomplete="off"/>
+                        <input value="<s:property value="apellidoFiltro"/>" type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Apellido" maxlenght="100" autocomplete="off"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="rolesSeleccionados">Roles</label>
@@ -47,7 +47,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
             <p id="notificacion">No se encontraron Usuarios.</p>
         </display:setProperty>

@@ -21,7 +21,7 @@
                 <s:form class="form-inline" action="listar" namespace="/insumobruto" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
+                        <input value="<s:property value="nombreFiltro"/>"   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <div class="form-group">
                         <label for="categoria" name="categoria">Categoria de Insumo</label>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
             <p id="notificacion">No se encontraron Insumos.</p>
         </display:setProperty>

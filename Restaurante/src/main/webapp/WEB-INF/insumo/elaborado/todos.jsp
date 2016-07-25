@@ -21,7 +21,7 @@
                 <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre de Elaboracion</label>
-                        <input type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de la Elaboracion" autocomplete='off' autofocus="autofocus" />
+                        <input value="<s:property value="nombreFiltro"/>"   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de la Elaboracion" autocomplete='off' autofocus="autofocus" />
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
                         Buscar
@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
             <p id="notificacion">No se encontraron Elaboraciones.</p>
         </display:setProperty>

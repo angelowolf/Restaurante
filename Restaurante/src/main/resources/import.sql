@@ -124,7 +124,7 @@ insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) v
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(0.1,21,22);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,'2016-01-1 00:00:00','Ajuste',22);
 
-insert into Usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿cual era la marca de tu primer auto?','fiat');
+insert into Usuario(nombre,apellido,nick,clave,fechaBaja,telefono,direccion,documento,fechaalta,preguntaSecreta,respuestaSecreta) values('Juan','Lopez','admin','21232f297a57a5a743894a0e4a801fc3',null,3548451345,'calle sin numero',324231423,'2016-01-01','¿Cuál era la marca de tu primer auto?','Fiat');
 insert into Rol_Usuario(id,roles) values(1,'Usuario');
 insert into Rol_Usuario(id,roles) values(1,'Mozo');
 insert into Rol_Usuario(id,roles) values(1,'Cocina');

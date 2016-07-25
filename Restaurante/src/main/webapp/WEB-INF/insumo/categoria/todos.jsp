@@ -16,7 +16,7 @@
                 <s:form class="form-inline" action="listar" namespace="/insumo/categoria" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre de Categoria</label>
-                        <input type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
+                        <input value="<s:property value="nombreFiltro"/>"   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
                         Buscar
@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
             <p id="notificacion">No se encontraron Categorias.</p>
         </display:setProperty>

@@ -36,9 +36,8 @@
                     <div class="col-xs-12 col-md-6 text-inline">
                         <strong>Nombre de Usuario: </strong><p id="nick"></p>
                     </div>
-                    <div class="col-xs-12 col-md-6 text-inline" id="roles-ver">
-                        <strong>Roles:</strong>
-                        <ul></ul>
+                    <div class="col-xs-12 text-inline">
+                        <strong>Roles:&nbsp;&nbsp;</strong><p id="roles-ver"></p>
                     </div>
                 </div>
             </div>
