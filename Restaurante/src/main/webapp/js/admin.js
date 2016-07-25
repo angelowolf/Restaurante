@@ -256,11 +256,11 @@ $(document).ready(function () {
                         $('#ver-datos-ingreso').html('Ocultar Datos de Ingreso');
                     }
                     $('#claveOriginal').val('');
-                    toggleBoton($boton);
                 }
                 else {
                     $('#modal-modificar-perfil').modal('hide');
                 }
+                toggleBoton($boton);
             });
         }
         return false;
