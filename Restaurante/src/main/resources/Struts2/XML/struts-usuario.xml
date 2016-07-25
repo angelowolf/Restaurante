@@ -17,7 +17,7 @@
         <action name="nuevo" class="Acciones.UsuarioAction">
             <result type="tiles">/usuario/alta.tiles</result>
         </action>
-        <action name="ver-perfil" method="modificarPerfil" class="Acciones.UsuarioAction"/>
+        <action name="ver-perfil" method="getModificarPerfil" class="Acciones.UsuarioAction"/>
         <action name="modificar-perfil" method="postModificarPerfil" class="Acciones.UsuarioAction"/>
     </package>
 </struts>

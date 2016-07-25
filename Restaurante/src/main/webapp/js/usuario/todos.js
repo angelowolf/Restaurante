@@ -1,6 +1,5 @@
 (function ($) {
     $('.mostrar-modal-recuperar-usuario').on('click', function (e) {
-
         var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-recuperar-usuario');
             $modal.find('#model-id').val(id);
@@ -23,7 +22,6 @@
     });
 
     $('.mostrar-modal-reiniciar-contraseña').on('click', function (e) {
-
         var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-reiniciar-contraseña');
             $modal.find('#model-id').val(id);
@@ -84,11 +82,12 @@
                 $modal.find('#fechaAlta').html(response.model.fAlta ? response.model.fAlta : '-');
                 $modal.find('#fechaBaja').html(response.model.fBaja ? response.model.fBaja : '-');
                 $modal.find('#nick').html(response.model.nick);
-                $('#roles-ver ul').empty();
-                for (var i = 0; i < response.model.roles.length; i++) {
-                    $('#roles-ver ul').append('<li>' + response.model.roles[i] + '</li>');
-                }
-                $modal.find('#rol').html(response.model.rol);
+                var $roles = $modal.find('#roles-ver');
+                $roles.empty();
+                $.each(response.model.roles, function (k, rol) {
+                    var $label = $('<span>').addClass('label label-default').html(rol);
+                    $roles.append($label).append('&nbsp;&nbsp;');
+                });
             } else {
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
@@ -97,8 +96,9 @@
     });
 
     $('.mostrar-modal-modificar-usuario').on('click', function (e) {
-        var id = $(this).parents('.acciones').children('.model-id').val();
-        $('#modificar-usuario-form').trigger("reset");
+        var    id = $(this).parents('.acciones').children('.model-id').val();
+        var $form = $('#modificar-usuario-form');
+            $form.trigger("reset");
         var $modal = $('#modal-modificar-usuario');
             $modal.find('#id').val(id);
         $.post('/usuario/editar', {id: id}, function (response) {
