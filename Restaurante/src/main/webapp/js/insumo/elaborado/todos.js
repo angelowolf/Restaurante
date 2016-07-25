@@ -17,7 +17,7 @@
                 $.each(response.model.detalleInsumoElaborados, function (k, detalle) {
                     var    $tdN = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.nombre);
                     var    $tdU = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.unidadMedida);
-                    var    $tdC = $('<td>').addClass('text-center-all cantidad').html(detalle.cantidad);
+                    var    $tdC = $('<td>').addClass('text-center-all cantidad').html('0');
                     var $hidden = $('<input>').prop('type', 'hidden')
                                               .addClass('cantidad-original')
                                               .val(detalle.cantidad);

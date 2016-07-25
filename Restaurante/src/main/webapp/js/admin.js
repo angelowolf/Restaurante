@@ -191,7 +191,7 @@ $(document).ready(function () {
         var $modal = $('#modal-modificar-perfil');
         $.get('/usuario/ver-perfil', function (response) {
             if (response.codigo === 200) {
-                $modal.find('#id').html(response.model.id);
+                $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').html(response.model.nombre);
                 $modal.find('#apellido').html(response.model.apellido);
                 $modal.find('#documento').html(response.model.documento);
@@ -257,6 +257,9 @@ $(document).ready(function () {
                     }
                     $('#claveOriginal').val('');
                     toggleBoton($boton);
+                }
+                else {
+                    $('#modal-modificar-perfil').modal('hide');
                 }
             });
         }

@@ -8,6 +8,7 @@
                 <h4 class="modal-title">Editar Perfil de Usuario</h4>
             </div>
             <form id="modificar-perfil-usuario-form" method="POST">
+                <input type="hidden" id="id" name="id">
                 <div class="modal-body">
                     <div class="row">
                         <div id="datos-perfil">
@@ -25,11 +26,10 @@
                             </div>
                             <hr />
                             <div class="col-xs-12">
-                                <input type="hidden" id="id" name="id">
                                 <div class="form-group">
                                     <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11" autocomplete="off" autofocus="autofocus">
+                                        <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11" autocomplete="off">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     </div>
                                     <span class="help-block"></span>
