@@ -24,6 +24,7 @@ public class Mensaje {
     private static final String ELIMINADO = "El %s ha sido eliminado con éxito.";
     private static final String ELIMINADA = "La %s ha sido eliminada con éxito.";
     private static final String BAJA = "La %s ha sido dado de baja con éxito.";
+    private static final String BAJO = "El %s ha sido dado de baja con éxito.";
     private static final String ELEXISTE = "El nombre de %s ya está en uso.";
     private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe darla de baja o desvincularlos para continuar";
     private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe darlo de baja o desvincularlos para continuar.";
@@ -145,6 +146,7 @@ public class Mensaje {
     public static final String NOTIFICACIONESELIMINADAS = "Las notificaciones fueron elimindas con éxito.";
     public static final String NOTIFICACIONESVISTAS = "Las notificaciones fueron marcadas como vistas con éxito.";
     public static final String CONFECCIONREGISTRADA = "La confeccion fue registrada con éxito.";
+    public static final String INSUMOELABORADO = "Insumo Elaborado";
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
@@ -383,6 +385,16 @@ public class Mensaje {
      */
     public static String getBaja(String arg) {
         return String.format(BAJA, arg);
+    }
+
+    /**
+     * Crea un mensaje: "El %s ha sido dado de baja con éxito.";
+     *
+     * @param arg
+     * @return
+     */
+    public static String getBajo(String arg) {
+        return String.format(BAJO, arg);
     }
 
     /**

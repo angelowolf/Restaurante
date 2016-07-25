@@ -38,4 +38,6 @@ public interface IControladorInsumoBruto {
 
     public boolean nombreDisponible(InsumoBruto insumo);
 
+    public int enUso(InsumoBruto insumo);
+
 }

@@ -5,6 +5,7 @@
  */
 package Persistencia.ORM.DAOInterface;
 
+import Modelo.InsumoBruto;
 import Modelo.InsumoElaborado;
 import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
@@ -25,5 +26,7 @@ public interface IInsumoElaborado extends IGenericDAO<InsumoElaborado, Integer> 
     public List<InsumoElaborado> getTodosByNombreSinEstos(String capitalize, List<Integer> ids, boolean activo);
 
     public InsumoElaborado buscar(String nombre);
+
+    public List<InsumoElaborado> insumoEnUso(InsumoBruto insumo);
 
 }

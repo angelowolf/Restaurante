@@ -5,6 +5,7 @@
  */
 package Persistencia.ORM.DAOImplementacion;
 
+import Modelo.InsumoBruto;
 import java.util.List;
 import Modelo.InsumoElaborado;
 import Persistencia.ORM.Util.GenericDAO;
@@ -77,6 +78,19 @@ public class InsumoElaboradoDAO extends GenericDAO<InsumoElaborado, Integer> imp
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<InsumoElaborado> insumoEnUso(InsumoBruto insumo) {
+        Session session = getHibernateTemplate();
+        List<InsumoElaborado> objetos = new ArrayList<>();
+        try {
+            String sql = "select * from Insumo insumo inner join DetalleInsumoElaborado die ON insumo.id = die.id_InsumoElaborado inner join Insumo insumobruto ON insumobruto.id = die.id_insumoBruto WHERE insumobruto.id = :id and insumo.fechaBaja is null  ";
+            objetos = session.createSQLQuery(sql).addEntity(InsumoElaborado.class).setParameter("id", insumo.getId()).list();
+        } catch (RuntimeException e) {
+            LOG.error("Error al buscar los insumos.", e);
+        }
+        return objetos;
     }
 
 }

@@ -150,13 +150,23 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     }
 
     public void validateEliminar() {
-        LOGGER.warn("VALIDAR AL ELIMINAR INSUMO");
+        switch (controladorInsumo.enUso(insumo)) {
+            case 1:
+                addActionError(Soporte.Mensaje.getUsadoPorUn(Soporte.Mensaje.INSUMO, Soporte.Mensaje.INSUMOELABORADO));
+                break;
+            case 2:
+//                addActionError(Soporte.Mensaje.getUsadoPorUna(Soporte.Mensaje.INSUMO, Soporte.Mensaje.RECETA));
+                break;
+        }
+        if (hasErrors()) {
+            codigo = 400;
+        }
     }
 
     @Override
     public String eliminar() {
         controladorInsumo.eliminar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.INSUMO));
+        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMO));
         return SUCCESS;
     }
 
