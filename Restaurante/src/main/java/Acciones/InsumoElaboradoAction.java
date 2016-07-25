@@ -163,7 +163,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     @Override
     public String eliminar() {
         controladorInsumoElaborado.eliminar(insumoElaborado);
-        sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.INSUMO));
+        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMO));
         return SUCCESS;
     }
 
