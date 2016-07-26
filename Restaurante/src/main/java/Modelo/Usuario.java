@@ -302,7 +302,7 @@ public class Usuario {
     }
 
     public void blanquear() {
-        this.clave = Encriptar.encriptaEnMD5(this.nombre.trim() + this.apellido.trim());
+        this.clave = Encriptar.encriptaEnMD5(this.getNick());
     }
 
     public boolean esPrimerLogin() {

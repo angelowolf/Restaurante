@@ -233,6 +233,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     }
 
     public String login() {
+        sesion.remove("primeraVez");
         Usuario u = controladorUsuario.getUsuario(usuario.getNick());
         sesion.put("idUsuario", u.getId());
         sesion.put("nombreCompletoUsuario", String.format("%s %s", u.getNombre(), u.getApellido()));
@@ -310,6 +311,17 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public String recuperarClave() {
         controladorUsuario.actualizarClave(usuario.getId(), usuario.getClave());
         sesion.remove("respuesta_respondida");
+        sesion.put("mensaje", Soporte.Mensaje.CLAVECAMBIADA);
+        sesion.remove("primeraVez");
+        Usuario u = controladorUsuario.getUsuario(usuario.getId());
+        sesion.put("idUsuario", u.getId());
+        sesion.put("nombreCompletoUsuario", String.format("%s %s", u.getNombre(), u.getApellido()));
+        sesion.put("rolUsuario", u.esResponsableUsuario());
+        sesion.put("rolMozo", u.esMozo());
+        sesion.put("rolCocina", u.esResponsableCocina());
+        sesion.put("rolStock", u.esResponsableStock());
+        sesion.put("rolCaja", u.esResponsableCaja());
+        sesion.put("rolMesa", u.esResponsableMesa());
         return SUCCESS;
     }
 
