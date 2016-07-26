@@ -17,7 +17,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/notificacion/listar');
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
     });
@@ -43,7 +43,7 @@
                 $dialog.modal('hide');
                 window.location.replace('/notificacion/listar');
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
     });
@@ -55,7 +55,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/notificacion/listar');
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
     });
@@ -67,7 +67,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/notificacion/listar');
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
     });

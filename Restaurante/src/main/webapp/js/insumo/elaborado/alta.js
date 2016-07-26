@@ -1,6 +1,6 @@
 (function ($) {
     var cdetalles = 0;
-
+    $('#fechaAlta').val(erroresM.fechaActual());
     $('#alta-insumo-elaborado-form').submit(function (e) {
         var $boton = $(this).find('.confirmar');
         var data = $(this).serialize();
@@ -9,7 +9,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/insumoelaborado/listar');
             } else {
-                erroresM.mostrarErrores('#alta-insumo-elaborado-form', response);
+                erroresM.mostrarErrores('alta-insumo-elaborado-form', response);
                 toggleBoton($boton);
             }
         });
@@ -61,7 +61,7 @@
         },
         theme: 'blue-light',
         adjustWidth : false,
-        placeholder: "Buscar Insumo para Añadir a la Elaboracion..."
+        placeholder: "Buscar Insumo a añadir..."
     });
 
     function crearFilaDetalleInsumo(model) {
@@ -121,9 +121,9 @@
 
             var       $tr = $('<tr>').prop('id', model.id)
                                      .append($tdNombre)
-                                     .append($tdUniMed)
                                      .append($tdCanAct)
                                      .append($tdCanUsa)
+                                     .append($tdUniMed)
                                      .append($tdAccion);
 
             if(cdetalles < 1) {

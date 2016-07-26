@@ -15,7 +15,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/usuario/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -37,7 +37,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/usuario/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -60,7 +60,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/usuario/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -122,7 +122,7 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#modificar-usuario-form');
+        erroresM.limpiarErrores('modificar-usuario-form');
         setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
@@ -137,7 +137,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/usuario/listar?' + data);
             } else {
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
                 toggleBoton($boton);
             }
         });

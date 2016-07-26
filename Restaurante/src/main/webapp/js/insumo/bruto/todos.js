@@ -16,7 +16,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -39,7 +39,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -61,10 +61,9 @@
                 $modal.find('#unidadMedida').html(response.model.unidadMedida);
                 $modal.find('#categoria').html(response.model.categoriaInsumo.nombre);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
-        erroresM.limpiarErrores('#form-editar');
         $modal.modal('show');
     });
 
@@ -72,7 +71,7 @@
         var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-modificar-insumo-bruto');
             $modal.find('#id').val(id);
-        $.post('/insumobruto/getModificar', {id: id}, function (response) {
+        $.get('/insumobruto/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
                 $modal.find('#nombre').val(response.model.nombre);
@@ -81,10 +80,10 @@
                 $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
-        erroresM.limpiarErrores('#modificar-insumo-bruto-form');
+        erroresM.limpiarErrores('modificar-insumo-bruto-form');
         setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
@@ -99,7 +98,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumobruto/listar?' + data);
             } else {
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
                 toggleBoton($boton);
             }
         })

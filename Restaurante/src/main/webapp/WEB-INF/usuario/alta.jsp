@@ -50,6 +50,10 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
+                            <label class="control-label" for="fechaAlta">Fecha Alta</label>
+                            <input type="text" class="form-control" id="fechaAlta" disabled autocomplete="off" tabindex="-1">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label" for="nick">Nombre de Usuario *</label>
                             <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" maxlength="200" autocomplete="off">
                             <span class="help-block"></span>

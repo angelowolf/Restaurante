@@ -8,7 +8,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/logear');
             } else {
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
                 toggleBoton($boton);
             }
         });

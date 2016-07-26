@@ -7,7 +7,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/insumo/categoria/listar');
             } else {
-                erroresM.mostrarErrores('#alta-categoria-form', response);
+                erroresM.mostrarErrores('alta-categoria-form', response);
                 toggleBoton($boton);
             }
         });

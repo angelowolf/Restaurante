@@ -5,17 +5,6 @@ var erroresM = (function () {
         ApplicationName: 'Restaurante'
     };
 
-    var alert = {
-        SUCCESS: 'success',
-        DANGER: 'danger',
-        WARNING: 'warning',
-        INFO: 'info'
-    };
-
-    function escapeSelector(s) {
-        return s.replace(/(:|\.|\[|\])/g, "\\$1");
-    }
-
     modulo.getConfig = defaultConfig;
 
     modulo.setConfig = function (config) {
@@ -23,8 +12,8 @@ var erroresM = (function () {
     };
 
     modulo.limpiarErrores = function (formId) {
-        $(formId + ' .help-block').html('');
-        $(formId + ' .has-error').removeClass('has-error');
+        $('#' + formId + ' .help-block').html('');
+        $('#' + formId + ' .has-error').removeClass('has-error');
     };
 
     modulo.mostrarErrores = function (formId, data, noLimpiar) {
@@ -33,11 +22,11 @@ var erroresM = (function () {
         }
 
         if (data.actionErrors) {
-            modulo.mostrarAlertError(data.actionErrors, alert.DANGER);
+            modulo.mostrarAlertError(data.actionErrors);
         }
         if (data.fieldErrors) {
             $.each(data.fieldErrors, function (input, errors) {
-                var $frmgrp = $(formId + ' [name="' + input + '"]').parents('.form-group');
+                var $frmgrp = $('#' + formId + ' [name="' + input + '"]').parents('.form-group');
                 var strerror= '';
                 $.each(errors, function (idx, error) {
                     strerror += error + '<br />';
@@ -55,48 +44,48 @@ var erroresM = (function () {
         }
     };
 
-    modulo.mostrarAlertError = function (mensaje, tipo) {
-        for (var i = 0; i < mensaje.length; i++) {
-            $.notify({
-                message: mensaje[i]
-            }, {
-                animate: {
-                    enter: 'animated fadeInDown',
-                    exit: 'animated fadeOutLeft'
-                },
-                delay: 10000,
-                offset: {
-                    y: 0
-                },
-                placement: {
-                    align: "center",
-                    from: "bottom"
-                },
-                type: tipo
-            });
-        }
-    };
-
-    modulo.mostrarAlert = function (mensaje, tipo) {
-        $.notify({
-            message: mensaje
-        }, {
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutLeft'
-            },
-            delay: 10000,
-            offset: {
-                y: 0
-            },
-            placement: {
-                align: "center",
-                from: "bottom"
-            },
-            type: tipo
+    modulo.mostrarAlertError = function (mensajes) {
+        $.each(mensajes, function (k, mensaje) {
+            crearNotify('<strong>Ocurrió un Problema:</strong> ', mensaje, 'danger', 'fa fa-exclamation-circle')
         });
     };
 
+    modulo.mostrarAlert = function (mensaje, tipo) {
+        crearNotify('<strong>Informacion:</strong> ', mensaje, tipo, 'fa fa-info-circle');
+    };
+
+    modulo.fechaActual = function () {
+      function pad(s) { return (s < 10) ? '0' + s : s; }
+      var d = new Date();
+      return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    }
+
+    function crearNotify(titulo, mensaje, tipo, icono) {
+        $.notify(
+            {
+                title  : titulo,
+                icon   : icono,
+                message: mensaje
+            },
+            {
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit : 'animated fadeOutUp'
+                },
+                delay : 10000,
+                offset: 
+                { 
+                    y : 0 
+                },
+                placement: 
+                {
+                    align: "center",
+                    from : "top"
+                },
+                type: tipo
+            }
+        );
+    }
     return modulo;
 })();
 
@@ -136,6 +125,8 @@ function toggleBoton(button) {
 }
 
 $(document).ready(function () {
+    var isub = 0;
+
     $('[data-toggle="tooltip"]').tooltip({
         container : 'body'
     });
@@ -189,6 +180,8 @@ $(document).ready(function () {
 
     $('#mostrar-modal-modificar-perfil').on('click', function (evt) {
         var $modal = $('#modal-modificar-perfil');
+        var $form  = $('#modal-modificar-perfil #modificar-perfil-usuario-form');
+            $form.trigger('reset');
         $.get('/usuario/ver-perfil', function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
@@ -212,11 +205,11 @@ $(document).ready(function () {
                 $('#datos-ingreso').hide();
                 $('#ver-datos-ingreso').html('Mostrar Datos de Ingreso');
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
-        erroresM.limpiarErrores('#modificar-perfil-usuario-form');
-        setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
+        isub = 0;
+        erroresM.limpiarErrores($form.attr('id'));
         $modal.modal('show');
     });
 
@@ -232,19 +225,19 @@ $(document).ready(function () {
     });
 
     $('#modificar-perfil-usuario-form').submit(function (e) {
-        if(!$('#claveOriginal').val().trim()) {
+        if(isub == 0) {
             $('#contraseña-actual').slideDown('fast');
             $('#datos-perfil, #datos-ingreso').slideUp('fast');
+            isub++;
         }
         else {
             var $form = $(this);
             var $boton = $form.find('.confirmar');
             var data = $form.serialize();
             toggleBoton($boton);
+            isub++;
             $.post('/usuario/modificar-perfil', data, function (response) {
-                erroresM.limpiarErrores('#modificar-perfil-usuario-form');
                 if (response.codigo !== 200) {
-                    erroresM.mostrarErrores('#modificar-perfil-usuario-form', response);
                     var firstKey = '';
                     $.each(response.fieldErrors, function(k, v) {
                         firstKey = k;
@@ -255,9 +248,15 @@ $(document).ready(function () {
                         $('#datos-perfil, #datos-ingreso').slideDown('fast');
                         $('#ver-datos-ingreso').html('Ocultar Datos de Ingreso');
                     }
-                    $('#claveOriginal').val('');
+                    else {
+                        $('#claveOriginal').val('');
+                        $('#contraseña-actual').slideDown('fast');
+                        $('#datos-perfil, #datos-ingreso').slideUp('fast');
+                    }
+                    erroresM.mostrarErrores('modificar-perfil-usuario-form', response);
                 }
                 else {
+                    erroresM.mostrarAlert('El Perfil de Usuario se modificó con éxito.', 'info');
                     $('#modal-modificar-perfil').modal('hide');
                 }
                 toggleBoton($boton);

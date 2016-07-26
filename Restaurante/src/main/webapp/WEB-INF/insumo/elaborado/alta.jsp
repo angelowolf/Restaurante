@@ -31,6 +31,10 @@
                             <input type="text" class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima" maxlength="5" autocomplete="off">
                             <span class="help-block"></span>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label" for="fechaAlta">Fecha Alta</label>
+                            <input type="text" class="form-control" id="fechaAlta" disabled autocomplete="off" tabindex="-1">
+                        </div>
                         <s:include value="/WEB-INF/insumo/elaborado/detalleInsumo.jsp"/>
                     </div>
                 </div>
@@ -38,12 +42,16 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button class="btn btn-default cancelar" type="button">Cancelar</button>
+                        <button class="btn btn-default cancelar" type="button">
+                            Cancelar
+                        </button>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button class="btn btn-ruhaj confirmar" type="submit">Aceptar</button>
+                        <button class="btn btn-ruhaj confirmar" type="submit">
+                            Aceptar</button>
                     </div>
                 </div>
             </div>
         </form>
+    </div>
 </div>

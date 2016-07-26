@@ -8,7 +8,7 @@
             $form.trigger('reset');
             $form.find('#model-id').val(id);
             $form.find('#confeccionar-detalle-insumo-elaborado').empty();
-            erroresM.limpiarErrores('#' + $form.attr('id'));
+            erroresM.limpiarErrores($form.attr('id'));
         $.post("/insumoelaborado/getModificar", {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#nombre').html(response.model.nombre);
@@ -29,7 +29,7 @@
                     $modal.find('#confeccionar-detalle-insumo-elaborado').append($tr);
                 });
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
 
@@ -56,7 +56,7 @@
                 window.location.replace('/insumoelaborado/listar?' + data);
             } else {
                 toggleBoton($boton);
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
             }
         });
         return false;
@@ -78,7 +78,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumoelaborado/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -101,7 +101,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumoelaborado/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -127,10 +127,9 @@
                     $modal.find('#ver-detalle-insumo-elaborado').append($tr);
                 });
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
-        erroresM.limpiarErrores('#modificar-insumo-elaborado-form');
         $modal.modal('show');
     });
 
@@ -150,10 +149,10 @@
                     crearFilaDetalleInsumo(detalle.insumoBruto, detalle.cantidad);
                 });
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                erroresM.mostrarAlertError(response.actionErrors);
             }
         });
-        erroresM.limpiarErrores('#modificar-insumo-elaborado-form');
+        erroresM.limpiarErrores('modificar-insumo-elaborado-form');
         setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
@@ -169,7 +168,7 @@
                 window.location.replace('/insumoelaborado/listar?' + data);
             } else {
                 toggleBoton($boton);
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
             }
         })
         return false;
@@ -202,7 +201,7 @@
                         $('#busqueda-insumo').val('');
                         crearFilaDetalleInsumo(response.model, 1);
                     } else {
-                        erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                        erroresM.mostrarAlertError(response.actionErrors);
                     }
                 });
             }
@@ -216,7 +215,7 @@
         },
         theme: 'blue-light',
         adjustWidth : false,
-        placeholder: "Buscar Insumo para Añadir a la Elaboracion..."
+        placeholder: "Buscar Insumo a añadir..."
     });
 
     function crearFilaDetalleInsumo(model, cantidad) {
@@ -276,9 +275,9 @@
 
             var       $tr = $('<tr>').prop('id', model.id)
                                      .append($tdNombre)
-                                     .append($tdUniMed)
                                      .append($tdCanAct)
                                      .append($tdCanUsa)
+                                     .append($tdUniMed)
                                      .append($tdAccion);
 
             if(cdetalles < 1) {

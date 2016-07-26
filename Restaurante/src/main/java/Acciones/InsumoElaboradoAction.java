@@ -7,13 +7,11 @@ package Acciones;
 
 import Controlador.Implementacion.ControladorInsumoElaborado;
 import Controlador.Interface.IControladorInsumoElaborado;
-import Modelo.DetalleInsumoElaborado;
 import Modelo.InsumoElaborado;
 import Modelo.UnidadMedida;
 import Soporte.AutoComplete;
 import Soporte.InsumoBrutoVista;
 import Soporte.Mensaje;
-import static Soporte.Mensaje.RECUPERADOINSUMO;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -78,7 +76,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMOELABORADO));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
@@ -110,7 +108,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     @Override
     public String postModificar() {
         controladorInsumoElaborado.actualizar(insumoElaborado, idUtilizar, cantidadUtilizar);
-        sesion.put("mensaje", Mensaje.getModificado(Mensaje.INSUMO));
+        sesion.put("mensaje", Mensaje.getModificado(Mensaje.INSUMOELABORADO));
         return SUCCESS;
     }
 
@@ -119,7 +117,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMOELABORADO));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
@@ -156,20 +154,20 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     @Override
     public String registrar() {
         controladorInsumoElaborado.guardar(insumoElaborado, idUtilizar, cantidadUtilizar);
-        sesion.put("mensaje", Mensaje.getAgregado(Mensaje.INSUMO));
+        sesion.put("mensaje", Mensaje.getAgregado(Mensaje.INSUMOELABORADO));
         return SUCCESS;
     }
 
     @Override
     public String eliminar() {
         controladorInsumoElaborado.eliminar(insumoElaborado);
-        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMO));
+        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMOELABORADO));
         return SUCCESS;
     }
 
     public String recuperar() {
         controladorInsumoElaborado.recuperar(insumoElaborado);
-        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(RECUPERADOINSUMO));
+        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(Mensaje.INSUMOELABORADO));
         return SUCCESS;
     }
 

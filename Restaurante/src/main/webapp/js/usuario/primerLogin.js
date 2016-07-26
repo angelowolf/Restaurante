@@ -1,5 +1,5 @@
 (function ($) {
-    $('#primer-login-form').on('submit', function (e) {
+    $('#primer-login-form').submit(function (e) {
         $form = $(this);
         $boton = $(this).closest('.confirmar');
         toggleBoton($boton);
@@ -8,9 +8,10 @@
             if (response.codigo === 200) {
                 window.location.replace('/home');
             } else {
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
                 toggleBoton($boton);
             }
         });
+        return false;
     });
 })(jQuery);

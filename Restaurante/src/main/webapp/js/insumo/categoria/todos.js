@@ -17,7 +17,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumo/categoria/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
@@ -36,7 +36,7 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-form');
         $modal.modal('show');
     });
 
@@ -53,7 +53,7 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-form');
         setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
@@ -68,7 +68,7 @@
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/insumo/categoria/listar?' + data);
             } else {
-                erroresM.mostrarErrores('#' + $form.attr('id'), response);
+                erroresM.mostrarErrores($form.attr('id'), response);
                 toggleBoton($boton);
             }
         });

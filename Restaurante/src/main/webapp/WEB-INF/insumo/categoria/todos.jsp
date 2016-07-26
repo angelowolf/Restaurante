@@ -16,7 +16,7 @@
                 <s:form class="form-inline" action="listar" namespace="/insumo/categoria" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre de Categoria</label>
-                        <input value="<s:property value="nombreFiltro"/>"   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
+                        <input value='<s:property value="nombreFiltro"/>'   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
                         Buscar
@@ -30,7 +30,12 @@
 <div class="table-responsive">
     <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
-            <p id="notificacion">No se encontraron Categorias.</p>
+            <div class="col-xs-12 well text-center">
+                <p>
+                    <i class="fa fa-filter fa-lg"></i>
+                    No se encontraron Categorias  que coincidan con tu busqueda.
+                </p>
+            </div>
         </display:setProperty>
 
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>

@@ -11,7 +11,6 @@ import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
 import Soporte.Mensaje;
-import static Soporte.Mensaje.RECUPERADOUSUARIO;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -139,7 +138,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public String recuperar() {
         controladorUsuario.recuperar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(RECUPERADOUSUARIO));
+        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(Mensaje.USUARIO));
         return SUCCESS;
     }
 
@@ -203,7 +202,6 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
-        sesion.put("mensaje", Soporte.Mensaje.DATOSMODIFICADOS);
         return SUCCESS;
     }
 

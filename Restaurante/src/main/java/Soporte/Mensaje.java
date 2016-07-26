@@ -128,17 +128,14 @@ public class Mensaje {
     public static final String DATOSMODIFICADOS = "Tus datos han sido modificados con éxito.";
     public static final String USUARIODADODEBAJA = "Usuario dado de baja.";
 
-    public static final String NODISPONIBLENICK = "Ya existe el usuario ingresado.";
+    public static final String NODISPONIBLENICK = "EL Nombre de Usuario ya está en uso.";
     public static final String NODISPONIBLEDOCUMENTO = "El Número de Documento ya está en uso.";
-
-    public static final String RECUPERADOINSUMO = "Insumo recuperado.";
-    public static final String RECUPERADOUSUARIO = "Usuario recuperado.";
 
     public static final String COMPRAREGISTRADA = "La compra ha sido registrada con éxito.";
     public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
     public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
     public static final String NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
-    public static final String FECHAINVALIDA = "La fecha no es válida.";
+    public static final String FECHAINVALIDA = "La Fecha ingresada no es válida.";
     public static final String INGRESEINSUMO = "Ingrese algun Insumo.";
     public static final String INGRESECANTIDADUTILIZAR = "No se ha especificado la cantidad a utilizar de todos los insumos ingresados.";
     public static final String INGRESECANTIDADCONFECCIONAR = "Ingrese la cantidad a confeccionar.";

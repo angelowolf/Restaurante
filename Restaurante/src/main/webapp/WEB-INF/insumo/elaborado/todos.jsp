@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-xs-6 text-left">
-        <h2 class="pull-left">Listado de Elaboraciones</h2>
+        <h2 class="pull-left">Listado de Insumos Elaborados</h2>
     </div>
     <div class="col-xs-6 text-right">
         <br />
@@ -20,8 +20,8 @@
             <div class="col-xs-12">
                 <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar">
                     <div class="form-group">
-                        <label for="nombre" class="control-label">Nombre de Elaboracion</label>
-                        <input value="<s:property value="nombreFiltro"/>"   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de la Elaboracion" autocomplete='off' autofocus="autofocus" />
+                        <label for="nombre" class="control-label">Nombre de Insumo Elaborado</label>
+                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Insumo Elaborado" autocomplete='off' autofocus="autofocus" />
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
                         Buscar
@@ -35,7 +35,12 @@
 <div class="table-responsive">
     <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list"  sort="list">
         <display:setProperty name="basic.msg.empty_list" >
-            <p id="notificacion">No se encontraron Elaboraciones.</p>
+            <div class="col-xs-12 well text-center">
+                <p>
+                    <i class="fa fa-filter fa-lg"></i>
+                    No se encontraron Insumos Elaborados que coincidan con tu busqueda.
+                </p>
+            </div>
         </display:setProperty>
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
         <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
@@ -48,24 +53,24 @@
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">
-                    <button id="modalver" class="btn btn-sm btn-default mostrar-modal-ver-insumo-elaborado" data-toggle="tooltip" title="Ver Elaboración">
+                    <button id="modalver" class="btn btn-sm btn-default mostrar-modal-ver-insumo-elaborado" data-toggle="tooltip" title="Ver Insumo Elaborado">
                         <i class="fa fa-eye"></i>
                     </button>
                     <s:if test="(#attr.row.fechaBaja == null)">
-                        <button  class="btn btn-sm btn-info mostrar-modal-confeccionar-insumo-elaborado" data-toggle="tooltip" title="Confeccionar Elaboración">
+                        <button  class="btn btn-sm btn-info mostrar-modal-confeccionar-insumo-elaborado" data-toggle="tooltip" title="Confeccionar Insumo Elaborado">
                             <i class="fa fa-adjust fa-rotate-90"></i>
                         </button>
-                        <button class="btn btn-sm btn-warning mostrar-modal-modificar-insumo-elaborado" data-toggle="tooltip" title="Modificar Elaboración">
+                        <button class="btn btn-sm btn-warning mostrar-modal-modificar-insumo-elaborado" data-toggle="tooltip" title="Modificar Insumo Elaborado">
                             <i class="fa fa-pencil"></i>
                         </button>
                     </s:if>
                     <s:if test="(#attr.row.fechaBaja == null)">
-                        <button class="btn btn-sm btn-danger mostrar-modal-baja-insumo-elaborado" data-toggle="tooltip" title="Dar de Baja Elaboración">
+                        <button class="btn btn-sm btn-danger mostrar-modal-baja-insumo-elaborado" data-toggle="tooltip" title="Dar de Baja Insumo Elaborado">
                             <i class="fa fa-trash"></i>
                         </button>
                     </s:if>
                     <s:else>
-                        <button class="btn btn-sm btn-success mostrar-modal-recuperar-insumo-elaborado" data-toggle="tooltip" title="Recuperar Elaboración">
+                        <button class="btn btn-sm btn-success mostrar-modal-recuperar-insumo-elaborado" data-toggle="tooltip" title="Recuperar Insumo Elaborado">
                             <i class="fa fa-check-circle"></i>
                         </button>
                     </s:else>

@@ -84,14 +84,14 @@
     </definition>
     <!--INSUMOS ELABORADOS-->
     <definition name="/insumoelaborado/alta.tiles" extends="masterpage">
-        <put-attribute name="title" value="Nueva Elaboracion" />
+        <put-attribute name="title" value="Nuevo Insumo Elaborado" />
         <put-attribute name="body" value="/WEB-INF/insumo/elaborado/alta.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/elaborado/alta.js" />
         </put-list-attribute>
     </definition>
     <definition name="/insumoelaborado/todos.tiles" extends="masterpage">
-        <put-attribute name="title" value="Listado de Elaboraciones" />
+        <put-attribute name="title" value="Listado de Insumos Elaborados" />
         <put-attribute name="body" value="/WEB-INF/insumo/elaborado/todos.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/insumo/elaborado/todos.js" />
@@ -121,7 +121,7 @@
         </put-list-attribute>
     </definition>
     <definition name="/stock/cargaCompra.tiles" extends="masterpage">
-        <put-attribute name="title" value="Cargae Compras" />
+        <put-attribute name="title" value="Cargar Compras" />
         <put-attribute name="body" value="/WEB-INF/stock/cargaCompra.jsp" />
         <put-list-attribute name="javascript" inherit="true">
             <add-attribute value="/../js/stock/cargaCompra.js" />

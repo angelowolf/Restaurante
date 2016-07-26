@@ -37,12 +37,12 @@
 
                                 <div class="form-group">
                                     <label class="control-label" for="telefono">Teléfono</label>
-                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" maxlength="100">
                                     <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="direccion">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" autocomplete="off">
+                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" autocomplete="off" maxlength="255">
                                     <span class="help-block"></span>
                                 </div>
                                 <button id="ver-datos-ingreso" class="btn btn-sm btn-default btn-block" type="button">
@@ -61,23 +61,23 @@
                             <input type="hidden" id="preguntaSecretaOriginal" value="">
                             <div class="form-group">
                                 <label class="control-label" for="nick">Nombre de Usuario *</label>
-                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off" autofocus="autofocus">
+                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off" maxlength="200">
                                 <span class="help-block"></span>
                             </div>
                             <s:include value="/WEB-INF/usuario/preguntasSecretas.jsp"/>
                             <div class="form-group">
                                 <label for="respuestaSecreta">Respuesta Secreta *</label>
-                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" value="" autocomplete="off">
+                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" maxlength="50" autocomplete="off" maxlength="50">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label for="clave">Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off">
+                                <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label for="clave2">Repite la Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off">
+                                <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                             <p><strong>PISTA:</strong> Rellena los campos de contraseña solo si deseas cambiarla.</p>
@@ -85,7 +85,7 @@
                         <div id="contraseña-actual" class="col-xs-12" style="display: none;">
                             <div class="form-group">
                                 <label for="claveOriginal">Contraseña Actual</label>
-                                <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Contraseña Actual" autocomplete="off">
+                                <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Contraseña Actual" autocomplete="off" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                             <hr />

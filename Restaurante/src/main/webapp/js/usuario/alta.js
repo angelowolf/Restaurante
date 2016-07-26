@@ -1,4 +1,6 @@
 (function ($) {
+    $('#fechaAlta').val(erroresM.fechaActual());
+
     $('#nombre, #apellido').blur(function () {
         var nombre = $('#nombre').val()
                                  .split(" ")
@@ -20,7 +22,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/usuario/listar');
             } else {
-                erroresM.mostrarErrores('#alta-usuario-form', response);
+                erroresM.mostrarErrores('alta-usuario-form', response);
                 toggleBoton($boton);
             }
         });

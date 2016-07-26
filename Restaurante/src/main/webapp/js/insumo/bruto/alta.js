@@ -1,4 +1,5 @@
 (function ($) {
+    $('#fechaAlta').val(erroresM.fechaActual());
     $('#alta-insumo-bruto-form').submit(function (e) {
         var $boton = $(this).find('.confirmar');
         var data = $(this).serialize();
@@ -7,7 +8,7 @@
             if (response.codigo === 200) {
                 window.location.replace('/insumobruto/listar');
             } else {
-                erroresM.mostrarErrores('#alta-insumo-bruto-form', response);
+                erroresM.mostrarErrores('alta-insumo-bruto-form', response);
                 toggleBoton($boton);
             }
         });

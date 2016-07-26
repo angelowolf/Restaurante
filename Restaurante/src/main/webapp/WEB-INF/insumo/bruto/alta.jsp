@@ -42,6 +42,10 @@
                             <input type="text" min="0" class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima">
                             <span class="help-block"></span>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label" for="fechaAlta">Fecha Alta</label>
+                            <input type="text" class="form-control" id="fechaAlta" disabled autocomplete="off" tabindex="-1">
+                        </div>
                     </div>
                 </div>
             </div>
