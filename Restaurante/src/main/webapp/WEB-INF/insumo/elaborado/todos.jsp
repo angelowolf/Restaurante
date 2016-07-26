@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list"  sort="list">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list">
         <display:setProperty name="basic.msg.empty_list" >
             <div class="col-xs-12 well text-center">
                 <p>
