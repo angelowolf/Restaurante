@@ -21,13 +21,13 @@ public class floatC extends StrutsTypeConverter {
 
     @Override
     public Float convertFromString(Map context, String[] values, Class toClass) {
-        log.info("****************************FLOAT CONEVERTER****************************");
+        log.debug("****************************FLOAT CONEVERTER****************************");
         Float objeto = null;
         if (values.length > 0 && values[0] != null && values[0].trim().length() > 0) {
             String value = values[0];
             try {
                 objeto = Float.valueOf(value.trim());
-                log.info("FLOAT creado " + objeto);
+                log.debug("FLOAT creado " + objeto);
             } catch (Exception e) {
                 log.error("Error al convertir FLOAT", e);
             }

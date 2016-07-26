@@ -26,7 +26,7 @@ public class RolConverter extends StrutsTypeConverter {
             String value = values[0];
             try {
                 r = Rol.valueOf(Rol.class, value.trim());
-                log.info("Enum creado " + r.toString());
+                log.debug("Enum creado " + r.toString());
             } catch (Exception e) {
                 log.error("Error al convertir rol", e);
             }
@@ -36,7 +36,7 @@ public class RolConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map context, Object o) {
-        log.info("Enum rol");
+        log.debug("Enum rol");
         if (o instanceof Rol) {
             Rol r = (Rol) o;
             return r.name();

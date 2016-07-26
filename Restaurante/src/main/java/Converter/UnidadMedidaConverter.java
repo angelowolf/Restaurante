@@ -21,13 +21,13 @@ public class UnidadMedidaConverter extends StrutsTypeConverter {
 
     @Override
     public UnidadMedida convertFromString(Map context, String[] values, Class toClass) {
-        log.info("****************************Enum Unidad Medida****************************");
+        log.debug("****************************Enum Unidad Medida****************************");
         UnidadMedida objeto = null;
         if (values.length > 0 && values[0] != null && values[0].trim().length() > 0) {
             String value = values[0];
             try {
                 objeto = UnidadMedida.valueOf(UnidadMedida.class, value.trim());
-                log.info("Enum creado " + objeto.toString());
+                log.debug("Enum creado " + objeto.toString());
             } catch (Exception e) {
                 log.error("Error al convertir Unidad Medida", e);
             }
@@ -37,7 +37,7 @@ public class UnidadMedidaConverter extends StrutsTypeConverter {
 
     @Override
     public String convertToString(Map context, Object o) {
-        log.info("Enum Unidad Medida");
+        log.debug("Enum Unidad Medida");
         if (o instanceof UnidadMedida) {
             UnidadMedida objeto = (UnidadMedida) o;
             return objeto.name();

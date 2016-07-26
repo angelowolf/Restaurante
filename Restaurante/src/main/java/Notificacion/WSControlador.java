@@ -38,11 +38,11 @@ public class WSControlador {
             sf.getCurrentSession().beginTransaction();
             Usuario u;
             if (usuariosConectados.containsKey(idUsuario)) {
-                LOGGER.info("El usuario ya posee una sesion. Creando otra.");
+                LOGGER.debug("El usuario ya posee una sesion. Creando otra.");
                 u = usuariosConectados.get(idUsuario);
                 u.agregarSesion(sesion);
             } else {
-                LOGGER.info("Creando sesion.");
+                LOGGER.debug("Creando sesion.");
                 IControladorUsuario controladorUsuario = new ControladorUsuario();
                 u = controladorUsuario.getUsuario(idUsuario);
                 u.agregarSesion(sesion);

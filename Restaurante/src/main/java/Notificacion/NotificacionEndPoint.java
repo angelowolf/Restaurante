@@ -24,13 +24,13 @@ public class NotificacionEndPoint {
 
     @OnError
     public void onError(Throwable t) {
-        LOGGER.info(t.toString());
+        LOGGER.debug(t.toString());
     }
 
     @OnOpen
     public void onOpen(final Session session) {
-        LOGGER.info("*******************ABRIENDO SESSION**************************");
-        LOGGER.info("*******************conexion abierta**************************");
+        LOGGER.debug("*******************ABRIENDO SESSION**************************");
+        LOGGER.debug("*******************conexion abierta**************************");
     }
 
     @OnClose
@@ -38,13 +38,13 @@ public class NotificacionEndPoint {
         int idUsuario = (int) session.getUserProperties().get("idUsuario");
         String key = (String) session.getUserProperties().get("key");
         ch.quitarUsuario(idUsuario, key);
-        LOGGER.info("********************************CERRANDO SESION*************************************");
-        LOGGER.info("********conexion cerrada para usuario: " + idUsuario + " sesion key: " + key + "***********");
+        LOGGER.debug("********************************CERRANDO SESION*************************************");
+        LOGGER.debug("********conexion cerrada para usuario: " + idUsuario + " sesion key: " + key + "***********");
     }
 
     @OnMessage
     public void onMessage(final Session session, String msg) throws IOException {
-        LOGGER.info("intentando logear con: " + msg + "key: " + session.getId());
+        LOGGER.debug("intentando logear con: " + msg + "key: " + session.getId());
         SesionWeb sesion = new SesionWeb(session);
         try {
             JSONObject objetoJSON = new JSONObject(msg);

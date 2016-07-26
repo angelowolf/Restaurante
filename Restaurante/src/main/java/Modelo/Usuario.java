@@ -52,8 +52,8 @@ public class Usuario {
     }
 
     public void agregarSesion(ISesion sesion) {
-        LOGGER.info("Agregando sesion al hash de sesiones. key: " + sesion.getKey());
-        LOGGER.info("****************FIN LOGIN*******************************");
+        LOGGER.debug("Agregando sesion al hash de sesiones. key: " + sesion.getKey());
+        LOGGER.debug("****************FIN LOGIN*******************************");
         this.sesiones.put(sesion.getKey(), sesion);
     }
 
