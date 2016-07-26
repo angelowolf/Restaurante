@@ -61,13 +61,13 @@
                             <input type="hidden" id="preguntaSecretaOriginal" value="">
                             <div class="form-group">
                                 <label class="control-label" for="nick">Nombre de Usuario *</label>
-                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off" maxlength="200">
+                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off" maxlength="200" required="required">
                                 <span class="help-block"></span>
                             </div>
                             <s:include value="/WEB-INF/usuario/preguntasSecretas.jsp"/>
                             <div class="form-group">
                                 <label for="respuestaSecreta">Respuesta Secreta *</label>
-                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" maxlength="50" autocomplete="off" maxlength="50">
+                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" maxlength="50" autocomplete="off" maxlength="50" required="required">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
