@@ -37,7 +37,7 @@
                                         </button>
                                     </div>
                                     <div class="col-xs-6 text-right">
-                                        <button class="btn btn-ruhaj confirmar" type="submit">
+                                        <button id="btn" class="btn btn-ruhaj confirmar" type="submit">
                                             Listo
                                             <i class="fa fa-thumbs-up fa-fw"></i>
                                         </button>
