@@ -8,6 +8,9 @@ package Controlador.Implementacion;
 import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -15,14 +18,22 @@ import java.util.List;
  */
 public class ControladorInsumo implements IControladorInsumo {
 
+    private static final Logger LOGGER = Logger.getLogger(ControladorInsumo.class);
+
     @Override
     public List<Insumo> getTodos(boolean activo) {
         return INSUMODAO.getTodos(activo);
     }
 
     @Override
-    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int i, String term, Object object, boolean b) {
-        return null;
+    public List<Insumo> getTodosByCategoriaByNombreSinEstos(int idCategoria, String nombre, List<Integer> ids, boolean activo) {
+        if (StringUtils.isBlank(nombre) || nombre.equals("undefined")) {
+            LOGGER.info("2");
+            return INSUMODAO.getTodosByCategoriaByNombre(idCategoria, null, ids, activo);
+        } else {
+            LOGGER.info("4");
+            return INSUMODAO.getTodosByCategoriaByNombre(idCategoria, WordUtils.capitalize(nombre), ids, activo);
+        }
     }
 
     @Override

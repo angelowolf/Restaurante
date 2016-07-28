@@ -10,6 +10,7 @@ import Controlador.Interface.IControladorCategoriaInsumo;
 import Modelo.CategoriaInsumo;
 import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
@@ -77,7 +78,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
 
     public void validateEliminar() {
         if (controladorCategoriaInsumo.enUso(categoriaInsumo)) {
-            addActionError(Soporte.Mensaje.getUsadaPorUn(Soporte.Mensaje.CATEGORIAINSUMO, Soporte.Mensaje.INSUMO));
+            addActionError(Soporte.Mensaje.getUsadaPorUnDesvincular(Soporte.Mensaje.CATEGORIAINSUMO, Soporte.Mensaje.INSUMO));
         }
         if (hasErrors()) {
             codigo = 400;
@@ -101,6 +102,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         return lista;
     }
 
+    @VisitorFieldValidator(appendPrefix = false)
     public CategoriaInsumo getCategoriaInsumo() {
         return categoriaInsumo;
     }

@@ -11,17 +11,22 @@ import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
  *
  * @author ang_2
  */
-public class CategoriaInsumo {
+public class CategoriaReceta {
 
     private int id;
     private String nombre, descripcion;
 
-    public CategoriaInsumo() {
+    public CategoriaReceta() {
     }
 
-    public CategoriaInsumo(String nombre, String descripcion) {
+    public CategoriaReceta(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoriaReceta{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
     }
 
     public int getId() {
@@ -50,14 +55,9 @@ public class CategoriaInsumo {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "CategoriaInsumo{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + '}';
-    }
-
-    public void actualizar(CategoriaInsumo categoriaInsumo) {
-        this.nombre = categoriaInsumo.getNombre();
-        this.descripcion = categoriaInsumo.getDescripcion();
+    public void actualizar(CategoriaReceta categoria) {
+        this.nombre = categoria.getNombre();
+        this.descripcion = categoria.getDescripcion();
     }
 
 }

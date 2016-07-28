@@ -6,6 +6,7 @@
 package Soporte;
 
 import Modelo.Insumo;
+import Modelo.Receta;
 
 /**
  *
@@ -51,5 +52,9 @@ public class AutoComplete {
 
     public static AutoComplete generarAC(Insumo insumo) {
         return new AutoComplete(insumo.getId(), insumo.getNombre(), insumo.getNombre());
+    }
+
+    public static AutoComplete generarAC(Receta receta) {
+        return new AutoComplete(receta.getId(), receta.getNombre(), receta.getNombre());
     }
 }

@@ -4,6 +4,8 @@ var chart = null;
     $.post('/informe/stock/getMovimientoStock', {id: $('#idInsumo').val()}, function (response) {
         datos = response;
         graficar(datos[0]);
+        AmCharts.checkEmptyData(chart);
+        chart.validateData();
     });
     $('#movimiento').on('change', function () {
         switch ($(this).val()) {

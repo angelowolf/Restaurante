@@ -7,14 +7,12 @@
     <package name="insumo" extends="json" namespace="/insumo">        
         <action name="listar" method="listar" class="Acciones.InsumoAction">
             <result name="success" type="tiles">/insumobruto/todos.tiles</result>
-        </action>
+        </action>        
+        <action name="getModificar" method="postBuscarInsumo" class="Acciones.InsumoAction"/>
       
         <!--RUTAS DE EVENTOS DINAMICOS....-->
-        <action name="postBuscarInsumo" method="postBuscarInsumo" class="Acciones.InsumoBrutoAction">
-            <result name="success">/WEB-INF/insumo/tablaInsumo.jsp</result>
-        </action>         
         <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.InsumoAction">
-            <result type="json" >
+            <result type="json" > 
                 <param name="root">listaAC</param>
             </result>            
         </action>         

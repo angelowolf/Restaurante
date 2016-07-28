@@ -26,6 +26,8 @@
     <include file="Struts2/XML/struts-notificacion.xml"></include>
     <include file="Struts2/XML/struts-informeStock.xml"></include>
     <include file="Struts2/XML/struts-informe.xml"></include>
+    <include file="Struts2/XML/struts-receta.xml"></include>
+    <include file="Struts2/XML/struts-categoriaReceta.xml"></include>
     
     <package name="json" extends="json-default">
         <result-types>

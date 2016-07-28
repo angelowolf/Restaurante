@@ -5,18 +5,15 @@
  */
 package Persistencia.ORM.DAOInterface;
 
-import Modelo.Insumo;
 import Persistencia.ORM.Util.IGenericDAO;
+import Modelo.Ingrediente;
 import java.util.List;
 
 /**
  *
  * @author ang_2
  */
-public interface IInsumo extends IGenericDAO<Insumo, Integer> {
+public interface IIngrediente extends IGenericDAO<Ingrediente, Integer> {
 
-    public List<Insumo> getTodos(boolean activo);
-
-    public List<Insumo> getTodosByCategoriaByNombre(int idCategoria, String nombre, List<Integer> ids, boolean activo);
-
+    public List<Ingrediente> getTodos();
 }
