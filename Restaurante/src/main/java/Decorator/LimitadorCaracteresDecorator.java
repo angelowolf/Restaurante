@@ -26,6 +26,7 @@ public class LimitadorCaracteresDecorator implements DisplaytagColumnDecorator {
             if (descripcion.length() >= 20) {
                 sb.append("...");
             }
+            return sb.toString();
         } else {
             return "-";
         }

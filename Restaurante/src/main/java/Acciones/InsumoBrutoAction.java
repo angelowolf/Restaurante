@@ -151,10 +151,10 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     public void validateEliminar() {
         switch (controladorInsumo.enUso(insumo)) {
             case 1:
-                addActionError(Soporte.Mensaje.getUsadoPorUn(Soporte.Mensaje.INSUMO, Soporte.Mensaje.INSUMOELABORADO));
+                addActionError(Soporte.Mensaje.getUsadoPorUnAmbos(Soporte.Mensaje.INSUMO, Soporte.Mensaje.INSUMOELABORADO));
                 break;
             case 2:
-//                addActionError(Soporte.Mensaje.getUsadoPorUna(Soporte.Mensaje.INSUMO, Soporte.Mensaje.RECETA));
+                addActionError(Soporte.Mensaje.getUsadoPorUnaAmbos(Soporte.Mensaje.INSUMO, Soporte.Mensaje.RECETA));
                 break;
         }
         if (hasErrors()) {

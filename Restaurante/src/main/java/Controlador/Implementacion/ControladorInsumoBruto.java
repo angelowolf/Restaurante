@@ -14,7 +14,9 @@ import Controlador.Interface.IControladorInsumoBruto;
 import Modelo.InsumoBruto;
 import Modelo.Stock;
 import Persistencia.ORM.DAOImplementacion.InsumoElaboradoDAO;
+import Persistencia.ORM.DAOImplementacion.RecetaDAO;
 import Persistencia.ORM.DAOInterface.IInsumoElaborado;
+import Persistencia.ORM.DAOInterface.IReceta;
 
 /**
  *
@@ -98,11 +100,12 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
         if (!DAOElaborado.insumoEnUso(insumo).isEmpty()) {
             return 1;
         } else {
-//            IReceta DAOReceta = new RecetaDAO();
-//            if (!DAOReceta.insumoEnUsoPorReceta(insumo).isEmpty()) {
-//                return 2;
-//            }
-            //aca va la validacion de la receta...
+            IReceta DAOReceta = new RecetaDAO();
+            /*
+            if (!DAOReceta.insumoEnUsoPorReceta(insumo).isEmpty()) {
+                return 2;
+            }
+            */
         }
         return 0;
     }
