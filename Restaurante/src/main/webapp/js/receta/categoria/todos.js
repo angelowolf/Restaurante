@@ -1,39 +1,32 @@
 (function ($) {
-    $('body').on('click', '#mostrar-modal-eliminar-categoria', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('.modal.eliminar[data-modelo=categoria');
-        $modal.find('#id').val(id);
-        $modal.find('#model').val('categoria');
-        $modal.modal('show');
+
+    $('.mostrar-modal-eliminar-categoria-receta').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-eliminar-categoria-receta');
+            $modal.find('#model-id').val(id);
+            $modal.modal('show');
     });
 
-    $('body').on('click', '#eliminar', function (e) {
-        var $boton = $(this);
-        var $dialog = $boton.parents('.modal.eliminar');
-        var id = $dialog.find('#id').val();
+    $('#modal-eliminar-categoria-receta .confirmar').on('click', function (e) {
         toggleBoton(e.target);
+        var $dialog = $('#modal-eliminar-categoria-receta');
+        var id =  $dialog.find('#model-id').val();
         $.post('/receta/categoria/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $dialog.modal('hide');
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/receta/categoria/listar?' + data);
             } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger', true);
+                erroresM.mostrarAlertError(response.actionErrors);
                 toggleBoton(e.target);
             }
         });
     });
 
-    $('body').on('click', '#mostrar-modal-ver-categoria', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('#modal-ver-categoria');
-        $modal.find('#id').val(id);
+    $('.mostrar-modal-ver-categoria-receta').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-ver-categoria-receta');
+            $modal.find('#id').val(id);
         $.post('/receta/categoria/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
@@ -43,16 +36,14 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-receta-form');
         $modal.modal('show');
     });
-    $('body').on('click', '#mostrar-modal-modificar-categoria', function (e) {
-        e.preventDefault();
-        var $boton = $(this);
-        var $contenedor = $boton.parents('#botones');
-        var id = $contenedor.find('#id').val();
-        var $modal = $('#modal-modificar-categoria');
-        $modal.find('#id').val(id);
+
+    $('.mostrar-modal-modificar-categoria-receta').on('click', function (e) {
+        var id = $(this).parents('.acciones').children('.model-id').val();
+        var $modal = $('#modal-modificar-categoria-receta');
+            $modal.find('#id').val(id);
         $.post('/receta/categoria/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#id').val(response.model.id);
@@ -62,22 +53,25 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('#modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-receta-form');
+        setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
 
-    $('body').on('click', '#editar', function (e) {
-        e.preventDefault();
-        var data = $('#modificar-categoria-form').serialize();
-        toggleBoton(e.target);
+    $('#modal-modificar-categoria-receta #modificar-categoria-receta-form').submit(function (e) {
+        var $form = $(this);
+        var $boton = $form.find('.confirmar');
+        var data = $form.serialize();
+        toggleBoton($boton);
         $.post('/receta/categoria/postModificar', data, function (response) {
             if (response.codigo === 200) {
                 var data = $('#formulario-buscar').serialize();
                 window.location.replace('/receta/categoria/listar?' + data);
             } else {
-                erroresM.mostrarErrores('#modificar-categoria-form', response);
-                toggleBoton(e.target);
+                erroresM.mostrarErrores($form.attr('id'), response);
+                toggleBoton($boton);
             }
         });
+        return false;
     });
 })(jQuery);

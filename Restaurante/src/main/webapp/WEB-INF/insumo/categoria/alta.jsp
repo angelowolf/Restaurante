@@ -4,7 +4,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">Nueva Categoria de Insumo</h3>
         </div>
-        <form id="alta-categoria-form">
+        <form id="alta-categoria-insumo-form">
             <div class="panel-body">
                 <div class="form-group">
                     <label for="nombre" class="control-label">Nombre de Categoria *</label>
@@ -20,10 +20,14 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button class="btn btn-default cancelar" type="button">Cancelar</button>
+                        <button type="button" class="btn btn-default cancelar">
+                            Cancelar
+                        </button>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button class="btn btn-ruhaj text-right confirmar" type="submit" >Aceptar</button>
+                        <button type="submit" class="btn btn-ruhaj confirmar">
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             </div>

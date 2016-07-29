@@ -1,15 +1,15 @@
 (function ($) {
 
-    $('.mostrar-modal-eliminar-categoria').on('click', function (e) {
+    $('.mostrar-modal-eliminar-categoria-insumo').on('click', function (e) {
         var id = $(this).parents('.acciones').children('.model-id').val();
-        var $modal = $('#modal-eliminar-categoria');
+        var $modal = $('#modal-eliminar-categoria-insumo');
             $modal.find('#model-id').val(id);
             $modal.modal('show');
     });
 
-    $('#modal-eliminar-categoria .confirmar').on('click', function (e) {
+    $('#modal-eliminar-categoria-insumo .confirmar').on('click', function (e) {
         toggleBoton(e.target);
-        var $dialog = $('#modal-eliminar-categoria');
+        var $dialog = $('#modal-eliminar-categoria-insumo');
         var id =  $dialog.find('#model-id').val();
         $.post('/insumo/categoria/eliminar', {id: id}, function (response) {
             if (response.codigo === 200) {
@@ -23,9 +23,9 @@
         });
     });
 
-    $('.mostrar-modal-ver-categoria').on('click', function (e) {
+    $('.mostrar-modal-ver-categoria-insumo').on('click', function (e) {
         var id = $(this).parents('.acciones').children('.model-id').val();
-        var $modal = $('#modal-ver-categoria');
+        var $modal = $('#modal-ver-categoria-insumo');
             $modal.find('#id').val(id);
         $.post('/insumo/categoria/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
@@ -36,13 +36,13 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-insumo-form');
         $modal.modal('show');
     });
 
-    $('.mostrar-modal-modificar-categoria').on('click', function (e) {
+    $('.mostrar-modal-modificar-categoria-insumo').on('click', function (e) {
         var id = $(this).parents('.acciones').children('.model-id').val();
-        var $modal = $('#modal-modificar-categoria');
+        var $modal = $('#modal-modificar-categoria-insumo');
             $modal.find('#id').val(id);
         $.post('/insumo/categoria/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
@@ -53,12 +53,12 @@
                 erroresM.mostrarAlertError(response.actionErrors, 'danger');
             }
         });
-        erroresM.limpiarErrores('modificar-categoria-form');
+        erroresM.limpiarErrores('modificar-categoria-insumo-form');
         setTimeout(function (modal) { modal.find('[autofocus]').focus() }, 500, $modal);
         $modal.modal('show');
     });
 
-    $('#modal-modificar-categoria #modificar-categoria-form').submit(function (e) {
+    $('#modal-modificar-categoria-insumo #modificar-categoria-insumo-form').submit(function (e) {
         var $form = $(this);
         var $boton = $form.find('.confirmar');
         var data = $form.serialize();

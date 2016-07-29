@@ -1,19 +1,20 @@
 (function ($) {
-    $('#alta-categoria-form').submit(function (e) {
-        e.preventDefault();
-        toggleBoton("#alta-categoria-form > .registrar");
-        var data = $('#alta-categoria-form').serialize();
+    $('#alta-categoria-receta-form').submit( function (e) {
+        var $boton = $(this).find('.confirmar');
+        var data = $(this).serialize();
+        toggleBoton($boton);
         $.post('/receta/categoria/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/receta/categoria/listar');
             } else {
-                erroresM.mostrarErrores('#alta-categoria-form', response);
-                toggleBoton("#alta-categoria-form > .registrar");
+                erroresM.mostrarErrores('alta-categoria-receta-form', response);
+                toggleBoton($boton);
             }
         });
+        return false;
     });
-    $('#alta-categoria-form').on('click', '.cancelar', function (e) {
-        e.preventDefault();
+
+    $('#alta-categoria-receta-form .cancelar').on('click', function (e) {
         window.location.replace('/receta/categoria/listar');
     });
 })(jQuery);

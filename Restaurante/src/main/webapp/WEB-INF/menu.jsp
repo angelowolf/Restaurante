@@ -25,12 +25,12 @@
 <s:if test="#session.rolStock">
     <li>
         <a href="#">
-            <i class="fa fa-shopping-bag fa-fw"></i> Insumos
+            <i class="fa fa-shopping-bag fa-fw"></i> Almacén
             <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
                 <a href="#">
-                    <i class="fa fa-apple fa-fw"></i> Brutos
+                    <i class="fa fa-apple fa-fw"></i> Insumos
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-third-level">
@@ -135,7 +135,7 @@
                     </li>
                     <li>
                         <a href='<s:url action="nuevo" namespace="/receta/categoria"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
+                            <i class="fa fa-plus fa-fw"></i> Añadir Nueva
                         </a>
                     </li>
                 </ul>  

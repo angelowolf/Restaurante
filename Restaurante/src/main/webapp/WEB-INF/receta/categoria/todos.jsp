@@ -3,50 +3,68 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="panel panel-ruhaj">
-    <div class="panel-heading">
-        <h3 class="panel-title">Listado de Categorias Recetas</h3>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Listado de Categorías de Receta</h2>
     </div>
+</div>
+<hr />
+<div class="panel">
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/receta/categoria" id="formulario-buscar" autocomplete="off">
+                <s:form class="form-inline" action="listar" namespace="/receta/categoria" id="formulario-buscar">
                     <div class="form-group">
-                        <label for="nombre">Nombre de Categoria</label>
-                        <s:textfield type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria"/>
+                        <label for="nombre" class="control-label">Nombre de Categoria</label>
+                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
                     </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">Buscar</button>
+                    <button type="submit" class="btn btn-ruhaj pull-right">
+                        Buscar
+                        <i class="fa fa-search fa-fw"></i>
+                    </button>
                 </s:form>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class=" col-xs-12 table-responsive">
-                <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
-                    <display:setProperty name="basic.msg.empty_list" >
-                        <p id="notificacion">No se encontraron Categorias.</p>
-                    </display:setProperty>
-                    <display:setProperty name="paging.banner.placement">bottom</display:setProperty>
-
-                    <display:column sortable="true" property="nombre" title="Nombre" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
-                    <display:column property="descripcion" title="Descripción" class="text-center" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
-                    <display:column title="Acciones" class="text-center" headerClass="table-header-ruhaj">
-                        <div id="botones">
-                            <s:hidden name="id" value="%{#attr.row.id}"/>
-                            <button id="mostrar-modal-ver-categoria" class="btn btn-default" title="Ver Categoria" data-toggle="tooltip"><i class="fa fa-eye"></i></button>
-                            <button id="mostrar-modal-modificar-categoria" class="btn btn-warning" title="Editar Categoria" data-toggle="tooltip"><i class="fa fa-edit"></i></button>
-                            <button id="mostrar-modal-eliminar-categoria" class="btn btn-danger" title="Eliminar Categoria" data-toggle="tooltip"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </display:column>
-                </display:table>
             </div>
         </div>
     </div>
 </div>
-<s:action name="modaleliminar" namespace="/modal" executeResult="true">
+<div class="table-responsive">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list">
+        <display:setProperty name="basic.msg.empty_list" >
+            <div class="col-xs-12 well text-center">
+                <p>
+                    <i class="fa fa-filter fa-lg"></i>
+                    No se encontraron Categorias  que coincidan con tu busqueda.
+                </p>
+            </div>
+        </display:setProperty>
+
+        <display:column sortable="true" property="nombre" title="Nombre"  class="text-center-all" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
+        <display:column property="descripcion" title="Descripción" class="text-center-all" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
+        <display:column title="Acciones" class="text-center-all" headerClass="table-header-ruhaj">
+            <div class="acciones">
+                <s:hidden class="model-id" value="%{#attr.row.id}"/>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-receta" title="Ver Categoria" data-toggle="tooltip">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-receta" title="Editar Categoria" data-toggle="tooltip">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-receta" title="Eliminar Categoria" data-toggle="tooltip">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </display:column>
+    </display:table>
+</div>
+
+<s:include value="/WEB-INF/receta/categoria/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/receta/categoria/modalVer.jsp"/>
+
+<s:action name="modal" namespace="/modal" executeResult="true">
+    <s:param name="modalId">modal-eliminar-categoria-receta</s:param>
     <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIARECETA);%></s:param>
     <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIARECETA));%></s:param>
     <s:param name="modelo">categoria</s:param>
 </s:action>
-<s:include value="/WEB-INF/receta/categoria/modalModificacion.jsp"/>
-<s:include value="/WEB-INF/receta/categoria/modalVer.jsp"/>

@@ -1,5 +1,5 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<div class="modal fade" id="modal-ver-categoria" tabindex="-1" role="dialog">
+<div class="modal fade" id="modal-ver-categoria-receta" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-center">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,7 +18,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-right" id="salir" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default pull-right cancelar" data-dismiss="modal">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>

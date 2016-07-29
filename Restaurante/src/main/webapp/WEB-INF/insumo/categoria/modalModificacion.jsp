@@ -1,11 +1,11 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
-<div class="modal fade" id="modal-modificar-categoria" role="dialog" data-backdrop="static">
+<div class="modal fade" id="modal-modificar-categoria-insumo" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-center ">
         <div class="modal-content">
-            <form id="modificar-categoria-form">
+            <form id="modificar-categoria-insumo-form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Modificr Categoría de Insumo</h4>
+                    <h4 class="modal-title">Modificar Categoría de Insumo</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">

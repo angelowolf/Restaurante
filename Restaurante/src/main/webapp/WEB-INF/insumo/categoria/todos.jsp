@@ -16,7 +16,7 @@
                 <s:form class="form-inline" action="listar" namespace="/insumo/categoria" id="formulario-buscar">
                     <div class="form-group">
                         <label for="nombre" class="control-label">Nombre de Categoria</label>
-                        <input value='<s:property value="nombreFiltro"/>'   type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
+                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
                         Buscar
@@ -44,13 +44,13 @@
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">
-                    <button class="btn btn-sm btn-default mostrar-modal-ver-categoria" title="Ver Categoria" data-toggle="tooltip">
+                    <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-insumo" title="Ver Categoria" data-toggle="tooltip">
                         <i class="fa fa-eye"></i>
                     </button>
-                    <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria" title="Editar Categoria" data-toggle="tooltip">
+                    <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-insumo" title="Editar Categoria" data-toggle="tooltip">
                         <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria" title="Eliminar Categoria" data-toggle="tooltip">
+                    <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-insumo" title="Eliminar Categoria" data-toggle="tooltip">
                         <i class="fa fa-trash"></i>
                     </button>
                 </div>
@@ -62,7 +62,7 @@
 <s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
 
 <s:action name="modal" namespace="/modal" executeResult="true">
-    <s:param name="modalId">modal-eliminar-categoria</s:param>
+    <s:param name="modalId">modal-eliminar-categoria-insumo</s:param>
     <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIAINSUMO);%></s:param>
     <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIAINSUMO));%></s:param>
     <s:param name="modelo">categoria</s:param>
