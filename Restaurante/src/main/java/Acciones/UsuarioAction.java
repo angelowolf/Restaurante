@@ -67,7 +67,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (StringUtils.isBlank(usuario.getNick())) {
             addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
+            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
         }
         if (usuario.getDocumento() == 0) {
             addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
@@ -75,7 +75,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.NODISPONIBLEDOCUMENTO);
+            addFieldError("documento", Soporte.Mensaje.getExiste("número de documento"));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -107,7 +107,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (StringUtils.isBlank(usuario.getNick())) {
             addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
+            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
         }
         if (usuario.getDocumento() == 0) {
             addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
@@ -115,7 +115,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (usuario.getDocumento() < 0) {
             addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.NODISPONIBLEDOCUMENTO);
+            addFieldError("documento", Soporte.Mensaje.getExiste("número de documento"));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -163,7 +163,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         if (StringUtils.isBlank(usuario.getNick())) {
             addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.NODISPONIBLENICK);
+            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
         }
         if (StringUtils.isNotBlank(usuario.getClave()) || StringUtils.isNotBlank(usuario.getClave2())) {
             if (StringUtils.isBlank(usuario.getClave())) {
@@ -222,7 +222,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         } else if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             Usuario us = controladorUsuario.getUsuario(usuario.getNick());
             if (us != null && !us.esActivo()) {
-                addActionError(Soporte.Mensaje.USUARIODADODEBAJA);
+                addActionError(Soporte.Mensaje.getBajo(Soporte.Mensaje.USUARIO));
             } else {
                 addActionError(Soporte.Mensaje.ERRORVALIDAR);
             }

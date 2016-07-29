@@ -7,6 +7,7 @@ package Persistencia.ORM.DAOImplementacion;
 
 import Controlador.Implementacion.ControladorReceta;
 import Modelo.CategoriaReceta;
+import Modelo.InsumoBruto;
 import Modelo.Receta;
 import Persistencia.ORM.DAOInterface.IReceta;
 import Persistencia.ORM.Util.GenericDAO;
@@ -66,6 +67,19 @@ public class RecetaDAO extends GenericDAO<Receta, Integer> implements IReceta {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Receta> insumoEnUsoPorReceta(InsumoBruto insumo) {
+        Session session = getHibernateTemplate();
+        List<Receta> objetos = new ArrayList<>();
+        try {
+            String sql = "select receta.* from Receta receta inner join Ingrediente i on i.id_receta = receta.id where i.id_insumo = :id and receta.fechaBaja is null";
+            objetos = session.createQuery(sql).setParameter("id", insumo.getId()).list();
+        } catch (RuntimeException e) {
+            LOGGER.error("Error al buscar las receta.", e);
+        }
+        return objetos;
     }
 
 }

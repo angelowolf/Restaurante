@@ -43,7 +43,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
         if (StringUtils.isBlank(categoria.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!ccr.nombreDisponible(categoria)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.CATEGORIARECETA));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (hasFieldErrors()) {
             codigo = 400;

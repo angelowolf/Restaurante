@@ -47,7 +47,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
         if (StringUtils.isBlank(categoriaInsumo.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorCategoriaInsumo.nombreDisponible(categoriaInsumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.CATEGORIAINSUMO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (hasFieldErrors()) {
             codigo = 400;

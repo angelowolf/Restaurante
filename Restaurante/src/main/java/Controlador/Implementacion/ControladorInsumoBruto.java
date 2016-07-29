@@ -101,11 +101,9 @@ public class ControladorInsumoBruto implements IControladorInsumoBruto {
             return 1;
         } else {
             IReceta DAOReceta = new RecetaDAO();
-            /*
             if (!DAOReceta.insumoEnUsoPorReceta(insumo).isEmpty()) {
                 return 2;
             }
-            */
         }
         return 0;
     }

@@ -66,7 +66,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
         if (StringUtils.isBlank(receta.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorReceta.nombreDisponible(receta)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.RECETA));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (idsIngredientes == null || idsIngredientes.isEmpty()) {
             addActionError(Soporte.Mensaje.INGRESEINSUMO);

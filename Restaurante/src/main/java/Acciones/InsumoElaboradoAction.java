@@ -76,7 +76,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMOELABORADO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
@@ -117,7 +117,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMOELABORADO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);

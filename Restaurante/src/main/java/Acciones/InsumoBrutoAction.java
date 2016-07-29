@@ -79,7 +79,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
         if (StringUtils.isBlank(insumo.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumo.nombreDisponible(insumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (insumo.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.SELECCIONEUNIDADMEDIDA);
@@ -113,7 +113,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
         if (StringUtils.isBlank(insumo.getNombre())) {
             addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
         } else if (!controladorInsumo.nombreDisponible(insumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.INSUMO));
+            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
         }
         if (insumo.getUnidadMedida() == null) {
             addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
