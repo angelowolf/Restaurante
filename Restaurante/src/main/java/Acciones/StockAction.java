@@ -60,24 +60,24 @@ public class StockAction extends Accion {
 
     public void validatePostCargarCompra() {
         if (ids == null || ids.isEmpty()) {
-            addActionError(Soporte.Mensaje.SELECCIONEINSUMO);
+            addActionError(mensajes.SELECCIONEINSUMO);
         } else {
             if (cantidad == null || cantidad.isEmpty()) {
-                addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+                addActionError(mensajes.INGRESECANTIDADCOMPRADA);
             } else {
                 for (Float cadaCantidad : cantidad) {
                     if (cadaCantidad == null) {
-                        addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+                        addActionError(mensajes.INGRESECANTIDADCOMPRADA);
                         break;
                     }
                 }
             }
             if (precio == null || precio.isEmpty()) {
-                addActionError(Soporte.Mensaje.INGRESEPRECIO);
+                addActionError(mensajes.INGRESEPRECIO);
             } else {
                 for (Float cadaPrecio : precio) {
                     if (cadaPrecio == null) {
-                        addActionError(Soporte.Mensaje.INGRESEPRECIO);
+                        addActionError(mensajes.INGRESEPRECIO);
                         break;
                     }
                 }
@@ -90,19 +90,19 @@ public class StockAction extends Accion {
 
     public String postCargarCompra() {
         controladorStock.registrarCompraInsumoBruto(ids, cantidad, precio);
-        sesion.put("mensaje", Soporte.Mensaje.COMPRAREGISTRADA);
+        sesion.put("mensaje", mensajes.COMPRAREGISTRADA);
         return SUCCESS;
     }
 
     public void validatePostAjusteStock() {
         if (ids == null || ids.isEmpty()) {
-            addActionError(Soporte.Mensaje.SELECCIONEINSUMO);
+            addActionError(mensajes.SELECCIONEINSUMO);
         } else if (cantidad == null || cantidad.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
+            addActionError(mensajes.INGRESECANTIDADAJUSTADA);
         } else {
             for (Float integer : cantidad) {
                 if (integer == null) {
-                    addActionError(Soporte.Mensaje.INGRESECANTIDADAJUSTADA);
+                    addActionError(mensajes.INGRESECANTIDADAJUSTADA);
                     break;
                 }
             }
@@ -114,7 +114,7 @@ public class StockAction extends Accion {
 
     public String postAjusteStock() {
         controladorStock.registrarAjuste(ids, cantidad);
-        sesion.put("mensaje", Soporte.Mensaje.AJUSTEREALIZADO);
+        sesion.put("mensaje", mensajes.AJUSTEREALIZADO);
         return SUCCESS;
     }
 

@@ -83,16 +83,17 @@
 <s:include value="/WEB-INF/insumo/elaborado/modalConfeccionar.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalVer.jsp"/>
+<s:set var="objeto" value="#application.mensaje.INSUMO"/>
 
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-baja-insumo-elaborado</s:param>
-    <s:param name="titulo">Dar de Baja <%out.println(Soporte.Mensaje.INSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaDarBajaEl(Soporte.Mensaje.INSUMO));%></s:param>
+    <s:param name="titulo">Dar de Baja <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaDarBajaEl(#objeto)"/></s:param>
     <s:param name="modelo">insumo</s:param>
 </s:action>
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-recuperar-insumo-elaborado</s:param>
-    <s:param name="titulo">Recuperar <%out.println(Soporte.Mensaje.INSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.INSUMO));%></s:param>
+    <s:param name="titulo">Recuperar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value='#application.mensaje.preguntaRecuperarEl(#objeto)'/>));%></s:param>
     <s:param name="modelo">insumo</s:param>
 </s:action>

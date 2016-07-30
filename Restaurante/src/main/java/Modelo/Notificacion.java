@@ -6,13 +6,14 @@
 package Modelo;
 
 import Notificacion.TipoMensaje;
+import Spring.Mensajes;
 import org.joda.time.LocalDateTime;
 
 /**
  *
  * @author ang_2
  */
-public class Notificacion {
+public class Notificacion implements Mensajes{
 
     private int id;
     private String mensaje;
@@ -23,7 +24,7 @@ public class Notificacion {
 
     public String getFecha2() {
         if (fecha != null) {
-            return Soporte.Mensaje.getFechaHumana(fecha);
+            return mensajes.getFechaHumana(fecha);
         }
         return null;
     }

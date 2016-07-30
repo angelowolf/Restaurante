@@ -60,10 +60,11 @@
 </div>
 <s:include value="/WEB-INF/insumo/categoria/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
+<s:set var="objeto" value="#application.mensaje.CATEGORIAINSUMO"/>
 
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-eliminar-categoria</s:param>
-    <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIAINSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIAINSUMO));%></s:param>
+    <s:param name="titulo">Eliminar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaELiminarLa(#objeto)"/></s:param>
     <s:param name="modelo">categoria</s:param>
 </s:action>

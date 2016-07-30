@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Spring.Mensajes;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDateTime;
 
@@ -12,8 +13,7 @@ import org.joda.time.LocalDateTime;
  *
  * @author ang_2
  */
-public class DetalleStock {
-
+public class DetalleStock implements Mensajes{
     private int id;
     private float cantidad, total;
     private LocalDateTime fecha;
@@ -34,7 +34,7 @@ public class DetalleStock {
         if (null == fecha) {
             return null;
         }
-        return fecha.toString(Soporte.Mensaje.FECHAJSON);
+        return fecha.toString(mensajes.FECHAJSON);
     }
 
     public float getTotal() {
@@ -65,7 +65,7 @@ public class DetalleStock {
         if (null == fecha) {
             return null;
         }
-        return fecha.toString(Soporte.Mensaje.FECHAJSON);
+        return fecha.toString(mensajes.FECHAJSON);
     }
 
     @JSON(serialize = false)

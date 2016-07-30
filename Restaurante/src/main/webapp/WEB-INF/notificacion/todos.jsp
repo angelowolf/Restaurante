@@ -21,8 +21,9 @@
         </display:table>
     </div>
 </div>
+<s:set var="objeto" value="#application.mensaje.NOTIFICACION"/>
 <s:action name="modaleliminar" namespace="/modal" executeResult="true">
-    <s:param name="titulo"><%out.println(Soporte.Mensaje.NOTIFICACION);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.NOTIFICACION));%></s:param>
+    <s:param name="titulo"><s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">notificacion</s:param>
 </s:action>

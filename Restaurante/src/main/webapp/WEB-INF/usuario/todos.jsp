@@ -97,22 +97,23 @@
 
 <s:include value="/WEB-INF/usuario/modalVer.jsp"/>
 <s:include value="/WEB-INF/usuario/modalModificacion.jsp"/>
+<s:set var="objeto" value="#application.mensaje.USUARIO"/>
 
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-baja-usuario</s:param>
-    <s:param name="titulo">Dar de Baja <%out.println(Soporte.Mensaje.USUARIO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaDarBajaEl(Soporte.Mensaje.USUARIO));%></s:param>
+    <s:param name="titulo">Dar de Baja <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaDarBajaEl(#objeto)"/></s:param>
     <s:param name="modelo">usuario</s:param>
 </s:action>
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-recuperar-usuario</s:param>
-    <s:param name="titulo">Recuperar <%out.println(Soporte.Mensaje.USUARIO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaRecuperarEl(Soporte.Mensaje.USUARIO));%></s:param>
+    <s:param name="titulo">Recuperar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value='#application.mensaje.preguntaRecuperarEl(#objeto)'/></s:param>
     <s:param name="modelo">usuario</s:param>
 </s:action>
 <s:action name="modal" namespace="/modal" executeResult="true">
     <s:param name="modalId">modal-reiniciar-contraseña</s:param>
-    <s:param name="titulo">Reiniciar Contraseña del <%out.println(Soporte.Mensaje.USUARIO);%></s:param>
+    <s:param name="titulo">Reiniciar Contraseña del <s:property value="#objeto"/></s:param>
     <s:param name="mensaje">¿Estás seguro de que quieres reiniciar la contraseña de este usuario?</s:param>
     <s:param name="modelo">usuario</s:param>
 </s:action>
