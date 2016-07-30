@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list" keepStatus="true">
         <display:setProperty name="basic.msg.empty_list" >
             <div class="col-xs-12 well text-center">
                 <p>
@@ -60,10 +60,10 @@
 </div>
 <s:include value="/WEB-INF/insumo/categoria/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
-
-<s:action name="modal" namespace="/modal" executeResult="true">
+<s:set var="objeto" value="#application.mensaje.CATEGORIAINSUMO"/>
+<s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-eliminar-categoria</s:param>
-    <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIAINSUMO);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIAINSUMO));%></s:param>
+    <s:param name="titulo">Eliminar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">categoria</s:param>
-</s:action>
+</s:include>

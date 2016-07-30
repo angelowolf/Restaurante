@@ -5,6 +5,7 @@
  */
 package Decorator;
 
+import Spring.Mensajes;
 import javax.servlet.jsp.PageContext;
 import org.displaytag.decorator.DisplaytagColumnDecorator;
 import org.displaytag.exception.DecoratorException;
@@ -17,12 +18,12 @@ import org.joda.time.format.DateTimeFormatter;
  *
  * @author ang_2
  */
-public class DateTimeDecorator implements DisplaytagColumnDecorator {
+public class DateTimeDecorator implements DisplaytagColumnDecorator, Mensajes {
 
     @Override
     public Object decorate(Object columnValue, PageContext pageContext, MediaTypeEnum media) throws DecoratorException {
         if (columnValue != null) {
-            DateTimeFormatter salida = DateTimeFormat.forPattern(Soporte.Mensaje.FECHAHORAJSON);
+            DateTimeFormatter salida = DateTimeFormat.forPattern(mensajes.FECHAHORAJSON);
             LocalDateTime fecha = (LocalDateTime) columnValue;
             return salida.print(fecha);
         } else {

@@ -16,6 +16,7 @@ import Persistencia.ORM.DAOImplementacion.NotificacionDAO;
 import Persistencia.ORM.DAOImplementacion.NotificacionStockDAO;
 import Persistencia.ORM.DAOInterface.INotificacion;
 import Persistencia.ORM.DAOInterface.INotificacionStock;
+import Spring.Mensajes;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDateTime;
@@ -24,28 +25,14 @@ import org.joda.time.LocalDateTime;
  *
  * @author ang_2
  */
-public class ControladorNotificacion {
+public class ControladorNotificacion implements Mensajes {
+
+    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
 
     private static ControladorNotificacion instancia = null;
-    private final IControladorUsuario controladorUsuario;
+    private final IControladorUsuario controladorUsuario = new ControladorUsuario();
     private final INotificacion DAONotificacion = new NotificacionDAO();
     private final INotificacionStock DAONotificacionStock = new NotificacionStockDAO();
-
-    /**
-     * Crea una instancia de este controlador.
-     *
-     * @return La instancia
-     */
-    public synchronized static ControladorNotificacion getControlador() {
-        if (instancia == null) {
-            instancia = new ControladorNotificacion();
-        }
-        return instancia;
-    }
-
-    private ControladorNotificacion() {
-        controladorUsuario = new ControladorUsuario();
-    }
 
     /**
      * Notifica a todos los usuarios logeados con el rol Responsable Stock sobre
@@ -59,7 +46,7 @@ public class ControladorNotificacion {
         List<Usuario> usuariosStock = controladorUsuario.buscar(null, null, rolStock);
         for (Usuario cadaUsuario : usuariosStock) {
             if (DAONotificacion.getNotificacionStock(cadaUsuario.getId(), insumo.getId()) == null) {
-                NotificacionStock notificacionStock = new NotificacionStock(insumo, Soporte.Mensaje.getNotificacionInsumo(insumo.getNombre()), new LocalDateTime(), cadaUsuario, false);
+                NotificacionStock notificacionStock = new NotificacionStock(insumo, mensajes.getNotificacionInsumo(insumo.getNombre()), new LocalDateTime(), cadaUsuario, false);
                 LOGGER.info("Guardando notificacion para usuario: " + cadaUsuario.getId());
                 DAONotificacion.guardar(notificacionStock);
                 WSControlador.getControlador().mandarNotificacion(cadaUsuario.getId(), notificacionStock);
@@ -119,7 +106,6 @@ public class ControladorNotificacion {
         nBD.setVisto(true);
         DAONotificacion.actualizar(nBD);
     }
-    private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(ControladorNotificacion.class);
 
     /**
      * Devuelve la cantidad de notificaciones sin ver de este usuario
@@ -140,4 +126,5 @@ public class ControladorNotificacion {
     public Notificacion buscarNotificacion(int id) {
         return DAONotificacion.buscar(id);
     }
+
 }

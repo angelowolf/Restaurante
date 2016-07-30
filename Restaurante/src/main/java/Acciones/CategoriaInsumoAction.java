@@ -8,7 +8,6 @@ package Acciones;
 import Controlador.Implementacion.ControladorCategoriaInsumo;
 import Controlador.Interface.IControladorCategoriaInsumo;
 import Modelo.CategoriaInsumo;
-import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -45,9 +44,9 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
 
     public void validar() {
         if (StringUtils.isBlank(categoriaInsumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorCategoriaInsumo.nombreDisponible(categoriaInsumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -61,7 +60,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
     @Override
     public String postModificar() {
         controladorCategoriaInsumo.actualizar(categoriaInsumo);
-        sesion.put("mensaje", Mensaje.getModificada(Mensaje.CATEGORIAINSUMO));
+        sesion.put("mensaje", mensajes.getModificada(mensajes.CATEGORIAINSUMO));
         return SUCCESS;
     }
 
@@ -72,13 +71,13 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
     @Override
     public String registrar() {
         controladorCategoriaInsumo.guardar(categoriaInsumo);
-        sesion.put("mensaje", Mensaje.getAgregada(Mensaje.CATEGORIAINSUMO));
+        sesion.put("mensaje", mensajes.getAgregada(mensajes.CATEGORIAINSUMO));
         return SUCCESS;
     }
 
     public void validateEliminar() {
         if (controladorCategoriaInsumo.enUso(categoriaInsumo)) {
-            addActionError(Soporte.Mensaje.getUsadaPorUnDesvincular(Soporte.Mensaje.CATEGORIAINSUMO, Soporte.Mensaje.INSUMO));
+            addActionError(mensajes.getUsadaPorUnDesvincular(mensajes.CATEGORIAINSUMO, mensajes.INSUMO));
         }
         if (hasErrors()) {
             codigo = 400;
@@ -88,7 +87,7 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
     @Override
     public String eliminar() {
         controladorCategoriaInsumo.eliminar(categoriaInsumo);
-        sesion.put("mensaje", Soporte.Mensaje.getEliminada(Mensaje.CATEGORIAINSUMO));
+        sesion.put("mensaje", mensajes.getEliminada(mensajes.CATEGORIAINSUMO));
         return SUCCESS;
     }
 

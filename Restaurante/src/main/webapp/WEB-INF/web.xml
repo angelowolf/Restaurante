@@ -54,9 +54,21 @@
     <listener>
         <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>      
     </listener>    
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>Listener.ContextListener</listener-class>      
+    </listener>    
     <context-param>
         <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
         <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
     <!--FIN TILES-->
 </web-app>

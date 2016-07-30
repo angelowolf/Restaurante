@@ -18,10 +18,6 @@ public class ModalAction extends ActionSupport {
     protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
     private String modalId, titulo, mensaje, modelo, tipoAlerta;
 
-    public String modal() {
-        return SUCCESS;
-    }
-
     public String alerta() {
         mensaje = (String) sesion.get("mensaje");
         sesion.put("mensaje", null);

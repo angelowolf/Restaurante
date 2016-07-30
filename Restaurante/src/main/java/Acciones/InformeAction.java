@@ -15,7 +15,7 @@ import Modelo.Notificacion;
 public class InformeAction extends Accion {
 
     private int id;
-    private final ControladorNotificacion cn = ControladorNotificacion.getControlador();
+    private final ControladorNotificacion cn = new ControladorNotificacion();
 
     public String ver() {
         Notificacion n = cn.buscarNotificacion(id);
