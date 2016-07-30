@@ -28,7 +28,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     private List<InsumoElaborado> lista;
     private final IControladorInsumoElaborado controladorInsumoElaborado;
     private final List<UnidadMedida> unidades;
-    private String nombreFiltro, term;
+    private String term;
     private List<AutoComplete> listaAC;
     private List<Integer> idUtilizar;
     private List<Float> cantidadUtilizar;
@@ -175,15 +175,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         lista = controladorInsumoElaborado.buscar(nombreFiltro);
         return SUCCESS;
     }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
-    }
-
+    
     public InsumoElaborado getInsumoElaborado() {
         return insumoElaborado;
     }

@@ -18,9 +18,18 @@ public abstract class Accion extends ActionSupport implements Mensajes {
 
     protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
     protected int codigo = 200;
-
+    protected String nombreFiltro;
+    
     public int getCodigo() {
         return codigo;
+    }
+
+    public String getNombreFiltro() {
+        return nombreFiltro;
+    }
+
+    public void setNombreFiltro(String nombreFiltro) {
+        this.nombreFiltro = nombreFiltro;
     }
 
 }

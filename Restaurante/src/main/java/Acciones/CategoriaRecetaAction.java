@@ -24,8 +24,6 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
     private CategoriaReceta categoria;
     private final IControladorCategoriaReceta ccr;
 
-    private String nombreFiltro;
-
     public CategoriaRecetaAction() {
         lista = new ArrayList<>();
         categoria = new CategoriaReceta();
@@ -109,14 +107,6 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
 
     public void setCategoria(CategoriaReceta categoria) {
         this.categoria = categoria;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
 }

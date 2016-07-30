@@ -27,9 +27,6 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
     private final IControladorCategoriaInsumo controladorCategoriaInsumo;
     private List<CategoriaInsumo> lista;
 
-    //filtro
-    private String nombreFiltro;
-
     public CategoriaInsumoAction() {
         lista = new ArrayList<>();
         categoriaInsumo = new CategoriaInsumo();
@@ -108,14 +105,6 @@ public class CategoriaInsumoAction extends Accion implements ModelDriven<Categor
 
     public void setCategoriaInsumo(CategoriaInsumo categoriaInsumo) {
         this.categoriaInsumo = categoriaInsumo;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
     @Override

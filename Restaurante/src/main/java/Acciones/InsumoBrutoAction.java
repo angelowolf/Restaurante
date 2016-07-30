@@ -37,7 +37,6 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     private final List<CategoriaInsumo> categorias;
     private final List<UnidadMedida> unidades;
     private int categoriaInsumoFiltro;
-    private String nombreFiltro;
 
     private List<AutoComplete> listaAC;
     private int idCategoria;
@@ -207,14 +206,6 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
 
     public void setCategoriaInsumoFiltro(int categoriaInsumoFiltro) {
         this.categoriaInsumoFiltro = categoriaInsumoFiltro;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
     @Override

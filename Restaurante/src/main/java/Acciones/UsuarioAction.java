@@ -32,7 +32,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 //filtro
     private List<Rol> rolesSeleccionados;
     private final List<Rol> rolesTodos;
-    private String nombreFiltro, apellidoFiltro;
+    private String apellidoFiltro;
 
     public UsuarioAction() {
         lista = new ArrayList<>();
@@ -376,15 +376,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public List<Rol> getRolesTodos() {
         return rolesTodos;
     }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
-    }
-
+    
     public String getApellidoFiltro() {
         return apellidoFiltro;
     }

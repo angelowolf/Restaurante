@@ -39,7 +39,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
     private final List<CategoriaReceta> categorias;
     private List<Receta> lista;
     private List<AutoComplete> listaAC;
-    private String term, nombreFiltro;
+    private String term;
     private int categoriaRecetaFiltro;
 
     public RecetaAction() {
@@ -179,14 +179,6 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
 
     public void setOpcionalRecetasID(List<Integer> opcionalRecetasID) {
         this.opcionalRecetasID = opcionalRecetasID;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
     public int getCategoriaRecetaFiltro() {

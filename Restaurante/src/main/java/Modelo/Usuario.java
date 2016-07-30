@@ -202,7 +202,7 @@ public class Usuario implements Mensajes {
         return clave;
     }
 
-    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave")
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "clave")
     public void setClave(String clave) {
         this.clave = clave;
     }
@@ -215,7 +215,7 @@ public class Usuario implements Mensajes {
         this.roles = roles;
     }
 
-    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave2")
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "clave2")
     public String getClave2() {
         return clave2;
     }
