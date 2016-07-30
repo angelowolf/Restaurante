@@ -131,7 +131,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     @Override
     public String eliminar() {
         controladorUsuario.eliminar(usuario);
-        sesion.put("mensaje", mensajes.getBaja(mensajes.USUARIO));
+        sesion.put("mensaje", mensajes.getBajo(mensajes.USUARIO));
         return SUCCESS;
     }
 

@@ -22,7 +22,7 @@
         <hr />
         <div class="row">
             <div class=" col-xs-12 table-responsive">
-                <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row">
+                <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" keepStatus="true">
                     <display:setProperty name="basic.msg.empty_list" >
                         <p id="notificacion">No se encontraron Categorias.</p>
                     </display:setProperty>
@@ -44,10 +44,10 @@
     </div>
 </div>
 <s:set var="objeto" value="#application.mensaje.CATEGORIARECETA"/>
-<s:action name="modaleliminar" namespace="/modal" executeResult="true">
+<s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="titulo">Eliminar <s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">categoria</s:param>
-</s:action>
+</s:include>
 <s:include value="/WEB-INF/receta/categoria/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/receta/categoria/modalVer.jsp"/>

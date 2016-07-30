@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list"  keepStatus="true">
         <display:setProperty name="basic.msg.empty_list" >
             <div class="col-xs-12 well text-center">
                 <p>
@@ -85,15 +85,15 @@
 <s:include value="/WEB-INF/insumo/elaborado/modalVer.jsp"/>
 <s:set var="objeto" value="#application.mensaje.INSUMO"/>
 
-<s:action name="modal" namespace="/modal" executeResult="true">
+<s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-baja-insumo-elaborado</s:param>
     <s:param name="titulo">Dar de Baja <s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaDarBajaEl(#objeto)"/></s:param>
     <s:param name="modelo">insumo</s:param>
-</s:action>
-<s:action name="modal" namespace="/modal" executeResult="true">
+</s:include>
+<s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-recuperar-insumo-elaborado</s:param>
     <s:param name="titulo">Recuperar <s:property value="#objeto"/></s:param>
-    <s:param name="mensaje"><s:property value='#application.mensaje.preguntaRecuperarEl(#objeto)'/>));%></s:param>
+    <s:param name="mensaje"><s:property value='#application.mensaje.getPreguntaRecuperarEl(#objeto)'/>));%></s:param>
     <s:param name="modelo">insumo</s:param>
-</s:action>
+</s:include>

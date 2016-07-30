@@ -4,7 +4,7 @@
 <div class="form-group">   
     <h2 class="page-header">Notificaciones</h2>
     <div class=" col-md-12">
-        <display:table name="lista" pagesize="20" requestURI="${listar}" uid="row">
+        <display:table name="lista" pagesize="20" requestURI="${listar}" uid="row" keepStatus="true">
             <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Notificaciones.</p></display:setProperty>
             <display:column sortable="true" property="mensaje" title="Mensaje" class="text-center-all" headerClass="text-center-all"/>            
             <display:column sortable="true" property="visto" title="Vista" decorator="Decorator.NotificacionVistaDecorator" class="text-center-all" headerClass="text-center-all"/>
@@ -22,8 +22,8 @@
     </div>
 </div>
 <s:set var="objeto" value="#application.mensaje.NOTIFICACION"/>
-<s:action name="modaleliminar" namespace="/modal" executeResult="true">
+<s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="titulo"><s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">notificacion</s:param>
-</s:action>
+</s:include>
