@@ -51,7 +51,6 @@ public abstract class Mensaje {
     protected String USADAPORUNAAMBOS;
     protected String USADAPORUNAMBOS;
     protected String CODIGOYAENVIADO;
-    protected String CUENTAAVISO;
     protected String NOTIFICACIONINSUMO;
     public String PREGUNTADARBAJAEL;
     public String PREGUNTADARBAJALA;
@@ -121,18 +120,6 @@ public abstract class Mensaje {
      */
     public String getCodigoYaEnviado(long arg) {
         return String.format(CODIGOYAENVIADO, arg);
-    }
-
-    /**
-     * Crea un mensaje que notifica que la cuenta esta proxima a vencer. "Le
-     * recordamos que su suscripción actual está próxima a vencer. Vencera el
-     * %s"
-     *
-     * @param arg La fecha que vencera.
-     * @return El mensaje.
-     */
-    public String getAviso(String arg) {
-        return String.format(CUENTAAVISO, arg);
     }
 
     /**

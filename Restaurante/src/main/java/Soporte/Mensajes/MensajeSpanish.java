@@ -14,7 +14,7 @@ public class MensajeSpanish extends Mensaje {
     public MensajeSpanish() {
         HACE = "hace ";
         YEAR = " año";
-        YEARS = " años";;
+        YEARS = " años";
         MASDE = "mas de ";
         MES = " mes";
         MESES = " meses";
@@ -50,7 +50,6 @@ public class MensajeSpanish extends Mensaje {
         USADAPORUNAAMBOS = "La %s está siendo utilizada por alguna %s, debe darla de baja o desvincularlas para continuar.";
         USADAPORUNAMBOS = "La %s está siendo utilizada por algun %s, debe darlo de baja o desvincularlos para continuar.";
         CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
-        CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
         NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
         PREGUNTADARBAJAEL = "¿Está seguro de que quiere dar de baja este %s?";
         PREGUNTADARBAJALA = "¿Está seguro de que quiere dar de baja esta %s?";
