@@ -43,6 +43,8 @@ public class HibernateSessionRequestFilter implements Filter {
 
             sf.getCurrentSession().beginTransaction();
             // Call the next filter (continue request processing)  
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);
 
             // Commit and cleanup  

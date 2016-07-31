@@ -8,7 +8,6 @@ package Acciones;
 import Controlador.Implementacion.ControladorCategoriaReceta;
 import Controlador.Interface.IControladorCategoriaReceta;
 import Modelo.CategoriaReceta;
-import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -23,9 +22,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
 
     private List<CategoriaReceta> lista;
     private CategoriaReceta categoria;
-    private IControladorCategoriaReceta ccr;
-
-    private String nombreFiltro;
+    private final IControladorCategoriaReceta ccr;
 
     public CategoriaRecetaAction() {
         lista = new ArrayList<>();
@@ -41,9 +38,9 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
 
     public void validar() {
         if (StringUtils.isBlank(categoria.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!ccr.nombreDisponible(categoria)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -57,7 +54,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
     @Override
     public String postModificar() {
         ccr.actualizar(categoria);
-        sesion.put("mensaje", Mensaje.getModificada(Mensaje.CATEGORIARECETA));
+        sesion.put("mensaje", mensajes.getModificada(mensajes.CATEGORIARECETA));
         return SUCCESS;
     }
 
@@ -68,13 +65,13 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
     @Override
     public String registrar() {
         ccr.guardar(categoria);
-        sesion.put("mensaje", Mensaje.getAgregada(Mensaje.CATEGORIAINSUMO));
+        sesion.put("mensaje", mensajes.getAgregada(mensajes.CATEGORIAINSUMO));
         return SUCCESS;
     }
 
     public void validateEliminar() {
         if (ccr.enUso(categoria)) {
-            addActionError(Soporte.Mensaje.getUsadaPorUnDesvincular(Soporte.Mensaje.CATEGORIARECETA, Soporte.Mensaje.RECETA));
+            addActionError(mensajes.getUsadaPorUnDesvincular(mensajes.CATEGORIARECETA, mensajes.RECETA));
         }
         if (hasErrors()) {
             codigo = 400;
@@ -84,7 +81,7 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
     @Override
     public String eliminar() {
         ccr.eliminar(categoria);
-        sesion.put("mensaje", Soporte.Mensaje.getEliminada(Mensaje.CATEGORIARECETA));
+        sesion.put("mensaje", mensajes.getEliminada(mensajes.CATEGORIARECETA));
         return SUCCESS;
     }
 
@@ -110,14 +107,6 @@ public class CategoriaRecetaAction extends Accion implements ModelDriven<Categor
 
     public void setCategoria(CategoriaReceta categoria) {
         this.categoria = categoria;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
 }

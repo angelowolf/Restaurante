@@ -10,7 +10,6 @@ import Controlador.Interface.IControladorUsuario;
 import Modelo.Rol;
 import Modelo.Usuario;
 import Soporte.Encriptar;
-import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 //filtro
     private List<Rol> rolesSeleccionados;
     private final List<Rol> rolesTodos;
-    private String nombreFiltro, apellidoFiltro;
+    private String apellidoFiltro;
 
     public UsuarioAction() {
         lista = new ArrayList<>();
@@ -45,37 +44,37 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public String blanquear() {
         controladorUsuario.blanquear(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.CLAVERESETEADA);
+        sesion.put("mensaje", mensajes.CLAVERESETEADA);
         return SUCCESS;
     }
 
     public void validateRegistrar() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
-                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+                addFieldError("fechaNacimiento", mensajes.FECHAINVALIDA);
             }
         }
         if (StringUtils.isBlank(usuario.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getApellido())) {
-            addFieldError("apellido", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("apellido", mensajes.OBLIGATORIO);
         }
         if (usuario.getRoles() == null) {
-            addFieldError("rol", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("rol", mensajes.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
-            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nick", mensajes.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
+            addFieldError("nick", mensajes.getExiste("nombre de usuario"));
         }
         if (usuario.getDocumento() == 0) {
-            addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("documento", mensajes.OBLIGATORIO);
         }
         if (usuario.getDocumento() < 0) {
-            addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("documento", mensajes.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.getExiste("número de documento"));
+            addFieldError("documento", mensajes.getExiste("número de documento"));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -85,37 +84,37 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     @Override
     public String registrar() {
         controladorUsuario.guardar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.getAgregado(Mensaje.USUARIO));
+        sesion.put("mensaje", mensajes.getAgregado(mensajes.USUARIO));
         return SUCCESS;
     }
 
     public void validatePostModificar() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
-                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+                addFieldError("fechaNacimiento", mensajes.FECHAINVALIDA);
             }
         }
         if (StringUtils.isBlank(usuario.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getApellido())) {
-            addFieldError("apellido", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("apellido", mensajes.OBLIGATORIO);
         }
         if (usuario.getRoles() == null) {
-            addFieldError("rol", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("rol", mensajes.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getNick())) {
-            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nick", mensajes.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
+            addFieldError("nick", mensajes.getExiste("nombre de usuario"));
         }
         if (usuario.getDocumento() == 0) {
-            addFieldError("documento", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("documento", mensajes.OBLIGATORIO);
         }
         if (usuario.getDocumento() < 0) {
-            addFieldError("documento", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("documento", mensajes.INGRESEVALORPOSITIVO);
         } else if (usuario.getDocumento() != 0 && !controladorUsuario.documentoDisponible(usuario)) {
-            addFieldError("documento", Soporte.Mensaje.getExiste("número de documento"));
+            addFieldError("documento", mensajes.getExiste("número de documento"));
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -125,20 +124,20 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     @Override
     public String postModificar() {
         controladorUsuario.actualizar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.getModificado(Mensaje.USUARIO));
+        sesion.put("mensaje", mensajes.getModificado(mensajes.USUARIO));
         return SUCCESS;
     }
 
     @Override
     public String eliminar() {
         controladorUsuario.eliminar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.getBaja(Mensaje.USUARIO));
+        sesion.put("mensaje", mensajes.getBajo(mensajes.USUARIO));
         return SUCCESS;
     }
 
     public String recuperar() {
         controladorUsuario.recuperar(usuario);
-        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(Mensaje.USUARIO));
+        sesion.put("mensaje", mensajes.getRecuperado(mensajes.USUARIO));
         return SUCCESS;
     }
 
@@ -157,39 +156,39 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public void validatePostModificarPerfil() {
         if (usuario.getFechaNacimiento() != null) {
             if (usuario.getFechaNacimiento().isAfter(new LocalDate()) || usuario.getFechaNacimiento().isBefore(new LocalDate(1900, 1, 1))) {
-                addFieldError("fechaNacimiento", Soporte.Mensaje.FECHAINVALIDA);
+                addFieldError("fechaNacimiento", mensajes.FECHAINVALIDA);
             }
         }
         if (StringUtils.isBlank(usuario.getNick())) {
-            addFieldError("nick", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nick", mensajes.OBLIGATORIO);
         } else if (!controladorUsuario.nickDisponible(usuario)) {
-            addFieldError("nick", Soporte.Mensaje.getExiste("nombre de usuario"));
+            addFieldError("nick", mensajes.getExiste("nombre de usuario"));
         }
         if (StringUtils.isNotBlank(usuario.getClave()) || StringUtils.isNotBlank(usuario.getClave2())) {
             if (StringUtils.isBlank(usuario.getClave())) {
-                addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
+                addFieldError("clave", mensajes.INGRESECLAVE);
             }
             if (StringUtils.isBlank(usuario.getClave2())) {
-                addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
+                addFieldError("clave2", mensajes.REPITACLAVE);
             }
             if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
                 if (!usuario.getClave().equals(usuario.getClave2())) {
-                    addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+                    addFieldError("clave2", mensajes.CLAVENOCOINCIDE);
                 }
             }
         }
         Usuario original = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
         if (StringUtils.isBlank(usuario.getClaveOriginal())) {
-            addFieldError("claveOriginal", Soporte.Mensaje.INGRESECLAVEACTUAL);
+            addFieldError("claveOriginal", mensajes.INGRESECLAVEACTUAL);
         } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(original.getClave())) {
-            addFieldError("claveOriginal", Soporte.Mensaje.CLAVEINGRESADAMAL);
+            addFieldError("claveOriginal", mensajes.CLAVEINGRESADAMAL);
             usuario.setClaveOriginal("");
         }
         if (StringUtils.isBlank(usuario.getRespuestaSecreta())) {
-            addFieldError("respuestaSecreta", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("respuestaSecreta", mensajes.OBLIGATORIO);
         }
         if (StringUtils.isBlank(usuario.getPreguntaSecreta())) {
-            addFieldError("preguntaSecreta", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("preguntaSecreta", mensajes.OBLIGATORIO);
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -215,16 +214,16 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public void validateLogin() {
         if (StringUtils.isBlank(usuario.getNick()) || StringUtils.isBlank(usuario.getClave())) {
-            addActionError(Soporte.Mensaje.ERRORVALIDAR);
+            addActionError(mensajes.ERRORVALIDAR);
         }
         if (hasErrors()) {
             codigo = 400;
         } else if (!controladorUsuario.iniciarSesion(controladorUsuario.getUsuario(usuario.getNick()), usuario.getClave())) {
             Usuario us = controladorUsuario.getUsuario(usuario.getNick());
             if (us != null && !us.esActivo()) {
-                addActionError(Soporte.Mensaje.getBajo(Soporte.Mensaje.USUARIO));
+                addActionError(mensajes.getBajo(mensajes.USUARIO));
             } else {
-                addActionError(Soporte.Mensaje.ERRORVALIDAR);
+                addActionError(mensajes.ERRORVALIDAR);
             }
             codigo = 400;
         }
@@ -269,10 +268,10 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public void validatePrimerLogin() {
         if (StringUtils.isBlank(usuario.getPreguntaSecreta())) {
-            addFieldError("preguntaSecreta", Soporte.Mensaje.SELECCIONEPREGUNTA);
+            addFieldError("preguntaSecreta", mensajes.SELECCIONEPREGUNTA);
         }
         if (StringUtils.isBlank(usuario.getRespuestaSecreta())) {
-            addFieldError("respuestaSecreta", Soporte.Mensaje.INGRESERESPUESTA);
+            addFieldError("respuestaSecreta", mensajes.INGRESERESPUESTA);
         }
         if (hasFieldErrors()) {
             codigo = 400;
@@ -288,14 +287,14 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public void validateRecuperarClave() {
         if (sesion.containsKey("respuesta_respondida") && (boolean) sesion.get("respuesta_respondida")) {
             if (StringUtils.isBlank(usuario.getClave())) {
-                addFieldError("clave", Soporte.Mensaje.INGRESECLAVE);
+                addFieldError("clave", mensajes.INGRESECLAVE);
             }
             if (StringUtils.isBlank(usuario.getClave2())) {
-                addFieldError("clave2", Soporte.Mensaje.REPITACLAVE);
+                addFieldError("clave2", mensajes.REPITACLAVE);
             }
             if (StringUtils.isNotBlank(usuario.getClave()) && StringUtils.isNotBlank(usuario.getClave2())) {
                 if (!usuario.getClave().equals(usuario.getClave2())) {
-                    addFieldError("clave2", Soporte.Mensaje.CLAVENOCOINCIDE);
+                    addFieldError("clave2", mensajes.CLAVENOCOINCIDE);
                 }
             }
         } else {
@@ -309,7 +308,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public String recuperarClave() {
         controladorUsuario.actualizarClave(usuario.getId(), usuario.getClave());
         sesion.remove("respuesta_respondida");
-        sesion.put("mensaje", Soporte.Mensaje.CLAVECAMBIADA);
+        sesion.put("mensaje", mensajes.CLAVECAMBIADA);
         sesion.remove("primeraVez");
         Usuario u = controladorUsuario.getUsuario(usuario.getId());
         sesion.put("idUsuario", u.getId());
@@ -329,7 +328,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
             sesion.put("mensaje", "Usted aun no respondio la pregunta secreta.");
             addFieldError(NONE, ERROR);
         } else if (!temp.getRespuestaSecreta().toLowerCase().equals(usuario.getRespuestaSecreta().toLowerCase())) {
-            sesion.put("mensaje", Soporte.Mensaje.RESPUESTANOVALIDA);
+            sesion.put("mensaje", mensajes.RESPUESTANOVALIDA);
             addFieldError(NONE, ERROR);
         }
         usuario = temp;
@@ -342,9 +341,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
 
     public void validateObtenerPregunta() {
         if (controladorUsuario.getUsuario(usuario.getNick()) == null) {
-            String mensaje = Soporte.Mensaje.NICKINCORRECTO;
-            addFieldError("nick", mensaje);
-            sesion.put("mensaje", mensaje);
+            String msj = mensajes.NICKINCORRECTO;
+            addFieldError("nick", msj);
+            sesion.put("mensaje", msj);
         }
     }
 
@@ -377,15 +376,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public List<Rol> getRolesTodos() {
         return rolesTodos;
     }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
-    }
-
+    
     public String getApellidoFiltro() {
         return apellidoFiltro;
     }

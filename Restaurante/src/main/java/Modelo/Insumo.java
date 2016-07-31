@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Spring.Mensajes;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import org.apache.commons.lang.WordUtils;
 import org.apache.struts2.json.annotations.JSON;
@@ -14,7 +15,7 @@ import org.joda.time.LocalDate;
  *
  * @author ang_2
  */
-public abstract class Insumo {
+public abstract class Insumo implements Mensajes {
 
     protected int id;
     protected CategoriaInsumo categoriaInsumo;
@@ -39,14 +40,14 @@ public abstract class Insumo {
         if (null == fechaAlta) {
             return null;
         }
-        return fechaAlta.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaAlta.toString(mensajes.FECHAJSON);
     }
 
     public String getfBaja() {
         if (null == fechaBaja) {
             return null;
         }
-        return fechaBaja.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaBaja.toString(mensajes.FECHAJSON);
     }
 
     @JSON(serialize = false)

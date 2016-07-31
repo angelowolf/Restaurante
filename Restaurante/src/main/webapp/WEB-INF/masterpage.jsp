@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <s:action name="alerta" namespace="/modal" executeResult="true">
-                                <s:param name="tipoAlerta"><%out.println(Soporte.Mensaje.TIPOINFO);%></s:param>
+                                <s:param name="tipoAlerta"><s:property value="#application.mensaje.TIPOINFO"/></s:param>
                             </s:action>
                         </div> 
                         <!-- /.col-xs-12 -->

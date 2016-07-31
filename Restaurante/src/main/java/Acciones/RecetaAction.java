@@ -39,7 +39,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
     private final List<CategoriaReceta> categorias;
     private List<Receta> lista;
     private List<AutoComplete> listaAC;
-    private String term, nombreFiltro;
+    private String term;
     private int categoriaRecetaFiltro;
 
     public RecetaAction() {
@@ -61,21 +61,21 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
 
     private void validar() {
         if (receta.getCategoriaReceta().getId() == -1) {
-            addFieldError("categoriaReceta.id", Soporte.Mensaje.SELECCIONECATEGORIARECETA);
+            addFieldError("categoriaReceta.id", mensajes.SELECCIONECATEGORIARECETA);
         }
         if (StringUtils.isBlank(receta.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorReceta.nombreDisponible(receta)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (idsIngredientes == null || idsIngredientes.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESEINSUMO);
+            addActionError(mensajes.INGRESEINSUMO);
         } else if (cantidadesIngredientes == null || cantidadesIngredientes.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+            addActionError(mensajes.INGRESECANTIDADUTILIZAR);
         } else {
             for (Float cadaCantidad : cantidadesIngredientes) {
                 if (cadaCantidad == null) {
-                    addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+                    addActionError(mensajes.INGRESECANTIDADUTILIZAR);
                     break;
                 }
             }
@@ -98,7 +98,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
     @Override
     public String postModificar() {
         controladorReceta.actualizar(receta, idsIngredientes, cantidadesIngredientes, opcionalIngredientesID, idsRecetas, opcionalRecetasID);
-        sesion.put("mensaje", Soporte.Mensaje.getModificada(Soporte.Mensaje.RECETA));
+        sesion.put("mensaje", mensajes.getModificada(mensajes.RECETA));
         return SUCCESS;
     }
 
@@ -109,7 +109,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
     @Override
     public String registrar() {
         controladorReceta.guardar(receta, idsIngredientes, cantidadesIngredientes, opcionalIngredientesID, idsRecetas, opcionalRecetasID);
-        sesion.put("mensaje", Soporte.Mensaje.getAgregada(Soporte.Mensaje.RECETA));
+        sesion.put("mensaje", mensajes.getAgregada(mensajes.RECETA));
         return SUCCESS;
     }
 
@@ -120,7 +120,7 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
     @Override
     public String eliminar() {
         controladorReceta.eliminar(receta);
-        sesion.put("mensaje", Soporte.Mensaje.getBaja(Soporte.Mensaje.RECETA));
+        sesion.put("mensaje", mensajes.getBaja(mensajes.RECETA));
         return SUCCESS;
     }
 
@@ -179,14 +179,6 @@ public class RecetaAction extends Accion implements ModelDriven<Receta>, CRUD {
 
     public void setOpcionalRecetasID(List<Integer> opcionalRecetasID) {
         this.opcionalRecetasID = opcionalRecetasID;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
     public int getCategoriaRecetaFiltro() {

@@ -7,6 +7,7 @@ package Modelo;
 
 import Notificacion.ISesion;
 import Soporte.Encriptar;
+import Spring.Mensajes;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ import org.joda.time.LocalDate;
  *
  * @author ang_2
  */
-public class Usuario {
+public class Usuario implements Mensajes {
 
     private int id;
     private String nombre, apellido, nick, clave, clave2, claveOriginal, telefono, direccion, fAlta, fBaja, fNacimiento;
@@ -65,21 +66,21 @@ public class Usuario {
         if (null == fechaAlta) {
             return null;
         }
-        return fechaAlta.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaAlta.toString(mensajes.FECHAJSON);
     }
 
     public String getfBaja() {
         if (null == fechaBaja) {
             return null;
         }
-        return fechaBaja.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaBaja.toString(mensajes.FECHAJSON);
     }
 
     public String getfNacimiento() {
         if (null == fechaNacimiento) {
             return null;
         }
-        return fechaNacimiento.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaNacimiento.toString(mensajes.FECHAJSON);
     }
 
     @JSON(serialize = false)
@@ -201,7 +202,7 @@ public class Usuario {
         return clave;
     }
 
-    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave")
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "clave")
     public void setClave(String clave) {
         this.clave = clave;
     }
@@ -214,7 +215,7 @@ public class Usuario {
         this.roles = roles;
     }
 
-    @StringLengthFieldValidator(maxLength = "50", message = "La cantidad máxima de carácteres es de 50", fieldName = "clave2")
+    @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "clave2")
     public String getClave2() {
         return clave2;
     }

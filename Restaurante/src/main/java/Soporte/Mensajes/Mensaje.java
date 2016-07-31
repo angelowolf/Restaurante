@@ -1,4 +1,4 @@
-package Soporte;
+package Soporte.Mensajes;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.Period;
@@ -10,90 +10,105 @@ import org.joda.time.format.PeriodFormatterBuilder;
  * @version 1.0
  * @created 28-ene-2016 08:44:28 p.m.
  */
-public class Mensaje {
+public abstract class Mensaje {
 
-    public static final String FECHAJSON = "dd/MM/yyyy";
-    public static final String FECHAHORAJSON = "dd/MM/yyyy HH:mm:ss";
+    protected String HACE;
+    protected String YEAR;
+    protected String YEARS;
+    protected String MASDE;
+    protected String MES;
+    protected String MESES;
+    protected String DIA;
+    protected String DIAS;
+    protected String HORA;
+    protected String HORAS;
+    protected String MINUTO;
+    protected String MINUTOS;
+    protected String SEGUNDO;
+    protected String SEGUNDOS;
+    protected String HACEUNINSTANTE;
+    // ***********************************************************************
+    public String FECHAJSON;
+    public String FECHAHORAJSON;
 
-    private static final String MODIFICADO = "El %s ha sido modificado con éxito.";
-    private static final String MODIFICADA = "La %s ha sido modificada con éxito.";
-    private static final String RECUPERADO = "El %s ha sido recuperado con éxito.";
-    private static final String RECUPERADA = "La %s ha sido recuperada con éxito.";
-    private static final String AGREGADO = "El %s ha sido agregado con éxito.";
-    private static final String AGREGADA = "La %s ha sido agregada con éxito.";
-    private static final String ELIMINADO = "El %s ha sido eliminado con éxito.";
-    private static final String ELIMINADA = "La %s ha sido eliminada con éxito.";
-    private static final String BAJA = "La %s ha sido dado de baja con éxito.";
-    private static final String BAJO = "El %s ha sido dado de baja con éxito.";
-    private static final String ELEXISTE = "Este %s ya está en uso.";
-    private static final String USADOPORUNA = "El %s está siendo utilizado por alguna %s, debe desvincularlas para continuar";
-    private static final String USADOPORUN = "El %s está siendo utilizado por algun %s, debe desvincularlos para continuar.";
-    private static final String USADAPORUNA = "La %s está siendo utilizada por alguna %s, debe desvincularlas para continuar.";
-    private static final String USADAPORUN = "La %s está siendo utilizada por algun %s, debe desvincularlos para continuar.";
-    private static final String USADOPORUNAAMBOS = "El %s está siendo utilizado por alguna %s, debe darla de baja o desvincularlas para continuar";
-    private static final String USADOPORUNAMBOS = "El %s está siendo utilizado por algun %s, debe darlo de baja o desvincularlos para continuar.";
-    private static final String USADAPORUNAAMBOS = "La %s está siendo utilizada por alguna %s, debe darla de baja o desvincularlas para continuar.";
-    private static final String USADAPORUNAMBOS = "La %s está siendo utilizada por algun %s, debe darlo de baja o desvincularlos para continuar.";
-    private static final String CODIGOYAENVIADO = "Ya se ha enviado un email con el código a la dirección ingresada. En %d minutos podra generar otro código.";
-    private static final String CUENTAAVISO = "Le recordamos que su suscripción actual está próxima a vencer. Vencerá el %s";
-    private static final String NOTIFICACIONINSUMO = "El insumo %s esta debajo del minimo";
-    public static final String PREGUNTADARBAJAEL = "¿Está seguro de que quiere dar de baja este %s?";
-    public static final String PREGUNTADARBAJALA = "¿Está seguro de que quiere dar de baja esta %s?";
-    public static final String PREGUNTARECUPERAREL = "¿Está seguro de que quiere recuperar este %s?";
-    public static final String PREGUNTARECUPERARLA = "¿Está seguro de que quiere recuperar esta %s?";
-    public static final String PREGUNTAELIMINAREL = "¿Está seguro de que quiere eliminar este %s?";
-    public static final String PREGUNTAELIMINARLA = "¿Está seguro de que quiere eliminar esta %s?";
+    protected String MODIFICADO;
+    protected String MODIFICADA;
+    protected String RECUPERADO;
+    protected String RECUPERADA;
+    protected String AGREGADO;
+    protected String AGREGADA;
+    protected String ELIMINADO;
+    protected String ELIMINADA;
+    protected String BAJA;
+    protected String BAJO;
+    protected String ELEXISTE;
+    protected String USADOPORUNA;
+    protected String USADOPORUN;
+    protected String USADAPORUNA;
+    protected String USADAPORUN;
+    protected String USADOPORUNAAMBOS;
+    protected String USADOPORUNAMBOS;
+    protected String USADAPORUNAAMBOS;
+    protected String USADAPORUNAMBOS;
+    protected String CODIGOYAENVIADO;
+    protected String NOTIFICACIONINSUMO;
+    public String PREGUNTADARBAJAEL;
+    public String PREGUNTADARBAJALA;
+    public String PREGUNTARECUPERAREL;
+    public String PREGUNTARECUPERARLA;
+    public String PREGUNTAELIMINAREL;
+    public String PREGUNTAELIMINARLA;
     //************************************************************************//
     //Nombre de clases...//
-    public static final String USUARIO = "Usuario";
-    public static final String INSUMO = "Insumo";
-    public static final String CATEGORIAINSUMO = "Categoría de Insumo";
-    public static final String NOTIFICACION = "Notificacion";
-    public static final String RECETA = "Receta";
-    public static final String CATEGORIARECETA = "Categoria Receta";
-    public static final String INSUMOELABORADO = "Insumo Elaborado";
-    public static final String NOMBRE = "nombre";
+    public String USUARIO;
+    public String INSUMO;
+    public String CATEGORIAINSUMO;
+    public String NOTIFICACION;
+    public String RECETA;
+    public String CATEGORIARECETA;
+    public String INSUMOELABORADO;
+    public String NOMBRE;
 
     //************************************************************************//
-    public static final String TIPOSUCCESS = "success";
-    public static final String TIPOINFO = "info";
-    public static final String TIPOWARNING = "warning";
-    public static final String TIPODANGER = "danger";
+    public String TIPOSUCCESS = "success";
+    public String TIPOINFO = "info";
+    public String TIPOWARNING = "warning";
+    public String TIPODANGER = "danger";
     //************************************************************************//
     //Mensajes de validacion//
-    public static final String INGRESECLAVE = "Ingrese una clave.";
-    public static final String INGRESECLAVEACTUAL = "Ingrese su clave actual.";
-    public static final String INGRESEPRECIO = "No se ha especificado el precio de compra de todos los insumos.";
-    public static final String INGRESEVALORPOSITIVO = "Ingrese un número positivo.";
-    public static final String INGRESERESPUESTA = "Ingrese una respuesta secreta.";
-    public static final String INGRESECANTIDADCOMPRADA = "No se ha especificado la cantidad comprada de todos los insumos.";
-    public static final String INGRESECANTIDADAJUSTADA = "No se ha especificado la cantidad real de todos los insumos seleccionados.";
-    public static final String INGRESEINSUMO = "Ingrese algun Insumo.";
-    public static final String INGRESECANTIDADUTILIZAR = "No se ha especificado la cantidad a utilizar de todos los insumos ingresados.";
-    public static final String OBLIGATORIO = "Este campo es obligatorio";
-    public static final String SELECCIONEUNIDADMEDIDA = "Seleccione una Unidad de Medida.";
-    public static final String SELECCIONEPREGUNTA = "Seleccione una pregunta secreta.";
-    public static final String SELECCIONECATEGORIAINSUMO = "Seleccione una categoría de insumo.";
-    public static final String SELECCIONEINSUMO = "Seleccione algun insumo.";
-    public static final String IDINVALIDO = "Id inválido.";
-    public static final String ERRORVALIDAR = "El Nombre de Usuario y/o la Contraseña son Incorrectos.";
-    public static final String REPITACLAVE = "Repita la clave.";
-    public static final String CLAVEINGRESADAMAL = "La clave ingresada no coincide con la anterior.";
-    public static final String CLAVENOCOINCIDE = "La clave no coincide.";
-    public static final String CLAVECAMBIADA = "Clave cambiada con éxito.";
-    public static final String CLAVERESETEADA = " La clave del usuario ha sido reseteada.";
-    public static final String RESPUESTANOVALIDA = "La respuesta ingresada no es correcta.";
-    public static final String NICKINCORRECTO = "El nombre de usuario no existe.";
-    public static final String COMPRAREGISTRADA = "La compra ha sido registrada con éxito.";
-    public static final String AJUSTEREALIZADO = "El ajuste ha sido realizado con éxito.";
-    public static final String NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
-    public static final String FECHAINVALIDA = "La Fecha ingresada no es válida.";
-    public static final String INGRESECANTIDADCONFECCIONAR = "Ingrese la cantidad a confeccionar.";
-    public static final String SELECCIONENOTIFICACION = "Seleecione alguna notificación.";
-    public static final String NOTIFICACIONESELIMINADAS = "Las notificaciones fueron elimindas con éxito.";
-    public static final String NOTIFICACIONESVISTAS = "Las notificaciones fueron marcadas como vistas con éxito.";
-    public static final String CONFECCIONREGISTRADA = "La confeccion fue registrada con éxito.";
-    public static final String SELECCIONECATEGORIARECETA = "Seleccione una categoría de receta.";
+    public String INGRESECLAVE;
+    public String INGRESECLAVEACTUAL;
+    public String INGRESEPRECIO;
+    public String INGRESEVALORPOSITIVO;
+    public String INGRESERESPUESTA;
+    public String INGRESECANTIDADCOMPRADA;
+    public String INGRESECANTIDADAJUSTADA;
+    public String INGRESEINSUMO;
+    public String INGRESECANTIDADUTILIZAR;
+    public String OBLIGATORIO;
+    public String SELECCIONEUNIDADMEDIDA;
+    public String SELECCIONEPREGUNTA;
+    public String SELECCIONECATEGORIAINSUMO;
+    public String SELECCIONEINSUMO;
+    public String IDINVALIDO;
+    public String ERRORVALIDAR;
+    public String REPITACLAVE;
+    public String CLAVEINGRESADAMAL;
+    public String CLAVENOCOINCIDE;
+    public String CLAVECAMBIADA;
+    public String CLAVERESETEADA;
+    public String RESPUESTANOVALIDA;
+    public String NICKINCORRECTO;
+    public String COMPRAREGISTRADA;
+    public String AJUSTEREALIZADO;
+    public String NOTIFICACIONVISTA;
+    public String FECHAINVALIDA;
+    public String INGRESECANTIDADCONFECCIONAR;
+    public String SELECCIONENOTIFICACION;
+    public String NOTIFICACIONESELIMINADAS;
+    public String NOTIFICACIONESVISTAS;
+    public String CONFECCIONREGISTRADA;
+    public String SELECCIONECATEGORIARECETA;
 
     /**
      * Crea un mensaje con el tiempo pasado por parametro. "Ya se ha enviado un
@@ -103,20 +118,8 @@ public class Mensaje {
      * @param arg El tiempo.
      * @return EL mensaje.
      */
-    public static String getCodigoYaEnviado(long arg) {
+    public String getCodigoYaEnviado(long arg) {
         return String.format(CODIGOYAENVIADO, arg);
-    }
-
-    /**
-     * Crea un mensaje que notifica que la cuenta esta proxima a vencer. "Le
-     * recordamos que su suscripción actual está próxima a vencer. Vencera el
-     * %s"
-     *
-     * @param arg La fecha que vencera.
-     * @return El mensaje.
-     */
-    public static String getAviso(String arg) {
-        return String.format(CUENTAAVISO, arg);
     }
 
     /**
@@ -126,7 +129,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getModificado(String arg) {
+    public String getModificado(String arg) {
         return String.format(MODIFICADO, arg);
     }
 
@@ -137,7 +140,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getModificada(String arg) {
+    public String getModificada(String arg) {
         return String.format(MODIFICADA, arg);
     }
 
@@ -148,7 +151,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getAgregado(String arg) {
+    public String getAgregado(String arg) {
         return String.format(AGREGADO, arg);
     }
 
@@ -159,7 +162,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getAgregada(String arg) {
+    public String getAgregada(String arg) {
         return String.format(AGREGADA, arg);
     }
 
@@ -170,7 +173,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getEliminado(String arg) {
+    public String getEliminado(String arg) {
         return String.format(ELIMINADO, arg);
     }
 
@@ -181,7 +184,7 @@ public class Mensaje {
      * @param arg El objeto.
      * @return El mensaje.
      */
-    public static String getEliminada(String arg) {
+    public String getEliminada(String arg) {
         return String.format(ELIMINADA, arg);
     }
 
@@ -192,7 +195,7 @@ public class Mensaje {
      * @param arg El objeto usado.
      * @return El mensaje.
      */
-    public static String getExiste(String arg) {
+    public String getExiste(String arg) {
         return String.format(ELEXISTE, arg);
     }
 
@@ -205,7 +208,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadoPorUnaDesvincular(String arg, String arg2) {
+    public String getUsadoPorUnaDesvincular(String arg, String arg2) {
         return String.format(USADOPORUNA, arg, arg2);
     }
 
@@ -218,7 +221,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadaPorUnaDesvincular(String arg, String arg2) {
+    public String getUsadaPorUnaDesvincular(String arg, String arg2) {
         return String.format(USADAPORUNA, arg, arg2);
     }
 
@@ -231,7 +234,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadoPorUnDesvincular(String arg, String arg2) {
+    public String getUsadoPorUnDesvincular(String arg, String arg2) {
         return String.format(USADOPORUN, arg, arg2);
     }
 
@@ -244,7 +247,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadaPorUnDesvincular(String arg, String arg2) {
+    public String getUsadaPorUnDesvincular(String arg, String arg2) {
         return String.format(USADAPORUN, arg, arg2);
     }
 
@@ -257,7 +260,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadoPorUnaAmbos(String arg, String arg2) {
+    public String getUsadoPorUnaAmbos(String arg, String arg2) {
         return String.format(USADOPORUNAAMBOS, arg, arg2);
     }
 
@@ -270,7 +273,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadaPorUnaAmbos(String arg, String arg2) {
+    public String getUsadaPorUnaAmbos(String arg, String arg2) {
         return String.format(USADAPORUNAAMBOS, arg, arg2);
     }
 
@@ -283,7 +286,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadoPorUnAmbos(String arg, String arg2) {
+    public String getUsadoPorUnAmbos(String arg, String arg2) {
         return String.format(USADOPORUNAMBOS, arg, arg2);
     }
 
@@ -296,7 +299,7 @@ public class Mensaje {
      * @param arg2 Quien usa al objeto.
      * @return El mensaje.
      */
-    public static String getUsadaPorUnAmbos(String arg, String arg2) {
+    public String getUsadaPorUnAmbos(String arg, String arg2) {
         return String.format(USADAPORUNAMBOS, arg, arg2);
     }
 
@@ -307,7 +310,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getPreguntaDarBajaEl(String arg) {
+    public String getPreguntaDarBajaEl(String arg) {
         return String.format(PREGUNTADARBAJAEL, arg);
     }
 
@@ -318,7 +321,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getPreguntaDarBajaLa(String arg) {
+    public String getPreguntaDarBajaLa(String arg) {
         return String.format(PREGUNTADARBAJALA, arg);
     }
 
@@ -329,7 +332,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getPreguntaEliminarEl(String arg) {
+    public String getPreguntaEliminarEl(String arg) {
         return String.format(PREGUNTAELIMINAREL, arg);
     }
 
@@ -340,7 +343,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getPreguntaEliminarLa(String arg) {
+    public String getPreguntaEliminarLa(String arg) {
         return String.format(PREGUNTAELIMINARLA, arg);
     }
 
@@ -351,7 +354,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getPreguntaRecuperarLa(String arg) {
+    public String getPreguntaRecuperarLa(String arg) {
         return String.format(PREGUNTARECUPERARLA, arg);
     }
 
@@ -362,7 +365,7 @@ public class Mensaje {
      *  * @param arg
      * @return
      */
-    public static String getPreguntaRecuperarEl(String arg) {
+    public String getPreguntaRecuperarEl(String arg) {
         return String.format(PREGUNTARECUPERAREL, arg);
     }
 
@@ -372,7 +375,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getNotificacionInsumo(String nombre) {
+    public String getNotificacionInsumo(String nombre) {
         return String.format(NOTIFICACIONINSUMO, nombre);
     }
 
@@ -382,7 +385,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getBaja(String arg) {
+    public String getBaja(String arg) {
         return String.format(BAJA, arg);
     }
 
@@ -392,7 +395,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getBajo(String arg) {
+    public String getBajo(String arg) {
         return String.format(BAJO, arg);
     }
 
@@ -402,7 +405,7 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getRecuperado(String arg) {
+    public String getRecuperado(String arg) {
         return String.format(RECUPERADO, arg);
     }
 
@@ -412,36 +415,36 @@ public class Mensaje {
      * @param arg
      * @return
      */
-    public static String getRecuperada(String arg) {
+    public String getRecuperada(String arg) {
         return String.format(RECUPERADA, arg);
     }
 
-    public static String getFechaHumana(LocalDateTime fechaOriginal) {
+    public String getFechaHumana(LocalDateTime fechaOriginal) {
         LocalDateTime ahora = new LocalDateTime();
         Period period = new Period(fechaOriginal, ahora);
-        StringBuilder cantidad = new StringBuilder("hace ");
+        StringBuilder cantidad = new StringBuilder(HACE);
 
         if (period.getYears() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendYears().appendSuffix(" año", " años")
+                    .appendYears().appendSuffix(YEAR, YEARS)
                     .printZeroNever()
                     .toFormatter();
-            cantidad.append("mas de ");
+            cantidad.append(MASDE);
             cantidad.append(formatter.print(period));
             return cantidad.toString();
         }
         if (period.getMonths() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendMonths().appendSuffix(" mes", " meses")
+                    .appendMonths().appendSuffix(MES, MESES)
                     .printZeroNever()
                     .toFormatter();
-            cantidad.append("mas de ");
+            cantidad.append(MASDE);
             cantidad.append(formatter.print(period));
             return cantidad.toString();
         }
         if (period.getDays() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendDays().appendSuffix(" día", " días")
+                    .appendDays().appendSuffix(DIA, DIAS)
                     .printZeroNever()
                     .toFormatter();
             cantidad.append(formatter.print(period));
@@ -449,7 +452,7 @@ public class Mensaje {
         }
         if (period.getHours() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendHours().appendSuffix(" hora", " horas")
+                    .appendHours().appendSuffix(HORA, HORAS)
                     .printZeroNever()
                     .toFormatter();
             cantidad.append(formatter.print(period));
@@ -457,7 +460,7 @@ public class Mensaje {
         }
         if (period.getMinutes() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendMinutes().appendSuffix(" minuto", " minutos")
+                    .appendMinutes().appendSuffix(MINUTO, MINUTOS)
                     .printZeroNever()
                     .toFormatter();
             cantidad.append(formatter.print(period));
@@ -465,12 +468,12 @@ public class Mensaje {
         }
         if (period.getSeconds() >= 1) {
             PeriodFormatter formatter = new PeriodFormatterBuilder()
-                    .appendSeconds().appendSuffix(" segundo", " segundos")
+                    .appendSeconds().appendSuffix(SEGUNDO, SEGUNDOS)
                     .printZeroNever()
                     .toFormatter();
             cantidad.append(formatter.print(period));
             return cantidad.toString();
         }
-        return "hace un instante";
+        return HACEUNINSTANTE;
     }
 }//end Mensaje

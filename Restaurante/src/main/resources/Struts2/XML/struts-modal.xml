@@ -6,9 +6,6 @@
 <struts>
     <package name="modal" extends="struts-default" namespace="/modal">
         <!--COMIENZO ACCIONES-->       
-         <action name="modal" method="modal" class="Acciones.ModalAction">
-            <result name="success">/WEB-INF/modal/modal.jsp</result>
-        </action>
          <action name="alerta" method="alerta" class="Acciones.ModalAction">
             <result name="success">/WEB-INF/modal/alerta.jsp</result>
         </action>

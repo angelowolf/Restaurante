@@ -18,7 +18,7 @@ import java.util.List;
 public class NotificacionAction extends Accion implements ModelDriven<Notificacion> {
 
     private Notificacion notificacion;
-    private final Controlador.Implementacion.ControladorNotificacion controladorNotificacion = ControladorNotificacion.getControlador();
+    private final Controlador.Implementacion.ControladorNotificacion controladorNotificacion = new ControladorNotificacion();
     private List<Notificacion> lista;
     private int cantidad = 0;
     private List<Integer> ids;
@@ -41,7 +41,7 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
 
     public void validateEliminarSeleccion() {
         if (ids == null || ids.isEmpty()) {
-            addActionError(Soporte.Mensaje.SELECCIONENOTIFICACION);
+            addActionError(mensajes.SELECCIONENOTIFICACION);
             codigo = 400;
         }
     }
@@ -50,13 +50,13 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
         for (Integer id : ids) {
             controladorNotificacion.eliminar(new Notificacion(id));
         }
-        sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONESELIMINADAS);
+        sesion.put("mensaje", mensajes.NOTIFICACIONESELIMINADAS);
         return SUCCESS;
     }
 
     public void validateVistoSeleccion() {
         if (ids == null || ids.isEmpty()) {
-            addActionError(Soporte.Mensaje.SELECCIONENOTIFICACION);
+            addActionError(mensajes.SELECCIONENOTIFICACION);
             codigo = 400;
         }
     }
@@ -65,19 +65,19 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
         for (Integer id : ids) {
             controladorNotificacion.marcarComoVisto(new Notificacion(id));
         }
-        sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONESVISTAS);
+        sesion.put("mensaje", mensajes.NOTIFICACIONESVISTAS);
         return SUCCESS;
     }
 
     public String eliminar() {
         controladorNotificacion.eliminar(notificacion);
-        sesion.put("mensaje", Soporte.Mensaje.getEliminada(Soporte.Mensaje.NOTIFICACION));
+        sesion.put("mensaje", mensajes.getEliminada(mensajes.NOTIFICACION));
         return SUCCESS;
     }
 
     public String visto() {
         controladorNotificacion.marcarComoVisto(notificacion);
-        sesion.put("mensaje", Soporte.Mensaje.NOTIFICACIONVISTA);
+        sesion.put("mensaje", mensajes.NOTIFICACIONVISTA);
         return SUCCESS;
     }
 

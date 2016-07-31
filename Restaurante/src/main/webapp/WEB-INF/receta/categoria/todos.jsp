@@ -58,13 +58,11 @@
         </display:column>
     </display:table>
 </div>
-
 <s:include value="/WEB-INF/receta/categoria/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/receta/categoria/modalVer.jsp"/>
-
-<s:action name="modal" namespace="/modal" executeResult="true">
-    <s:param name="modalId">modal-eliminar-categoria-receta</s:param>
-    <s:param name="titulo">Eliminar <%out.println(Soporte.Mensaje.CATEGORIARECETA);%></s:param>
-    <s:param name="mensaje"><%out.println(Soporte.Mensaje.getPreguntaEliminarLa(Soporte.Mensaje.CATEGORIARECETA));%></s:param>
+<s:set var="objeto" value="#application.mensaje.CATEGORIARECETA"/>
+<s:include value="/WEB-INF/modal/modal.jsp">
+    <s:param name="titulo">Eliminar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">categoria</s:param>
-</s:action>
+</s:include>

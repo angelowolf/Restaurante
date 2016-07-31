@@ -11,7 +11,6 @@ import Modelo.InsumoElaborado;
 import Modelo.UnidadMedida;
 import Soporte.AutoComplete;
 import Soporte.InsumoBrutoVista;
-import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     private List<InsumoElaborado> lista;
     private final IControladorInsumoElaborado controladorInsumoElaborado;
     private final List<UnidadMedida> unidades;
-    private String nombreFiltro, term;
+    private String term;
     private List<AutoComplete> listaAC;
     private List<Integer> idUtilizar;
     private List<Float> cantidadUtilizar;
@@ -45,7 +44,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
 
     public void validateConfeccionar() {
         if (cantidadConfeccionarInsumo <= 0) {
-            addFieldError("cantidadConfeccionarInsumo", Soporte.Mensaje.INGRESECANTIDADCONFECCIONAR);
+            addFieldError("cantidadConfeccionarInsumo", mensajes.INGRESECANTIDADCONFECCIONAR);
             codigo = 400;
         }
 
@@ -53,7 +52,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
 
     public String confeccionar() {
         controladorInsumoElaborado.confeccionar(insumoElaborado, cantidadConfeccionarInsumo);
-        sesion.put("mensaje", Soporte.Mensaje.CONFECCIONREGISTRADA);
+        sesion.put("mensaje", mensajes.CONFECCIONREGISTRADA);
         return SUCCESS;
     }
 
@@ -74,27 +73,27 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
 
     public void validatePostModificar() {
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
-            addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("unidad", mensajes.OBLIGATORIO);
         }
         if (insumoElaborado.getStock().getCantidadMinima() < 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadMinima", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumoElaborado.getStock().getCantidadMinima() == 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("stock.cantidadMinima", mensajes.OBLIGATORIO);
         }
 
         if (idUtilizar == null || idUtilizar.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESEINSUMO);
+            addActionError(mensajes.INGRESEINSUMO);
         } else if (cantidadUtilizar == null || cantidadUtilizar.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+            addActionError(mensajes.INGRESECANTIDADCOMPRADA);
         } else {
             for (Float cadaCantidad : cantidadUtilizar) {
                 if (cadaCantidad == null) {
-                    addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+                    addActionError(mensajes.INGRESECANTIDADUTILIZAR);
                     break;
                 }
             }
@@ -108,39 +107,39 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     @Override
     public String postModificar() {
         controladorInsumoElaborado.actualizar(insumoElaborado, idUtilizar, cantidadUtilizar);
-        sesion.put("mensaje", Mensaje.getModificado(Mensaje.INSUMOELABORADO));
+        sesion.put("mensaje", mensajes.getModificado(mensajes.INSUMOELABORADO));
         return SUCCESS;
     }
 
     public void validateRegistrar() {
 
         if (StringUtils.isBlank(insumoElaborado.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorInsumoElaborado.nombreDisponible(insumoElaborado)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (insumoElaborado.getUnidadMedida() == null) {
-            addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("unidad", mensajes.OBLIGATORIO);
         }
         if (insumoElaborado.getStock().getCantidadActual() < 0) {
-            addFieldError("stock.cantidadActual", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadActual", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumoElaborado.getStock().getCantidadActual() == 0) {
-            addFieldError("stock.cantidadActual", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("stock.cantidadActual", mensajes.OBLIGATORIO);
         }
         if (insumoElaborado.getStock().getCantidadMinima() < 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadMinima", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumoElaborado.getStock().getCantidadMinima() == 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("stock.cantidadMinima", mensajes.OBLIGATORIO);
         }
 
         if (idUtilizar == null || idUtilizar.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESEINSUMO);
+            addActionError(mensajes.INGRESEINSUMO);
         } else if (cantidadUtilizar == null || cantidadUtilizar.isEmpty()) {
-            addActionError(Soporte.Mensaje.INGRESECANTIDADCOMPRADA);
+            addActionError(mensajes.INGRESECANTIDADCOMPRADA);
         } else {
             for (Float cadaCantidad : cantidadUtilizar) {
                 if (cadaCantidad == null) {
-                    addActionError(Soporte.Mensaje.INGRESECANTIDADUTILIZAR);
+                    addActionError(mensajes.INGRESECANTIDADUTILIZAR);
                     break;
                 }
             }
@@ -154,20 +153,20 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
     @Override
     public String registrar() {
         controladorInsumoElaborado.guardar(insumoElaborado, idUtilizar, cantidadUtilizar);
-        sesion.put("mensaje", Mensaje.getAgregado(Mensaje.INSUMOELABORADO));
+        sesion.put("mensaje", mensajes.getAgregado(mensajes.INSUMOELABORADO));
         return SUCCESS;
     }
 
     @Override
     public String eliminar() {
         controladorInsumoElaborado.eliminar(insumoElaborado);
-        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMOELABORADO));
+        sesion.put("mensaje", mensajes.getBajo(mensajes.INSUMOELABORADO));
         return SUCCESS;
     }
 
     public String recuperar() {
         controladorInsumoElaborado.recuperar(insumoElaborado);
-        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(Mensaje.INSUMOELABORADO));
+        sesion.put("mensaje", mensajes.getRecuperado(mensajes.INSUMOELABORADO));
         return SUCCESS;
     }
 
@@ -176,15 +175,7 @@ public class InsumoElaboradoAction extends Accion implements ModelDriven<InsumoE
         lista = controladorInsumoElaborado.buscar(nombreFiltro);
         return SUCCESS;
     }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
-    }
-
+    
     public InsumoElaborado getInsumoElaborado() {
         return insumoElaborado;
     }

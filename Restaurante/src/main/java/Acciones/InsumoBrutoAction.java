@@ -12,7 +12,6 @@ import Modelo.CategoriaInsumo;
 import Modelo.Insumo;
 import Modelo.InsumoBruto;
 import Modelo.UnidadMedida;
-import Soporte.Mensaje;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +37,6 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     private final List<CategoriaInsumo> categorias;
     private final List<UnidadMedida> unidades;
     private int categoriaInsumoFiltro;
-    private String nombreFiltro;
 
     private List<AutoComplete> listaAC;
     private int idCategoria;
@@ -77,21 +75,21 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
 
     public void validatePostModificar() {
         if (StringUtils.isBlank(insumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorInsumo.nombreDisponible(insumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (insumo.getUnidadMedida() == null) {
-            addFieldError("unidad", Soporte.Mensaje.SELECCIONEUNIDADMEDIDA);
+            addFieldError("unidad", mensajes.SELECCIONEUNIDADMEDIDA);
         }
         if (insumo.getPrecioUnidad() <= 0) {
-            addFieldError("precioUnidad", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("precioUnidad", mensajes.INGRESEVALORPOSITIVO);
         }
         if (insumo.getStock().getCantidadActual() < 0) {
-            addFieldError("stock.cantidadActual", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadActual", mensajes.INGRESEVALORPOSITIVO);
         }
         if (insumo.getStock().getCantidadMinima() < 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadMinima", mensajes.INGRESEVALORPOSITIVO);
         }
         this.clearMessages();
         if (hasFieldErrors()) {
@@ -102,38 +100,38 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     @Override
     public String postModificar() {
         controladorInsumo.actualizar(insumo);
-        sesion.put("mensaje", Mensaje.getModificado(Mensaje.INSUMO));
+        sesion.put("mensaje", mensajes.getModificado(mensajes.INSUMO));
         return SUCCESS;
     }
 
     public void validateRegistrar() {
         if (insumo.getCategoriaInsumo().getId() == -1) {
-            addFieldError("categoriaInsumo.id", Soporte.Mensaje.SELECCIONECATEGORIAINSUMO);
+            addFieldError("categoriaInsumo.id", mensajes.SELECCIONECATEGORIAINSUMO);
         }
         if (StringUtils.isBlank(insumo.getNombre())) {
-            addFieldError("nombre", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("nombre", mensajes.OBLIGATORIO);
         } else if (!controladorInsumo.nombreDisponible(insumo)) {
-            addFieldError("nombre", Soporte.Mensaje.getExiste(Soporte.Mensaje.NOMBRE));
+            addFieldError("nombre", mensajes.getExiste(mensajes.NOMBRE));
         }
         if (insumo.getUnidadMedida() == null) {
-            addFieldError("unidad", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("unidad", mensajes.OBLIGATORIO);
         }
         if (insumo.getPrecioUnidad() < 0) {
-            addFieldError("precioUnidad", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("precioUnidad", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumo.getPrecioUnidad() == 0) {
-            addFieldError("precioUnidad", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("precioUnidad", mensajes.OBLIGATORIO);
         }
 
         if (insumo.getStock().getCantidadActual() < 0) {
-            addFieldError("stock.cantidadActual", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadActual", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumo.getStock().getCantidadActual() == 0) {
-            addFieldError("stock.cantidadActual", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("stock.cantidadActual", mensajes.OBLIGATORIO);
         }
 
         if (insumo.getStock().getCantidadMinima() < 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.INGRESEVALORPOSITIVO);
+            addFieldError("stock.cantidadMinima", mensajes.INGRESEVALORPOSITIVO);
         } else if (insumo.getStock().getCantidadMinima() == 0) {
-            addFieldError("stock.cantidadMinima", Soporte.Mensaje.OBLIGATORIO);
+            addFieldError("stock.cantidadMinima", mensajes.OBLIGATORIO);
         }
         this.clearMessages();
         if (hasFieldErrors()) {
@@ -144,17 +142,17 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     @Override
     public String registrar() {
         controladorInsumo.guardar(insumo);
-        sesion.put("mensaje", Mensaje.getAgregado(Mensaje.INSUMO));
+        sesion.put("mensaje", mensajes.getAgregado(mensajes.INSUMO));
         return SUCCESS;
     }
 
     public void validateEliminar() {
         switch (controladorInsumo.enUso(insumo)) {
             case 1:
-                addActionError(Soporte.Mensaje.getUsadoPorUnAmbos(Soporte.Mensaje.INSUMO, Soporte.Mensaje.INSUMOELABORADO));
+                addActionError(mensajes.getUsadoPorUnAmbos(mensajes.INSUMO, mensajes.INSUMOELABORADO));
                 break;
             case 2:
-                addActionError(Soporte.Mensaje.getUsadoPorUnaAmbos(Soporte.Mensaje.INSUMO, Soporte.Mensaje.RECETA));
+                addActionError(mensajes.getUsadoPorUnaAmbos(mensajes.INSUMO, mensajes.RECETA));
                 break;
         }
         if (hasErrors()) {
@@ -165,13 +163,13 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     @Override
     public String eliminar() {
         controladorInsumo.eliminar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.getBajo(Mensaje.INSUMO));
+        sesion.put("mensaje", mensajes.getBajo(mensajes.INSUMO));
         return SUCCESS;
     }
 
     public String recuperar() {
         controladorInsumo.recuperar(insumo);
-        sesion.put("mensaje", Soporte.Mensaje.getRecuperado(Mensaje.INSUMO));
+        sesion.put("mensaje", mensajes.getRecuperado(mensajes.INSUMO));
         return SUCCESS;
     }
 
@@ -208,14 +206,6 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
 
     public void setCategoriaInsumoFiltro(int categoriaInsumoFiltro) {
         this.categoriaInsumoFiltro = categoriaInsumoFiltro;
-    }
-
-    public String getNombreFiltro() {
-        return nombreFiltro;
-    }
-
-    public void setNombreFiltro(String nombreFiltro) {
-        this.nombreFiltro = nombreFiltro;
     }
 
     @Override

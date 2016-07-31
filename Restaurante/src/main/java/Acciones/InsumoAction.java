@@ -6,7 +6,6 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorInsumo;
-import Controlador.Implementacion.ControladorReceta;
 import Controlador.Interface.IControladorInsumo;
 import Modelo.Insumo;
 import Modelo.InsumoBruto;
@@ -23,7 +22,7 @@ import org.apache.log4j.Logger;
 public class InsumoAction extends Accion implements ModelDriven<Insumo> {
 
     private static final Logger LOGGER = Logger.getLogger(InsumoAction.class);
-    private IControladorInsumo controladorInsumo = new ControladorInsumo();
+    private final IControladorInsumo controladorInsumo = new ControladorInsumo();
     private List<Insumo> lista;
     private List<AutoComplete> listaAC;
     private String term;

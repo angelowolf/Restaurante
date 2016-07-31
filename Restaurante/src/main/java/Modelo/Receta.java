@@ -5,10 +5,10 @@
  */
 package Modelo;
 
+import Spring.Mensajes;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.struts2.json.annotations.JSON;
@@ -18,7 +18,7 @@ import org.joda.time.LocalDateTime;
  *
  * @author ang_2
  */
-public class Receta {
+public class Receta implements Mensajes {
 
     private int id;
     private String nombre, fAlta, fBaja;
@@ -82,7 +82,7 @@ public class Receta {
         if (null == fechaAlta) {
             return null;
         }
-        return fechaAlta.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaAlta.toString(mensajes.FECHAJSON);
     }
 
     public void setfAlta(String fAlta) {
@@ -93,7 +93,7 @@ public class Receta {
         if (null == fechaBaja) {
             return null;
         }
-        return fechaBaja.toString(Soporte.Mensaje.FECHAJSON);
+        return fechaBaja.toString(mensajes.FECHAJSON);
     }
 
     public void setfBaja(String fBaja) {

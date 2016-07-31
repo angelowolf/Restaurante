@@ -129,7 +129,8 @@ public class Stock {
         LOGGER.info("Verificando Cantidad en Stock");
         if (this.cantidadActual - this.cantidadMinima <= 0) {
             LOGGER.info("Cantidad Verificada, Debajo del Minimo");
-            ControladorNotificacion.getControlador().notificarInsumoDebajoDelMinimo(insumo);
+            ControladorNotificacion cn = new ControladorNotificacion();
+            cn.notificarInsumoDebajoDelMinimo(insumo);
         }
     }
 
