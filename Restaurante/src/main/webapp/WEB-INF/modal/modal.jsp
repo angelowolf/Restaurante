@@ -16,12 +16,12 @@
                 <div class="row">
                     <div class="col-xs-6 text-left">
                         <button class="btn btn-default cancelar" data-dismiss="modal">
-                            Cancelar
+                            <s:text name="global.cancelar"/>
                         </button>
                     </div>
                     <div class="col-xs-6 text-right">
                         <button class="btn btn-warning confirmar">
-                            Aceptar
+                            <s:text name="global.aceptar"/>
                         </button>
                     </div>
                 </div>

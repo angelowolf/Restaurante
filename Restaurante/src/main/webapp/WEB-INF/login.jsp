@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ingreso al Sistema</title>
+        <title><s:text name="global.ingresosistema"/></title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,16 +27,16 @@
                                 <br />
                                 <form id="login-form" action="/login" method="POST">
                                     <div class="form-group">
-                                        <label for="nick">Nombre de Usuario</label>
-                                        <input class="form-control" type="text" id="nick" name="nick" placeholder="Tu Nombre de Usuario" required autocomplete="off" autofocus="autofocus" />
+                                        <label for="nick"><s:text name="global.nombreusuario"/></label>
+                                        <input class="form-control" type="text" id="nick" name="nick" placeholder="<s:text name="global.tunombreusuario"/>" required autocomplete="off" autofocus="autofocus" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="clave">Contraseña</label>
+                                        <label for="clave"><s:text name="global.clave"/></label>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" id="clave" name="clave" placeholder="Tu Contraseña" required autocomplete="off" />
+                                            <input class="form-control" type="password" id="clave" name="clave" placeholder="<s:text name="global.tuclave"/>" required autocomplete="off" />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-ruhaj" type="submit">
-                                                    Ingresar
+                                                    <s:text name="global.ingresar"/>
                                                     <i class="fa fa-chevron-right"></i>
                                                 </button>
                                             </div>
@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <small class="forgotpass">
                                             <i class="fa fa-bell fa-fw"></i>
-                                            <a id="recover-link" href="/recuperar?nick=">¿Olvidaste la contraseña?</a>
+                                            <a id="recover-link" href="/recuperar?nick="><s:text name="global.olvidasteclave"/></a>
                                         </small>
                                     </div>
                                 </form>

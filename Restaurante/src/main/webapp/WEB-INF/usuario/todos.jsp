@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-xs-6 text-left">
-        <h2 class="pull-left">Listado de Usuarios</h2>
+        <h2 class="pull-left"><s:text name="global.listadousuarios"/></h2>
     </div>
     <div class="col-xs-6 text-right">
         <br />
@@ -20,16 +20,16 @@
             <div class="col-xs-12">
                 <s:form class="form-inline" action="listar" namespace="/usuario" id="formulario-buscar">
                     <div class="form-group">
-                        <label for="nombre" class="control-label">Nombre</label>
-                        <input value='<s:property value="nombreFiltro"/>'  type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
+                        <label for="nombre" class="control-label"><s:text name="global.nombre"/></label>
+                        <input value='<s:property value="nombreFiltro"/>'  type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="<s:text name="global.nombre"/>" maxlenght="100" autocomplete="off" autofocus="autofocus" />
                     </div>
                     <div class="form-group">
-                        <label for="apellido" class="control-label">Apellido</label>
-                        <input value='<s:property value="apellidoFiltro"/>' type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Apellido" maxlenght="100" autocomplete="off"/>
+                        <label for="apellido" class="control-label"><s:text name="global.apellido"/></label>
+                        <input value='<s:property value="apellidoFiltro"/>' type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="<s:text name="global.apellido"/>" maxlenght="100" autocomplete="off"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="rolesSeleccionados">Roles</label>
-                        <select class="selectpicker show-tick show-menu-arrow" id="rolesSeleccionados" name="rolesSeleccionados" multiple title="Selecciona uno o mas roles..." data-selected-text-format="count > 3" data-actions-box="true">
+                        <label class="control-label" for="rolesSeleccionados"><s:text name="global.roles"/></label>
+                        <select class="selectpicker show-tick show-menu-arrow" id="rolesSeleccionados" name="rolesSeleccionados" multiple title="<s:text name="global.seleccioneroles"/>" data-selected-text-format="count > 3" data-actions-box="true">
                             <s:iterator var="cadaRol" value="rolesTodos">
                                 <option <s:if test="%{#cadaRol in rolesSeleccionados}"> selected</s:if> value='<s:property value="%{#cadaRol}"/>'>
                                     <s:property value="%{#cadaRol}" /> 
@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-ruhaj pull-right">
-                        Buscar
+                        <s:text name="global.buscar"/>
                         <i class="fa fa-search fa-fw"></i>
                     </button>
                 </s:form>
@@ -57,14 +57,14 @@
             </div>
         </display:setProperty>
 
-        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="nick" title="Nombre de Usuario" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="telefono" title="Teléfono de Contacto" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="roles" title="Roles Asignados" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
-        <display:column title="Acciones" class="col-xs-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column sortable="true" property="nombre" titleKey="global.nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="apellido" titleKey="global.apellido" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="nick" titleKey="global.nombreusuario" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="telefono" titleKey="global.telefono" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="roles" titleKey="global.roles" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="fechaAlta" titleKey="global.falta" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="fechaBaja" titleKey="global.fbaja" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
+        <display:column titleKey="global.acciones" class="col-xs-2 text-center-all" headerClass="table-header-ruhaj">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">
@@ -100,13 +100,13 @@
 <s:set var="objeto" value="#application.mensaje.USUARIO"/>
 <s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-baja-usuario</s:param>
-    <s:param name="titulo">Dar de Baja <s:property value="#objeto"/></s:param>
+    <s:param name="titulo"><s:text name="global.dardebaja"/> <s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaDarBajaEl(#objeto)"/></s:param>
     <s:param name="modelo">usuario</s:param>
 </s:include>
 <s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-recuperar-usuario</s:param>
-    <s:param name="titulo">Recuperar <s:property value="#objeto"/></s:param>
+    <s:param name="titulo"><s:text name="global.recuperar"/> <s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value='#application.mensaje.getPreguntaRecuperarEl(#objeto)'/></s:param>
     <s:param name="modelo">usuario</s:param>
 </s:include>

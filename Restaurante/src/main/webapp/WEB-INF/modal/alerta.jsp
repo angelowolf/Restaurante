@@ -6,13 +6,13 @@
         <s:if test="tipoAlerta == 'info'" >
             <strong>
                 <i class="fa fa-info-circle"></i>
-                &nbsp;&nbsp;Información:&nbsp;
+                &nbsp;&nbsp;<s:text name="global.informacion"/>:&nbsp;
             </strong>
         </s:if>
         <s:if test="tipoAlerta == 'danger'" >
             <strong>
                 <i class="fa fa-exclamation-circle"></i>
-                &nbsp;&nbsp;Ocurrion un Problema:&nbsp;
+                &nbsp;&nbsp;<s:text name="global.ocurriounproblema"/>:&nbsp;
             </strong>
         </s:if>
         <s:property value="mensaje"/>

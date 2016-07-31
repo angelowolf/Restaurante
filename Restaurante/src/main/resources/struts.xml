@@ -3,11 +3,17 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
+<!--IMPORTANTE-->
+
+<!--para cambiar de idioma toda las cosas, cambiar el de abajo por el correspondiente
+en ContextListener a la clase correcta, y en el applicationContext por el bean correcto
+se agrega en los global_ una propiedad global.XXXX y en las JSP se agrega <s:text name"global.XXXX"/>-->
+
 <struts>
     <constant name="struts.ui.theme" value="simple" />
     <constant name="struts.devMode" value="false"/> 
     <!--MENSAJES DE CONVERSION DE DATOS PRIMITIVOS-->
-    <constant name="struts.custom.i18n.resources" value="struts-mensajes" />
+    <constant name="struts.custom.i18n.resources" value="global_es" />
     <!--quitar action de url-->
     <constant name="struts.action.extension" value="," />
     <constant name="struts.action.excludePattern" value="/js/.*,/css/.*,/imagenes/.*,/wsnotificacion" />
