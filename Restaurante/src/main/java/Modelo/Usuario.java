@@ -52,6 +52,26 @@ public class Usuario implements Mensajes {
         this.roles = rol;
     }
 
+    public Usuario(Usuario usuario) {
+        this.nombre = usuario.getNombre();
+        this.apellido = usuario.getApellido();
+        this.clave = usuario.getClave();
+        this.clave2 = usuario.getClave2();
+        this.claveOriginal = usuario.getClaveOriginal();
+        this.direccion = usuario.getDireccion();
+        this.documento = usuario.getDocumento();
+        this.fechaAlta = usuario.getFechaAlta();
+        this.fechaBaja = usuario.getFechaBaja();
+        this.fechaNacimiento = usuario.getFechaNacimiento();
+        this.id = usuario.getId();
+        this.nick = usuario.getNick();
+        this.preguntaSecreta = usuario.getPreguntaSecreta();
+        this.respuestaSecreta = usuario.getRespuestaSecreta();
+        this.roles = usuario.getRoles();
+        this.telefono = usuario.getTelefono();
+        System.out.println(usuario.getRoles().size());
+    }
+
     public void agregarSesion(ISesion sesion) {
         LOGGER.debug("Agregando sesion al hash de sesiones. key: " + sesion.getKey());
         LOGGER.debug("****************FIN LOGIN*******************************");
@@ -227,6 +247,10 @@ public class Usuario implements Mensajes {
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nick=" + nick + ", clave=" + clave + ", clave2=" + clave2 + ", claveOriginal=" + claveOriginal + ", telefono=" + telefono + ", direccion=" + direccion + ", documento=" + documento + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaNacimiento=" + fechaNacimiento + ", roles=" + roles + ", preguntaSecreta=" + preguntaSecreta + ", respuestaSecreta=" + respuestaSecreta + '}';
+    }
+
+    public String getNombreCompleto() {
+        return String.format("%s %s", this.getNombre(), this.getApellido());
     }
 
     /**

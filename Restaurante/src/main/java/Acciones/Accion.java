@@ -5,6 +5,7 @@
  */
 package Acciones;
 
+import Modelo.Usuario;
 import Spring.Mensajes;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,7 +20,14 @@ public abstract class Accion extends ActionSupport implements Mensajes {
     protected final Map<String, Object> sesion = ActionContext.getContext().getSession();
     protected int codigo = 200;
     protected String nombreFiltro;
-    
+    protected Usuario usuarioSesion;
+
+    public Accion() {
+        if (sesion.containsKey("usuario")) {
+            usuarioSesion = (Usuario) sesion.get("usuario");
+        }
+    }
+
     public int getCodigo() {
         return codigo;
     }

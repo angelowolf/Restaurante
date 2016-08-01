@@ -4,12 +4,6 @@
 <tiles:importAttribute name="stylesheet" />
 <tiles:importAttribute name="javascript" />
 <tiles:importAttribute name="main" />
-<%
-    HttpSession sesion = request.getSession();
-    if (null == sesion.getAttribute("idUsuario")) {
-        response.sendRedirect("/logear");
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +22,7 @@
     </head>
 
     <body>
-        <s:hidden value="%{#session.idUsuario}" id="idUsuarioHidden"/>
+        <s:hidden value="%{#session.usuario.id}" id="idUsuarioHidden"/>
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-ruhaj navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -39,7 +33,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>
-                            <s:property value="%{#session.nombreCompletoUsuario}" />
+                            <s:property value="%{#session.usuario.nombreCompleto}" />
                             <i class="fa fa-caret-down fa-fw"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">

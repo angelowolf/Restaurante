@@ -230,18 +230,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     }
 
     public String login() {
-        sesion.remove("primeraVez");
         Usuario u = controladorUsuario.getUsuario(usuario.getNick());
-        sesion.put("idUsuario", u.getId());
-        sesion.put("nombreCompletoUsuario", String.format("%s %s", u.getNombre(), u.getApellido()));
-        sesion.put("rolUsuario", u.esResponsableUsuario());
-        sesion.put("rolMozo", u.esMozo());
-        sesion.put("rolCocina", u.esResponsableCocina());
-        sesion.put("rolStock", u.esResponsableStock());
-        sesion.put("rolCaja", u.esResponsableCaja());
-        sesion.put("rolMesa", u.esResponsableMesa());
+        sesion.put("usuario", new Usuario(u));
         if (u.esPrimerLogin()) {
-            sesion.put("primeraVez", true);
             return "primeravez";
         } else {
             return SUCCESS;
@@ -249,16 +240,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     }
 
     public String logout() {
-        sesion.remove("idUsuario");
-        sesion.remove("rolUsuario");
-        sesion.remove("rolMozo");
-        sesion.remove("rolCocina");
-        sesion.remove("rolStock");
-        sesion.remove("rolMesa");
-        sesion.remove("rolCaja");
-        sesion.remove("mensaje");
-        sesion.remove("primeraVez");
-        sesion.remove("nombreCompletoUsuario");
+        sesion.remove("usuario");
         return SUCCESS;
     }
 
@@ -279,8 +261,9 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     }
 
     public String primerLogin() {
-        controladorUsuario.actualizar((int) sesion.get("idUsuario"), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
-        sesion.remove("primeraVez");
+        controladorUsuario.actualizar(usuarioSesion.getId(), usuario.getPreguntaSecreta(), usuario.getRespuestaSecreta());
+        Usuario u = controladorUsuario.getUsuario(usuarioSesion.getId());
+        sesion.put("usuario", new Usuario(u));
         return SUCCESS;
     }
 
@@ -309,16 +292,8 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         controladorUsuario.actualizarClave(usuario.getId(), usuario.getClave());
         sesion.remove("respuesta_respondida");
         sesion.put("mensaje", mensajes.CLAVECAMBIADA);
-        sesion.remove("primeraVez");
         Usuario u = controladorUsuario.getUsuario(usuario.getId());
-        sesion.put("idUsuario", u.getId());
-        sesion.put("nombreCompletoUsuario", String.format("%s %s", u.getNombre(), u.getApellido()));
-        sesion.put("rolUsuario", u.esResponsableUsuario());
-        sesion.put("rolMozo", u.esMozo());
-        sesion.put("rolCocina", u.esResponsableCocina());
-        sesion.put("rolStock", u.esResponsableStock());
-        sesion.put("rolCaja", u.esResponsableCaja());
-        sesion.put("rolMesa", u.esResponsableMesa());
+        sesion.put("usuario", new Usuario(u));
         return SUCCESS;
     }
 
@@ -376,7 +351,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
     public List<Rol> getRolesTodos() {
         return rolesTodos;
     }
-    
+
     public String getApellidoFiltro() {
         return apellidoFiltro;
     }
