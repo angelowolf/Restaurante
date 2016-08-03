@@ -2,7 +2,7 @@
 <li id="navbar-logo">
     <img src="/imagenes/favicon.ico">
 </li>
-<s:if test="#session.rolUsuario">
+<s:if test="#session.usuario.esResponsableUsuario()">
     <li>
         <a href="#">
             <i class="fa fa-users fa-fw"></i> Usuarios
@@ -22,7 +22,7 @@
         </ul>
     </li>
 </s:if>
-<s:if test="#session.rolStock">
+<s:if test="#session.usuario.esResponsableStock()">
     <li>
         <a href="#">
             <i class="fa fa-shopping-bag fa-fw"></i> Almacén
@@ -82,7 +82,7 @@
         </ul>
     </li>
 </s:if>
-<s:if test="#session.rolCocina">
+<s:if test="#session.usuario.esResponsableCocina()">
     <li>
         <a href="#"><i class="fa fa-fire fa-fw"></i> Cocina<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
@@ -143,9 +143,9 @@
         </ul>
     </li>
 </s:if>
-<s:if test="#session.rolCaja">
+<s:if test="#session.usuario.esResponsableCaja()">
 </s:if>
-<s:if test="#session.rolMesa">
+<s:if test="#session.usuario.esResponsableMesa()">
 </s:if>
-<s:if test="#session.rolMozo">
+<s:if test="#session.usuario.esMozo()">
 </s:if>

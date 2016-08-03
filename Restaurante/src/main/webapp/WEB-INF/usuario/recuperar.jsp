@@ -55,7 +55,7 @@
                         </form>
                     </div>
                     <s:action name="alerta" namespace="/modal" executeResult="true">
-                        <s:param name="tipoAlerta"><%out.println(Soporte.Mensaje.TIPODANGER);%></s:param>
+                        <s:param name="tipoAlerta"><s:property value="#application.mensaje.TIPODANGER"/></s:param>
                     </s:action>
                 </div>
             </div>

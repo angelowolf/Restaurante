@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Notificacion;
 
+import Modelo.Usuario;
 import Notificacion.TipoMensaje;
 import Spring.Mensajes;
 import org.joda.time.LocalDateTime;
+import org.json.JSONObject;
 
 /**
  *
  * @author ang_2
  */
-public class Notificacion implements Mensajes{
+public class Notificacion implements Mensajes {
 
     private int id;
     private String mensaje;
@@ -99,5 +101,12 @@ public class Notificacion implements Mensajes{
 
     public int getIdInforme() {
         return 0;
+    }
+
+    public void crearMensaje(JSONObject json) {
+        json.append("id", this.getId());
+        json.append("tipo", this.getTipoMensaje());
+        json.append("mensaje", this.getMensaje());
+        json.append("fecha", this.getFecha2());
     }
 }

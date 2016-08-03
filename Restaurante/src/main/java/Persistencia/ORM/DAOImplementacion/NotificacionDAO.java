@@ -6,8 +6,8 @@
 package Persistencia.ORM.DAOImplementacion;
 
 import java.util.List;
-import Modelo.Notificacion;
-import Modelo.NotificacionStock;
+import Notificacion.Notificacion;
+import Notificacion.NotificacionStock;
 import Persistencia.ORM.Util.GenericDAO;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;

@@ -5,6 +5,7 @@
  */
 package Interceptores;
 
+import Modelo.Usuario;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -35,11 +36,12 @@ public class InterceptorAcceso extends AbstractInterceptor {
         //Si es una accion publica se ejecuta
         if (actionsSinFiltrar.contains(actionActual)) {
             return actionInvocation.invoke();
-        } else if (!actionInvocation.getInvocationContext().getSession().containsKey("idUsuario")) {
+        } else if (!actionInvocation.getInvocationContext().getSession().containsKey("usuario")) {
             //si entra aca es que esta intentando acceder a una ruta en la que tiene que estar logeado y no lo esta
             return result;
         } else {
-            if (actionInvocation.getInvocationContext().getSession().containsKey("primeraVez")) {
+            Usuario u = (Usuario) actionInvocation.getInvocationContext().getSession().get("usuario");
+            if (u.esPrimerLogin()) {
                 if (actionActual.equals("primerLogin")) {
                     return actionInvocation.invoke();
                 }
@@ -52,51 +54,33 @@ public class InterceptorAcceso extends AbstractInterceptor {
                 switch (namespace1[1]) {
                     //switch de los namespaces
                     case "usuario":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolUsuario")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolUsuario");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableUsuario()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     case "stock":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolStock")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolStock");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableStock()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     case "insumo":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolStock")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolStock");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableStock()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     case "insumobruto":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolStock")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolStock");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableStock()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     case "insumoelaborado":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolCocina")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolCocina");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableCocina()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     case "receta":
-                        if (actionInvocation.getInvocationContext().getSession().containsKey("rolCocina")) {
-                            boolean f = (boolean) actionInvocation.getInvocationContext().getSession().get("rolCocina");
-                            if (f) {
-                                return actionInvocation.invoke();
-                            }
+                        if (u.esResponsableCocina()) {
+                            return actionInvocation.invoke();
                         }
                         break;
                     default:

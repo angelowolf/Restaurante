@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Notificacion;
 
+import Modelo.Insumo;
+import Modelo.Usuario;
+import Notificacion.Notificacion;
 import Notificacion.TipoMensaje;
 import org.joda.time.LocalDateTime;
+import org.json.JSONObject;
 
 /**
  *
@@ -41,5 +45,11 @@ public class NotificacionStock extends Notificacion {
     @Override
     public int getIdInforme() {
         return insumo.getId();
+    }
+
+    @Override
+    public void crearMensaje(JSONObject json) {
+        super.crearMensaje(json);
+        json.append("id_insumo", this.getInsumo().getId());
     }
 }

@@ -6,7 +6,7 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorNotificacion;
-import Modelo.Notificacion;
+import Notificacion.Notificacion;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +29,13 @@ public class NotificacionAction extends Accion implements ModelDriven<Notificaci
     }
 
     public String listar() {
-        lista = controladorNotificacion.buscar((int) sesion.get("idUsuario"));
+        lista = controladorNotificacion.buscar(usuarioSesion.getId());
         return SUCCESS;
     }
 
     public String panel() {
-        lista = controladorNotificacion.buscarNotificacionInsumo((int) sesion.get("idUsuario"));
-        cantidad = controladorNotificacion.getCantidadNoVistas((int) sesion.get("idUsuario"));
+        lista = controladorNotificacion.buscarNotificacionInsumo(usuarioSesion.getId());
+        cantidad = controladorNotificacion.getCantidadNoVistas(usuarioSesion.getId());
         return SUCCESS;
     }
 

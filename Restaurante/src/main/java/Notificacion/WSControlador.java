@@ -7,7 +7,6 @@ package Notificacion;
 
 import Controlador.Implementacion.ControladorUsuario;
 import Controlador.Interface.IControladorUsuario;
-import Modelo.Notificacion;
 import Modelo.Usuario;
 import Persistencia.ORM.Util.HibernateUtil;
 import java.util.HashMap;

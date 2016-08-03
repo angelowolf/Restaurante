@@ -5,7 +5,7 @@
  */
 package Persistencia.ORM.DAOImplementacion;
 
-import Modelo.NotificacionStock;
+import Notificacion.NotificacionStock;
 import Persistencia.ORM.Util.GenericDAO;
 import Persistencia.ORM.DAOInterface.INotificacionStock;
 

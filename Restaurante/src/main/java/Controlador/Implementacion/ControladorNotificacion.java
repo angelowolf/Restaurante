@@ -7,8 +7,8 @@ package Controlador.Implementacion;
 
 import Controlador.Interface.IControladorUsuario;
 import Modelo.Insumo;
-import Modelo.Notificacion;
-import Modelo.NotificacionStock;
+import Notificacion.Notificacion;
+import Notificacion.NotificacionStock;
 import Modelo.Rol;
 import Modelo.Usuario;
 import Notificacion.WSControlador;
