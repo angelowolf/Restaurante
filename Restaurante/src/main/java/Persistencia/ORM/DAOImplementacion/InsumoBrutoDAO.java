@@ -29,7 +29,7 @@ public class InsumoBrutoDAO extends GenericDAO<InsumoBruto, Integer> implements 
         Session session = getHibernateTemplate();
         List<InsumoBruto> objetos = new ArrayList<>();
         try {
-            String sql = "select * from insumo insumo inner join stock stock on insumo.id_stock = stock.id inner join insumobruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
+            String sql = "select * from Insumo insumo inner join Stock stock on insumo.id_stock = stock.id inner join InsumoBruto insumobruto on insumo.id = insumobruto.id where insumo.fechaBaja is null and stock.cantidadActual <= stock.cantidadMinima order by nombre";
             objetos = session.createSQLQuery(sql).addEntity(InsumoBruto.class).list();
         } catch (RuntimeException e) {
             LOG.error("Error al buscar los insumos.", e);

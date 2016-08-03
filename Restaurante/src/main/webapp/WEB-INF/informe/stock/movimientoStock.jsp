@@ -47,6 +47,6 @@
         </div>
     </div>
     <div class="panel-body">
-        <div id="grafico" class="sombra"></div>					
+        <div id="grafico" class="sombra"></div>
     </div>
 </div>

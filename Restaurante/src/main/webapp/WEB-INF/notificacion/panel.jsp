@@ -6,10 +6,10 @@
         <ul class="dropdown-menu dropdown-messages dropdown-menu-right" id="panel-notificaciones">
         <s:if test="lista != null">
             <s:if test="lista.isEmpty()">
-                <div class="text-center">
+                <li class="text-center">
                     <h3><i class="fa fa-bell-slash-o fa-lg"></i></h3>
                     <strong>No posees notificaciones</strong>
-                </div>
+                </li>
             </s:if>
             <s:iterator value="lista" var="notificacion">
                 <li class="notificacion<s:if test="%{!#notificacion.visto}"> novisto</s:if>">

@@ -149,6 +149,11 @@ td > .form-control.fixed-width{
     z-index: 99999 !important;
 }
 
+#panel-notificaciones {
+  color: #000;
+  min-width: 500px;
+}
+
 p#notificacion {
     padding: 10px 10px 0 10px;
 }
@@ -228,6 +233,7 @@ ul {
 .navbar-ruhaj .nav > li > a:focus {
   color: #f8557d;
 }
+/*
 .navbar-ruhaj .nav > li > .dropdown-menu {
   background-color: #c90242;
 }
@@ -248,6 +254,7 @@ ul {
   color: #f8557d;
   background-color: #ad072f;
 }
+*/
 .navbar-ruhaj .nav > .active > a,
 .navbar-ruhaj .nav > .active > a:hover,
 .navbar-ruhaj .nav > .active > a:focus {
