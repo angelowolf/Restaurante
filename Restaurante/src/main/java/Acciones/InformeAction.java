@@ -6,7 +6,7 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorNotificacion;
-import Modelo.Notificacion;
+import Notificacion.Notificacion;
 
 /**
  *

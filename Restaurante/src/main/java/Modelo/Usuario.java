@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Notificacion.Notificacion;
 import Notificacion.ISesion;
 import Soporte.Encriptar;
 import Spring.Mensajes;

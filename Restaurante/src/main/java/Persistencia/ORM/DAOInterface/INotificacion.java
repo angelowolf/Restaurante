@@ -5,8 +5,8 @@
  */
 package Persistencia.ORM.DAOInterface;
 
-import Modelo.Notificacion;
-import Modelo.NotificacionStock;
+import Notificacion.Notificacion;
+import Notificacion.NotificacionStock;
 import Persistencia.ORM.Util.IGenericDAO;
 import java.util.List;
 

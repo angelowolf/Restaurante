@@ -6,7 +6,7 @@
 package Acciones;
 
 import Controlador.Implementacion.ControladorNotificacion;
-import Modelo.Notificacion;
+import Notificacion.Notificacion;
 import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,6 @@
  */
 package Notificacion;
 
-import Modelo.Notificacion;
 import Modelo.Usuario;
 
 /**
