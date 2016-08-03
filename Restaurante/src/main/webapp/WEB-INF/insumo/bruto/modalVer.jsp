@@ -10,7 +10,10 @@
                 <div class="row">
                     <input type="hidden" id="id" name="id">
                     <div class="col-xs-12 text-inline">
-                        <strong for="nombre">Nombre:</strong> <p id="nombre"></p>
+                        <strong>Nombre:</strong> <p id="nombre"></p>
+                    </div>
+                    <div class="col-xs-12 text-inline">
+                        <strong>Categoría:</strong> <p id="categoria"></p>
                     </div>
                     <div class="col-xs-12 text-inline">
                         <strong>Precio:</strong> <p id="precioUnidad"></p>
@@ -36,7 +39,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-ruhaj pull-right" data-dismiss="modal">
+                    Aceptar
+                </button>
             </div>
         </div>
     </div>

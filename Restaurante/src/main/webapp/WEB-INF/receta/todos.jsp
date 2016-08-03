@@ -1,1 +1,99 @@
-todos
+<%@taglib uri="/struts-tags" prefix="s"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<div class="row">
+    <div class="col-xs-6 text-left">
+        <h2 class="pull-left">Listado de Recetas</h2>
+    </div>
+    <div class="col-xs-6 text-right">
+        <br />
+        <a class="btn btn-default" data-toggle="tooltip" title="Imprimir Listado" data-placement="left">
+            <i class="fa fa-print"></i>
+        </a>
+    </div>
+</div>
+<hr />
+<div class="panel">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <s:form class="form-inline" action="listar" namespace="/receta" id="formulario-buscar">
+                    <div class="form-group">
+                        <label for="nombre" class="control-label">Nombre de Receta</label>
+                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Receta" autocomplete='off' autofocus="autofocus" />
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria" name="categoria">Categoria de Receta</label>
+                        <div class="form-group">
+                            <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaRecetaFiltro" name="categoriaRecetaFiltro" listKey="id" listValue="nombre" cssClass="selectpicker show-tick show-menu-arrow" value="categoriaRecetaFiltro"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-ruhaj pull-right">
+                        Buscar
+                        <i class="fa fa-search fa-fw"></i>
+                    </button>
+                </s:form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row" sort="list"  keepStatus="true">
+        <display:setProperty name="basic.msg.empty_list" >
+            <div class="col-xs-12 well text-center">
+                <p>
+                    <i class="fa fa-filter fa-lg"></i>
+                    No se encontraron Recetas que coincidan con tu busqueda.
+                </p>
+            </div>
+        </display:setProperty>
+        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="categoriaReceta.nombre" title="Categoria" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateTimeDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateTimeDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column title="Acciones" class="text-center-all" headerClass="table-header-ruhaj">
+            <div class="acciones">
+                <s:hidden class="model-id" value="%{#attr.row.id}"/>
+                <div class="btn-group">
+                    <button id="modalver" class="btn btn-sm btn-default mostrar-modal-ver-receta" data-toggle="tooltip" title="Ver Receta">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <s:if test="(#attr.row.fechaBaja == null)">
+                        <button class="btn btn-sm btn-warning mostrar-modal-modificar-receta" data-toggle="tooltip" title="Modificar Receta">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </s:if>
+                    <s:if test="(#attr.row.fechaBaja == null)">
+                        <button class="btn btn-sm btn-danger mostrar-modal-baja-receta" data-toggle="tooltip" title="Dar de Baja Receta">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </s:if>
+                    <s:else>
+                        <button class="btn btn-sm btn-success mostrar-modal-recuperar-receta" data-toggle="tooltip" title="Recuperar Receta">
+                            <i class="fa fa-check-circle"></i>
+                        </button>
+                    </s:else>
+                </div>
+            </div>
+        </display:column>
+    </display:table>
+</div>
+
+<s:include value="/WEB-INF/receta/modalModificacion.jsp"/>
+<s:include value="/WEB-INF/receta/modalVer.jsp"/>
+
+<s:set var="objeto" value="#application.mensaje.RECETA"/>
+
+<s:include value="/WEB-INF/modal/modal.jsp">
+    <s:param name="modalId">modal-baja-receta</s:param>
+    <s:param name="titulo">Dar de Baja <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaDarBajaLa(#objeto)"/></s:param>
+    <s:param name="modelo">receta</s:param>
+</s:include>
+<s:include value="/WEB-INF/modal/modal.jsp">
+    <s:param name="modalId">modal-recuperar-receta</s:param>
+    <s:param name="titulo">Recuperar <s:property value="#objeto"/></s:param>
+    <s:param name="mensaje"><s:property value='#application.mensaje.getPreguntaRecuperarLa(#objeto)'/></s:param>
+    <s:param name="modelo">receta</s:param>
+</s:include>

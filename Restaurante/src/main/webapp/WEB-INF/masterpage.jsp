@@ -33,7 +33,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>
-                            <s:property value="%{#session.usuario.nombreCompleto}" />
+                            <s:property value="%{#session.usuario.nombreCompleto.substring(0,25)}" />
                             <i class="fa fa-caret-down fa-fw"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">

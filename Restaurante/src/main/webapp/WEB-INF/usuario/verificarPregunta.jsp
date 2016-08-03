@@ -24,14 +24,14 @@
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
                     <div class="panel">
                         <div class="panel-body">
-                            <form action="/verificarRespuesta" method="POST" id="verificar-pregunta-form">
+                            <form action="/verificarRespuesta" method="POST" id="verificar-pregunta-form" autocomplete="off">
                                 <input type="hidden" id="id" name="id" value="<s:property value="usuario.id"/>">
                                 <div class="form-group">
                                     <h4 id="preguntaSecreta"><s:property value="usuario.preguntaSecreta"/></h4>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input required type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Ingresa tu Respuesta Secreta" autocomplete="off" autofocus="autofocus">
+                                        <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Ingresa tu Respuesta Secreta" maxlength="50" autofocus="autofocus">
                                         <div class="input-group-btn">
                                             <button class="btn btn-ruhaj" type="submit">
                                                 Continuar

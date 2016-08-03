@@ -1,66 +1,246 @@
 (function ($) {
+    var cdetallesingredientes = 0;
+    var cdetallesrecetas = 0;
 
-    $('body').on('click', '#registrar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = $('#formulario').serialize();
-        var data2 = $('#detalleIngredientes').serialize();
-        $.post('/receta/registrar', data + '&' + data2, function (response) {
+    $('#fechaAlta').val(erroresM.fechaActual());
+
+    $('#alta-receta-form').submit(function (e) {
+        var $boton = $(this).find('.confirmar');
+        var data = $(this).serialize();
+        toggleBoton($boton);
+        $.post('/receta/registrar', data, function (response) {
             if (response.codigo === 200) {
                 window.location.replace('/receta/listar');
             } else {
-                erroresM.mostrarErrores('#formulario', response);
-                toggleBoton(e.target);
+                erroresM.mostrarErrores('alta-receta-form', response);
+                toggleBoton($boton);
             }
         });
-    });
-//    $('body').on('click', '#cancelar', function (e) {
-//        e.preventDefault();
-//        window.location.replace('/insumoelaborado/listar');
-//    });
-
-
-    $('body').on('click', '#row button', function (e) {
-        e.preventDefault();
-        $(this).parents('tr').fadeOut('normal', function () {
-            var tr = $(this).detach();
-            tr.remove();
-        });
+        return false;
     });
 
+    $('#alta-receta-form .cancelar').on('click', function (e) {
+        window.location.replace('/receta/listar');
+    });
 
-
-    $('#nombre-insumo-ac').autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "/insumo/postBuscarInsumoAutoComplete",
-                type: "POST",
-                data: {
-                    term: request.term
-                },
-                dataType: "json",
-                success: function (data) {
-                    response(data);
-                }
-            });
+    $('#busqueda-ingrediente').easyAutocomplete({
+        url: function (phrase) {
+            return '/insumo/postBuscarInsumoAutoComplete';
         },
-        select: function (event, ui) {
-            var data = {id: ui.item.id};
-            $.post("/insumo/getModificar", data, function (response) {
-                if (response.codigo === 200) {
-                    $('#nombre-insumo-ac').val('');
-                    if ($('#' + response.model.id + '').length !== 1) {
-                        $('#tabla-ingredientes-body').append('<tr id="' + response.model.id + '"><td class="text-center-all">' + response.model.nombre + '</td><td class="text-center-all">' +
-                                response.model.unidadMedida +
-                                '</td><td class="text-center-all"><input min="0" type="number" class="form-control" id="cantidadUtilizar" name="cantidadesIngredientes" placeholder="Cantidad a utilizar"><input type="hidden" name="idsIngredientes" value="' + response.model.id + '"></td>' +
-                                '<td><input type="checkbox" name="opcionalIngredientesID" value="' + response.model.id + '"></td>' +
-                                '<td class="text-center-all"><button class="btn btn-danger"><i class="fa fa-close"></i></button></td></tr>');
+        preparePostData: function(data) {
+            data = { term : $("#busqueda-ingrediente").val() };
+            return data;
+        },
+        getValue: 'value',
+        list: {
+            showAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+
+            hideAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+            onChooseEvent: function() {
+                var id = $("#busqueda-ingrediente").getSelectedItemData().id;
+
+                $.post("/insumo/getModificar", { id : id }, function (response) {
+                    if (response.codigo === 200) {
+                        $('#busqueda-ingrediente').val('');
+                        crearFilaDetalleIngrediente(response.model);
+                    } else {
+                        erroresM.mostrarAlertError(response.actionErrors);
                     }
-                } else {
-                    erroresM.mostrarAlertError(response.actionErrors, 'danger');
-                }
-            });
-        }
+                });
+            }
+        },
+        ajaxSettings: {
+            dataType: "json",
+            method: "POST",
+            data: {
+                dataType: "json"
+            }
+        },
+        theme: 'blue-light',
+        adjustWidth : false,
+        placeholder: "Buscar Insumo a añadir..."
     });
 
+    $('#busqueda-receta').easyAutocomplete({
+        url: function (phrase) {
+            return '/receta/postBuscarRecetaAutoComplete';
+        },
+        preparePostData: function(data) {
+            data = { term : $("#busqueda-receta").val() };
+            return data;
+        },
+        getValue: 'value',
+        list: {
+            showAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+
+            hideAnimation: {
+                type: "slide", //normal|slide|fade
+                time: 200,
+            },
+            onChooseEvent: function() {
+                var id = $("#busqueda-receta").getSelectedItemData().id;
+
+                $.post("/receta/getModificar", { id : id }, function (response) {
+                    if (response.codigo === 200) {
+                        $('#busqueda-receta').val('');
+                        crearFilaDetalleReceta(response.model);
+                    } else {
+                        erroresM.mostrarAlertError(response.actionErrors);
+                    }
+                });
+            }
+        },
+        ajaxSettings: {
+            dataType: "json",
+            method: "POST",
+            data: {
+                dataType: "json"
+            }
+        },
+        theme: 'blue-light',
+        adjustWidth : false,
+        placeholder: "Buscar Receta a incluir..."
+    });
+
+    function crearFilaDetalleReceta(model) {
+        if (model.id) {
+            var    $hidden = $('<input>').attr('id', 'idRecetasUtilizar')
+                                        .prop('name', 'idsRecetas')
+                                        .prop('type', 'hidden')
+                                        .val(model.id);
+
+
+            var $tdNombre = $('<td>').addClass('text-center-all')
+                                     .html(model.nombre)
+                                     .append($hidden);
+
+            var $checkbox = $('<input>').attr('id', 'recetaOpcional')
+                                        .prop('name', 'opcionalRecetasID')
+                                        .prop('type', 'checkbox')
+                                        .addClass('form-control')
+                                        .val(model.id);
+
+            var $tdOpcion = $('<td>').addClass('text-center-all')
+                                     .append($checkbox);
+
+            var     $icon = $('<i>').addClass('fa fa-minus')
+
+            var   $button = $('<button>').attr('tabindex', '-1')
+                                         .addClass('btn btn-xs btn-danger')
+                                         .append($icon)
+                                         .on('click', function () {
+                                            $(this).tooltip('destroy');
+                                            $(this).parents('tr').remove();
+                                            cdetallesrecetas--;
+                                            if(cdetallesrecetas < 1) {
+                                                $('#detalle-recetas').find('.empty')
+                                                                              .show(); 
+                                            }
+                                          })
+                                         .tooltip({
+                                            title : 'Quitar Receta',
+                                            placement : 'right',
+                                            container : 'body'
+                                          });
+
+            var $tdAccion = $('<td>').addClass('text-center-all')
+                                     .append($button);
+
+            var       $tr = $('<tr>').prop('id', model.id)
+                                     .append($tdNombre)
+                                     .append($tdOpcion)
+                                     .append($tdAccion);
+
+            if(cdetallesrecetas < 1) {
+                $('#detalle-recetas').find('.empty').hide();
+            }
+            $('#detalle-recetas').append($tr);
+            cdetallesrecetas++;
+        }
+    }
+
+    function crearFilaDetalleIngrediente(model) {
+        if (model.id) {
+            var    $hidden = $('<input>').attr('id', 'idIngredienteUtilizar')
+                                        .prop('name', 'idsIngredientes')
+                                        .prop('type', 'hidden')
+                                        .val(model.id);
+
+
+            var $tdNombre = $('<td>').addClass('text-center-all')
+                                     .html(model.nombre)
+                                     .append($hidden);
+
+            var $tdUniMed = $('<td>').addClass('text-center-all')
+                                     .html(model.unidadMedida);
+
+            var    $input = $('<input>').attr('id', 'cantidadIngredienteUtilizar')
+                                        .prop('name', 'cantidadesIngredientes')
+                                        .prop('type', 'text')
+                                        .prop('maxlength', '4')
+                                        .prop('placeholder', 'Cantidad')
+                                        .addClass('form-control fixed-width-4')
+                                        .val('1')
+                                        .blur(function () {
+                                            $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
+                                        });
+
+            var $tdCanUsa = $('<td>').addClass('text-center-all')
+                                     .append($input);
+
+            var $checkbox = $('<input>').attr('id', 'ingredienteOpcional')
+                                        .prop('name', 'opcionalIngredientesID')
+                                        .prop('type', 'checkbox')
+                                        .addClass('form-control')
+                                        .val(model.id);
+
+            var $tdOpcion = $('<td>').addClass('text-center-all')
+                                     .append($checkbox);
+
+            var     $icon = $('<i>').addClass('fa fa-minus')
+
+            var   $button = $('<button>').attr('tabindex', '-1')
+                                         .addClass('btn btn-xs btn-danger')
+                                         .append($icon)
+                                         .on('click', function () {
+                                            $(this).tooltip('destroy');
+                                            $(this).parents('tr').remove();
+                                            cdetallesingredientes--;
+                                            if(cdetallesingredientes < 1) {
+                                                $('#detalle-ingredientes').find('.empty')
+                                                                              .show(); 
+                                            }
+                                          })
+                                         .tooltip({
+                                            title : 'Quitar Insumo',
+                                            placement : 'right',
+                                            container : 'body'
+                                          });
+
+            var $tdAccion = $('<td>').addClass('text-center-all')
+                                     .append($button);
+
+            var       $tr = $('<tr>').prop('id', model.id)
+                                     .append($tdNombre)
+                                     .append($tdCanUsa)
+                                     .append($tdUniMed)
+                                     .append($tdOpcion)
+                                     .append($tdAccion);
+
+            if(cdetallesingredientes < 1) {
+                $('#detalle-ingredientes').find('.empty').hide();
+            }
+            $('#detalle-ingredientes').append($tr);
+            cdetallesingredientes++;
+        }
+    }
 })(jQuery);

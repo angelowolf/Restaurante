@@ -6,14 +6,19 @@
         var $modal = $('#modal-confeccionar-insumo-elaborado');
         var $form  = $('#confeccionar-insumo-elaborado-form');
             $form.trigger('reset');
-            $form.find('#model-id').val(id);
-            $form.find('#confeccionar-detalle-insumo-elaborado').empty();
+            $form.find('#id').val(id);
+            $form.find('#confeccionar-detalle-insumo-elaborado tr').not('.empty').remove();
+            $form.find('.empty').show();
             erroresM.limpiarErrores($form.attr('id'));
         $.post("/insumoelaborado/getModificar", {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#nombre').html(response.model.nombre);
                 $modal.find('#unidadMedida').html(response.model.unidadMedida);
                 $modal.find('#cantidadActual').html(response.model.stock.cantidadActual);
+                var $detalleInsumoElaborado = $modal.find('#confeccionar-detalle-insumo-elaborado');
+                if(response.model.detalleInsumoElaborados.length > 0) {
+                    $detalleInsumoElaborado.find('.empty').hide();
+                }
                 $.each(response.model.detalleInsumoElaborados, function (k, detalle) {
                     var    $tdN = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.nombre);
                     var    $tdU = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.unidadMedida);
@@ -111,20 +116,27 @@
         var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-ver-insumo-elaborado');
             $modal.find('#id').val(id);
+            $modal.find('#ver-detalle-insumo-elaborado tr').not('.empty').remove();
+            $modal.find('.empty').show();
         $.post('/insumoelaborado/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {
                 $modal.find('#nombre').html(response.model.nombre);
+                $modal.find('#categoria').html(response.model.categoriaInsumo.nombre);
                 $modal.find('#unidadMedida').html(response.model.unidadMedida);
                 $modal.find('#cantidadActual').html(response.model.stock.cantidadActual);
                 $modal.find('#cantidadMinima').html(response.model.stock.cantidadMinima);
                 $modal.find('#fechaAlta').html(response.model.fAlta ? response.model.fAlta : '-');
                 $modal.find('#fechaBaja').html(response.model.fBaja ? response.model.fBaja : '-');
+                var $detalleInsumoElaborado = $modal.find('#ver-detalle-insumo-elaborado');
+                if(response.model.detalleInsumoElaborados.length > 0) {
+                    $detalleInsumoElaborado.find('.empty').hide();
+                }
                 $.each(response.model.detalleInsumoElaborados, function (k, detalle) {
                     var $tdN = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.nombre);
                     var $tdU = $('<td>').addClass('text-center-all').html(detalle.insumoBruto.unidadMedida);
                     var $tdC = $('<td>').addClass('text-center-all').html(detalle.cantidad);
                     var  $tr = $('<tr>').append($tdN).append($tdC).append($tdU);
-                    $modal.find('#ver-detalle-insumo-elaborado').append($tr);
+                    $detalleInsumoElaborado.append($tr);
                 });
             } else {
                 erroresM.mostrarAlertError(response.actionErrors);
@@ -137,7 +149,8 @@
         var id = $(this).parents('.acciones').children('.model-id').val();
         var $modal = $('#modal-modificar-insumo-elaborado');
             $modal.find('#id').val(id);
-            $modal.find('#detalle-insumo-elaborado').empty();
+            $modal.find('#detalle-insumo-elaborado tr').not('.empty').remove();
+            $modal.find('.empty').show();
             $modal.find('#modificar-insumo-elaborado-form').trigger("reset");
         $.post('/insumoelaborado/getModificar', {id: id}, function (response) {
             if (response.codigo === 200) {

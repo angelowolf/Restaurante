@@ -44,9 +44,9 @@
         </display:setProperty>
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
         <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="table-header-ruhaj"/>
         <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all" headerClass="table-header-ruhaj"/>
         <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="table-header-ruhaj"/>
+        <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="table-header-ruhaj"/>
         <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
         <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
         <display:column title="Acciones" class="text-center-all" headerClass="table-header-ruhaj">
@@ -83,7 +83,8 @@
 <s:include value="/WEB-INF/insumo/elaborado/modalConfeccionar.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/elaborado/modalVer.jsp"/>
-<s:set var="objeto" value="#application.mensaje.INSUMO"/>
+
+<s:set var="objeto" value="#application.mensaje.INSUMOELABORADO"/>
 
 <s:include value="/WEB-INF/modal/modal.jsp">
     <s:param name="modalId">modal-baja-insumo-elaborado</s:param>

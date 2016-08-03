@@ -18,8 +18,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-right cancelar" data-dismiss="modal">
-                    Cancelar
+                <button type="button" class="btn btn-ruhaj pull-right cancelar" data-dismiss="modal">
+                    Aceptar
                 </button>
             </div>
         </div>

@@ -42,7 +42,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-right" id="salir" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-ruhaj pull-right" id="salir" data-dismiss="modal">
+                    Aceptar
+                </button>
             </div>
         </div>
     </div>    

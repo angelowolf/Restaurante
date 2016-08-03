@@ -60,6 +60,15 @@ var erroresM = (function () {
       return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
     }
 
+    modulo.parsearFecha = function parseDate(input) {
+        if(input.trim() == null) {
+            return '';
+        }
+        var parts = input.split('/');
+        console.log(parts[2], parts[1]-1, parts[0]);
+        return new Date(parts[2], parts[1]-1, parts[0]);
+    }
+
     function crearNotify(titulo, mensaje, tipo, icono) {
         $.notify(
             {
@@ -193,7 +202,7 @@ $(document).ready(function () {
                 $modal.find('#nick').val(response.model.nick);
                 $modal.find('#preguntaSecreta').selectpicker('val', response.model.preguntaSecreta);
                 $modal.find('#respuestaSecreta').val(response.model.respuestaSecreta);
-                $modal.find('#fechaNacimiento').val(response.model.fNacimiento ? response.model.fNacimiento : '');
+                $modal.find('#fechaNacimiento').datepicker('update', erroresM.parsearFecha(response.model.fNacimiento));
                 var $roles = $modal.find('#roles');
                 $roles.empty();
                 $.each(response.model.roles, function (k, rol) {

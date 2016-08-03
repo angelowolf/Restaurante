@@ -20,7 +20,7 @@
             </thead>
             <tbody id="detalle-insumo-elaborado">
                 <tr class="empty well">
-                    <td class="text-center-all" colspan="5">Aun no se han agregado insumos a este insumo elaborado</td>
+                    <td class="text-center-all" colspan="5">Aun no se han agregado ingredientes a este insumo elaborado</td>
                 </tr>
             </tbody>
         </table>

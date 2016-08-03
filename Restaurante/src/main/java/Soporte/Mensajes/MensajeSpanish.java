@@ -62,9 +62,9 @@ public class MensajeSpanish extends Mensaje {
         USUARIO = "Usuario";
         INSUMO = "Insumo";
         CATEGORIAINSUMO = "Categoría de Insumo";
-        NOTIFICACION = "Notificacion";
+        NOTIFICACION = "Notificación";
         RECETA = "Receta";
-        CATEGORIARECETA = "Categoria Receta";
+        CATEGORIARECETA = "Categoría de Receta";
         INSUMOELABORADO = "Insumo Elaborado";
         NOMBRE = "nombre";
         //Mensajes de validacion//
@@ -96,7 +96,7 @@ public class MensajeSpanish extends Mensaje {
         NOTIFICACIONVISTA = "La Notificacion ha sido vista.";
         FECHAINVALIDA = "La Fecha ingresada no es válida.";
         INGRESECANTIDADCONFECCIONAR = "Ingrese la cantidad a confeccionar.";
-        SELECCIONENOTIFICACION = "Seleecione alguna notificación.";
+        SELECCIONENOTIFICACION = "Seleccione alguna notificación.";
         NOTIFICACIONESELIMINADAS = "Las notificaciones fueron elimindas con éxito.";
         NOTIFICACIONESVISTAS = "Las notificaciones fueron marcadas como vistas con éxito.";
         CONFECCIONREGISTRADA = "La confeccion fue registrada con éxito.";

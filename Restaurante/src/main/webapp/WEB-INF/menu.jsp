@@ -48,7 +48,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Categorías
+                    <i class="fa fa-cogs fa-fw"></i> Tipos Insumo
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-third-level">
@@ -76,7 +76,7 @@
             </li>
             <li>
                 <a href='<s:url action="getListaCompra" namespace="/stock"/>'>
-                    <i class="fa fa-cart-arrow-down fa-fw"></i> Generar Listado de Compras
+                    <i class="fa fa-cart-arrow-down fa-fw"></i> Listado de Compras
                 </a>
             </li>
         </ul>
@@ -117,14 +117,14 @@
                     </li>
                     <li>
                         <a href='<s:url action="nuevo" namespace="/receta"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
+                            <i class="fa fa-plus fa-fw"></i> Añadir Nueva
                         </a>
                     </li>
                 </ul>  
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Categorías
+                    <i class="fa fa-cogs fa-fw"></i> Tipos Receta
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-third-level">

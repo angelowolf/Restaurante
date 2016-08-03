@@ -25,15 +25,15 @@
                             </div>
                             <div class="col-lg-7 col-sm-6 col-xs-12">
                                 <br />
-                                <form id="login-form" action="/login" method="POST">
+                                <form id="login-form" action="/login" method="POST" autocomplete="off">
                                     <div class="form-group">
                                         <label for="nick">Nombre de Usuario</label>
-                                        <input class="form-control" type="text" id="nick" name="nick" placeholder="Tu Nombre de Usuario" required autocomplete="off" autofocus="autofocus" />
+                                        <input class="form-control" type="text" id="nick" name="nick" placeholder="Tu Nombre de Usuario" maxlength="200" autofocus="autofocus" />
                                     </div>
                                     <div class="form-group">
                                         <label for="clave">Contraseña</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="password" id="clave" name="clave" placeholder="Tu Contraseña" required autocomplete="off" />
+                                            <input class="form-control" type="password" id="clave" name="clave" placeholder="Tu Contraseña" maxlength="200" />
                                             <div class="input-group-btn">
                                                 <button class="btn btn-ruhaj" type="submit">
                                                     Ingresar
@@ -52,7 +52,16 @@
                             </div>
                         </div>
                     </div>
-                    <s:actionerror theme="bootstrap"/>
+                    <s:if test="hasActionErrors()">
+                        <div class="alert alert-block alert-dismissible alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>
+                                <i class="fa fa-exclamation-circle"></i>
+                                &nbsp;&nbsp;Ocurrion un Problema:&nbsp;
+                            </strong>
+                            <s:actionerror />
+                        </div>
+                    </s:if>
                 </div>
             </div>
         </div>

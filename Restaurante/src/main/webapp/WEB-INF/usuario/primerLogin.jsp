@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
-                    <form id="primer-login-form" method="POST">
+                    <form id="primer-login-form" method="POST" autocomplete="off">
                         <div class="panel">
                             <div class="panel-body">
                                 <h4>Bienvenido a Ruhaj!</h4>
@@ -27,14 +27,14 @@
                                 <s:include value="/WEB-INF/usuario/preguntasSecretas.jsp"/>
                                 <div class="form-group">
                                     <label for="respuestaSecreta" class="control-label">Respuesta Secreta</label>
-                                    <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Tu Respuesta Secreta" autofocus="autofocus" autocomplete="off">
+                                    <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Tu Respuesta Secreta" maxlength="50" autofocus="autofocus">
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 text-left">
-                                        <button class="btn btn-default">
+                                        <a class="btn btn-default" href="/logear">
                                             <i class="fa fa-chevron-left fa-fw"></i>
                                             Volver
-                                        </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <button id="btn" class="btn btn-ruhaj confirmar" type="submit">

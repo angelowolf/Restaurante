@@ -72,6 +72,7 @@ td > .form-control.fixed-width{
 }
 
 .text-inline {
+   word-wrap: break-word;
   margin-bottom: 10px;
 }
 .text-inline strong, p{
@@ -83,6 +84,7 @@ td > .form-control.fixed-width{
   vertical-align: middle !important;
   color: #000000;
   background-color: #ffffff;
+  border-top: solid 1px #ddd !important;
 }
 
 .table-header-ruhaj a {

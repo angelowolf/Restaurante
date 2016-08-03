@@ -22,18 +22,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8 col-xs-12 vcentered">
-                    <form id="cambiar-contraseña-form" method="POST">
+                    <form id="cambiar-contraseña-form" method="POST" autocomplete="off">
                         <div class="panel">
                             <div class="panel-body">
                                 <input type="hidden" id="id" name="id" value='<s:property value="usuario.id"/>'>
                                 <div class="form-group">
                                     <label class="control-label" for="clave">Nueva Contraseña</label>
-                                    <input required  type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off" autofocus="autofocus">
+                                    <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña"  maxlength="200" autofocus="autofocus">
                                     <span class="help-block"></span>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="clave2">Repite la Nueva Contraseña</label>
-                                    <input type="password" required  class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off">
+                                    <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" maxlength="200" >
                                     <span class="help-block"></span>
                                 </div>
                                 <hr />

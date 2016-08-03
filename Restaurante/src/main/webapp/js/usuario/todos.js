@@ -109,9 +109,7 @@
                 $modal.find('#documento').val(response.model.documento);
                 $modal.find('#telefono').val(response.model.telefono);
                 $modal.find('#direccion').val(response.model.direccion);
-                if (response.model.fNacimiento !== null) {
-                    $modal.find('#fechaNacimiento').val(response.model.fNacimiento);
-                }
+                $modal.find('#fechaNacimiento').datepicker('update', erroresM.parsearFecha(response.model.fNacimiento));
                 $modal.find('#fechaAlta').val(response.model.fAlta);
                 $modal.find('#nick').val(response.model.nick);
                 for (var i = 0; i < response.model.roles.length; i++) {

@@ -1,6 +1,8 @@
 (function ($) {
     var cdetalles = 0;
+
     $('#fechaAlta').val(erroresM.fechaActual());
+
     $('#alta-insumo-elaborado-form').submit(function (e) {
         var $boton = $(this).find('.confirmar');
         var data = $(this).serialize();
@@ -47,7 +49,7 @@
                         $('#busqueda-insumo').val('');
                         crearFilaDetalleInsumo(response.model);
                     } else {
-                        erroresM.mostrarAlertError(response.actionErrors, 'danger');
+                        erroresM.mostrarAlertError(response.actionErrors);
                     }
                 });
             }

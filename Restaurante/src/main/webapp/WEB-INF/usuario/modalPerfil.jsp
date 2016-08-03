@@ -7,29 +7,29 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Editar Perfil de Usuario</h4>
             </div>
-            <form id="modificar-perfil-usuario-form" method="POST">
+            <form id="modificar-perfil-usuario-form" method="POST" autocomplete="off">
                 <input type="hidden" id="id" name="id">
                 <div class="modal-body">
                     <div class="row">
                         <div id="datos-perfil">
-                            <div class="col-xs-12 col-md-4 text-inline">
+                            <div class="col-xs-12 text-inline">
                                 <strong>Nombre: </strong><p id="nombre"></p>
                             </div>
-                            <div class="col-xs-12 col-md-4 text-inline">
+                            <div class="col-xs-12 text-inline">
                                 <strong>Apellido: </strong><p id="apellido"></p>
                             </div>
-                            <div class="col-xs-12 col-md-4 text-inline">
+                            <div class="col-xs-12 text-inline">
                                 <strong>Documento: </strong><p id="documento"></p>
                             </div>
-                            <div class="col-xs-12 col-md-6 text-inline">
+                            <div class="col-xs-12 text-inline">
                                 <strong>Roles:&nbsp;&nbsp;</strong><p id="roles"></p>
                             </div>
                             <hr />
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11" autocomplete="off">
+                                    <div class="input-group date" id="fechaNacimiento">
+                                        <input type="text" class="form-control" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     </div>
                                     <span class="help-block"></span>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="direccion">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" autocomplete="off" maxlength="255">
+                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" maxlength="255">
                                     <span class="help-block"></span>
                                 </div>
                                 <button id="ver-datos-ingreso" class="btn btn-sm btn-default btn-block" type="button">
@@ -61,23 +61,23 @@
                             <input type="hidden" id="preguntaSecretaOriginal" value="">
                             <div class="form-group">
                                 <label class="control-label" for="nick">Nombre de Usuario *</label>
-                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" autocomplete="off" maxlength="200" required="required">
+                                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nombre de Usuario" maxlength="200">
                                 <span class="help-block"></span>
                             </div>
                             <s:include value="/WEB-INF/usuario/preguntasSecretas.jsp"/>
                             <div class="form-group">
                                 <label for="respuestaSecreta">Respuesta Secreta *</label>
-                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" maxlength="50" autocomplete="off" maxlength="50" required="required">
+                                <input type="text" class="form-control" id="respuestaSecreta" name="respuestaSecreta" placeholder="Respuesta Secreta" maxlength="50" ">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label for="clave">Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" autocomplete="off" maxlength="100">
+                                <input type="password" class="form-control" id="clave" name="clave" placeholder="Nueva Contraseña" maxlength="200">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label for="clave2">Repite la Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" autocomplete="off" maxlength="100">
+                                <input type="password" class="form-control" id="clave2" name="clave2" placeholder="Repite la Nueva Contraseña" maxlength="200">
                                 <span class="help-block"></span>
                             </div>
                             <p><strong>PISTA:</strong> Rellena los campos de contraseña solo si deseas cambiarla.</p>
@@ -85,7 +85,7 @@
                         <div id="contraseña-actual" class="col-xs-12" style="display: none;">
                             <div class="form-group">
                                 <label for="claveOriginal">Contraseña Actual</label>
-                                <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Contraseña Actual" autocomplete="off" maxlength="100">
+                                <input type="password" class="form-control" id="claveOriginal" name="claveOriginal" placeholder="Contraseña Actual" maxlength="200">
                                 <span class="help-block"></span>
                             </div>
                             <hr />

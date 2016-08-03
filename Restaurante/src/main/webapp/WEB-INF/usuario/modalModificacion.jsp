@@ -29,13 +29,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="documento">Documento *</label>
-                                <input type="number" class="form-control numeric-nodot" id="documento" name="documento" placeholder="documento" maxlength="10">
+                                <input type="text" class="form-control numeric-nodot" id="documento" name="documento" placeholder="Nro. Documento" maxlength="10">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>
-                                <div class="input-group date">
-                                    <input type="text" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11" autocomplete="off">
+                                <div class="input-group date" id="fechaNacimiento">
+                                    <input type="text" class="form-control" name="fechaNacimiento" placeholder="Fecha de Nacimiento" maxlength="11" autocomplete="off">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                 </div>
                                 <span class="help-block"></span>
