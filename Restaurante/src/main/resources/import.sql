@@ -107,27 +107,27 @@ insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('
 insert into InsumoBruto(id,precioUnidad) values(17,38);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,NOW(),'Ajuste',17);
 
-insert into Stock(cantidadActual,cantidadMinima) values(2,10);
+insert into Stock(cantidadActual,cantidadMinima) values(10,10);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Papa','Kilogramos',NOW(),18,4);
 insert into InsumoBruto(id,precioUnidad) values(18,5);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,NOW(),'Ajuste',18);
 
-insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Stock(cantidadActual,cantidadMinima) values(10,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Coca Cola','Unidad',NOW(),19,2);
 insert into InsumoBruto(id,precioUnidad) values(19,15);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,NOW(),'Ajuste',19);
 
-insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Stock(cantidadActual,cantidadMinima) values(10,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Pan Rallado','Kilogramos',NOW(),20,2);
 insert into InsumoBruto(id,precioUnidad) values(20,15);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,NOW(),'Ajuste',20);
 
-insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Stock(cantidadActual,cantidadMinima) values(10,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Bife','Kilogramos',NOW(),21,4);
 insert into InsumoBruto(id,precioUnidad) values(21,15);
 insert into DetalleStock(cantidad,total,fecha,tipoMovimiento,id_stock) values(10,10,NOW(),'Ajuste',12);
 
-insert into Stock(cantidadActual,cantidadMinima) values(30,150);
+insert into Stock(cantidadActual,cantidadMinima) values(10,150);
 insert into Insumo(nombre,unidadMedida,fechaAlta,id_stock,id_categoria) values('Milanesa','Unidad',NOW(),22,1);
 insert into InsumoElaborado(id) values(22);
 insert into DetalleInsumoElaborado(cantidad,id_insumoBruto,id_insumoElaborado) values(1,4,22);

@@ -43,13 +43,13 @@
             </div>
         </display:setProperty>
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all" headerClass="table-header-ruhaj"/>
-        <display:column title="Acciones" class="text-center-all" headerClass="table-header-ruhaj">
+        <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">

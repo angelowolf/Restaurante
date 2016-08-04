@@ -58,13 +58,13 @@
         </display:setProperty>
 
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="nick" title="Nombre de Usuario" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="telefono" title="Teléfono de Contacto" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="roles" title="Roles Asignados" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
-        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj"/>
-        <display:column title="Acciones" class="col-xs-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="nick" title="Nombre de Usuario" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="telefono" title="Teléfono de Contacto" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="roles" title="Roles Asignados" class="hidden-xs" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">
