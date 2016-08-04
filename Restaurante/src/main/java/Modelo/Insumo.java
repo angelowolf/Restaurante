@@ -7,7 +7,7 @@ package Modelo;
 
 import Spring.Mensajes;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
 
@@ -31,7 +31,7 @@ public abstract class Insumo implements Mensajes {
         this.categoriaInsumo = categoriaInsumo;
         this.fechaAlta = fechaAlta;
         this.fechaBaja = fechaBaja;
-        this.nombre = nombre;
+        this.nombre = StringUtils.capitalize(nombre);
         this.stock = stock;
         this.unidadMedida = unidadMedida;
     }
@@ -73,7 +73,7 @@ public abstract class Insumo implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
-        this.nombre = WordUtils.capitalize(nombre);
+        this.nombre = StringUtils.capitalize(nombre);
     }
 
     public UnidadMedida getUnidadMedida() {

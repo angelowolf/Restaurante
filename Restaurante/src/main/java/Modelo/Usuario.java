@@ -13,8 +13,7 @@ import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDate;
 
@@ -38,18 +37,18 @@ public class Usuario implements Mensajes {
 
     public Usuario(int id, String nombre, String apellido, String nick, String clave, Set<Rol> rol) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nick = nick;
-        this.clave = clave;
+        this.nombre = StringUtils.capitalize(nombre);
+        this.apellido = StringUtils.capitalize(apellido);
+        this.nick = org.apache.commons.lang3.StringUtils.stripAccents(nick);
+        this.clave = org.apache.commons.lang3.StringUtils.stripAccents(clave);
         this.roles = rol;
     }
 
     public Usuario(String nombre, String apellido, String nick, String clave, Set<Rol> rol) {
-        this.nombre = WordUtils.capitalize(nombre);
-        this.apellido = WordUtils.capitalize(apellido);
-        this.nick = nick;
-        this.clave = clave;
+        this.nombre = StringUtils.capitalize(nombre);
+        this.apellido = StringUtils.capitalize(apellido);
+        this.nick = org.apache.commons.lang3.StringUtils.stripAccents(nick);
+        this.clave = org.apache.commons.lang3.StringUtils.stripAccents(clave);
         this.roles = rol;
     }
 
@@ -180,7 +179,7 @@ public class Usuario implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "claveOriginal")
     public void setClaveOriginal(String claveOriginal) {
-        this.claveOriginal = claveOriginal;
+        this.claveOriginal = org.apache.commons.lang3.StringUtils.stripAccents(claveOriginal);
     }
 
     public int getId() {
@@ -197,7 +196,7 @@ public class Usuario implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácteres es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
-        this.nombre = WordUtils.capitalize(nombre);
+        this.nombre = StringUtils.capitalize(nombre);
     }
 
     public String getApellido() {
@@ -206,7 +205,7 @@ public class Usuario implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácteres es de 100", fieldName = "apellido")
     public void setApellido(String apellido) {
-        this.apellido = WordUtils.capitalize(apellido);
+        this.apellido = StringUtils.capitalize(apellido);
     }
 
     public String getNick() {
@@ -215,7 +214,7 @@ public class Usuario implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "nick")
     public void setNick(String nick) {
-        this.nick = nick;
+        this.nick = org.apache.commons.lang3.StringUtils.stripAccents(nick);
     }
 
     @JSON(serialize = false)
@@ -225,7 +224,7 @@ public class Usuario implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "200", message = "La cantidad máxima de carácteres es de 200", fieldName = "clave")
     public void setClave(String clave) {
-        this.clave = clave;
+        this.clave = org.apache.commons.lang3.StringUtils.stripAccents(clave);
     }
 
     public Set<Rol> getRoles() {
@@ -242,7 +241,7 @@ public class Usuario implements Mensajes {
     }
 
     public void setClave2(String clave2) {
-        this.clave2 = clave2;
+        this.clave2 = org.apache.commons.lang3.StringUtils.stripAccents(clave2);
     }
 
     @Override

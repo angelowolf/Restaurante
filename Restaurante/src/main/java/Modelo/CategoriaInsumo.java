@@ -6,6 +6,7 @@
 package Modelo;
 
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -20,8 +21,8 @@ public class CategoriaInsumo {
     }
 
     public CategoriaInsumo(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.nombre = StringUtils.capitalize(nombre);
+        this.descripcion = StringUtils.capitalize(descripcion);
     }
 
     public int getId() {
@@ -38,7 +39,7 @@ public class CategoriaInsumo {
 
     @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = StringUtils.capitalize(nombre);
     }
 
     public String getDescripcion() {
@@ -47,7 +48,7 @@ public class CategoriaInsumo {
 
     @StringLengthFieldValidator(maxLength = "255", message = "La cantidad máxima de carácter es de 255", fieldName = "descripcion")
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion = StringUtils.capitalize(descripcion);
     }
 
     @Override

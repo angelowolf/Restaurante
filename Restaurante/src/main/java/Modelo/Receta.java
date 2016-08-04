@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.json.annotations.JSON;
 import org.joda.time.LocalDateTime;
 
@@ -31,7 +32,7 @@ public class Receta implements Mensajes {
     }
 
     public Receta(String nombre, CategoriaReceta categoriaReceta, Set<Ingrediente> ingredientes, Set<DetalleReceta> recetas) {
-        this.nombre = nombre;
+        this.nombre = StringUtils.capitalize(nombre);
         this.categoriaReceta = categoriaReceta;
         this.ingredientes = ingredientes;
         this.recetas = recetas;
@@ -51,7 +52,7 @@ public class Receta implements Mensajes {
 
     @StringLengthFieldValidator(maxLength = "100", message = "La cantidad máxima de carácter es de 100", fieldName = "nombre")
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = StringUtils.capitalize(nombre);
     }
 
     public CategoriaReceta getCategoriaReceta() {

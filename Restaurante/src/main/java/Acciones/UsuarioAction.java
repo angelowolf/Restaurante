@@ -201,7 +201,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
-        sesion.put("usuario", new Usuario(usuario));
+        sesion.put("usuario", new Usuario(controladorUsuario.getUsuario(usuario.getId())));
         return SUCCESS;
     }
 
