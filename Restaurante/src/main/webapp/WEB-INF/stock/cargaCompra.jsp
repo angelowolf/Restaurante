@@ -15,7 +15,7 @@
         </form>
     </div>        
     <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row">
-        <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron insumos por debajo del stock mínimo.</p></display:setProperty>
+        <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Insumos Brutos que coincidan con tu busqueda.</p></display:setProperty>
         <display:column property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
         <display:column property="categoriaInsumo.nombre" title="Categoría" class="text-center-all" headerClass="text-center-all"/>            
         <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>

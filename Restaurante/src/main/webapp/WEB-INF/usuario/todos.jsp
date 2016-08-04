@@ -5,10 +5,10 @@
 
 
 <div class="row">
-    <div class="col-xs-6 text-left">
+    <div class="col-xs-10 text-left">
         <h2 class="pull-left">Listado de Usuarios</h2>
     </div>
-    <div class="col-xs-6 text-right">
+    <div class="col-xs-2 text-right">
         <br />
         <a class="btn btn-default text-right"><i class="fa fa-print"></i></a>
     </div>
@@ -17,32 +17,32 @@
 <div class="panel">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/usuario" id="formulario-buscar">
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Nombre</label>
-                        <input value='<s:property value="nombreFiltro"/>'  type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido" class="control-label">Apellido</label>
-                        <input value='<s:property value="apellidoFiltro"/>' type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Apellido" maxlenght="100" autocomplete="off"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="rolesSeleccionados">Roles</label>
-                        <select class="selectpicker show-tick show-menu-arrow" id="rolesSeleccionados" name="rolesSeleccionados" multiple title="Selecciona uno o mas roles..." data-selected-text-format="count > 3" data-actions-box="true">
-                            <s:iterator var="cadaRol" value="rolesTodos">
-                                <option <s:if test="%{#cadaRol in rolesSeleccionados}"> selected</s:if> value='<s:property value="%{#cadaRol}"/>'>
-                                    <s:property value="%{#cadaRol}" /> 
-                                </option>
-                            </s:iterator>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">
+            <s:form action="listar" namespace="/usuario" id="formulario-buscar">
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="nombre" class="control-label">Nombre</label>
+                    <input value='<s:property value="nombreFiltro"/>'  type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
+                </div>
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="apellido" class="control-label">Apellido</label>
+                    <input value='<s:property value="apellidoFiltro"/>' type="text" class="form-control" id="apellido" name="apellidoFiltro" placeholder="Apellido" maxlenght="100" autocomplete="off"/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label class="control-label" for="rolesSeleccionados">Roles</label>
+                    <select class="form-control selectpicker show-tick show-menu-arrow" id="rolesSeleccionados" name="rolesSeleccionados" multiple title="Selecciona uno o mas roles..." data-selected-text-format="count > 3" data-actions-box="true" >
+                        <s:iterator var="cadaRol" value="rolesTodos">
+                            <option <s:if test="%{#cadaRol in rolesSeleccionados}"> selected</s:if> value='<s:property value="%{#cadaRol}"/>'>
+                                <s:property value="%{#cadaRol}" /> 
+                            </option>
+                        </s:iterator>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-2 text-right">
+                    <button type="submit" class="btn btn-inline btn-ruhaj">
                         Buscar
                         <i class="fa fa-search fa-fw"></i>
                     </button>
-                </s:form>
-            </div>
+                </div>
+            </s:form>
         </div>
     </div>
 </div>
@@ -58,13 +58,13 @@
         </display:setProperty>
 
         <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
         <display:column sortable="true" property="nick" title="Nombre de Usuario" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
         <display:column sortable="true" property="telefono" title="Teléfono de Contacto" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="roles" title="Roles Asignados" class="hidden-xs" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj hidden-xs"/>
+        <display:column sortable="true" property="roles" title="Roles Asignados" class="visible-lg" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj visible-lg"/>
         <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
         <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column title="Acciones" class="col-xs-6 col-sm-4 text-center-all" headerClass="table-header-ruhaj">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">

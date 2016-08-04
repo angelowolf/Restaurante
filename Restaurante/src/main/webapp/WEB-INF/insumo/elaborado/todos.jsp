@@ -3,10 +3,10 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <div class="row">
-    <div class="col-xs-6 text-left">
+    <div class="col-xs-10 text-left">
         <h2 class="pull-left">Listado de Insumos Elaborados</h2>
     </div>
-    <div class="col-xs-6 text-right">
+    <div class="col-xs-2 text-right">
         <br />
         <a class="btn btn-default" data-toggle="tooltip" title="Imprimir Listado" data-placement="left">
             <i class="fa fa-print"></i>
@@ -17,18 +17,18 @@
 <div class="panel">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/insumoelaborado" id="formulario-buscar">
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Nombre de Insumo Elaborado</label>
-                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Insumo Elaborado" autocomplete='off' autofocus="autofocus" />
-                    </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">
+            <s:form action="listar" namespace="/insumoelaborado" id="formulario-buscar">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="nombre" class="control-label">Nombre de Insumo Elaborado</label>
+                    <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Insumo Elaborado" autocomplete='off' autofocus="autofocus" />
+                </div>
+                <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-7 text-right">
+                    <button type="submit" class="btn btn-inline btn-ruhaj">
                         Buscar
                         <i class="fa fa-search fa-fw"></i>
                     </button>
-                </s:form>
-            </div>
+                </div>
+            </s:form>
         </div>
     </div>
 </div>
@@ -49,7 +49,7 @@
         <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
         <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
         <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column title="Acciones" class="col-xs-6 col-sm-2 text-center-all" headerClass="table-header-ruhaj">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">

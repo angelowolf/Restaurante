@@ -3,10 +3,10 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <div class="row">
-    <div class="col-xs-6 text-left">
+    <div class="col-xs-10 text-left">
         <h2 class="pull-left">Listado de Insumos</h2>
     </div>
-    <div class="col-xs-6 text-right">
+    <div class="col-xs-2 text-right">
         <br />
         <a class="btn btn-default text-right" data-toggle="tooltip" title="Imprimir Listado" data-placement="left">
             <i class="fa fa-print"></i>
@@ -17,24 +17,22 @@
 <div class="panel">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/insumobruto" id="formulario-buscar">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
-                    </div>
-                    <div class="form-group">
-                        <label for="categoria" name="categoria">Categoria de Insumo</label>
-                        <div class="form-group">
-                            <s:select headerKey="-1" headerValue="Selecciona Categoría" list="categorias" id="categoriaInsumoFiltro" name="categoriaInsumoFiltro" listKey="id" listValue="nombre" cssClass="selectpicker show-tick show-menu-arrow" value="categoriaInsumoFiltro"/>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">
+            <s:form action="listar" namespace="/insumobruto" id="formulario-buscar">
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label for="nombre">Nombre</label>
+                    <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre" maxlenght="100" autocomplete="off" autofocus="autofocus" />
+                </div>
+                <div class="form-group col-xs-12 col-sm-5 col-md-4">
+                    <label for="categoria" name="categoria">Categoria de Insumo</label>
+                    <s:select headerKey="-1" headerValue="Selecciona Categoría" list="categorias" id="categoriaInsumoFiltro" name="categoriaInsumoFiltro" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow" value="categoriaInsumoFiltro"/>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-2 text-right">
+                    <button type="submit" class="btn btn-inline btn-ruhaj">
                         Buscar
                         <i class="fa fa-search fa-fw"></i>
                     </button>
-                </s:form>
-            </div>
+                </div>
+            </s:form>
         </div>
     </div>
 </div>
@@ -44,7 +42,7 @@
             <div class="col-xs-12 well text-center">
                 <p>
                     <i class="fa fa-filter fa-lg"></i>
-                    No se encontraron Insumos  que coincidan con tu busqueda.
+                    No se encontraron Insumos Brutos que coincidan con tu busqueda.
                 </p>
             </div>
         </display:setProperty>

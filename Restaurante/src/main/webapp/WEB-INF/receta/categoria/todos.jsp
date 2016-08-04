@@ -12,18 +12,18 @@
 <div class="panel">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/receta/categoria" id="formulario-buscar">
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Nombre de Categoria</label>
-                        <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
-                    </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">
+            <s:form action="listar" namespace="/receta/categoria" id="formulario-buscar">
+                <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                    <label for="nombre" class="control-label">Nombre de Categoría</label>
+                    <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus" />
+                </div>
+                <div class="col-xs-12 col-sm-2 col-sm-offset-4 col-md-offset-6">
+                    <button type="submit" class="btn btn-inline btn-ruhaj pull-right">
                         Buscar
                         <i class="fa fa-search fa-fw"></i>
                     </button>
-                </s:form>
-            </div>
+                </div>
+            </s:form>
         </div>
     </div>
 </div>

@@ -96,6 +96,10 @@ td > .form-control.fixed-width{
   text-decoration: none;
 }
 
+.btn-inline {
+  margin-top: 25px;
+}
+
 .btn-ruhaj {
   color: #fdfdfd;
   background-color: #f8557d;

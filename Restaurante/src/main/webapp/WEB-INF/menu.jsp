@@ -2,11 +2,17 @@
 <li id="navbar-logo">
     <img src="/imagenes/favicon.ico">
 </li>
+<li>
+    <a href="/home">
+        <i class="fa fa-home fa-fw"></i>
+        Inicio
+    </a>
+</li>
 <s:if test="#session.usuario.esResponsableUsuario()">
     <li>
         <a href="#">
             <i class="fa fa-users fa-fw"></i> Usuarios
-            <span class="fa arrow"></span>
+            <i class="fa arrow"></i>
         </a>
         <ul class="nav nav-second-level">
             <li>
@@ -26,12 +32,12 @@
     <li>
         <a href="#">
             <i class="fa fa-shopping-bag fa-fw"></i> Almacén
-            <span class="fa arrow"></span></a>
+            <i class="fa arrow"></i></a>
         <ul class="nav nav-second-level">
             <li>
                 <a href="#">
                     <i class="fa fa-apple fa-fw"></i> Insumos
-                    <span class="fa arrow"></span>
+                    <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
                     <li>
@@ -49,7 +55,7 @@
             <li>
                 <a href="#">
                     <i class="fa fa-cogs fa-fw"></i> Tipos Insumo
-                    <span class="fa arrow"></span>
+                    <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
                     <li>
@@ -84,12 +90,12 @@
 </s:if>
 <s:if test="#session.usuario.esResponsableCocina()">
     <li>
-        <a href="#"><i class="fa fa-fire fa-fw"></i> Cocina<span class="fa arrow"></span></a>
+        <a href="#"><i class="fa fa-fire fa-fw"></i> Cocina<i class="fa arrow"></i></a>
         <ul class="nav nav-second-level">
             <li>
                 <a href="#">
                     <i class="fa fa-sign-language fa-fw"></i> Elaborados
-                    <span class="fa arrow"></span>
+                    <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
                     <li>
@@ -107,7 +113,7 @@
             <li>
                 <a href="#">
                     <i class="fa fa-book fa-fw"></i> Recetas
-                    <span class="fa arrow"></span>
+                    <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
                     <li>
@@ -125,7 +131,7 @@
             <li>
                 <a href="#">
                     <i class="fa fa-cogs fa-fw"></i> Tipos Receta
-                    <span class="fa arrow"></span>
+                    <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
                     <li>

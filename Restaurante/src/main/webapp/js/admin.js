@@ -61,7 +61,7 @@ var erroresM = (function () {
     }
 
     modulo.parsearFecha = function parseDate(input) {
-        if(input.trim() == null) {
+        if(!input || input.trim() == null) {
             return '';
         }
         var parts = input.split('/');

@@ -3,10 +3,10 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <div class="row">
-    <div class="col-xs-6 text-left">
+    <div class="col-xs-10 text-left">
         <h2 class="pull-left">Listado de Recetas</h2>
     </div>
-    <div class="col-xs-6 text-right">
+    <div class="col-xs-2 text-right">
         <br />
         <a class="btn btn-default" data-toggle="tooltip" title="Imprimir Listado" data-placement="left">
             <i class="fa fa-print"></i>
@@ -18,21 +18,21 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12">
-                <s:form class="form-inline" action="listar" namespace="/receta" id="formulario-buscar">
-                    <div class="form-group">
+                <s:form class="row" action="listar" namespace="/receta" id="formulario-buscar">
+                    <div class="form-group col-xs-12 col-sm-4">
                         <label for="nombre" class="control-label">Nombre de Receta</label>
                         <input value='<s:property value="nombreFiltro"/>' type="text" class="form-control" id="nombre" name="nombreFiltro" placeholder="Nombre de Receta" autocomplete='off' autofocus="autofocus" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-12 col-sm-4">
                         <label for="categoria" name="categoria">Categoria de Receta</label>
-                        <div class="form-group">
-                            <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaRecetaFiltro" name="categoriaRecetaFiltro" listKey="id" listValue="nombre" cssClass="selectpicker show-tick show-menu-arrow" value="categoriaRecetaFiltro"/>
-                        </div>
+                            <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaRecetaFiltro" name="categoriaRecetaFiltro" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow" value="categoriaRecetaFiltro"/>
                     </div>
-                    <button type="submit" class="btn btn-ruhaj pull-right">
-                        Buscar
-                        <i class="fa fa-search fa-fw"></i>
-                    </button>
+                    <div class="col-xs-12 col-sm-4 text-right">
+                        <button type="submit" class="btn btn-bottom-aligned btn-ruhaj">
+                            Buscar
+                            <i class="fa fa-search fa-fw"></i>
+                        </button>
+                    </div>
                 </s:form>
             </div>
         </div>
