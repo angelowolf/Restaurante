@@ -177,7 +177,7 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
                 }
             }
         }
-        Usuario original = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
+        Usuario original = controladorUsuario.getUsuario(usuarioSesion.getId());
         if (StringUtils.isBlank(usuario.getClaveOriginal())) {
             addFieldError("claveOriginal", mensajes.INGRESECLAVEACTUAL);
         } else if (!Encriptar.encriptaEnMD5(usuario.getClaveOriginal()).equals(original.getClave())) {
@@ -201,14 +201,15 @@ public class UsuarioAction extends Accion implements ModelDriven<Usuario>, CRUD 
         } else {
             controladorUsuario.actualizarMisDatos(usuario, true);
         }
+        sesion.put("usuario", new Usuario(usuario));
         return SUCCESS;
     }
 
     public String getModificarPerfil() {
-        if (!sesion.containsKey("idUsuario")) {
+        if(usuarioSesion == null || usuarioSesion.getId() == 0){
             return LOGIN;
         }
-        usuario = controladorUsuario.getUsuario((int) sesion.get("idUsuario"));
+        usuario = controladorUsuario.getUsuario(usuarioSesion.getId());
         return SUCCESS;
     }
 
