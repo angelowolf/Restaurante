@@ -79,6 +79,8 @@
                 $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
                 $modal.find('#categoriaInsumo').val(response.model.categoriaInsumo.id).prop('selected', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
+                $modal.find('#cantidadActual').val(response.model.stock.cantidadActual);
+                $modal.find('#fechaAlta').val(response.model.fAlta);
             } else {
                 erroresM.mostrarAlertError(response.actionErrors);
             }

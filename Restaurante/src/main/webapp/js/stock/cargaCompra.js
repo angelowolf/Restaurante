@@ -1,97 +1,166 @@
-var ids = [];
-
 (function ($) {
+    var ids = [];
 
-    $('#cancelar').click(function (e) {
-        e.preventDefault();
-        window.location.replace('/home');
-    });
-    
-    $('#categoria').on('change', function () {
-        var data = getIdsFormatoPOST();
-        if (data !== "") {
-            data += '&';
-        }
-        data += 'idCategoria=' + $(this).find('option:selected').val();
-        data += '&nombreInsumo=' + $('#nombre').val();
-        $.post('/insumobruto/postBuscarInsumoBruto', data, function (response) {
-            $('#row').fadeOut().remove();
-            $('#notificacion').remove();
-            $('#contenedor').append(response);
-        });
-    });
+    $('#filtro-insumos-form').submit(function (e) { return false; })
 
-    $('#nombre').on('keyup', function () {
-        var data = getIdsFormatoPOST();
-        if (data !== "") {
-            data += '&';
-        }
-        data += 'nombreInsumo=' + $(this).val();
-        data += '&idCategoria=' + $('#categoria').find('option:selected').val();
-        $.post('/insumobruto/postBuscarInsumoBruto', data, function (response) {
-            $('#row').fadeOut().remove();
-            $('#notificacion').remove();
-            $('#contenedor').append(response);
-        });
-    });
+    $('#filtro-insumos-form #categoria').on('change', actualizarListadoInsumos);
 
-    $('body').on('click', '#row button', function (e) {
-        e.preventDefault();
-        ids.push($(this).attr('id'));
-        $(this).parents('tr').fadeOut('normal', function () {
-            var tr = $(this).detach();
-            var id = tr.find('td:last button').attr('id');
-            tr.find('td:last').remove();
-            tr.append('<td><input name="cantidad" type="number" min="0" class="form-control text-center-all"/></td><td><input min="0"  name="precio" type="number" class="form-control text-center-all"/></td><td class="text-center-all"><button value="' + id + '" class="btn btn-danger"><i class="fa fa-close"></i></button></td>');
-            $('#row2 tbody').append(tr);
-            tr.fadeIn();
-            mostrarTabla();
-        });
-    });
+    $('#filtro-insumos-form #nombre').on('keyup', actualizarListadoInsumos);
 
-    $('body').on('click', '#row2 button', function (e) {
-        e.preventDefault();
-        console.log($(this));
-        var id = $(this).val();
-        ids.remove(id);
-        $(this).parents('tr').fadeOut('normal', function () {
-            $(this).remove();
-            mostrarTabla();
-        });
-    });
+    $('.btn-seleccionar-insumo').on('click', btnSeleccionarInsumoListener);
 
-
-    $('body').on('click', '#registrar', function (e) {
-        e.preventDefault();
-        toggleBoton(e.target);
-        var data = getIdsFormatoPOST();
-        if (data.length !== 0) {
-            data += '&';
-        }
-        data += $('#formulario-compra').serialize();
-        $.post('/stock/postCargarCompra', data, function (response) {
-            if (response.codigo === 200) {
-                window.location.replace('/stock/getCargarCompra');
-            } else {
-                erroresM.mostrarAlertError(response.actionErrors, 'danger');
-                toggleBoton(e.target);
+    $('#carga-compra-form').submit(function (e) {
+        var $form = $(this);
+        var $boton = $form.find('.confirmar');
+        var data = $form.serialize();
+        toggleBoton($boton);
+        $.ajax({
+            type: 'POST',
+            url : '/stock/postCargarCompra',
+            traditional : true,
+            data: data,
+            dataType : 'JSON',
+            success : function (response) {
+                if (response.codigo === 200) {
+                    window.location.reload();
+                } else {
+                    toggleBoton($boton);
+                    erroresM.mostrarErrores($form.attr('id'), response);
+                }
             }
         });
+        return false;
     });
 
+    function actualizarListadoInsumos() {
+        var data = {};
+            data.idCategoria  = $('#categoria').val();
+            data.nombreInsumo = $('#nombre').val();
+            data.ids = ids;
+        $.ajax({
+            type: 'POST',
+            url : '/insumobruto/postBuscarInsumoBruto',
+            traditional : true,
+            data: data,
+            dataType : 'JSON',
+            success : function (response) {
+                $('#insumos-brutos-filtrados tbody tr').remove();
+                if(response.length == 0) {
+                    var $tde = $('<td>').attr('colspan', '7')
+                                        .addClass('text-center-all')
+                                        .html('No se encontraron Insumos Brutos que coincidan con tu busqueda.');
+                    var $row = $('<tr>').addClass('empty well');
+                        $row.append($tde);
+                    $('#insumos-brutos-filtrados tbody').append($row);
+                }
+                $.each(response, function(k, modelo) {
+                    construirFilaTablaFiltrado(modelo);
+                });
+            }
+        });
+    }
 
+    function construirFilaTablaFiltrado(modelo) {
+        var $tdno = $('<td>').addClass('text-center-vertical')
+                            .html(modelo.nombre);
+        var $tdcn = $('<td>').addClass('text-center-vertical')
+                            .html(modelo.categoriaInsumo.nombre);
+        var $tdca = $('<td>').addClass('text-center-all')
+                            .html(modelo.stock.cantidadActual);
+        var $tdcm = $('<td>').addClass('text-center-all')
+                            .html(modelo.stock.cantidadMinima);
+        var $tdum = $('<td>').addClass('text-center-all')
+                            .html(modelo.unidadMedida);
+        var $tdpu = $('<td>').addClass('text-center-all')
+                            .html(modelo.precioUnidad.toFixed(2));
+        var $icon = $('<i>').addClass('fa fa-plus');
+        var $botn = $('<button>').attr('id', modelo.id)
+                                 .prop('type', 'button')
+                                 .addClass('btn btn-sm btn-success btn-seleccionar-insumo')
+                                 .append($icon)
+                                 .on('click', btnSeleccionarInsumoListener)
+                                .tooltip({
+                                    title : 'Seleccionar',
+                                    placement : 'left',
+                                    container : 'body'
+                                 });
+        var $tdbt = $('<td>').addClass('text-center-all')
+                             .append($botn);
+
+        var $nrow = $('<tr>');
+            $nrow.append($tdno)
+                 .append($tdcn)
+                 .append($tdca)
+                 .append($tdcm)
+                 .append($tdum)
+                 .append($tdpu)
+                 .append($tdbt);
+
+        $('#insumos-brutos-filtrados tbody').append($nrow);
+    }
+
+    function btnSeleccionarInsumoListener() {
+        var id = $(this).attr('id');
+        $(this).tooltip('destroy');
+
+        var $orow  = $(this).parents('tr');
+            $orow.slideDown('fast').remove();
+
+        var $nrow = $orow.clone();
+            $nrow.find('.btn-seleccionar-insumo')
+                 .parents('td')
+                 .remove();
+
+        var $icon = $('<i>').addClass('fa fa-minus');
+        var $botn = $('<button>').attr('id', id)
+                                 .attr('tabindex', '-1')
+                                 .prop('type', 'button')
+                                 .addClass('btn btn-sm btn-danger')
+                                 .append($icon)
+                                 .on('click', function () {
+                                    var id  = $(this).attr('id');
+                                    var idx = ids.indexOf(id);
+                                    if(idx > -1) {
+                                        ids.splice(idx, 1);
+                                        $(this).tooltip('destroy');
+                                        $(this).parents('tr').remove();
+                                        if(ids.length < 1) {
+                                            $('#insumos-brutos-seleccionados .empty').show();
+                                         }
+                                     }
+                                 })
+                                 .tooltip({
+                                    title : 'Quitar',
+                                    placement : 'left',
+                                    container : 'body'
+                                 });
+
+        var $tdac = $('<td>').addClass('text-center-all').append($botn);
+
+        var $cant = $('<input>').prop('name', 'cantidad')
+                                .prop('type', 'text')
+                                .prop('maxlength', 5)
+                                .addClass('form-control numeric fw-4');
+        var $tdca = $('<td>').addClass('text-center-all').append($cant);
+
+        var $prec = $('<input>').prop('name', 'precio')
+                               .prop('type', 'text')
+                               .prop('maxlength', 5)
+                               .addClass('form-control numeric fw-4');
+        var $tdpr = $('<td>').addClass('text-center-all').append($prec);
+
+        var $hide = $('<input>').prop('name', 'ids')
+                                .prop('type', 'hidden')
+                                .val(id);
+
+        $nrow.prepend($hide).append($tdca).append($tdpr).append($tdac);
+
+        ids.push(id);
+
+        if(ids.length > 0 ) {
+            $('#insumos-brutos-seleccionados .empty').hide();
+        }
+        $('#insumos-brutos-seleccionados').append($nrow);
+    }
 
 })(jQuery);
-
-function mostrarTabla() {
-    var tabla = $('#insumosComprados');
-    if (ids.length !== 0) {
-        if (!tabla.is(':visible')) {
-            tabla.fadeIn();
-            $('#registrar').prop('disabled', false);
-        }
-    } else {
-        tabla.fadeOut();
-        $('#registrar').prop('disabled', true);
-    }
-}

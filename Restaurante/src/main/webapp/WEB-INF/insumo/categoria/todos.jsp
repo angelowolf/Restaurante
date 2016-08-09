@@ -27,37 +27,36 @@
         </div>
     </div>
 </div>
-<div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list" keepStatus="true">
-        <display:setProperty name="basic.msg.empty_list" >
-            <div class="col-xs-12 well text-center">
-                <p>
-                    <i class="fa fa-filter fa-lg"></i>
-                    No se encontraron Categorias  que coincidan con tu busqueda.
-                </p>
-            </div>
-        </display:setProperty>
 
-        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
-        <display:column property="descripcion" title="Descripción" class="text-center-all hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
-            <div class="acciones">
-                <s:hidden class="model-id" value="%{#attr.row.id}"/>
-                <div class="btn-group">
-                    <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-insumo" title="Ver Categoria" data-toggle="tooltip">
-                        <i class="fa fa-eye"></i>
-                    </button>
-                    <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-insumo" title="Editar Categoria" data-toggle="tooltip">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-insumo" title="Eliminar Categoria" data-toggle="tooltip">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>
+<display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list" keepStatus="true">
+    <display:setProperty name="basic.msg.empty_list" >
+        <div class="col-xs-12 well text-center">
+            <p>
+                <i class="fa fa-filter fa-lg"></i>
+                No se encontraron Categorias  que coincidan con tu busqueda.
+            </p>
+        </div>
+    </display:setProperty>
+    <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical"/>
+    <display:column property="descripcion" title="Descripción" class="text-center-vertical hidden-xs" headerClass="hidden-xs"/>
+    <display:column title="Acciones" class="col-xs-4 col-sm-2 text-center-all" >
+        <div class="acciones">
+            <s:hidden class="model-id" value="%{#attr.row.id}"/>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-insumo" title="Ver Categoria" data-toggle="tooltip">
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-insumo" title="Editar Categoria" data-toggle="tooltip">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-insumo" title="Eliminar Categoria" data-toggle="tooltip">
+                    <i class="fa fa-trash"></i>
+                </button>
             </div>
-        </display:column>
-    </display:table>
-</div>
+        </div>
+    </display:column>
+</display:table>
+
 <s:include value="/WEB-INF/insumo/categoria/modalModificacion.jsp"/>
 <s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
 <s:set var="objeto" value="#application.mensaje.CATEGORIAINSUMO"/>

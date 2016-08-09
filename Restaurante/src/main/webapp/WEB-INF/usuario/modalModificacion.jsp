@@ -23,7 +23,7 @@
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="apellido">Appelido *</label>
+                                <label class="control-label" for="apellido">Apellido *</label>
                                 <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" maxlength="100" autocomplete="off">
                                 <span class="help-block"></span>
                             </div>

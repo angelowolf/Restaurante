@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="categoria" name="categoria">Categoria de Insumo *</label>
-                            <s:select headerKey="-1" headerValue="Seleccione una categoria" list="categorias" id="categoriaReceta" name="categoriaReceta.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow" title="Selecciona una Categoria de Receta"/>
+                            <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaReceta" name="categoriaReceta.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
@@ -37,13 +37,14 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button class="btn btn-default cancelar" type="button">
+                        <a href="/receta/listar" class="btn btn-default cancelar">
                             Cancelar
-                        </button>
+                        </a>
                     </div>
                     <div class="col-xs-6 text-right">
                         <button class="btn btn-ruhaj confirmar" type="submit">
-                            Aceptar</button>
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             </div>

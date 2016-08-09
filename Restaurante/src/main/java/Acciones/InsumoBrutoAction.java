@@ -46,7 +46,7 @@ public class InsumoBrutoAction extends Accion implements ModelDriven<Insumo>, CR
     public InsumoBrutoAction() {
         unidades = Arrays.asList(UnidadMedida.values());
         IControladorCategoriaInsumo controladorCategoriaInsumo = new ControladorCategoriaInsumo();
-        categorias = controladorCategoriaInsumo.getTodos();
+        categorias = controladorCategoriaInsumo.buscarTodos(null);
         lista = new ArrayList<>();
         ids = new ArrayList<>();
         insumo = new InsumoBruto();

@@ -13,16 +13,13 @@
                         <strong>Nombre:</strong> <p id="nombre"></p>
                     </div>
                     <div class="col-xs-12 text-inline">
-                        <strong>Categoría:</strong> <p id="categoria"></p>
-                    </div>
-                    <div class="col-xs-12 text-inline">
-                        <strong>Precio:</strong> <p id="precioUnidad"></p>
-                    </div>
-                    <div class="col-xs-12 text-inline">
                         <strong>Categoria de Insumo:</strong> <p id="categoria"></p>
                     </div>
                     <div class="col-xs-12 text-inline">
                         <strong>Unidad de Medida:</strong> <p id="unidadMedida"></p>
+                    </div>
+                    <div class="col-xs-12 text-inline">
+                        <strong>Precio:</strong> <p id="precioUnidad"></p>
                     </div>
                     <div class="col-xs-12 text-inline">
                         <strong>Cantidad Actual:</strong> <p id="cantidadActual"></p>

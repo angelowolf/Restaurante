@@ -11,8 +11,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><tiles:insertAttribute name="title" ignore="true" /></title>
-        <link rel="shortcut icon" href="../imagenes/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="../imagenes/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../imagenes/ffavicon.ico" type="image/x-icon">
+        <link rel="icon" href="../imagenes/ffavicon.ico" type="image/x-icon">
         <s:iterator value="#attr.stylesheet" var="cascadeUrl">
             <link href='<s:url value="%{cascadeUrl}"/>' rel="stylesheet" type="text/css" >
         </s:iterator>
@@ -24,10 +24,8 @@
     <body>
         <s:hidden value="%{#session.usuario.id}" id="idUsuarioHidden"/>
         <div id="wrapper">
-            <!-- Navigation -->
-            <nav class="navbar navbar-ruhaj navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-                <a id="navbar-toggle-menu" class="closed"><i class="fa fa-bars fa-2x"></i></a>
-                <ul class="nav pull-right navbar-top-links">
+            <nav class="navbar navbar-ruhaj navbar-fixed-top" role="navigation" >
+                <ul class="nav navbar-top-links pull-right">
                     <s:action name="panel" namespace="/notificacion" executeResult="true"/>
                     <!-- /.dropdown-notificaciones -->
                     <li class="dropdown">
@@ -49,25 +47,23 @@
                                 </a>
                             </li>
                         </ul>
-                        <!-- /.dropdown-user -->
                     </li>
-                    <!-- /.dropdown -->
                 </ul>
-                <!-- /.navbar-top-links -->
-
-                <div class="navbar-ruhaj sidebar closed" role="navigation">
-                    <div class="sidebar-nav" id="menu-collapse">
-                        <ul class="nav" id="side-menu">
-                            <tiles:insertAttribute name="menu" />
-                        </ul>
-                    </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
-                <!-- /.navbar-static-side -->
             </nav>
 
-            <!-- Page Content -->
-            <div id="page-wrapper" class="closed">
+            <div id="sidebar-ruhaj" class="closed" role="navigation">
+                <div id="sidebar-head">
+                    <img src="/imagenes/menulogo.png">
+                    <a href="#" id="sidebar-toggle">
+                        <i class="fa fa-bars fa-2x"></i>
+                    </a>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <tiles:insertAttribute name="menu" />
+                </ul>
+            </div>
+
+            <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">

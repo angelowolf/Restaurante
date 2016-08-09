@@ -13,8 +13,4 @@
         });
         return false;
     });
-
-    $('#alta-categoria-insumo-form .cancelar').on('click', function (e) {
-        window.location.replace('/insumo/categoria/listar');
-    });
 })(jQuery);

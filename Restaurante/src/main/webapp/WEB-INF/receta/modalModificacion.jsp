@@ -24,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="categoria" name="categoria">Categoria de Receta *</label>
-                                <s:select headerKey="-1" headerValue="Seleccione una categoria" list="categorias" id="categoriaReceta" name="categoriaReceta.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow" title="Selecciona una Categoría"/>
+                                <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaReceta" name="categoriaReceta.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
                                 <span class="help-block"></span>
                             </div>
                         </div>

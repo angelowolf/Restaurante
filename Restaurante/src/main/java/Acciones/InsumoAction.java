@@ -25,13 +25,16 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     private final IControladorInsumo controladorInsumo = new ControladorInsumo();
     private List<Insumo> lista;
     private List<AutoComplete> listaAC;
-    private String term;
+    private String term, nombreInsumo;
     private Insumo insumo;
-
+    private int idCategoria;
+    private List<Integer> ids;
+    
     public InsumoAction() {
         insumo = new InsumoBruto();
         lista = new ArrayList<>();
         listaAC = new ArrayList<>();
+        ids = new ArrayList<>();
     }
 
     public String listar() {
@@ -42,6 +45,11 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     public String postBuscarInsumo() {
         insumo = controladorInsumo.buscar(insumo.getId());
         LOGGER.info("POST");
+        return SUCCESS;
+    }
+
+    public String postBuscarInsumos() {
+        lista = controladorInsumo.getTodosByCategoriaByNombreSinEstos(idCategoria, nombreInsumo, ids, true);
         return SUCCESS;
     }
 
@@ -83,6 +91,18 @@ public class InsumoAction extends Accion implements ModelDriven<Insumo> {
     @Override
     public Insumo getModel() {
         return insumo;
+    }
+    
+    public void setNombreInsumo(String nombreInsumo) {
+        this.nombreInsumo = nombreInsumo;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
     }
 
 }

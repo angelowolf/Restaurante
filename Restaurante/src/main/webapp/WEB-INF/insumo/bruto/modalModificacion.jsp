@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-modificar-insumo-bruto" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-center">
         <div class="modal-content">
-            <form id="modificar-insumo-bruto-form">
+            <form id="modificar-insumo-bruto-form" autocomplete="off">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modificar Insumo</h4>
@@ -18,26 +18,34 @@
                             <input type="hidden" id="id" name="id">
                             <div class="form-group">
                                 <label for="nombre">Nombre *</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" autocomplete="off" autofocus="autofocus" maxlength="100">
-                                <span class="help-block"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="precioUnidad">Precio *</label>
-                                <input  class="form-control numeric" id="precioUnidad" name="precioUnidad" placeholder="Precio por unidad" autocomplete="off" maxlength="10">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" autofocus="autofocus" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label for="categoria" name="categoria">Categoria de Insumo *</label>
                                 <div class="form-group">
-                                    <s:select list="categorias" id="categoriaInsumo" name="categoriaInsumo.id" listKey="id" listValue="nombre" cssClass="form-control"/>
+                                    <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaInsumo" name="categoriaInsumo.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
                                     <span class="help-block"></span>
                                 </div>
                             </div>
                             <s:include value="/WEB-INF/unidadMedida/unidades.jsp"/>
                             <div class="form-group">
-                                <label for="cantidadMinima">Cantidad Mínima *</label>
-                                <input class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima" autocomplete="off" maxlength="10">
+                                <label for="precioUnidad">Precio por Unidad*</label>
+                                <input type="text" class="form-control numeric" id="precioUnidad" name="precioUnidad" placeholder="Precio por Unidad" maxlength="5">
                                 <span class="help-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="cantidadActual">Cantidad Actual</label>
+                                <input type="text" class="form-control" id="cantidadActual" name="stock.cantidadActual" placeholder="Cantidad actual" maxlength="5" disabled tabindex="-1">
+                            </div>
+                            <div class="form-group">
+                                <label for="cantidadMinima">Cantidad Mínima *</label>
+                                <input class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad Mínima" maxlength="5">
+                                <span class="help-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="fechaAlta">Fecha Alta</label>
+                                <input type="text" class="form-control" id="fechaAlta" disabled tabindex="-1">
                             </div>
                         </div>
                     </div>

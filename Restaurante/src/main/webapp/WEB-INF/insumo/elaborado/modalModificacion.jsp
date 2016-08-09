@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-modificar-insumo-elaborado" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-center">
         <div class="modal-content">
-            <form id="modificar-insumo-elaborado-form">
+            <form id="modificar-insumo-elaborado-form" autocomplete="off">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Modificar Elaboración</h4>
@@ -19,14 +19,22 @@
                             <input type="hidden" id="id" name="id">
                             <div class="form-group">
                                 <label for="nombre" class="control-label">Nombre *</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="100" autocomplete="off">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                             <s:include value="/WEB-INF/unidadMedida/unidades.jsp"/>
                             <div class="form-group">
+                                <label for="cantidadActual">Cantidad Actual</label>
+                                <input type="text" class="form-control" id="cantidadActual" name="stock.cantidadActual" placeholder="Cantidad actual" maxlength="5" disabled tabindex="-1">
+                            </div>
+                            <div class="form-group">
                                 <label for="cantidadMinima" class="control-label">Cantidad Mínima *</label>
-                                <input type="number" min="0" class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima" maxlength="10" autocomplete="off">
+                                <input type="number" min="0" class="form-control numeric-nodot" id="cantidadMinima" name="stock.cantidadMinima" placeholder="Cantidad mínima" maxlength="5">
                                 <span class="help-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="fechaAlta">Fecha Alta</label>
+                                <input type="text" class="form-control" id="fechaAlta" disabled tabindex="-1">
                             </div>
                             <s:include value="/WEB-INF/insumo/elaborado/detalleInsumo.jsp"/>
                         </div>

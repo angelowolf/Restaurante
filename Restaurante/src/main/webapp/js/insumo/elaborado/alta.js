@@ -18,10 +18,6 @@
         return false;
     });
 
-    $('#alta-insumo-elaborado-form .cancelar').on('click', function (e) {
-        window.location.replace('/insumoelaborado/listar');
-    });
-
     $('#busqueda-insumo').easyAutocomplete({
         url: function (phrase) {
             return '/insumobruto/postBuscarInsumoBrutoAutoComplete';

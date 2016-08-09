@@ -19,7 +19,9 @@
         
         <!--RUTAS DE EVENTOS DINAMICOS....-->
         <action name="postBuscarInsumoBruto" method="postBuscarInsumo" class="Acciones.InsumoBrutoAction">
-            <result name="success">/WEB-INF/insumo/bruto/tablaInsumo.jsp</result>
+            <result type="json" >
+                <param name="root">lista</param>
+            </result> 
         </action>          
         <action name="postBuscarInsumoBrutoAutoComplete" method="postBuscarInsumoBrutoAutoComplete" class="Acciones.InsumoBrutoAction">
             <result type="json" >

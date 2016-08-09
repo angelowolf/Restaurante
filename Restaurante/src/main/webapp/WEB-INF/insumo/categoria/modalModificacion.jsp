@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-modificar-categoria-insumo" role="dialog" data-backdrop="static">
     <div class="modal-dialog modal-dialog-center ">
         <div class="modal-content">
-            <form id="modificar-categoria-insumo-form">
+            <form id="modificar-categoria-insumo-form" autocomplete="off">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Modificar Categoría de Insumo</h4>
@@ -19,12 +19,12 @@
                             <input type="hidden" id="id" name="id">
                             <div class="form-group">
                                 <label class="control-label" for="nombre">Nombre de Categoria *</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="100" autocomplete="off" autofocus="autofocus">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" maxlength="100" autofocus="autofocus">
                                 <span class="help-block"></span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="descrpcion">Descripción</label>
-                                <textarea class="form-control" id="descripcion" name="descripcion" maxlength="255" autocomplete="off"></textarea>
+                                <textarea class="form-control" id="descripcion" name="descripcion" maxlength="255"></textarea>
                                 <span class="help-block"></span>
                             </div>
                         </div>

@@ -13,8 +13,4 @@
         });
         return false;
     });
-
-    $('#alta-categoria-receta-form .cancelar').on('click', function (e) {
-        window.location.replace('/receta/categoria/listar');
-    });
 })(jQuery);

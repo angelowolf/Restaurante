@@ -8,8 +8,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="/imagenes/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/imagenes/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/imagenes/ffavicon.ico" type="image/x-icon">
+        <link rel="icon" href="/imagenes/fffavicon.ico" type="image/x-icon">
         <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css'>
         <link href='/css/login.css' rel='stylesheet' type='text/css'>
@@ -21,7 +21,7 @@
                     <div class="panel">
                         <div class="panel-body">
                             <div class="col-lg-5 col-sm-6 col-xs-12 text-center">
-                                <img src="/imagenes/favicon.ico" class="logo center-block">
+                                <img src="/imagenes/loginlogo.png" class="logo center-block">
                             </div>
                             <div class="col-lg-7 col-sm-6 col-xs-12">
                                 <br />

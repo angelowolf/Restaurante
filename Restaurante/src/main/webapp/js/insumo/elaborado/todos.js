@@ -158,6 +158,8 @@
                 $modal.find('#nombre').val(response.model.nombre);
                 $modal.find('#unidadMedida' + response.model.unidadMedida).prop('checked', true);
                 $modal.find('#cantidadMinima').val(response.model.stock.cantidadMinima);
+                $modal.find('#cantidadActual').val(response.model.stock.cantidadActual);
+                $modal.find('#fechaAlta').val(response.model.fAlta);
                 $.each(response.model.detalleInsumoElaborados, function (k, detalle) {
                     crearFilaDetalleInsumo(detalle.insumoBruto, detalle.cantidad);
                 });
@@ -254,7 +256,7 @@
                                         .prop('type', 'text')
                                         .prop('maxlength', '4')
                                         .prop('placeholder', 'Cantidad')
-                                        .addClass('form-control fixed-width-4')
+                                        .addClass('form-control fw-4')
                                         .val(cantidad)
                                         .blur(function () {
                                             $(this).val($(this).val().replace(/[^\d\.,]/g, ''));

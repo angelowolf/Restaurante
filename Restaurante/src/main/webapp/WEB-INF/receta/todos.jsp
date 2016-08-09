@@ -28,7 +28,7 @@
                             <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaRecetaFiltro" name="categoriaRecetaFiltro" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow" value="categoriaRecetaFiltro"/>
                     </div>
                     <div class="col-xs-12 col-sm-4 text-right">
-                        <button type="submit" class="btn btn-bottom-aligned btn-ruhaj">
+                        <button type="submit" class="btn btn-inline btn-ruhaj">
                             Buscar
                             <i class="fa fa-search fa-fw"></i>
                         </button>
@@ -48,11 +48,11 @@
                 </p>
             </div>
         </display:setProperty>
-        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="categoriaReceta.nombre" title="Categoria" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
+        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical"/>
+        <display:column sortable="true" property="categoriaReceta.nombre" title="Categoria" class="text-center-vertical hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
         <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" decorator="Decorator.DateTimeDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
         <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" decorator="Decorator.DateTimeDecorator" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column title="Acciones" class="col-xs-4 col-sm-2 text-center-all">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">
@@ -66,7 +66,7 @@
                     </s:if>
                     <s:if test="(#attr.row.fechaBaja == null)">
                         <button class="btn btn-sm btn-danger mostrar-modal-baja-receta" data-toggle="tooltip" title="Dar de Baja Receta">
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-ban"></i>
                         </button>
                     </s:if>
                     <s:else>

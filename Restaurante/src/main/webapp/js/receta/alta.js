@@ -19,10 +19,6 @@
         return false;
     });
 
-    $('#alta-receta-form .cancelar').on('click', function (e) {
-        window.location.replace('/receta/listar');
-    });
-
     $('#busqueda-ingrediente').easyAutocomplete({
         url: function (phrase) {
             return '/insumo/postBuscarInsumoAutoComplete';
@@ -142,8 +138,7 @@
                                             $(this).parents('tr').remove();
                                             cdetallesrecetas--;
                                             if(cdetallesrecetas < 1) {
-                                                $('#detalle-recetas').find('.empty')
-                                                                              .show(); 
+                                                $('#detalle-recetas .empty').show();
                                             }
                                           })
                                          .tooltip({
@@ -160,8 +155,8 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
 
-            if(cdetallesrecetas < 1) {
-                $('#detalle-recetas').find('.empty').hide();
+            if(cdetallesrecetas > 0 ) {
+                $('#detalle-recetas .empty').hide();
             }
             $('#detalle-recetas').append($tr);
             cdetallesrecetas++;
@@ -216,8 +211,7 @@
                                             $(this).parents('tr').remove();
                                             cdetallesingredientes--;
                                             if(cdetallesingredientes < 1) {
-                                                $('#detalle-ingredientes').find('.empty')
-                                                                              .show(); 
+                                                $('#detalle-ingredientes .empty').show();
                                             }
                                           })
                                          .tooltip({
@@ -236,8 +230,8 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
 
-            if(cdetallesingredientes < 1) {
-                $('#detalle-ingredientes').find('.empty').hide();
+            if(cdetallesingredientes > 0) {
+                $('#detalle-ingredientes .empty').hide();
             }
             $('#detalle-ingredientes').append($tr);
             cdetallesingredientes++;

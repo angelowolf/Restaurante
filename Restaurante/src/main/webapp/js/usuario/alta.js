@@ -28,9 +28,4 @@
         });
         return false;
     });
-
-    $('#alta-usuario-form .cancelar').on('click', function (e) {
-        e.preventDefault();
-        window.location.replace('/usuario/listar');
-    });
 })(jQuery);

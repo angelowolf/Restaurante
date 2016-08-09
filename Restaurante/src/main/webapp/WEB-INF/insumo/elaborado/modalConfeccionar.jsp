@@ -29,7 +29,7 @@
                         <div class="col-xs-12">
                             <input type="hidden" id="id" name="id">
                             <div class="form-group">
-                                <label for="cantidadConfeccionarInsumo" class="control-label">Cantidad a Confeccionar</label>
+                                <label for="cantidadConfeccionarInsumo" class="control-label">Cantidad a Confeccionar *</label>
                                 <input class="form-control numeric" type="text" id="cantidad-insumo-a-confeccionar" name="cantidadConfeccionarInsumo"/>
                                 <span class="help-block"></span>
                             </div>

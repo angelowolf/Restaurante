@@ -53,9 +53,9 @@ public class ControladorStock implements IControladorStock {
     }
 
     @Override
-    public void registrarAjuste(List<Integer> idInsumos, List<Float> cantidades) {
-        for (int i = 0; i < idInsumos.size(); i++) {
-            Insumo insumo = INSUMODAO.buscar(idInsumos.get(i));
+    public void registrarAjuste(List<Integer> ids, List<Float> cantidades) {
+        for (int i = 0; i < ids.size(); i++) {
+            Insumo insumo = INSUMODAO.buscar(ids.get(i));
             insumo.registrarAjusteStock(cantidades.get(i));
             INSUMODAO.actualizar(insumo);
         }

@@ -298,7 +298,7 @@
                                         .prop('type', 'text')
                                         .prop('maxlength', '4')
                                         .prop('placeholder', 'Cantidad')
-                                        .addClass('form-control fixed-width-4')
+                                        .addClass('form-control fw-4')
                                         .val(cantidad)
                                         .blur(function () {
                                             $(this).val($(this).val().replace(/[^\d\.,]/g, ''));

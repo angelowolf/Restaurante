@@ -4,25 +4,25 @@
         <div class="panel-heading">
             <h3 class="panel-title">Nueva Categoria de Insumo</h3>
         </div>
-        <form id="alta-categoria-insumo-form">
+        <form id="alta-categoria-insumo-form" autocomplete="off">
             <div class="panel-body">
                 <div class="form-group">
                     <label for="nombre" class="control-label">Nombre de Categoria *</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Categoria" maxlength="100" autocomplete="off" autofocus="autofocus">
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de Categoria" maxlength="100" autofocus="autofocus">
                     <span class="help-block"></span>
                 </div>
                 <div class="form-group">
                     <label for="descrpcion">Descripción de Categoria</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion de Categoria" maxlength="255" autocomplete="off"></textarea>
+                    <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion de Categoria" maxlength="255"></textarea>
                     <span class="help-block"></span>
                 </div>
             </div>
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button type="button" class="btn btn-default cancelar">
+                        <a href="/insumo/categoria/listar" class="btn btn-default cancelar">
                             Cancelar
-                        </button>
+                        </a>
                     </div>
                     <div class="col-xs-6 text-right">
                         <button type="submit" class="btn btn-ruhaj confirmar">

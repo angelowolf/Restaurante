@@ -1,7 +1,4 @@
 <%@taglib uri="/struts-tags" prefix="s" %>
-<li id="navbar-logo">
-    <img src="/imagenes/favicon.ico">
-</li>
 <li>
     <a href="/home">
         <i class="fa fa-home fa-fw"></i>
@@ -31,12 +28,12 @@
 <s:if test="#session.usuario.esResponsableStock()">
     <li>
         <a href="#">
-            <i class="fa fa-shopping-bag fa-fw"></i> Almacén
+            <i class="fa fa-shopping-bag fa-fw"></i> Insumos Brutos
             <i class="fa arrow"></i></a>
         <ul class="nav nav-second-level">
             <li>
                 <a href="#">
-                    <i class="fa fa-apple fa-fw"></i> Insumos
+                    <i class="fa fa-apple fa-fw"></i> Insumos Brutos
                     <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
@@ -54,7 +51,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Tipos Insumo
+                    <i class="fa fa-cogs fa-fw"></i> Categorías de Insumos Brutos
                     <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
@@ -70,6 +67,14 @@
                     </li>
                 </ul>  
             </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-shopping-basket fa-fw"></i> Control de Inventario
+            <i class="fa arrow"></i>
+        </a>
+        <ul class="nav nav-second-level">
             <li>
                 <a href='<s:url action="getAjusteStock" namespace="/stock"/>'>
                     <i class="fa fa-wrench fa-fw"></i> Ajuste de Stock
@@ -94,7 +99,7 @@
         <ul class="nav nav-second-level">
             <li>
                 <a href="#">
-                    <i class="fa fa-sign-language fa-fw"></i> Elaborados
+                    <i class="fa fa-sign-language fa-fw"></i> Insumos Elaborados
                     <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">
@@ -130,7 +135,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Tipos Receta
+                    <i class="fa fa-cogs fa-fw"></i> Categorías de Recetas
                     <i class="fa arrow"></i>
                 </a>
                 <ul class="nav nav-third-level">

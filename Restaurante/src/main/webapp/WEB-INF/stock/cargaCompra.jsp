@@ -1,58 +1,85 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<h2 class="page-header">Reponer Insumos</h2>
-<div class="panel panel-default" id="contenedor">
-    <div class="panel-heading ">
-        <form class="form-inline">
-            <div class="form-group">
-                <label for="categoria">Categoria</label>
-                <s:select headerKey="-1" headerValue="Todas" list="categorias" id="categoria" name="categoria" listKey="id" listValue="nombre" cssClass="form-control"/>
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del insumo">
-            </div>
-        </form>
-    </div>        
-    <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row">
-        <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron Insumos Brutos que coincidan con tu busqueda.</p></display:setProperty>
-        <display:column property="nombre" title="Nombre" class="text-center-all" headerClass="text-center-all"/>            
-        <display:column property="categoriaInsumo.nombre" title="Categoría" class="text-center-all" headerClass="text-center-all"/>            
-        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all" headerClass="text-center-all"/>
-        <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all" headerClass="text-center-all"/>
-        <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all" headerClass="text-center-all"/>            
-        <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all" headerClass="text-center-all"/>            
-        <display:column title="Agregar" class="text-center-all" headerClass="text-center-all"   >
-            <button id="<s:property value="%{#attr.row.id}"/>" class="btn btn-info"><i class="fa fa-arrow-down"></i></button> 
-            </display:column>
-        </display:table>     
-</div>
-<hr>
-<div class="panel panel-default" id="insumosComprados" style="display: none;">
-    <div class="panel-heading">
-        Insumos a Cargar
+<div class="row">
+    <div class="col-xs-12 text-left">
+        <h2 class="pull-left">Reponer Insumos Comprados</h2>
     </div>
-    <form id="formulario-compra">
-        <table class="table table-striped table-bordered" id="row2">
-            <thead>
-                <tr>
-                    <th class="text-center-all">Nombre</th>
-                    <th class="text-center-all">Categoría</th>
-                    <th class="text-center-all">Unidad de Medida</th>
-                    <th class="text-center-all">Precio por Unidad</th>
-                    <th class="text-center-all">Cantidad Actual</th>
-                    <th class="text-center-all">Cantidad Mínima</th>
-                    <th class="text-center-all">Cantidad Comprada</th>
-                    <th class="text-center-all">Precio Compra</th>
-                    <th class="text-center-all">Remover</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </form>
 </div>
-<hr>
-<div id="botones" class="form-group">
-    <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
-    <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
+<hr />
+<div class="panel">
+    <div class="panel-body">
+        <div class="row">
+            <s:form id="filtro-insumos-form" autocomplete="off">
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label for="nombre" class="control-label">Nombre de Insumo</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del insumo" maxlenght="100" autofocus="autofocus">
+                </div>
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label class="control-label" for="rolesSeleccionados">Categoría de Insumo</label>
+                    <s:select headerKey="-1" headerValue="Todas" list="categorias" id="categoria" name="categoria" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
+                </div>
+            </s:form>
+        </div>
+    </div>
 </div>
+<display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" htmlId="insumos-brutos-filtrados">
+    <display:setProperty name="basic.msg.empty_list" >
+        <div class="col-xs-12 well text-center empty">
+            <p>
+                <i class="fa fa-thumbs-up fa-lg"></i>
+                No se encontraron Insumos Brutos con su cantidad por debajo del mínimo.
+            </p>
+        </div>
+    </display:setProperty>
+    <display:column property="nombre" title="Nombre" class="text-center-vertical"/>
+    <display:column property="categoriaInsumo.nombre" title="Categoría" class="text-center-vertical"/>
+    <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all"/>
+    <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all"/>
+    <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
+    <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all"/>
+    <display:column title="Acciones" class="text-center-all">
+        <button id='<s:property value="%{#attr.row.id}"/>' class="btn btn-sm btn-success btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip">
+            <i class="fa fa-plus"></i>
+        </button> 
+    </display:column>
+</display:table>
+<h3 class="text-center">Insumos Brutos Seleccionados</h3>
+<br />
+<form id="carga-compra-form" autocomplete="off">
+    <table class="table table-striped table-ruhaj table-condensed">
+        <thead>
+            <tr>
+                <th class="text-center-vertical">Nombre</th>
+                <th class="text-center-vertical">Categoría</th>
+                <th class="text-center-all">Cantidad Actual</th>
+                <th class="text-center-all">Cantidad Mínima</th>
+                <th class="text-center-all">Unidad de Medida</th>
+                <th class="text-center-all">Precio por Unidad</th>
+                <th class="text-center-all">Cantidad Comprada</th>
+                <th class="text-center-all">Precio Compra</th>
+                <th class="text-center-all">Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="insumos-brutos-seleccionados">
+            <tr class="empty well">
+                <td class="text-center-all" colspan="9">Aun no se han seleccionado insumos brutos.</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <a href="/home" class="btn btn-default cancelar">
+                        Cancelar
+                    </a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-ruhaj confirmar" type="submit">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

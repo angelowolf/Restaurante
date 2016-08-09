@@ -11,6 +11,11 @@
         <action name="getModificar" method="postBuscarInsumo" class="Acciones.InsumoAction"/>
       
         <!--RUTAS DE EVENTOS DINAMICOS....-->
+        <action name="postBuscarInsumos" method="postBuscarInsumos" class="Acciones.InsumoAction">
+            <result type="json" >
+                <param name="root">lista</param>
+            </result> 
+        </action> 
         <action name="postBuscarInsumoAutoComplete" method="postBuscarInsumoAutoComplete" class="Acciones.InsumoAction">
             <result type="json" > 
                 <param name="root">listaAC</param>

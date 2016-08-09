@@ -65,10 +65,14 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button class="btn btn-default cancelar" type="button">Cancelar</button>
+                        <a href="/usuario/listar" class="btn btn-default cancelar">
+                            Cancelar
+                        </a>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <button class="btn btn-ruhaj confirmar" type="submit">Aceptar</button>
+                        <button class="btn btn-ruhaj confirmar" type="submit">
+                            Aceptar
+                        </button>
                     </div>
                 </div>
             </div>

@@ -37,10 +37,9 @@
                 </p>
             </div>
         </display:setProperty>
-
-        <display:column sortable="true" property="nombre" title="Nombre"  class="text-center-all" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj"/>
-        <display:column property="descripcion" title="Descripción" class="text-center-all hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-5 col-md-2 col-sm-2 col-lg-2 text-center-all" headerClass="table-header-ruhaj">
+        <display:column sortable="true" property="nombre" title="Nombre"  class="text-center-vertical"/>
+        <display:column property="descripcion" title="Descripción" class="text-center-vertical hidden-xs" headerClass="hidden-xs"/>
+        <display:column title="Acciones" class="col-xs-4 col-sm-2 text-center-all">
             <div class="acciones">
                 <s:hidden class="model-id" value="%{#attr.row.id}"/>
                 <div class="btn-group">

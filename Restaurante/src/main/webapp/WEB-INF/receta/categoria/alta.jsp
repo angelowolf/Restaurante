@@ -20,9 +20,9 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-xs-6 text-left">
-                        <button type="button" class="btn btn-default cancelar">
+                        <a href="/receta/categoria/listar" class="btn btn-default cancelar">
                             Cancelar
-                        </button>
+                        </a>
                     </div>
                     <div class="col-xs-6 text-right">
                         <button type="submit" class="btn btn-ruhaj confirmar">

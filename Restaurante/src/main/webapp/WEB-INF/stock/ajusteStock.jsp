@@ -1,62 +1,66 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<h2 class="page-header">Ajuste de Stock</h2>
-<div class="col-md-12">
-    <div class="col-md-10">
-        <div class="panel panel-default" id="contenedor">
-            <div class="panel-heading ">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="categoria">Categoria</label>
-                        <s:select headerKey="-1" headerValue="Todas" list="categorias" id="categoria" name="categoria" listKey="id" listValue="nombre" cssClass="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del insumo">
-                    </div>
-                </form>
-            </div>     
-            <form id="datos">
-                <display:table name="listaTodos" pagesize="0" requestURI="${listar}" uid="row" decorator="Decorator.RowCategoriaIdDecorator">
-                    <display:setProperty name="basic.msg.empty_list" ><p id="notificacion">No se encontraron insumos por debajo del stock mínimo.</p></display:setProperty>
-                    <display:column property="nombre" title="Nombre" class="text-center-all col-md-2" headerClass="text-center-all"/>            
-                    <display:column property="categoriaInsumo.nombre" title="Categoria" class="text-center-all col-md-2" headerClass="text-center-all" />            
-                    <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all col-md-2" headerClass="text-center-all"/>
-
-                    <display:column title="Stock Actual" class="text-center-all col-md-1" headerClass="text-center-all"   >
-                        <input type="number" class="form-control text-center" value="<s:property value="%{#attr.row.stock.cantidadActual}"/>" disabled="true"/>
-                    </display:column>
-                    <display:column title="Stock Real" class="text-center-all col-md-1" headerClass="text-center-all"   >
-                        <input type="number" min="0" name="cantidad" class="form-control text-center" disabled="true"/>
-                    </display:column>
-                    <display:column title="Diferencia" class="text-center-all col-md-1" headerClass="text-center-all"   >
-                        <input type="number" name="diferencia" class="form-control text-center" disabled="true"/>
-                    </display:column>
-
-                    <display:column title="Seleccionar" class="text-center-all col-md-1" headerClass="text-center-all"   >
-                        <div class="checkbox tamaño-medio">
-                            <label>
-                                <input type="checkbox" id="<s:property value="%{#attr.row.id}"/>">
-                            </label>
-                        </div>
-                    </display:column>
-                </display:table>
-            </form>
+<div class="row">
+    <div class="col-xs-12 text-left">
+        <h2 class="pull-left">Ajuste Manual de Stock</h2>
+    </div>
+</div>
+<hr />
+<div class="panel">
+    <div class="panel-body">
+        <div class="row">
+            <s:form id="filtro-insumos-form" autocomplete="off">
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label for="nombre" class="control-label">Nombre de Insumo</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del insumo" maxlenght="100" autofocus="autofocus">
+                </div>
+                <div class="form-group col-xs-12 col-sm-4">
+                    <label class="control-label" for="rolesSeleccionados">Categoría de Insumo</label>
+                    <s:select headerKey="-1" headerValue="Todas" list="categorias" id="categoria" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
+                </div>
+            </s:form>
         </div>
     </div>
-    <div class="col-md-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">Insumos seleccionados</div>
-            <div class="panel-body">
-                <ul id="lista">
-
-                </ul>
+</div>
+<form id="ajuste-stock-form" autocomplete="off">
+    <display:table name="listaTodos" pagesize="0" requestURI="${listar}" uid="row" htmlId="insumos-filtrados">
+        <display:setProperty name="basic.msg.empty_list" >
+            <div class="col-xs-12 well text-center empty">
+                <p>
+                    <i class="fa fa-thumbs-up fa-lg"></i>
+                    No se encontraron Insumos con su cantidad por debajo del mínimo.
+                </p>
+            </div>
+        </display:setProperty>
+        <display:column property="nombre" title="Nombre" class="text-center-vertical" />
+        <display:column property="categoriaInsumo.nombre" title="Categoria" class="text-center-vertical" />
+        <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all cantidad-actual" />
+        <display:column title="Cantidad Real" class="text-center-all">
+            <input type="text" name="cantidad" class="form-control fw-4 numeric cantidad-real" disabled/>
+        </display:column>
+        <display:column title="Diferencia" class="text-center-all diferencia" />
+        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
+        <display:column title="Acciones" class="text-center-all">
+            <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>"/>
+            <button type="button" class="btn btn-sm btn-info btn-sm btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip">
+                <i class="fa fa-circle-o"></i>
+            </button>
+        </display:column>
+    </display:table>
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <a href="/home" class="btn btn-default cancelar">
+                        Cancelar
+                    </a>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <button class="btn btn-ruhaj confirmar" type="submit">
+                        Aceptar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<hr>
-<div id="botones" class="form-group">
-    <button type="submit" id="cancelar" class="btn btn-default pull-left">Cancelar</button>
-    <button type="submit" id="registrar" class="btn btn-success pull-right">Registrar</button>
-</div>
+</form>

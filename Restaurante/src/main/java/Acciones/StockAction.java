@@ -54,7 +54,7 @@ public class StockAction extends Accion {
 
     public String getCargarCompra() {
         lista = controladorInsumoBruto.getTodosStockMinimo();
-        categorias = controladorCategoriaInsumo.getTodos();
+        categorias = controladorCategoriaInsumo.buscar(null);
         return SUCCESS;
     }
 
@@ -120,7 +120,7 @@ public class StockAction extends Accion {
 
     public String getAjusteStock() {
         listaTodos = controladorInsumo.getTodos(true);
-        categorias = controladorCategoriaInsumo.getTodos();
+        categorias = controladorCategoriaInsumo.buscarTodos(null);
         return SUCCESS;
     }
 

@@ -46,54 +46,51 @@
         </div>
     </div>
 </div>
-<div class="table-responsive">
-    <display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list" keepStatus="true">
-        <display:setProperty name="basic.msg.empty_list" >
-            <div class="col-xs-12 well text-center">
-                <p>
-                    <i class="fa fa-filter fa-lg"></i>
-                    No se encontraron Usuarios  que coincidan con tu busqueda.
-                </p>
-            </div>
-        </display:setProperty>
-
-        <display:column sortable="true" property="nombre" title="Nombre" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="apellido" title="Apellido" class="text-center-all" headerClass="table-header-ruhaj" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="nick" title="Nombre de Usuario" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="telefono" title="Teléfono de Contacto" class="text-center-all hidden-xs" headerClass="table-header-ruhaj hidden-xs" decorator="Decorator.LimitadorCaracteresDecorator"/>
-        <display:column sortable="true" property="roles" title="Roles Asignados" class="visible-lg" decorator="Decorator.RolDecorator" headerClass="table-header-ruhaj visible-lg"/>
-        <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="table-header-ruhaj hidden-xs"/>
-        <display:column title="Acciones" class="col-xs-6 col-sm-4 text-center-all" headerClass="table-header-ruhaj">
-            <div class="acciones">
-                <s:hidden class="model-id" value="%{#attr.row.id}"/>
-                <div class="btn-group">
-                    <button class="btn btn-sm btn-default mostrar-modal-ver-usuario" title="Ver Usuario" data-toggle="tooltip">
-                        <i class="fa fa-eye"></i>
+<display:table name="lista" pagesize="10" requestURI="${listar}" uid="row"  sort="list" keepStatus="true">
+    <display:setProperty name="basic.msg.empty_list" >
+        <div class="col-xs-12 well text-center">
+            <p>
+                <i class="fa fa-filter fa-lg"></i>
+                No se encontraron Usuarios  que coincidan con tu busqueda.
+            </p>
+        </div>
+    </display:setProperty>
+    <display:column sortable="true" property="nombre" title="Nombre" maxLength="40"/>
+    <display:column sortable="true" property="apellido" title="Apellido" maxLength="40"/>
+    <display:column sortable="true" property="roles" title="Roles Asignados" class="visible-lg" decorator="Decorator.RolDecorator" headerClass="col-lg-3 visible-lg"/>
+    <display:column sortable="true" property="nick" title="Nombre de Usuario" class="hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" maxLength="40"/>
+    <display:column sortable="true" property="telefono" title="Teléfono" class="hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" />
+    <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="hidden-xs"/>
+    <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="hidden-xs"/>
+    <display:column title="Acciones" class="col-xs-6 col-sm-3 col-lg-2 text-center-all">
+        <div class="acciones">
+            <s:hidden class="model-id" value="%{#attr.row.id}"/>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-default mostrar-modal-ver-usuario" title="Ver Usuario" data-toggle="tooltip">
+                    <i class="fa fa-eye"></i>
+                </button>
+                <s:if test="(#attr.row.fechaBaja == null)">
+                    <button class="btn btn-sm btn-warning mostrar-modal-modificar-usuario" title="Modificar Usuario" data-toggle="tooltip">
+                        <i class="fa fa-pencil"></i>
                     </button>
-                    <s:if test="(#attr.row.fechaBaja == null)">
-                        <button class="btn btn-sm btn-warning mostrar-modal-modificar-usuario" title="Modificar Usuario" data-toggle="tooltip">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                        <button class="btn btn-sm btn-info mostrar-modal-reiniciar-contraseña" title="Reiniciar Contraseña" data-toggle="tooltip">
-                            <i class="fa fa-repeat"></i>
-                        </button>
-                    </s:if>
-                    <s:if test="(#attr.row.fechaBaja == null)">
-                        <button class="btn btn-sm btn-danger mostrar-modal-baja-usuario" title="Dar de Baja Usuario" data-toggle="tooltip">
-                            <i class="fa fa-ban"></i>
-                        </button>
-                    </s:if>
-                    <s:else>
-                        <button class="btn btn-sm btn-success mostrar-modal-recuperar-usuario" title="Reactivar Usuario" data-toggle="tooltip">
-                            <i class="fa fa-check-circle"></i>
-                        </button>
-                    </s:else>
-                </div>
+                    <button class="btn btn-sm btn-info mostrar-modal-reiniciar-contraseña" title="Reiniciar Contraseña" data-toggle="tooltip">
+                        <i class="fa fa-repeat"></i>
+                    </button>
+                </s:if>
+                <s:if test="(#attr.row.fechaBaja == null)">
+                    <button class="btn btn-sm btn-danger mostrar-modal-baja-usuario" title="Dar de Baja Usuario" data-toggle="tooltip">
+                        <i class="fa fa-ban"></i>
+                    </button>
+                </s:if>
+                <s:else>
+                    <button class="btn btn-sm btn-success mostrar-modal-recuperar-usuario" title="Reactivar Usuario" data-toggle="tooltip">
+                        <i class="fa fa-check-circle"></i>
+                    </button>
+                </s:else>
             </div>
-        </display:column>
-    </display:table>
-</div>
+        </div>
+    </display:column>
+</display:table>
 
 <s:include value="/WEB-INF/usuario/modalVer.jsp"/>
 <s:include value="/WEB-INF/usuario/modalModificacion.jsp"/>

@@ -12,8 +12,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recuperar Contraseña</title>
-        <link rel="shortcut icon" href="/imagenes/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/imagenes/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/imagenes/ffavicon.ico" type="image/x-icon">
+        <link rel="icon" href="/imagenes/ffavicon.ico" type="image/x-icon">
         <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href='/bower_components/bootstrap/dist/css/bootstrap.css' rel='stylesheet' type='text/css'>
         <link href='/css/login.css' rel='stylesheet' type='text/css'>

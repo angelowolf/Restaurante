@@ -14,7 +14,4 @@
         });
         return false;
     });
-    $('#alta-insumo-bruto-form .cancelar').on('click', function (e) {
-        window.location.replace('/insumobruto/listar');
-    });
 })(jQuery);
