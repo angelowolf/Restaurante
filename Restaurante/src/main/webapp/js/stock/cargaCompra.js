@@ -44,14 +44,15 @@
             data: data,
             dataType : 'JSON',
             success : function (response) {
-                $('#insumos-brutos-filtrados tbody tr').remove();
+                $('#insumos-brutos-filtrados tbody tr').not('.selected').remove();
                 if(response.length == 0) {
-                    var $tde = $('<td>').attr('colspan', '7')
+                    console.log("NORESPONSE");
+                    var $tde = $('<td>').attr('colspan', '9')
                                         .addClass('text-center-all')
                                         .html('No se encontraron Insumos Brutos que coincidan con tu busqueda.');
                     var $row = $('<tr>').addClass('empty well');
                         $row.append($tde);
-                    $('#insumos-brutos-filtrados tbody').append($row);
+                    $('#insumos-brutos-filtrados tbody').prepend($row);
                 }
                 $.each(response, function(k, modelo) {
                     construirFilaTablaFiltrado(modelo);
@@ -73,10 +74,31 @@
                             .html(modelo.unidadMedida);
         var $tdpu = $('<td>').addClass('text-center-all')
                             .html(modelo.precioUnidad.toFixed(2));
-        var $icon = $('<i>').addClass('fa fa-plus');
+        var $cant = $('<input>').prop('name', 'cantidad')
+                                .prop('type', 'text')
+                                .prop('maxlength', 5)
+                                .prop('disabled', true)
+                                .addClass('form-control fw-4 cantidad-comprada')
+                                .blur(function () {
+                                    $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
+                                });
+        var $tdcc = $('<td>').addClass('text-center-all').append($cant);
+
+        var $prec = $('<input>').prop('name', 'precio')
+                               .prop('type', 'text')
+                               .prop('maxlength', 5)
+                               .prop('disabled', true)
+                               .addClass('form-control fw-4 precio-compra')
+                                .blur(function () {
+                                    $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
+                                });
+        var $tdpc = $('<td>').addClass('text-center-all').append($prec);
+
+        var $icon = $('<i>').addClass('fa fa-circle-o fa-lg');
         var $botn = $('<button>').attr('id', modelo.id)
                                  .prop('type', 'button')
-                                 .addClass('btn btn-sm btn-success btn-seleccionar-insumo')
+                                 .prop('tabindex', '-1')
+                                 .addClass('btn btn-sm btn-fw btn-default btn-seleccionar-insumo')
                                  .append($icon)
                                  .on('click', btnSeleccionarInsumoListener)
                                 .tooltip({
@@ -84,7 +106,11 @@
                                     placement : 'left',
                                     container : 'body'
                                  });
+        var $hide = $('<input>').prop('name', 'ids')
+                                .prop('type', 'hidden')
+                                .val(modelo.id);
         var $tdbt = $('<td>').addClass('text-center-all')
+                             .append($hide)
                              .append($botn);
 
         var $nrow = $('<tr>');
@@ -94,73 +120,30 @@
                  .append($tdcm)
                  .append($tdum)
                  .append($tdpu)
+                 .append($tdcc)
+                 .append($tdpc)
                  .append($tdbt);
 
-        $('#insumos-brutos-filtrados tbody').append($nrow);
+        $('#insumos-brutos-filtrados tbody').prepend($nrow);
     }
 
     function btnSeleccionarInsumoListener() {
-        var id = $(this).attr('id');
-        $(this).tooltip('destroy');
-
-        var $orow  = $(this).parents('tr');
-            $orow.slideDown('fast').remove();
-
-        var $nrow = $orow.clone();
-            $nrow.find('.btn-seleccionar-insumo')
-                 .parents('td')
-                 .remove();
-
-        var $icon = $('<i>').addClass('fa fa-minus');
-        var $botn = $('<button>').attr('id', id)
-                                 .attr('tabindex', '-1')
-                                 .prop('type', 'button')
-                                 .addClass('btn btn-sm btn-danger')
-                                 .append($icon)
-                                 .on('click', function () {
-                                    var id  = $(this).attr('id');
-                                    var idx = ids.indexOf(id);
-                                    if(idx > -1) {
-                                        ids.splice(idx, 1);
-                                        $(this).tooltip('destroy');
-                                        $(this).parents('tr').remove();
-                                        if(ids.length < 1) {
-                                            $('#insumos-brutos-seleccionados .empty').show();
-                                         }
-                                     }
-                                 })
-                                 .tooltip({
-                                    title : 'Quitar',
-                                    placement : 'left',
-                                    container : 'body'
-                                 });
-
-        var $tdac = $('<td>').addClass('text-center-all').append($botn);
-
-        var $cant = $('<input>').prop('name', 'cantidad')
-                                .prop('type', 'text')
-                                .prop('maxlength', 5)
-                                .addClass('form-control numeric fw-4');
-        var $tdca = $('<td>').addClass('text-center-all').append($cant);
-
-        var $prec = $('<input>').prop('name', 'precio')
-                               .prop('type', 'text')
-                               .prop('maxlength', 5)
-                               .addClass('form-control numeric fw-4');
-        var $tdpr = $('<td>').addClass('text-center-all').append($prec);
-
-        var $hide = $('<input>').prop('name', 'ids')
-                                .prop('type', 'hidden')
-                                .val(id);
-
-        $nrow.prepend($hide).append($tdca).append($tdpr).append($tdac);
-
-        ids.push(id);
-
-        if(ids.length > 0 ) {
-            $('#insumos-brutos-seleccionados .empty').hide();
+        var $arow = $(this).parents('tr');
+        var id = $arow.find('input[name="ids"]').val();
+        var idx = ids.indexOf(id);
+        if(idx > -1) {
+            ids.splice(idx, 1);
+            $arow.removeClass('selected');
+            $arow.find('.cantidad-comprada').prop('disabled', true).val('');
+            $arow.find('.precio-compra').prop('disabled', true).val('');
+            $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
-        $('#insumos-brutos-seleccionados').append($nrow);
+        else {
+            ids.push(id);
+            $arow.addClass('selected');
+            $arow.find('.cantidad-comprada').prop('disabled', false);
+            $arow.find('.precio-compra').prop('disabled', false);
+            $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
+        }
     }
-
 })(jQuery);

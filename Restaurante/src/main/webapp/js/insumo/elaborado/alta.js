@@ -85,7 +85,7 @@
                                         .prop('type', 'text')
                                         .prop('maxlength', '4')
                                         .prop('placeholder', 'Cantidad')
-                                        .addClass('form-control fixed-width-4')
+                                        .addClass('form-control fw-4')
                                         .val('1')
                                         .blur(function () {
                                             $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
@@ -124,11 +124,11 @@
                                      .append($tdUniMed)
                                      .append($tdAccion);
 
-            if(cdetalles < 1) {
+            cdetalles++;
+            if(cdetalles > 0) {
                 $('#detalle-insumo-elaborado').find('.empty').hide();
             }
             $('#detalle-insumo-elaborado').append($tr);
-            cdetalles++;
         }
     }
 })(jQuery);

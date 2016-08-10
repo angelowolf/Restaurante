@@ -155,11 +155,11 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
 
+            cdetallesrecetas++;
             if(cdetallesrecetas > 0 ) {
                 $('#detalle-recetas .empty').hide();
             }
             $('#detalle-recetas').append($tr);
-            cdetallesrecetas++;
         }
     }
 
@@ -183,7 +183,7 @@
                                         .prop('type', 'text')
                                         .prop('maxlength', '4')
                                         .prop('placeholder', 'Cantidad')
-                                        .addClass('form-control fixed-width-4')
+                                        .addClass('form-control fw-4')
                                         .val('1')
                                         .blur(function () {
                                             $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
@@ -230,11 +230,11 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
 
+            cdetallesingredientes++;
             if(cdetallesingredientes > 0) {
                 $('#detalle-ingredientes .empty').hide();
             }
             $('#detalle-ingredientes').append($tr);
-            cdetallesingredientes++;
         }
     }
 })(jQuery);

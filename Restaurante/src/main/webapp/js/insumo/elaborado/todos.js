@@ -295,7 +295,7 @@
                                      .append($tdUniMed)
                                      .append($tdAccion);
             cdetalles++;
-            if(cdetalles < 1) {
+            if(cdetalles > 0) {
                 $('#detalle-insumo-elaborado').find('.empty').hide();
             }
             $('#detalle-insumo-elaborado').append($tr);

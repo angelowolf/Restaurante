@@ -7,7 +7,7 @@
 
     $('#filtro-insumos-form #nombre').on('keyup', actualizarListadoInsumos);
 
-    $('input .cantidad').on('change', inputCantidadRealListener);
+    $('input .cantidad-real').on('change', inputCantidadRealListener);
 
     $('.btn-seleccionar-insumo').on('click', btnSeleccionarInsumoListener);
 
@@ -46,15 +46,16 @@
             data: data,
             dataType : 'JSON',
             success : function (response) {
-                $('input .cantidad').off('change', '**');
+                $('input .cantidad-real').off('change', '**');
                 $('#insumos-filtrados tbody tr').not('.selected').remove();
                 if(response.length == 0) {
+                    console.log("NORESPONSE");
                     var $tde = $('<td>').attr('colspan', '7')
                                         .addClass('text-center-all')
                                         .html('No se encontraron Insumos que coincidan con tu busqueda.');
                     var $row = $('<tr>').addClass('empty well');
                         $row.append($tde);
-                    $('#insumos-brutos-filtrados tbody').append($row);
+                    $('#insumos-filtrados tbody').prepend($row);
                 }
                 $.each(response, function(k, modelo) {
                     construirFilaTablaFiltrado(modelo);
@@ -74,7 +75,10 @@
                                 .prop('type', 'text')
                                 .prop('disabled', true)
                                 .prop('maxlength', 5)
-                                .addClass('form-control numeric cantidad-real fw-4')
+                                .addClass('form-control cantidad-real fw-4')
+                                .blur(function () {
+                                    $(this).val($(this).val().replace(/[^\d\.,]/g, ''));
+                                })
                                 .on('change', inputCantidadRealListener);
         var $tdcr = $('<td>').addClass('text-center-all').append($care);
 
@@ -82,10 +86,13 @@
         var $tddi = $('<td>').addClass('text-center-all diferencia');
         var $tdum = $('<td>').addClass('text-center-all')
                             .html(modelo.unidadMedida);
-        var $icon = $('<i>').addClass('fa fa-circle-o');
+
+        var $icon = $('<i>').addClass('fa fa-circle-o fa-lg');
+
         var $botn = $('<button>').attr('id', modelo.id)
                                  .prop('type', 'button')
-                                 .addClass('btn btn-sm btn-info btn-seleccionar-insumo')
+                                 .prop('tabindex', '-1')
+                                 .addClass('btn btn-sm btn-fw btn-default btn-seleccionar-insumo')
                                  .append($icon)
                                  .on('click', btnSeleccionarInsumoListener)
                                 .tooltip({
@@ -104,9 +111,9 @@
             $nrow.append($tdno)
                  .append($tdcn)
                  .append($tdca)
+                 .append($tdum)
                  .append($tdcr)
                  .append($tddi)
-                 .append($tdum)
                  .append($tdbt);
 
         $('#insumos-filtrados tbody').prepend($nrow);
@@ -119,14 +126,15 @@
         if(idx > -1) {
             ids.splice(idx, 1);
             $arow.removeClass('selected');
-            $arow.find('.cantidad-real').prop('disabled', true);
-            $(this).toggleClass('btn-info btn-success').children().toggleClass('fa-circle-o fa-check-circle');
+            $arow.find('.cantidad-real').prop('disabled', true).val('');
+            $arow.find('.diferencia').html('');
+            $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
         else {
             ids.push(id);
             $arow.addClass('selected');
             $arow.find('.cantidad-real').prop('disabled', false);
-            $(this).toggleClass('btn-info btn-success').children().toggleClass('fa-circle-o fa-check-circle');
+            $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
     }
 

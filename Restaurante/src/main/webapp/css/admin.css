@@ -1,3 +1,4 @@
+
 textarea {
   resize: vertical;
   overflow: none;
@@ -249,6 +250,14 @@ p#notificacion {
 .table-ruhaj td .form-control.fw{
   width: 40px;
   margin: auto;
+}
+
+.btn-fw {
+  padding: 5px 7px;
+}
+
+.btn-fw i {
+  line-height: .85em;
 }
 
 .btn-inline {

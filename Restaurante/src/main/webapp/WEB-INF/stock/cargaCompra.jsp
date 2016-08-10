@@ -22,50 +22,35 @@
         </div>
     </div>
 </div>
-<display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" htmlId="insumos-brutos-filtrados">
-    <display:setProperty name="basic.msg.empty_list" >
-        <div class="col-xs-12 well text-center empty">
-            <p>
-                <i class="fa fa-thumbs-up fa-lg"></i>
-                No se encontraron Insumos Brutos con su cantidad por debajo del mínimo.
-            </p>
-        </div>
-    </display:setProperty>
-    <display:column property="nombre" title="Nombre" class="text-center-vertical"/>
-    <display:column property="categoriaInsumo.nombre" title="Categoría" class="text-center-vertical"/>
-    <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all"/>
-    <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all"/>
-    <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
-    <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all"/>
-    <display:column title="Acciones" class="text-center-all">
-        <button id='<s:property value="%{#attr.row.id}"/>' class="btn btn-sm btn-success btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip">
-            <i class="fa fa-plus"></i>
-        </button> 
-    </display:column>
-</display:table>
-<h3 class="text-center">Insumos Brutos Seleccionados</h3>
-<br />
 <form id="carga-compra-form" autocomplete="off">
-    <table class="table table-striped table-ruhaj table-condensed">
-        <thead>
-            <tr>
-                <th class="text-center-vertical">Nombre</th>
-                <th class="text-center-vertical">Categoría</th>
-                <th class="text-center-all">Cantidad Actual</th>
-                <th class="text-center-all">Cantidad Mínima</th>
-                <th class="text-center-all">Unidad de Medida</th>
-                <th class="text-center-all">Precio por Unidad</th>
-                <th class="text-center-all">Cantidad Comprada</th>
-                <th class="text-center-all">Precio Compra</th>
-                <th class="text-center-all">Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="insumos-brutos-seleccionados">
-            <tr class="empty well">
-                <td class="text-center-all" colspan="9">Aun no se han seleccionado insumos brutos.</td>
-            </tr>
-        </tbody>
-    </table>
+    <display:table name="lista" pagesize="0" requestURI="${listar}" uid="row" htmlId="insumos-brutos-filtrados">
+        <display:setProperty name="basic.msg.empty_list" >
+            <div class="col-xs-12 well text-center empty">
+                <p>
+                    <i class="fa fa-thumbs-up fa-lg"></i>
+                    No se encontraron Insumos Brutos con su cantidad por debajo del mínimo.
+                </p>
+            </div>
+        </display:setProperty>
+        <display:column property="nombre" title="Nombre" class="text-center-vertical"/>
+        <display:column property="categoriaInsumo.nombre" title="Categoría" class="text-center-vertical"/>
+        <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all"/>
+        <display:column property="stock.cantidadMinima" title="Cantidad Mínima" class="text-center-all"/>
+        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
+        <display:column property="precioUnidad" title="Precio por Unidad" format="$ {0,number,.00}" class="text-center-all"/>
+        <display:column title="Cantidad Comprada *" class="text-center-all">
+            <input type="text" name="cantidad" class="form-control fw-4 numeric cantidad-comprada" disabled/>
+        </display:column>
+        <display:column title="Precio Compra *" class="text-center-all">
+            <input type="text" name="precio" class="form-control fw-4 numeric precio-compra" disabled/>
+        </display:column>
+        <display:column title="Acciones" class="text-center-all">
+            <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>"/>
+            <button type="button" class="btn btn-sm btn-fw btn-default btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip" tabindex="-1">
+                <i class="fa fa-circle-o fa-lg"></i>
+            </button> 
+        </display:column>
+    </display:table>
     <div class="panel">
         <div class="panel-body">
             <div class="row">

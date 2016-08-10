@@ -32,40 +32,32 @@
             <i class="fa arrow"></i></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="#">
-                    <i class="fa fa-apple fa-fw"></i> Insumos Brutos
-                    <i class="fa arrow"></i>
+                <a href='<s:url action="listar" namespace="/insumobruto"/>'>
+                    <i class="fa fa-list fa-fw "></i> Ver Listado
                 </a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href='<s:url action="listar" namespace="/insumobruto"/>'>
-                            <i class="fa fa-list fa-fw "></i> Ver Listado
-                        </a>
-                    </li>
-                    <li>
-                        <a href='<s:url action="nuevo" namespace="/insumobruto"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Categorías de Insumos Brutos
-                    <i class="fa arrow"></i>
+                <a href='<s:url action="nuevo" namespace="/insumobruto"/>'>
+                    <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
                 </a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href='<s:url action="listar" namespace="/insumo/categoria"/>'>
-                            <i class="fa fa-list fa-fw"></i> Ver Listado
-                        </a>
-                    </li>
-                    <li>
-                        <a href='<s:url action="nuevo" namespace="/insumo/categoria"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nuevo
-                        </a>
-                    </li>
-                </ul>  
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-sort-alpha-asc fa-fw"></i> Categorías de Insumos Brutos
+            <i class="fa arrow"></i>
+        </a>
+        <ul class="nav nav-third-level">
+            <li>
+                <a href='<s:url action="listar" namespace="/insumo/categoria"/>'>
+                    <i class="fa fa-list fa-fw"></i> Ver Listado
+                </a>
+            </li>
+            <li>
+                <a href='<s:url action="nuevo" namespace="/insumo/categoria"/>'>
+                    <i class="fa fa-plus fa-fw"></i> Añadir Nueva
+                </a>
             </li>
         </ul>
     </li>
@@ -77,17 +69,17 @@
         <ul class="nav nav-second-level">
             <li>
                 <a href='<s:url action="getAjusteStock" namespace="/stock"/>'>
-                    <i class="fa fa-wrench fa-fw"></i> Ajuste de Stock
+                    <i class="fa fa-calculator fa-fw"></i> Ajuste de Stock
                 </a>
             </li>
             <li>
                 <a href='<s:url action="getCargarCompra" namespace="/stock"/>'>
-                    <i class="fa fa-edit fa-fw"></i> Cargar Compras
+                    <i class="fa fa-shopping-cart fa-fw"></i> Cargar Compras
                 </a>
             </li>
             <li>
                 <a href='<s:url action="getListaCompra" namespace="/stock"/>'>
-                    <i class="fa fa-cart-arrow-down fa-fw"></i> Listado de Compras
+                    <i class="fa fa-file fa-fw"></i> Listado de Compras
                 </a>
             </li>
         </ul>
@@ -95,63 +87,58 @@
 </s:if>
 <s:if test="#session.usuario.esResponsableCocina()">
     <li>
-        <a href="#"><i class="fa fa-fire fa-fw"></i> Cocina<i class="fa arrow"></i></a>
+        <a href="#">
+            <i class="fa fa-sign-language fa-fw"></i> Insumos Elaborados
+            <i class="fa arrow"></i>
+        </a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="#">
-                    <i class="fa fa-sign-language fa-fw"></i> Insumos Elaborados
-                    <i class="fa arrow"></i>
+                <a href='<s:url action="listar" namespace="/insumoelaborado"/>'>
+                    <i class="fa fa-list fa-fw "></i> Ver Listado
                 </a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href='<s:url action="listar" namespace="/insumoelaborado"/>'>
-                            <i class="fa fa-list fa-fw "></i> Ver Listado
-                        </a>
-                    </li>
-                    <li>
-                        <a href='<s:url action="nuevo" namespace="/insumoelaborado"/>'>
-                            <i class="fa fa-plus fa-fw "></i> Añadir Nuevo
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-book fa-fw"></i> Recetas
-                    <i class="fa arrow"></i>
+                <a href='<s:url action="nuevo" namespace="/insumoelaborado"/>'>
+                    <i class="fa fa-plus fa-fw "></i> Añadir Nuevo
                 </a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href='<s:url action="listar" namespace="/receta"/>'>
-                            <i class="fa fa-list fa-fw"></i> Ver Listado
-                        </a>
-                    </li>
-                    <li>
-                        <a href='<s:url action="nuevo" namespace="/receta"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nueva
-                        </a>
-                    </li>
-                </ul>  
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-cogs fa-fw"></i> Categorías de Recetas
-                    <i class="fa arrow"></i>
-                </a>
-                <ul class="nav nav-third-level">
-                    <li>
-                        <a href='<s:url action="listar" namespace="/receta/categoria"/>'>
-                            <i class="fa fa-list fa-fw"></i> Ver Listado
-                        </a>
-                    </li>
-                    <li>
-                        <a href='<s:url action="nuevo" namespace="/receta/categoria"/>'>
-                            <i class="fa fa-plus fa-fw"></i> Añadir Nueva
-                        </a>
-                    </li>
-                </ul>  
             </li>
         </ul>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-book fa-fw"></i> Recetas
+            <i class="fa arrow"></i>
+        </a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href='<s:url action="listar" namespace="/receta"/>'>
+                    <i class="fa fa-list fa-fw"></i> Ver Listado
+                </a>
+            </li>
+            <li>
+                <a href='<s:url action="nuevo" namespace="/receta"/>'>
+                    <i class="fa fa-plus fa-fw"></i> Añadir Nueva
+                </a>
+            </li>
+        </ul>  
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-sort-alpha-asc fa-fw"></i> Categorías de Recetas
+            <i class="fa arrow"></i>
+        </a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href='<s:url action="listar" namespace="/receta/categoria"/>'>
+                    <i class="fa fa-list fa-fw"></i> Ver Listado
+                </a>
+            </li>
+            <li>
+                <a href='<s:url action="nuevo" namespace="/receta/categoria"/>'>
+                    <i class="fa fa-plus fa-fw"></i> Añadir Nueva
+                </a>
+            </li>
+        </ul>  
     </li>
 </s:if>
 <s:if test="#session.usuario.esResponsableCaja()">

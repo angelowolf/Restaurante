@@ -43,13 +43,13 @@
         <div class="acciones">
             <s:hidden class="model-id" value="%{#attr.row.id}"/>
             <div class="btn-group">
-                <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-insumo" title="Ver Categoria" data-toggle="tooltip">
+                <button class="btn btn-sm btn-default mostrar-modal-ver-categoria-insumo" title="Ver Categoría" data-toggle="tooltip">
                     <i class="fa fa-eye"></i>
                 </button>
-                <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-insumo" title="Editar Categoria" data-toggle="tooltip">
+                <button class="btn btn-sm btn-warning mostrar-modal-modificar-categoria-insumo" title="Editar Categoría" data-toggle="tooltip">
                     <i class="fa fa-pencil"></i>
                 </button>
-                <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-insumo" title="Eliminar Categoria" data-toggle="tooltip">
+                <button class="btn btn-sm btn-danger mostrar-modal-eliminar-categoria-insumo" title="Eliminar Categoría" data-toggle="tooltip">
                     <i class="fa fa-trash"></i>
                 </button>
             </div>
@@ -61,7 +61,7 @@
 <s:include value="/WEB-INF/insumo/categoria/modalVer.jsp"/>
 <s:set var="objeto" value="#application.mensaje.CATEGORIAINSUMO"/>
 <s:include value="/WEB-INF/modal/modal.jsp">
-    <s:param name="modalId">modal-eliminar-categoria</s:param>
+    <s:param name="modalId">modal-eliminar-categoria-insumo</s:param>
     <s:param name="titulo">Eliminar <s:property value="#objeto"/></s:param>
     <s:param name="mensaje"><s:property value="#application.mensaje.getPreguntaEliminarLa(#objeto)"/></s:param>
     <s:param name="modelo">categoria</s:param>

@@ -35,15 +35,15 @@
         <display:column property="nombre" title="Nombre" class="text-center-vertical" />
         <display:column property="categoriaInsumo.nombre" title="Categoria" class="text-center-vertical" />
         <display:column property="stock.cantidadActual" title="Cantidad Actual" class="text-center-all cantidad-actual" />
-        <display:column title="Cantidad Real" class="text-center-all">
+        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
+        <display:column title="Cantidad Real *" class="text-center-all">
             <input type="text" name="cantidad" class="form-control fw-4 numeric cantidad-real" disabled/>
         </display:column>
         <display:column title="Diferencia" class="text-center-all diferencia" />
-        <display:column property="unidadMedida" title="Unidad de Medida" class="text-center-all"/>
         <display:column title="Acciones" class="text-center-all">
             <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>"/>
-            <button type="button" class="btn btn-sm btn-info btn-sm btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip">
-                <i class="fa fa-circle-o"></i>
+            <button type="button" class="btn btn-sm btn-fw btn-default btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip" tabindex="-1">
+                <i class="fa fa-circle-o fa-lg"></i>
             </button>
         </display:column>
     </display:table>

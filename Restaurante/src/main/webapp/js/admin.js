@@ -84,12 +84,14 @@ var erroresM = (function () {
                 delay : 10000,
                 offset: 
                 { 
-                    y : 0 
+                    y : 52
                 },
+                position : 'fixed',
+                element  : 'body',
                 placement: 
                 {
-                    align: "center",
-                    from : "top"
+                    from : "top",
+                    align: "center"
                 },
                 type: tipo
             }

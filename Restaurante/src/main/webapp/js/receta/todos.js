@@ -270,7 +270,7 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
             cdetallesrecetas++;
-            if(cdetallesrecetas < 1) {
+            if(cdetallesrecetas > 0) {
                 $('#detalle-recetas').find('.empty').hide();
             }
             $('#detalle-recetas').append($tr);
@@ -347,7 +347,7 @@
                                      .append($tdAccion);
 
             cdetallesingredientes++;
-            if(cdetallesingredientes < 1) {
+            if(cdetallesingredientes > 0) {
                 $('#detalle-ingredientes').find('.empty').hide();
             }
             $('#detalle-ingredientes').append($tr);
