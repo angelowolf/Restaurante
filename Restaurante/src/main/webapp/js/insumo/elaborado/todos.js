@@ -294,12 +294,11 @@
                                      .append($tdCanUsa)
                                      .append($tdUniMed)
                                      .append($tdAccion);
-
+            cdetalles++;
             if(cdetalles < 1) {
                 $('#detalle-insumo-elaborado').find('.empty').hide();
             }
             $('#detalle-insumo-elaborado').append($tr);
-            cdetalles++;
         }
     }
 })(jQuery);

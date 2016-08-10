@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-xs-10 text-left">
-        <h2 class="pull-left">Listado de Insumos</h2>
+        <h2 class="pull-left">Listado de Insumos Brutos</h2>
     </div>
     <div class="col-xs-2 text-right">
         <br />
@@ -45,8 +45,8 @@
             </p>
         </div>
     </display:setProperty>
-    <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical" />
-    <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-vertical hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" />
+    <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical" maxLength="40"/>
+    <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-vertical hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" maxLength="40"/>
     <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all"/>
     <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm"/>
     <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-vertical hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm"/>

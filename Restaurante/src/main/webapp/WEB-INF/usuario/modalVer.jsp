@@ -9,10 +9,10 @@
             <div class="modal-body">
                 <div class="row">
                     <input type="hidden" id="id" name="id">
-                    <div class="col-xs-12 col-md-6 text-inline">
+                    <div class="col-xs-12 text-inline">
                         <strong>Nombre: </strong><p id="nombre"></p>
                     </div>
-                    <div class="col-xs-12 col-md-6 text-inline">
+                    <div class="col-xs-12 text-inline">
                         <strong>Apellido: </strong><p id="apellido"></p>
                     </div>
                     <div class="col-xs-12 col-md-6 text-inline">
@@ -33,7 +33,7 @@
                     <div class="col-xs-12 col-md-6 text-inline">
                         <strong>Fecha de Baja: </strong><p id="fechaBaja"></p>
                     </div>
-                    <div class="col-xs-12 col-md-6 text-inline">
+                    <div class="col-xs-12 text-inline">
                         <strong>Nombre de Usuario: </strong><p id="nick"></p>
                     </div>
                     <div class="col-xs-12 text-inline">

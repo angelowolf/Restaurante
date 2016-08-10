@@ -28,12 +28,14 @@ $(document).ready(function () {
         var canStore = (typeof(Storage) !== "undefined");
         if(keepOpen ==  1) {
             $("#sidebar-ruhaj").removeClass('closed');
+            $("#page-wrapper").addClass('open');
             if(canStore) {
                 localStorage.setItem('isRuhajMenuOpen', 1);
             }
         }
         else {
             $("#sidebar-ruhaj").addClass('closed');
+            $("#page-wrapper").removeClass('open');
             if(canStore) {
                 localStorage.setItem('isRuhajMenuOpen', 0);
             }

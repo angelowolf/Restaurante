@@ -3,7 +3,7 @@
     <div class="panel panel-ruhaj">
         <form id="alta-insumo-bruto-form" autocomplete="off">
             <div class="panel-heading">
-                <h3 class="panel-title">Nuevo Insumo</h3>
+                <h3 class="panel-title">Nuevo Insumo Bruto</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -20,7 +20,7 @@
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label for="categoria" name="categoria">Categoria de Insumo *</label>
+                            <label for="categoria" name="categoria">Categoría de Insumo *</label>
                             <div class="form-group">
                                 <s:select headerKey="-1" headerValue="Selecciona una Categoría" list="categorias" id="categoriaInsumo" name="categoriaInsumo.id" listKey="id" listValue="nombre" cssClass="form-control selectpicker show-tick show-menu-arrow"/>
                                 <span class="help-block"></span>

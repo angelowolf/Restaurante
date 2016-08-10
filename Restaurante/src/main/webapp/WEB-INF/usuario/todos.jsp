@@ -58,7 +58,7 @@
     <display:column sortable="true" property="nombre" title="Nombre" maxLength="40"/>
     <display:column sortable="true" property="apellido" title="Apellido" maxLength="40"/>
     <display:column sortable="true" property="roles" title="Roles Asignados" class="visible-lg" decorator="Decorator.RolDecorator" headerClass="col-lg-3 visible-lg"/>
-    <display:column sortable="true" property="nick" title="Nombre de Usuario" class="hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" maxLength="40"/>
+    <display:column sortable="true" property="nick" title="Nombre de Usuario" class="visible-lg" headerClass="visible-lg" maxLength="40"/>
     <display:column sortable="true" property="telefono" title="Teléfono" class="hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm" />
     <display:column sortable="true" property="fechaAlta" title="Fecha de Alta" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="hidden-xs"/>
     <display:column sortable="true" property="fechaBaja" title="Fecha de Baja" class="text-center-all hidden-xs" decorator="Decorator.DateDecorator" headerClass="hidden-xs"/>

@@ -269,12 +269,11 @@
                                      .append($tdNombre)
                                      .append($tdOpcion)
                                      .append($tdAccion);
-
+            cdetallesrecetas++;
             if(cdetallesrecetas < 1) {
                 $('#detalle-recetas').find('.empty').hide();
             }
             $('#detalle-recetas').append($tr);
-            cdetallesrecetas++;
         }
     }
 
@@ -347,11 +346,11 @@
                                      .append($tdOpcion)
                                      .append($tdAccion);
 
+            cdetallesingredientes++;
             if(cdetallesingredientes < 1) {
                 $('#detalle-ingredientes').find('.empty').hide();
             }
             $('#detalle-ingredientes').append($tr);
-            cdetallesingredientes++;
         }
     }
 })(jQuery);

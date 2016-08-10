@@ -15,6 +15,19 @@ textarea {
   margin-top: 60px;
 }
 
+.bootstrap-select .filter-option, .bootstrap-select .dropdown-menu {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bootstrap-select .dropdown-menu span.text {
+  display: block;
+  max-width: 97%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #panel-notificaciones {
   color: #000;
   min-width: 500px;
@@ -127,14 +140,14 @@ p#notificacion {
   color: #f8557d;
 }
 
-.ruhaj-paginator > li > span {
+.ruhaj-paginator > li > a {
   font-weight: bold;
   color: #f8557d;
   background-color: #fdfdfd;
   border-color: #f73d6a;
 }
 
-.ruhaj-paginator > li > span:hover {
+.ruhaj-paginator > li > a:hover {
   color: #f8557d;
   background-color: #fdfdfd;
   border-color: #f73d6a;
@@ -153,11 +166,11 @@ p#notificacion {
 }
 
 .text-center-vertical {
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 .text-center-all {
-  vertical-align: middle;
+  vertical-align: middle !important;
   text-align: center;
 }
 
@@ -171,6 +184,12 @@ p#notificacion {
 
 .text-amarillo{
     color: #e2cc23;
+}
+
+.table-ruhaj .well {
+  border-right-style: none;
+  border-left-style: none;
+  border-bottom-width: 2px;
 }
 
 .table-ruhaj th {
@@ -188,6 +207,23 @@ p#notificacion {
 .table-ruhaj th a:hover, .table-ruhaj th a:focus {
   color: #666666;
   text-decoration: none;
+}
+
+.table-ruhaj th.sortable a:after {
+  font-family: "FontAwesome";
+  font-size: 0.85em;
+  margin-left: 5px;
+  content: '\f0dc';
+}
+
+.table-ruhaj th.sortable.sorting_desc a:after {
+  font-size: 1em;
+  content: '\f0dd';
+}
+
+.table-ruhaj th.sortable.sorting_asc a:after {
+  font-size: 1em;
+  content: '\f0de';
 }
 
 .table-ruhaj td {
@@ -248,10 +284,10 @@ p#notificacion {
   cursor: wait;
 }
 
-#page {
+#wrapper {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: none;
   z-index: 0;
 }
 
@@ -262,6 +298,17 @@ p#notificacion {
   padding: 20px 10px;
   background-color: #fbfbfb;
   z-index: 1;
+  -webkit-transition: padding-left 300ms;
+  -moz-transition: padding-left 300ms;
+  transition: padding-left 300ms;
+}
+
+#page-wrapper.open {
+  padding-left: 300px;
+}
+
+#page-wrapper.open .visible-lg {
+  display: none !important;
 }
 
 #sidebar-head {
@@ -290,9 +337,9 @@ p#notificacion {
   height: 100%;
   background-color: #c90242;
   z-index: 1200;
-  -webkit-transition: left 250ms;
-  -moz-transition: left 250ms;
-  transition: left 250ms;
+  -webkit-transition: left 300ms;
+  -moz-transition: left 300ms;
+  transition: left 300ms;
 }
 
 #sidebar-ruhaj.closed {
@@ -317,7 +364,10 @@ p#notificacion {
   background-color: #ad072f;
 }
 
-@media (max-width : 596px) {
+@media (max-width : 600px) {
+  #page-wrapper.open {
+    padding-left: 0;
+  }
   .table-ruhaj td {
     max-width: 100px;
   }

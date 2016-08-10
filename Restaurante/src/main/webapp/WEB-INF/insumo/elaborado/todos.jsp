@@ -41,8 +41,8 @@
             </p>
         </div>
     </display:setProperty>
-    <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical" />
-    <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all hidden-xs" headerClass="hidden-xs" />
+    <display:column sortable="true" property="nombre" title="Nombre" class="text-center-vertical" maxLength="40"/>
+    <display:column sortable="true" property="categoriaInsumo.nombre" title="Categoria" class="text-center-all hidden-xs" headerClass="hidden-xs" maxLength="40"/>
     <display:column sortable="true" property="stock.cantidadActual" title="Cantidad en Stock" class="text-center-all hidden-xs" headerClass="hidden-xs"/>
     <display:column sortable="true" property="stock.cantidadMinima" title="Stock Mínimo" class="text-center-all hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm"/>
     <display:column sortable="true" property="unidadMedida" title="Unidad de Medida" class="text-center-all hidden-xs hidden-sm" headerClass="hidden-xs hidden-sm"/>

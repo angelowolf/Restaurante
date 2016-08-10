@@ -8,14 +8,14 @@
     </div>
 </div>
 <div class="row">
-    <table class="table table-striped table-condensed">
+    <table class="table table-ruhaj table-striped table-condensed">
         <thead>
             <tr>
-                <th class="table-header-ruhaj">Nombre</th>
-                <th class="table-header-ruhaj">Cantidad a Utilizar</th>
-                <th class="table-header-ruhaj">Unidad de Medida</th>
-                <th class="table-header-ruhaj">Es Opcional?</th>
-                <th class="table-header-ruhaj">Acciones</th>
+                <th>Nombre</th>
+                <th>Cantidad a Utilizar *</th>
+                <th>Unidad de Medida</th>
+                <th>Es Opcional?</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="detalle-ingredientes">
