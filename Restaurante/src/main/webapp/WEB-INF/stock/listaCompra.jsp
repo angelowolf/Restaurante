@@ -37,7 +37,7 @@
                 <input type="text" class="form-control numeric fw-4" id="cantidad">
         </display:column>
         <display:column title="Acciones" class="text-center-all">
-            <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>"/>
+            <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>" />
             <button type="button" class="btn btn-sm btn-fw btn-danger btn-quitar-insumo" title="Quitar del Listado" data-toggle="tooltip" data-placement="left" tabindex="-1">
                 <i class="fa fa-minus fa-lg"></i>
             </button>

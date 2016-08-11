@@ -121,19 +121,21 @@
 
     function btnSeleccionarInsumoListener() {
         var $arow = $(this).parents('tr');
-        var id = $arow.find('input[name="ids"]').val();
+        var id = $arow.find('.id').val();
         var idx = ids.indexOf(id);
         if(idx > -1) {
             ids.splice(idx, 1);
             $arow.removeClass('selected');
             $arow.find('.cantidad-real').prop('disabled', true).val('');
             $arow.find('.diferencia').html('');
+            $arow.find('.id').prop('disabled', true);
             $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
         else {
             ids.push(id);
             $arow.addClass('selected');
             $arow.find('.cantidad-real').prop('disabled', false);
+            $arow.find('.id').prop('disabled', false);
             $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
     }

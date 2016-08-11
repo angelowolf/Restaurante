@@ -129,13 +129,14 @@
 
     function btnSeleccionarInsumoListener() {
         var $arow = $(this).parents('tr');
-        var id = $arow.find('input[name="ids"]').val();
+        var id = $arow.find('.id').val();
         var idx = ids.indexOf(id);
         if(idx > -1) {
             ids.splice(idx, 1);
             $arow.removeClass('selected');
             $arow.find('.cantidad-comprada').prop('disabled', true).val('');
             $arow.find('.precio-compra').prop('disabled', true).val('');
+            $arow.find('.id').prop('disabled', true);
             $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
         else {
@@ -143,6 +144,7 @@
             $arow.addClass('selected');
             $arow.find('.cantidad-comprada').prop('disabled', false);
             $arow.find('.precio-compra').prop('disabled', false);
+            $arow.find('.id').prop('disabled', false);
             $(this).toggleClass('btn-default btn-success').children().toggleClass('fa-circle-o fa-check-circle');
         }
     }

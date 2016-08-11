@@ -45,7 +45,7 @@
             <input type="text" name="precio" class="form-control fw-4 numeric precio-compra" disabled/>
         </display:column>
         <display:column title="Acciones" class="text-center-all">
-            <input name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>"/>
+            <input class="id" name="ids" type="hidden" value="<s:property value='%{#attr.row.id}'/>" disabled/>
             <button type="button" class="btn btn-sm btn-fw btn-default btn-seleccionar-insumo" title="Seleccionar" data-placement="left" data-toggle="tooltip" tabindex="-1">
                 <i class="fa fa-circle-o fa-lg"></i>
             </button> 
